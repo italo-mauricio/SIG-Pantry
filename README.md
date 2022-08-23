@@ -1,1 +1,1 @@
-# Programa-oUFRN
+# Disciplina Programação UFRN
