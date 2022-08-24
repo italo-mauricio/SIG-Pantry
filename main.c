@@ -17,7 +17,11 @@ MÓDULO RELATÓRIO
 #include <string.h>
 #include <unistd.h>
 
-int main(void) {
+
+char telaPrincipal();
+
+
+char telaPrincipal(){
 
     system("clear||cls"); 
     printf("| ---------------------------------------------------------------------- |\n");
@@ -26,12 +30,8 @@ int main(void) {
     prinft("|               Disciplina: DCT1106 - PROGRAMAÇãO - 2022.2               |\n");
     prinft("|          Projeto: Sistema de Controle de Despensa Doméstica            |\n");
     printf("|          Colaboradores:  Manuelly Victor e Italo Mauricio              |\n"); 
-    printf("|          Docente: Dr Flavius Gorgonio                                  |\n");                                           ")
-   
-    printf("<<<<<<<<<<<        Projeto: SIG-Pantry            >>>>>>>>>\n");
+    printf("|          Docente: Dr Flavius Gorgonio                                  |\n");
 
-
-    system("pause");
-    return 0;
+    return "c";
 
 }
