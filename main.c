@@ -9,12 +9,13 @@
 
 char telaInicial();
 
-void modulocadastro();      
+void modulocadastro();
 
 
 
 
-char main(void)
+
+int main(void)
 
  {
 
@@ -33,7 +34,7 @@ char main(void)
     printf("| ---------------------- SIG - Pranty - 2022.2 ------------------------- |\n");
     printf("| ----------------- >>> Tecle <ENTER> para continuar... ---------------- |\n");
     getchar();
-    return "c";
+    return 0;
 
     
 
@@ -43,7 +44,6 @@ char main(void)
 char telaPrincipal(void)
 
 {
-
     system("clear||cls"); 
     printf("| ====================================================================== |\n");
     printf("| ====                      SIG - Pranty                            ==== |\n");
