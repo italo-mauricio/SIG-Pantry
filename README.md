@@ -12,7 +12,7 @@
 * Bacharelado em Sistemas de Informação
 * Disciplina DCT1106 - Programação
 * **Integrantes:** Manuelly Rodrigues Victor e Italo Mauricio de Medeiros Santos
-* **Email para contato:** italomauricio98@gmail.com, manuellyvictor2000@gmail.com
+* **Email para contato:** italomauricio98@gmail.com / manuellyvictor2000@gmail.com
 * Data de início: 22/08/2022
 * Status: Em desenvolvimento  
 
@@ -22,4 +22,4 @@
 
 ## Descrição do Projeto:
 * O projeto tem a proposta de criar um software para controle da despensa doméstica de uma casa, sendo dividido em categorias: alimentação, higiene pessoal, limpeza etc. O programa seria uma forma de facilitar as atividades cotidianas de uma casa, fazendo o controle total do que entra e o que sai da despensa, por meio das datas de validades dos produtos, por exemplo. 
-* 
+
