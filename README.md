@@ -13,7 +13,7 @@
 * Disciplina DCT1106 - Programação
 * **Integrantes:** Manuelly Rodrigues Victor e Italo Mauricio de Medeiros Santos
 * Data de início: 22/08/2022
-* Status: Em desenvolvimento  
+
 
 
 ## :hammer_and_wrench: Linguagem usada:   
