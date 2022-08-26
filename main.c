@@ -7,18 +7,14 @@
 
 
 
-char telaInicial();
-
-void modulocadastro();
 
 
 
 
 
-int main(void)
 
- {
-
+int main(void){
+    int tela;
     system("clear||cls"); 
     printf("| ---------------------------------------------------------------------- |\n");
     printf("| ----- // UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - CERES // ------ |\n");
@@ -33,33 +29,38 @@ int main(void)
     printf("| ---------------------------------------------------------------------- |\n");
     printf("| ---------------------- SIG - Pranty - 2022.2 ------------------------- |\n");
     printf("| ----------------- >>> Tecle <ENTER> para continuar... ---------------- |\n");
-    getchar();
-    return 0;
-
     
 
+    tela = telaPrincipal();
+    switch (tela)
+    {
+    case 1:
+        printf("a");
+        break;
+
+    default:
+        break;
+    }
 }
-
-
-char telaPrincipal(void)
+int telaPrincipal(void)
 
 {
+    int d;
     system("clear||cls"); 
     printf("| ====================================================================== |\n");
-    printf("| ====                      SIG - Pranty                            ==== |\n");
+    printf("| ====================|       SIG - Pranty        |===================== |\n");
     printf("| ====================================================================== |\n");
     printf("| ---------------------------------------------------------------------- |\n");
     printf("|                                                                        |\n");
     printf("|                      1 - Cadastrar Produtos                            |\n");
     printf("|                      2 -                                               |\n"); 
-    printf("|                      3 -                                               |\n");
+    printf("|                      3 -                                              |\n");
     printf("|                      4 - Sair                                          |\n");
     printf("|                                                                        |\n");
     printf("| ---------------------------------------------------------------------- |\n");
     printf("| ====================================================================== |\n");
-    getchar();
-
-
+    scanf("%d",d);
+    return d;
 
 } 
 
