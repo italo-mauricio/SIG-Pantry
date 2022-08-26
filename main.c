@@ -7,24 +7,39 @@
 
 
 // Assinatura das funções
-void telaPrincipal(void);
+char telaPrincipal(void);
 void telaSobre(void);
 
 
 int main(void)
 {
-    telaPrincipal();
-    telaSobre();
+    char tela;
+    tela = telaPrincipal();
+    switch (tela)
+    {
+        /*case '1':
+            moduloCadastro();
+            break;
+        case '2':
+            moduloCompras();
+            break;*/
+        case '3':
+            telaSobre();
+            break;
+        default:
+            printf("Opcao invalida\n");
+            break;
+    }
+
    
     return 0;
 }
 
 
-void telaPrincipal(void)
+char telaPrincipal(void)
 
 {
     char opcao;
-    char tela;
     system("clear||cls"); 
     printf("| ====================================================================== |\n");
     printf("| ====================|       SIG - Pranty        |===================== |\n");
@@ -32,7 +47,7 @@ void telaPrincipal(void)
     printf("| ---------------------------------------------------------------------- |\n");
     printf("|                                                                        |\n");
     printf("|                      1 - Cadastrar Produtos                            |\n");
-    printf("|                      2 -                                               |\n"); 
+    printf("|                      2 - Lista de compras                              |\n"); 
     printf("|                      3 - Informacoes                                   |\n");
     printf("|                      4 - Sair                                          |\n");
     printf("|                                                                        |\n");                                                                      
@@ -40,23 +55,13 @@ void telaPrincipal(void)
     printf("| ====================================================================== |\n");
     printf("| Escolha uma opcao:                                                     |\n");
     printf("| ====================================================================== |\n");
-    scanf("%d", opcao);
-    tela = telaPrincipal();
-    switch (tela)
-    {
-    case '1':
-        ;
-        break;
+    scanf("%c", &opcao);
 
-    default:
-        break;
-    }
-    return tela;
+    return opcao;
 
 } 
 
-void sobre(void){
-    int telaSobre;
+void telaSobre(void){
     system("clear||cls"); 
     printf("| ---------------------------------------------------------------------- |\n");
     printf("| ----- // UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - CERES // ------ |\n");
@@ -74,4 +79,4 @@ void sobre(void){
     printf("|                                                                        |\n");
     printf("| ---------------------------------------------------------------------- |\n");
     printf("| ---------------------- SIG - Pranty - 2022.2 ------------------------- |\n");
-    printf("| ----------------- >>> Tecle <ENTER> para continuar... ---------------- |\n");
+}
