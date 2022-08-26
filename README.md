@@ -30,7 +30,7 @@
 
 
 ## Descrição do Projeto:
-* O projeto tem a proposta de criar um software para controle da despensa doméstica de uma casa, sendo dividido em categorias: alimentação, higiene pessoal, limpeza etc. O programa seria uma forma de facilitar as atividades cotidianas de uma casa, fazendo o controle total do que entra e o que sai da despensa, por meio das datas de validades dos produtos, por exemplo.
+* O projeto tem a proposta de criar um software para controle da despensa doméstica de uma casa, sendo dividido em categorias: alimentação, higiene pessoal, limpeza etc. O programa seria uma forma de facilitar as atividades cotidianas de uma casa, fazendo o controle total do que entra e o que sai de uma despensa, por meio das datas de validades dos produtos, por exemplo.
 * O desenvolvimento será executado em várias fases, com atualizações contínuas no GitHub para cada fase do projeto.  
 
 
