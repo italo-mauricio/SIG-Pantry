@@ -6,12 +6,18 @@
 
 
 
+// Assinatura das funções
+int telaPrincipal(void);
+int telaSobre(void);
+int telaCadastro(void);
 
-
-
-
-
-
+int main(void)
+{
+    telaPrincipal();
+    telaSobre();
+    telaCadastro();
+    return 0;
+}
 
 int main(void){
     int tela;
@@ -24,7 +30,7 @@ int main(void){
     printf("|               Disciplina: DCT1106 - PROGRAMACAO - 2022.2               |\n");
     printf("|          Projeto: Sistema de Controle de Despensa Domestica            |\n");
     printf("|            Colaboradores:  Manuelly Victor e Italo Mauricio            |\n"); 
-    printf("|                  Docente: Dr Flavius Gorgonio                          |\n");
+    printf("|                  Docente: Dr Flavius Gorgonioo                         |\n");
     printf("|                                                                        |\n");
     printf("| ---------------------------------------------------------------------- |\n");
     printf("| ---------------------- SIG - Pranty - 2022.2 ------------------------- |\n");
@@ -42,7 +48,7 @@ int main(void){
         break;
     }
 }
-int telaPrincipal(void)
+int telaPrincipal()
 
 {
     int d;
@@ -64,4 +70,23 @@ int telaPrincipal(void)
 
 } 
 
-
+int main(void){
+    int telaSobre;
+    system("clear||cls"); 
+    printf("| ---------------------------------------------------------------------- |\n");
+    printf("| ----- // UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - CERES // ------ |\n");
+    printf("| -------- // Departamento de Computacao e Informatica // ---------------|\n");
+    printf("| ---------------------------------------------------------------------- |\n");
+    printf("|                                                                        |\n");                                       
+    printf("|               Disciplina: DCT1106 - PROGRAMACAO - 2022.2               |\n");
+    printf("|          Projeto: Sistema de Controle de Despensa Domestica            |\n");
+    printf("|                    Docente: Dr Flavius Gorgonio                        |\n");
+    printf("|                                                                        |\n");
+    printf("|    Este programa consiste no controle das atividades de uma despensa   |\n");
+    printf("|     doméstica, sendo dividido em categorias no intuito de ajudar na    |\n");
+    printf("|                  organizacao das atividades cotidianas                 |\n");
+    printf("|              Equipe:  Manuelly Rodrigues e Italo Mauricio              |\n"); 
+    printf("|                                                                        |\n");
+    printf("| ---------------------------------------------------------------------- |\n");
+    printf("| ---------------------- SIG - Pranty - 2022.2 ------------------------- |\n");
+    printf("| ----------------- >>> Tecle <ENTER> para continuar... ---------------- |\n");
