@@ -30,7 +30,7 @@ int main(void){
     printf("|               Disciplina: DCT1106 - PROGRAMACAO - 2022.2               |\n");
     printf("|          Projeto: Sistema de Controle de Despensa Domestica            |\n");
     printf("|            Colaboradores:  Manuelly Victor e Italo Mauricio            |\n"); 
-    printf("|                  Docente: Dr Flavius Gorgonio                          |\n");
+    printf("|                  Docente: Dr Flavius Gorgonioo                         |\n");
     printf("|                                                                        |\n");
     printf("| ---------------------------------------------------------------------- |\n");
     printf("| ---------------------- SIG - Pranty - 2022.2 ------------------------- |\n");
