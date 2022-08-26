@@ -7,8 +7,9 @@ int main(void){
 
  system ( " clear||cls " );
     printf("_______________________________________________________________\n");
-    printf("-------------------- SIG-Pantry - CADASTRO --------------------\n");
     printf("_______________________________________________________________\n");
+    printf("-------------------- SIG-Pantry - CADASTRO --------------------\n");
+    printf("\n\n");
     printf("--------------- \t1- Cadastrar item alimentar ---------------- \n");
     printf("------------ \t2- Cadastrar item de higiene pessoal ---------- \n"); 
     printf("--------------- \t3- Cadastrar item de limpeza --------------- \n");    
