@@ -5,16 +5,17 @@
 
 int main(void){
 
-    printf("___________________________________________________________\n");
-    printf(" // UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - CERES // \n");
-    printf(" //       DEPARTAMENTO DE COMPUTAÇÃO E TECNOLOGIA       // \n");
-    printf("___________________________________________________________\n");
-    printf(" //////////// Disciplina: DCT1106 - PROGRAMAÇÃO ///////////\n");
-    printf(" /////////////////// Projeto: SIG-Pantry //////////////////\n");
-
-    printf("<<<<<<<<<<<        Projeto: SIG-Pantry            >>>>>>>>>\n");
-
-
+ system ( " clear||cls " );
+    printf("_______________________________________________________________\n");
+    printf("-------------------- SIG-Pantry - CADASTRO --------------------\n");
+    printf("_______________________________________________________________\n");
+    printf("--------------- \t1- Cadastrar item alimentar ---------------- \n");
+    printf("------------ \t2- Cadastrar item de higiene pessoal ---------- \n"); 
+    printf("--------------- \t3- Cadastrar item de limpeza --------------- \n");    
+    printf("----------------- \t0- Voltar a tela inicial ----------------- \n");
+    printf("_______________________________________________________________\n");
+    printf("_______________________________________________________________\n");
+    printf("\n\n");
 
     return 0;
 }
