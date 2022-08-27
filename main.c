@@ -6,19 +6,62 @@
 
 
 
-
-char telaInicial();
-
-void modulocadastro();
-
-
-
+// Assinatura das funções
+char telaPrincipal(void);
+void telaSobre(void);
 
 
 int main(void)
+{
+    char tela;
+    tela = telaPrincipal();
+    switch (tela)
+    {
+        /*case '1':
+            moduloCadastro();
+            break;
+        case '2':
+            moduloCompras();
+            break;*/
+        case '3':
+            telaSobre();
+            break;
+        default:
+            printf("Opcao invalida\n");
+            break;
+    }
 
- {
+   
+    return 0;
+}
 
+
+char telaPrincipal(void)
+
+{
+    char opcao;
+    system("clear||cls"); 
+    printf("| ====================================================================== |\n");
+    printf("| ====================|       SIG - Pranty        |===================== |\n");
+    printf("| ====================================================================== |\n");
+    printf("| ---------------------------------------------------------------------- |\n");
+    printf("|                                                                        |\n");
+    printf("|                      1 - Cadastrar Produtos                            |\n");
+    printf("|                      2 - Lista de compras                              |\n"); 
+    printf("|                      3 - Informacoes                                   |\n");
+    printf("|                      4 - Sair                                          |\n");
+    printf("|                                                                        |\n");                                                                      
+    printf("| ---------------------------------------------------------------------- |\n");
+    printf("| ====================================================================== |\n");
+    printf("| Escolha uma opcao:                                                     |\n");
+    printf("| ====================================================================== |\n");
+    scanf("%c", &opcao);
+
+    return opcao;
+
+} 
+
+void telaSobre(void){
     system("clear||cls"); 
     printf("| ---------------------------------------------------------------------- |\n");
     printf("| ----- // UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - CERES // ------ |\n");
@@ -27,40 +70,13 @@ int main(void)
     printf("|                                                                        |\n");                                       
     printf("|               Disciplina: DCT1106 - PROGRAMACAO - 2022.2               |\n");
     printf("|          Projeto: Sistema de Controle de Despensa Domestica            |\n");
-    printf("|            Colaboradores:  Manuelly Victor e Italo Mauricio            |\n"); 
-    printf("|                  Docente: Dr Flavius Gorgonio                          |\n");
+    printf("|                    Docente: Dr Flavius Gorgonio                        |\n");
+    printf("|                                                                        |\n");
+    printf("|    Este programa consiste no controle das atividades de uma despensa   |\n");
+    printf("|     doméstica, sendo dividido em categorias no intuito de ajudar na    |\n");
+    printf("|                  organizacao das atividades cotidianas                 |\n");
+    printf("|              Equipe:  Manuelly Rodrigues e Italo Mauricio              |\n"); 
     printf("|                                                                        |\n");
     printf("| ---------------------------------------------------------------------- |\n");
     printf("| ---------------------- SIG - Pranty - 2022.2 ------------------------- |\n");
-    printf("| ----------------- >>> Tecle <ENTER> para continuar... ---------------- |\n");
-    getchar();
-    return 0;
-
-    
-
 }
-
-
-char telaPrincipal(void)
-
-{
-    system("clear||cls"); 
-    printf("| ====================================================================== |\n");
-    printf("| ====                      SIG - Pranty                            ==== |\n");
-    printf("| ====================================================================== |\n");
-    printf("| ---------------------------------------------------------------------- |\n");
-    printf("|                                                                        |\n");
-    printf("|                      1 - Cadastrar Produtos                            |\n");
-    printf("|                      2 -                                               |\n"); 
-    printf("|                      3 -                                               |\n");
-    printf("|                      4 - Sair                                          |\n");
-    printf("|                                                                        |\n");
-    printf("| ---------------------------------------------------------------------- |\n");
-    printf("| ====================================================================== |\n");
-    getchar();
-
-
-
-} 
-
-
