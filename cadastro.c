@@ -31,6 +31,7 @@ int  main ( void )
             printf ( "Opcao invalida!\n" );
             break;
     }
+}
 
 char telaCadastro(void)
     {
