@@ -58,12 +58,12 @@ char telaAlimento(void)
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ----------------- CADASTRAR ITEM ALIMENTAR -------------- | \n");
+    printf(" | ---------------- CADASTRAR ITEM ALIMENTAR --------------- | \n");
     printf(" |                                                           | \n");
-    printf(" | ----------------- 1- Nome do Item ----------------------- | \n");
-    printf(" | ----------------- 2- Data de Validade ------------------- | \n"); 
-    printf(" | ----------------- 3- Local de armazenamento ------------- | \n");    
-    printf(" | ----------------- 0- Voltar a tela principal ------------ | \n");
+    printf(" |                  1- Nome do Item                          | \n");
+    printf(" |                  2- Data de Validade                      | \n"); 
+    printf(" |                  3- Local de armazenamento                | \n");    
+    printf(" |                  0- Voltar a tela principal               | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opcao:                                        | \n");
