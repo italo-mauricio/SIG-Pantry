@@ -15,43 +15,44 @@ int  main ( void )
 {
     char tela;
     tela = telaCadastro ();
-    change (tela)
+    switch (tela)
+    
     {
         case '1':
             cadastrarAlimento();
             break;
-        caso '2':
+        case '2':
             cadastrarHigiente();
             break; 
-        caso  ' 3 ' :
+        case  ' 3 ' :
             cadastrarLimpeza();
             break;
-        padrão :
+        defaut :
             printf ( "Opcao invalida!\n" );
             break;
     }
 
 char telaCadastro(void)
-{
-    char opcao;
-    system ( " clear||cls " );
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" | ------------------ SIG-Pantry - CADASTRO ---------------- | \n");
-    printf(" |                                                           | \n");
-    printf(" | ------------ \t1- Cadastrar item alimentar -------------- | \n");
-    printf(" | ---------- \t2- Cadastrar item de higiene pessoal ------- | \n"); 
-    printf(" | ------------- \t3- Cadastrar item de limpeza ------------ | \n");    
-    printf(" | -------------- \t0- Voltar a tela principal ------------- | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao:                                        | \n");
-    printf(" | ========================================================= | \n");
-    scanf("%c", &opcao);
+    {
+        char opcao;
+        system ( " clear||cls " );
+        printf(" | ========================================================= | \n");
+        printf(" | --------------------------------------------------------- | \n");
+        printf(" | ------------------ SIG-Pantry - CADASTRO ---------------- | \n");
+        printf(" |                                                           | \n");
+        printf(" | ------------ \t1- Cadastrar item alimentar -------------- | \n");
+        printf(" | ---------- \t2- Cadastrar item de higiene pessoal ------- | \n"); 
+        printf(" | ------------- \t3- Cadastrar item de limpeza ------------ | \n");    
+        printf(" | -------------- \t0- Voltar a tela principal ------------- | \n");
+        printf(" | --------------------------------------------------------- | \n");
+        printf(" | ========================================================= | \n");
+        printf(" | Escolha uma opcao:                                        | \n");
+        printf(" | ========================================================= | \n");
+        scanf("%c", &opcao);
 
-    return opcao;
+        return opcao;
 
-}
+    }
 
 char telaAlimento(void)
 {
