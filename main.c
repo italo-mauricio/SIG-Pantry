@@ -1,11 +1,15 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
-#include <unistd.h>
+#include<stdio.h>
+#include<stdarg.h>
+#include<ctype.h>
+#include<string.h>
+#include<unistd.h>
 
 
+// Assinatura das funções
+char  telaPrincipal ( void );
+void  telaSobre ( void );
 
+<<<<<<< Updated upstream
 // Assinatura das funções
 char telaPrincipal(void);
 void telaSobre(void);
@@ -33,13 +37,38 @@ int main(void)
 
    
     return 0;
+=======
+
+int  main ( void )
+{
+    char tela;
+    tela = telaPrincipal ();
+    mudar (tela)
+    {
+        /* case '1':
+            móduloCadastro();
+            parar;
+        caso '2':
+            móduloCompras();
+            parar; */
+        caso  ' 3 ' :
+            telaSobre ();
+            quebrar ;
+        padrão :
+            printf ( " Opcao invalida \n " );
+            quebrar ;
+    }
+
+   
+    return 0 ;
+>>>>>>> Stashed changes
 }
 
 
-char telaPrincipal(void)
-
+char  telaPrincipal ( void )
 {
     char opcao;
+<<<<<<< Updated upstream
     system("clear||cls"); 
     printf("| ====================================================================== |\n");
     printf("| ====================|       SIG - Pranty        |===================== |\n");
@@ -58,8 +87,50 @@ char telaPrincipal(void)
     scanf("%c", &opcao);
 
     return opcao;
+=======
+    system ( " clear||cls " );
+    printf ( " | ================================================================= | \n " );
+    printf ( " | ========================| SIG - Pranty |========================= | \n " );
+    printf ( " | ================================================================= | \n " );
+    printf ( " | ----------------------------------------------------------------- | \n " );
+    printf ( " |                                                                   | \n " );
+    printf ( " |                    1 - Cadastrar Produtos                         | \n " );
+    printf ( " |                    2 - Lista de compras                           | \n " );
+    printf ( " |                    3 - Informacoes                                | \n " );
+    printf ( " |                    4 - Sair                                       | \n " );
+    printf ( " |                                                                   | \n " );                                                                      
+    printf ( " | ----------------------------------------------------------------- | \n " );
+    printf ( " | ================================================================= | \n " );
+    printf ( " | Escolha uma opcao:                                                | \n " );
+    printf ( " | ================================================================= | \n " );
+    scanf ( " %c " , &opcao);
 
-} 
+    return opcao;
+
+}
+
+void  telaSobre ( void )
+{
+    system ( " clear||cls " );
+    printf ( " | ----------------------------------------------------------------- | \n " );
+    printf ( " | --- // UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - CERES // --- | \n " );
+    printf ( " | -------- // Departamento de Computação e Informática // --------- | \n " );
+    printf ( " | ----------------------------------------------------------------- | \n " );
+    printf ( " |                                                                   | \n " );                                       
+    printf ( " |             Disciplina: DCT1106 - PROGRAMAÇÃO - 2022.2            | \n " );
+    printf ( " |           Projeto: Sistema de Controle de Despensa Doméstica      | \n " );
+    printf ( " |                     Docente: Dr Flávio Gorgonio                   | \n " );
+    printf ( " |                                                                   | \n " );
+    printf ( " | Este programa consiste no controle das atividades de uma despensa | \n " );
+    printf ( " | doméstica, sendo dividida em categorias no intuito de ajudar na   | \n " );
+    printf ( " | organização das atividades cotidianas                             | \n " );
+    printf ( " |             Equipe: Manuelly Rodrigues e Italo Mauricio           | \n " );
+    printf ( " |                                                                   | \n " );
+    printf ( " | ----------------------------------------------------------------- | \n " );
+    printf ( " | ---------------------- SIG - Pranty - 2022.2 -------------------- | \n " );
+>>>>>>> Stashed changes
+
+}
 
 void telaSobre(void){
     system("clear||cls"); 
