@@ -1,45 +1,51 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
-#include <unistd.h>
+#include<stdio.h>
+#include<stdarg.h>
+#include<ctype.h>
+#include<string.h>
+#include<unistd.h>
 
 
+// Assinatura das funções
+char  telaPrincipal ( void );
+void  telaSobre ( void );
 
 // Assinatura das funções
 char telaPrincipal(void);
 void telaSobre(void);
 
 
-int main(void)
+
+
+int  main ( void )
 {
     char tela;
-    tela = telaPrincipal();
+    tela = telaPrincipal ();
     switch (tela)
     {
-        /*case '1':
-            moduloCadastro();
-            break;
-        case '2':
-            moduloCompras();
-            break;*/
-        case '3':
-            telaSobre();
-            break;
-        default:
-            printf("Opcao invalida\n");
-            break;
+        /* case '1':
+            móduloCadastro();
+            parar;
+        caso '2':
+            móduloCompras();
+            parar; */
+        case 3:
+            telaSobre ();
+            break ;
+        defaut :
+            printf ( " Opcao invalida \n " );
+            break ;
     }
 
    
-    return 0;
+    return 0 ;
+
 }
 
 
-char telaPrincipal(void)
-
+char  telaPrincipal ( void )
 {
     char opcao;
+
     system("clear||cls"); 
     printf("| ====================================================================== |\n");
     printf("| ====================|       SIG - Pranty        |===================== |\n");
@@ -59,24 +65,28 @@ char telaPrincipal(void)
 
     return opcao;
 
-} 
-
-void telaSobre(void){
-    system("clear||cls"); 
-    printf("| ---------------------------------------------------------------------- |\n");
-    printf("| ----- // UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - CERES // ------ |\n");
-    printf("| -------- // Departamento de Computacao e Informatica // ---------------|\n");
-    printf("| ---------------------------------------------------------------------- |\n");
-    printf("|                                                                        |\n");                                       
-    printf("|               Disciplina: DCT1106 - PROGRAMACAO - 2022.2               |\n");
-    printf("|          Projeto: Sistema de Controle de Despensa Domestica            |\n");
-    printf("|                    Docente: Dr Flavius Gorgonio                        |\n");
-    printf("|                                                                        |\n");
-    printf("|    Este programa consiste no controle das atividades de uma despensa   |\n");
-    printf("|     doméstica, sendo dividido em categorias no intuito de ajudar na    |\n");
-    printf("|                  organizacao das atividades cotidianas                 |\n");
-    printf("|              Equipe:  Manuelly Rodrigues e Italo Mauricio              |\n"); 
-    printf("|                                                                        |\n");
-    printf("| ---------------------------------------------------------------------- |\n");
-    printf("| ---------------------- SIG - Pranty - 2022.2 ------------------------- |\n");
 }
+
+void  telaSobre ( void )
+{
+    system ( " clear||cls " );
+    printf ( " | ----------------------------------------------------------------- | \n " );
+    printf ( " | --- // UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - CERES // --- | \n " );
+    printf ( " | -------- // Departamento de Computação e Informática // --------- | \n " );
+    printf ( " | ----------------------------------------------------------------- | \n " );
+    printf ( " |                                                                   | \n " );                                       
+    printf ( " |             Disciplina: DCT1106 - PROGRAMAÇÃO - 2022.2            | \n " );
+    printf ( " |           Projeto: Sistema de Controle de Despensa Doméstica      | \n " );
+    printf ( " |                     Docente: Dr Flávio Gorgonio                   | \n " );
+    printf ( " |                                                                   | \n " );
+    printf ( " | Este programa consiste no controle das atividades de uma despensa | \n " );
+    printf ( " | doméstica, sendo dividida em categorias no intuito de ajudar na   | \n " );
+    printf ( " | organização das atividades cotidianas                             | \n " );
+    printf ( " |             Equipe: Manuelly Rodrigues e Italo Mauricio           | \n " );
+    printf ( " |                                                                   | \n " );
+    printf ( " | ----------------------------------------------------------------- | \n " );
+    printf ( " | ---------------------- SIG - Pranty - 2022.2 -------------------- | \n " );
+
+
+}
+
