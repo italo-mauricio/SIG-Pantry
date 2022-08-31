@@ -13,7 +13,7 @@ int  main ( void )
 {
     char tela;
     tela = telaPrincipal ();
-    mudar (tela)
+    switch (tela)
     {
         /* case '1':
             móduloCadastro();
@@ -21,13 +21,14 @@ int  main ( void )
         caso '2':
             móduloCompras();
             parar; */
-        caso  ' 3 ' :
+        case  ' 3 ' :
             telaSobre ();
-            quebrar ;
-        padrão :
+            break ;
+        defaut :
             printf ( " Opcao invalida \n " );
-            quebrar ;
+            break ;
     }
+
 
    
     return  0 ;
