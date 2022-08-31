@@ -108,7 +108,7 @@ char telaLimpeza(void)
     printf(" | ----------------- 1- Nome do Item ----------------------- | \n");
     printf(" | ----------------- 2- Data de Validade ------------------- | \n"); 
     printf(" | ----------------- 3- Local de armazenamento ------------- | \n");    
-    printf(" | ----------------- 0- Voltar a tela principal ------------ | \n");
+    printf(" | ----------------- 0- Voltar a tela principal1 ------------ | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opcao:                                        | \n");
@@ -118,3 +118,5 @@ char telaLimpeza(void)
     return opcao;
 
 }
+
+
