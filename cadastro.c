@@ -16,22 +16,22 @@ int  main ( void )
 {
     char tela;
     tela = telaCadastro ();
-    change (tela)
+    switch (tela)
     {
         case '1':
             cadastrarAlimento();
             break;
-        caso '2':
+        case '2':
             cadastrarHigiente();
             break; 
-        caso  ' 3 ' :
+        case  '3' :
             cadastrarLimpeza();
             break;
-        padrão :
+        case '4' :
             printf ( "Opcao invalida!\n" );
             break;
     }
-
+}
 char telaCadastro(void)
 {
     char opcao;
