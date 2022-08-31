@@ -6,6 +6,7 @@
 DENTRO DESSE CADASTRO: nome, data de validade, local de armazenamento na despensa (armário, geladeira, 
 área de serviço...); opção: consultar produtos já existentes (tela principal)
 */
+
 char telaCadastro(void);
 char telaAlimento(void);
 char telaHigiene(void);
