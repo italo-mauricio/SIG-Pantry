@@ -6,6 +6,7 @@
 DENTRO DESSE CADASTRO: nome, data de validade, local de armazenamento na despensa (armário, geladeira, 
 área de serviço...); opção: consultar produtos já existentes (tela principal)
 */
+
 char telaCadastro(void);
 char telaAlimento(void);
 char telaHigiene(void);
@@ -23,10 +24,10 @@ int  main ( void )
         case '2':
             cadastrarHigiente();
             break; 
-        case  ' 3 ' :
+        case  '3' :
             cadastrarLimpeza();
             break;
-        defaut :
+        case '4' :
             printf ( "Opcao invalida!\n" );
             break;
     }
@@ -108,7 +109,7 @@ char telaLimpeza(void)
     printf(" | ----------------- 1- Nome do Item ----------------------- | \n");
     printf(" | ----------------- 2- Data de Validade ------------------- | \n"); 
     printf(" | ----------------- 3- Local de armazenamento ------------- | \n");    
-    printf(" | ----------------- 0- Voltar a tela principal1 ------------ | \n");
+    printf(" | ----------------- 0- Voltar a tela principal ------------ | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opcao:                                        | \n");
@@ -116,7 +117,6 @@ char telaLimpeza(void)
     scanf("%c", &opcao);  
     
     return opcao;
+    
 
 }
-
-
