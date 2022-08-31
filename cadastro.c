@@ -117,5 +117,6 @@ char telaLimpeza(void)
     scanf("%c", &opcao);  
     
     return opcao;
+    
 
 }
