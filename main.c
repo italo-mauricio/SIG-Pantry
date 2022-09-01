@@ -5,11 +5,11 @@
 #include <unistd.h>
 
 // Assinatura das funções
-char  telaPrincipal ( void );
-void  telaSobre ( void );
+char  telaPrincipal (void);
+void  telaSobre (void);
 
 
-int  main ( void )
+int  main (void)
 {
     char tela;
     tela = telaPrincipal ();
@@ -25,7 +25,7 @@ int  main ( void )
             telaSobre ();
             break ;
         defaut :
-            printf ( " Opcao invalida \n " );
+            printf ('Opcao invalida \n');
             break ;
     }
 
