@@ -10,7 +10,7 @@ void  telaSobre (void);
 void moduloCadastro(void);
 char telaCadastroItens(void);
 char telaListadeCompras(void);
-
+// oi
 int  main (void)
 {
     char opcao;
