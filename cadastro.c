@@ -54,13 +54,61 @@ char telaCadastro(void)
 
 }
 
-char telaAlimento(void)
+char cadastroUsuario(void)
 {
     char opcao;
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ----------------- CADASTRAR ITEM ALIMENTAR -------------- | \n");
+    printf(" |                  Cadastro SIG - Pantry                    | \n");
+    printf(" | ========================================================= | \n");
+    printf(" |                                                           | \n");
+    printf(" | Nome:                                                     | \n");
+    printf(" | CPF:                                                      | \n"); 
+    printf(" | Email:                                                    | \n");    
+    printf(" | Data de Nascimento:                                       | \n");
+    printf(" |                                                           | \n");
+    printf(" | ========================================================= | \n");
+    printf(" | Descrição: Olá, aqui serão colocadas as suas informações  | \n");
+    printf(" | pessoais para efetuarmos o seu cadastro no nosso sistema  | \n");
+    printf(" | serão apenas informações rápida para a sua segurança.     | \n");
+    print("  | ========================================================= | \n");
+
+    
+    return opcao;
+
+}
+
+char telaEditar(void)
+{
+    char opcao;
+    system ( " clear " );
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" |                      SIG - EDITAR                         | \n");
+    printf(" | ========================================================= | \n");
+    printf(" |                                                           | \n");
+    printf(" | Editar Nome:                                              | \n");
+    printf(" | Editar Email:                                             | \n"); 
+    printf(" | Editar Data nascimento:                                   | \n");    
+    printf(" | Editar Username:                                          | \n");
+    printf(" | Editar Senha:                                             | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | ========================================================= | \n");
+    printf(" | ========================================================= | \n");
+    scanf("%c", &opcao);  
+    
+    return opcao;
+
+}
+
+char telaListar(void)
+{
+    char opcao;
+    system ( " clear " );
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" |                                                           | \n");
     printf(" |                                                           | \n");
     printf(" | ----------------- 1- Nome do Item ----------------------- | \n");
     printf(" | ----------------- 2- Data de Validade ------------------- | \n"); 
@@ -73,38 +121,19 @@ char telaAlimento(void)
     scanf("%c", &opcao);  
     
     return opcao;
-
-}
-
-char telaHigiene(void)
-{
-    char opcao;
-    system ( " clear||cls " );
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" | ---------- CADASTRAR ITEM DE HIGIENE PESSOAL ------------ | \n");
-    printf(" |                                                           | \n");
-    printf(" | --------------- 1- Nome do Item ------------------------- | \n");
-    printf(" | --------------- 2- Data de Validade --------------------- | \n"); 
-    printf(" | --------------- 3- Local de armazenamento --------------- | \n");    
-    printf(" | --------------- 0- Voltar a tela principal -------------- | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao:                                        | \n");
-    printf(" | ========================================================= | \n");
-    scanf("%c", &opcao);  
     
-    return opcao;
 
 }
 
-char telaLimpeza(void)
-{
-    char opcao;
-    system ( " clear||cls " );
+
+
+char telaRemove(void){
+
+     char opcao;
+    system ( " clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ---------------- CADASTRAR ITEM DE LIMPEZA -------------- | \n");
+    printf(" |                                                           | \n");
     printf(" |                                                           | \n");
     printf(" | ----------------- 1- Nome do Item ----------------------- | \n");
     printf(" | ----------------- 2- Data de Validade ------------------- | \n"); 
@@ -116,7 +145,14 @@ char telaLimpeza(void)
     printf(" | ========================================================= | \n");
     scanf("%c", &opcao);  
     
-    return opcao;
-    
+    return opcao; 
+
+
+
+
+
+
+
+
 
 }
