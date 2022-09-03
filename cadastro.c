@@ -3,8 +3,7 @@
 #include<stdlib.h>
 
 /*
-DENTRO DESSE CADASTRO: nome, data de validade, local de armazenamento na despensa (armário, geladeira, 
-área de serviço...); opção: consultar produtos já existentes (tela principal)
+DENTRO DESSE CADASTRO: estará os dados do usuário do sistema de controle de despensa doméstica.
 */
 
 char telaCadastro(void);
