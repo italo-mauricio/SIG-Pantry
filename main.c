@@ -8,20 +8,20 @@
 char  telaPrincipal ( void );
 void  telaSobre ( void );
 
-
+// update
 int  main ( void )
 {
     char tela;
     tela = telaPrincipal ();
     switch (tela)
     {
-        /* case '1':
-            móduloCadastro();
-            parar;
-        caso '2':
-            móduloCompras();
-            parar; */
-        case  ' 3 ' :
+        /*case '1':
+            moduloCadastro();
+            break;
+        case '2':
+            moduloCompras();
+            break; */
+        case 3:
             telaSobre ();
             break ;
         defaut :
@@ -30,8 +30,6 @@ int  main ( void )
     }
 
 
-   
-    return  0 ;
 }
 
 
@@ -39,28 +37,29 @@ char  telaPrincipal ( void )
 
 {
     char opcao;
-    system ( " clear||cls " );
+    system ( " clear" );
     printf ( " | ================================================================= | \n " );
     printf ( " | ========================| SIG - Pranty |========================= | \n " );
     printf ( " | ================================================================= | \n " );
     printf ( " | ----------------------------------------------------------------- | \n " );
     printf ( " |                                                                   | \n " );
-    printf ( " |                       1 - Cadastrar Produtos                      | \n " );
-    printf ( " |                       2 - Lista de compras                        | \n " );
-    printf ( " |                       3 - Informacoes                             | \n " );
-    printf ( " |                       4 - Sair                                    | \n " );
+    printf ( " |                       1 - cadastrar usuário                       | \n " );
+    printf ( " |                       2 - Cadastrar Produtos                      | \n " );
+    printf ( " |                       3 - Lista de compras                        | \n " );
+    printf ( " |                       4 - Informacoes                             | \n " );
+    printf ( " |                       5 - Sair                                    | \n " );
     printf ( " |                                                                   | \n " );                                                                      
     printf ( " | ----------------------------------------------------------------- | \n " );
     printf ( " | ================================================================= | \n " );
-    printf ( " | Escolha uma opcao:                                                | \n " );
     printf ( " | ================================================================= | \n " );
-    scanf ( " %c " , &opcao);
+    scanf ("Escolha uma opção: %c" , &opcao);
 
     return opcao;
 
 }
 
-void  telaSobre ( void )
+
+void telaSobre ( void )
 {
     system ( " clear||cls " );
     printf ( " | ------------------------------------------------------------------ | \n " );
