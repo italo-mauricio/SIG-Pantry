@@ -33,7 +33,7 @@ int  main ( void )
 }
 char telaCadastro(void)
 {
-    char opcao;
+    
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -50,13 +50,13 @@ char telaCadastro(void)
     printf(" | ========================================================= | \n");
     scanf("%c", &opcao);
 
-    return opcao;
+
 
 }
 
 char cadastroUsuario(void)
 {
-    char opcao;
+   
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -76,14 +76,13 @@ char cadastroUsuario(void)
     printf(" | serão apenas informações rápida para a sua segurança.     | \n");
     print("  | ========================================================= | \n");
 
-    
-    return opcao;
+  
 
 }
 
 char telaEditar(void)
 {
-    char opcao;
+   
     system ( " clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -99,32 +98,35 @@ char telaEditar(void)
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | ========================================================= | \n");
-    scanf("%c", &opcao);  
-    
-    return opcao;
+   
 
 }
 
 char telaListar(void)
 {
-    char opcao;
+   
     system ( " clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                       SIG - Pantry                        | \n");
     printf(" |                      (Listar Dados)                       | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" |                                                           | \n");
+    printf(" |              Aqui serão listado seus dados!               | \n");
     printf(" |                                                           | \n"); 
-    printf(" |                                                           | \n");    
-    printf(" | ----------------- 0- Voltar a tela principal ------------ | \n");
+    printf(" |  Nome:                                                    | \n");    
+    printf(" |  Email:                                                   | \n");
+    printf(" |  CPF:                                                     | \n");
+    printf(" |  Data de nascimento:                                      | \n");
+    printf(" |  Username:                                                | \n");
+    printf(" |  Senha:                                                   | \n");
+    printf(" |                                                           | \n");
+    printf(" |                                                           | \n")
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao:                                        | \n");
-    printf(" | ========================================================= | \n");
-    scanf("%c", &opcao);  
     
-    return opcao;
+   
+    
+   
     
 
 }
