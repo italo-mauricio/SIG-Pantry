@@ -33,30 +33,30 @@ int  main ( void )
 }
 char telaCadastro(void)
 {
-    char opcao;
+    
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ------------ SIG-Pantry - CADASTRO USUÁRIO -------------- | \n");
     printf(" |                                                           | \n");
-    printf(" | ---------------- 1 - Cadastrar Usuário  ----------------- | \n");
-    printf(" | ---------------- 2 - Editar Cadastro    ----------------- | \n"); 
-    printf(" | ---------------- 3 - Listar Usuários    ----------------- | \n");    
-    printf(" | ---------------- 4 - Remover Usuário    ----------------- | \n");
-    printf(" | ---------------- 5 - Retornar ao Menu Inicial ----------- | \n");
+    printf(" |                  1 - Cadastrar Usuário                    | \n");
+    printf(" |                  2 - Editar Cadastro                      | \n"); 
+    printf(" |                  3 - Listar Usuários                      | \n");    
+    printf(" |                  4 - Remover Usuário                      | \n");
+    printf(" |                  5 - Retornar ao Menu Inicial             | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opcao:                                        | \n");
     printf(" | ========================================================= | \n");
-    scanf("%c", &opcao);
+ 
 
-    return opcao;
+
 
 }
 
 char cadastroUsuario(void)
 {
-    char opcao;
+   
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -67,6 +67,8 @@ char cadastroUsuario(void)
     printf(" | CPF:                                                      | \n"); 
     printf(" | Email:                                                    | \n");    
     printf(" | Data de Nascimento:                                       | \n");
+    printf(" | Username:                                                 | \n");
+    printf(" | Senha:                                                    | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Descrição: Olá, aqui serão colocadas as suas informações  | \n");
@@ -74,53 +76,57 @@ char cadastroUsuario(void)
     printf(" | serão apenas informações rápida para a sua segurança.     | \n");
     print("  | ========================================================= | \n");
 
-    
-    return opcao;
+  
 
 }
 
 char telaEditar(void)
 {
-    char opcao;
+   
     system ( " clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" |                      SIG - EDITAR                         | \n");
+    printf(" |                      SIG - Pantry                         | \n");
+    printf(" |                    (Atualizar Dados)                      | \n");
     printf(" | ========================================================= | \n");
     printf(" |                                                           | \n");
-    printf(" | Editar Nome:                                              | \n");
-    printf(" | Editar Email:                                             | \n"); 
-    printf(" | Editar Data nascimento:                                   | \n");    
-    printf(" | Editar Username:                                          | \n");
-    printf(" | Editar Senha:                                             | \n");
-    printf(" | --------------------------------------------------------- | \n");
+    printf(" | Atualizar Nome:                                           | \n");
+    printf(" | Atualizar Email:                                          | \n"); 
+    printf(" | Atualizar Data nascimento:                                | \n");    
+    printf(" | Atualizar Username:                                       | \n");
+    printf(" | Atualizar Senha:                                          | \n");
+    printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | ========================================================= | \n");
-    scanf("%c", &opcao);  
-    
-    return opcao;
+   
 
 }
 
 char telaListar(void)
 {
-    char opcao;
+   
     system ( " clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
+    printf(" |                       SIG - Pantry                        | \n");
+    printf(" |                      (Listar Dados)                       | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" |              Aqui serão listado seus dados!               | \n");
+    printf(" |                                                           | \n"); 
+    printf(" |  Nome:                                                    | \n");    
+    printf(" |  Email:                                                   | \n");
+    printf(" |  CPF:                                                     | \n");
+    printf(" |  Data de nascimento:                                      | \n");
+    printf(" |  Username:                                                | \n");
+    printf(" |  Senha:                                                   | \n");
     printf(" |                                                           | \n");
     printf(" |                                                           | \n");
-    printf(" | ----------------- 1- Nome do Item ----------------------- | \n");
-    printf(" | ----------------- 2- Data de Validade ------------------- | \n"); 
-    printf(" | ----------------- 3- Local de armazenamento ------------- | \n");    
-    printf(" | ----------------- 0- Voltar a tela principal ------------ | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao:                                        | \n");
-    printf(" | ========================================================= | \n");
-    scanf("%c", &opcao);  
     
-    return opcao;
+   
+    
+   
     
 
 }
