@@ -73,7 +73,7 @@ char telaPrincipal(void)
 
 char telaCadastroUsuario(void)
 {
-    setlocale(LC_ALL, "portuguese-brazilian");
+    char opcao;
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
@@ -87,15 +87,17 @@ char telaCadastroUsuario(void)
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
     printf(" | Escolha uma opcao:                                                   | \n");
-    printf(" | ==================================================================== | \n");
-
-
+    scanf("%c", &opcao);
+    getchar();
+    return opcao;
 
 }
 
+
+
 char telaCadastroItens(void)
 {
-    setlocale(LC_ALL, "portuguese-brazilian");
+  
     char opcao;
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
@@ -109,15 +111,14 @@ char telaCadastroItens(void)
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
     printf(" | Escolha uma opcao:                                                   | \n");
-    printf(" | ==================================================================== | \n");
-
+    scanf("%c", &opcao);
     getchar();
-    
     return opcao;
 
 
-
 }
+
+
 
 char telaListadeCompras(void)
 
@@ -143,9 +144,9 @@ char telaListadeCompras(void)
 
     return opcao;
 
-
-
 }
+
+
 
 char telaRelatorio(void)
 {
@@ -167,9 +168,9 @@ char telaRelatorio(void)
     getchar();
     return opcao;
 
-
-
 }
+
+
 
 char  telaSobre ( void )
 {
