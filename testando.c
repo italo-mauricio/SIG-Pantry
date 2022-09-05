@@ -3,6 +3,8 @@
 #include <ctype.h>
 #include <string.h>
 #include <unistd.h>
+#include <locale.h>
+
 
 // Assinatura das funções
 char telaPrincipal (void);
@@ -10,13 +12,12 @@ char telaCadastroUsuario(void);
 char telaCadastroItens(void);
 char telaListadeCompras(void);
 char telaRelatorio(void);
-void telaSobre (void);
+char telaSobre (void);
 
 
-int  main (void)
-{
+int  main (void){
+
     char escolha;
-    do {
         escolha = telaPrincipal();
         switch (escolha) {
         case '1':
@@ -33,18 +34,19 @@ int  main (void)
             break; 
         case '5':    
             telaSobre ();
+            break;
+        default:
+            printf("Opção inválida");
             break;   
-        }  while(escolha != '0');
-
-    }
-
-    return  0 ;
+        }
 }
+
 
 
 char telaPrincipal(void)
 
 {
+    setlocale(LC_ALL, "portuguese-brazilian");
     char opcao;
     system ( " clear||cls " );
     printf (" | =================================================================== | \n");
@@ -63,16 +65,15 @@ char telaPrincipal(void)
     printf (" | =================================================================== | \n");
     printf (" | Escolha uma opcao:                                                  | \n");
     printf (" | =================================================================== | \n");
-    scanf ( "%c", &opcao);
-    getchar();
-
+    scanf("%c", &opcao);
     return opcao;
+
 
 }
 
 char telaCadastroUsuario(void)
 {
-    
+    setlocale(LC_ALL, "portuguese-brazilian");
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
@@ -87,15 +88,14 @@ char telaCadastroUsuario(void)
     printf(" | ==================================================================== | \n");
     printf(" | Escolha uma opcao:                                                   | \n");
     printf(" | ==================================================================== | \n");
-    scanf("%c", &opcao);
-    getchar();
 
-    return opcao;
+
 
 }
 
 char telaCadastroItens(void)
 {
+    setlocale(LC_ALL, "portuguese-brazilian");
     char opcao;
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
@@ -110,16 +110,18 @@ char telaCadastroItens(void)
     printf(" | ==================================================================== | \n");
     printf(" | Escolha uma opcao:                                                   | \n");
     printf(" | ==================================================================== | \n");
-    scanf("%c", &opcao);
-    getchar();
 
+    getchar();
+    
     return opcao;
+
+
 
 }
 
 char telaListadeCompras(void)
-{
-    char opcao;
+
+{   char opcao;
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
@@ -136,11 +138,12 @@ char telaListadeCompras(void)
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
     printf(" | Escolha uma opcao:                                                   | \n");
-    printf(" | ==================================================================== | \n");
     scanf("%c", &opcao);
     getchar();
 
     return opcao;
+
+
 
 }
 
@@ -162,31 +165,35 @@ char telaRelatorio(void)
     printf(" | ==================================================================== | \n");
     scanf("%c", &opcao);
     getchar();
-
     return opcao;
+
+
 
 }
 
-void  telaSobre ( void )
+char  telaSobre ( void )
 {
+    char esc;
+    setlocale(LC_ALL, "portuguese-brazilian");
     system ( " clear||cls " );
     printf ( " | ------------------------------------------------------------------ | \n " );
     printf ( " | ---- // UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - CERES // --- | \n " );
-    printf ( " | -------- // Departamento de Computação e Informática // ---------- | \n " );
+    printf ( " | -------- // Departamento de Computação e Informatica // ---------- | \n " );
     printf ( " | ------------------------------------------------------------------ | \n " );
     printf ( " |                                                                    | \n " );                                       
-    printf ( " |            Disciplina: DCT1106 - PROGRAMAÇÃO - 2022.2              | \n " );
-    printf ( " |         Projeto: Sistema de Controle de Despensa Doméstica         | \n " );
+    printf ( " |            Disciplina: DCT1106 - PROGRAMACAO - 2022.2              | \n " );
+    printf ( " |         Projeto: Sistema de Controle de Despensa Domestica         | \n " );
     printf ( " |                    Docente: Dr Flavius Gorgonio                    | \n " );
     printf ( " |                                                                    | \n " );
     printf ( " |  Este programa consiste no controle das atividades de uma despensa | \n " );
-    printf ( " |    doméstica, sendo dividida em categorias no intuito de ajudar na | \n " );
+    printf ( " |    domestica, sendo dividida em categorias no intuito de ajudar na | \n " );
     printf ( " |                organização das atividades cotidianas.              | \n " );
     printf ( " |             Equipe: Manuelly Rodrigues e Italo Mauricio            | \n " );
     printf ( " |                                                                    | \n " );
     printf ( " | ------------------------------------------------------------------ | \n " );
     printf ( " | ---------------------- SIG - Pranty - 2022.2 --------------------- | \n " );
     printf ("\t\t\t>>> Tecle <ENTER> para continuar...                              | \n " );
-    getchar();
-
+    scanf("%c", &esc);
+    return esc;
+    
 }
