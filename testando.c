@@ -36,7 +36,7 @@ int  main (void){
             telaSobre ();
             break;
         default:
-            printf("Opção inválida");
+            printf("Opcao invalida");
             break;   
         }
 }
@@ -75,7 +75,7 @@ char telaCadastroUsuario(void)
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | -------------------| SIG-Pantry - CADASTAR USUARIO |---------------- | \n");
+    printf(" | -------------------| SIG-Pantry - CADASTRAR USUARIO |--------------- | \n");
     printf(" |                                                                      | \n");
     printf(" |                     1- Cadastrar usuario                             | \n");
     printf(" |                     2- Editar cadastro                               | \n"); 
@@ -190,7 +190,7 @@ char  telaSobre ( void )
     printf ( " |                                                                    | \n " );
     printf ( " | ------------------------------------------------------------------ | \n " );
     printf ( " | ---------------------- SIG - Pranty - 2022.2 --------------------- | \n " );
-    printf ("\t\t\t>>> Tecle <ENTER> para continuar...                              | \n " );
+    printf ("\t\t\t>>> Tecle <ENTER> para continuar. " );
     scanf("%c", &esc);
     return esc;
     
