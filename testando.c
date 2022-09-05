@@ -46,7 +46,6 @@ int  main (void){
 char telaPrincipal(void)
 
 {
-    setlocale(LC_ALL, "portuguese-brazilian");
     char opcao;
     system ( " clear||cls " );
     printf (" | =================================================================== | \n");
@@ -63,8 +62,7 @@ char telaPrincipal(void)
     printf (" |                                                                     | \n");                                                                      
     printf (" | ------------------------------------------------------------------- | \n");
     printf (" | =================================================================== | \n");
-    printf (" | Escolha uma opcao:                                                  | \n");
-    printf (" | =================================================================== | \n");
+    printf (" | Escolha uma opcao: ");
     scanf("%c", &opcao);
     return opcao;
 
@@ -86,7 +84,7 @@ char telaCadastroUsuario(void)
     printf(" |                     0- Voltar a tela principal                       | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
-    printf(" | Escolha uma opcao:                                                   | \n");
+    printf(" | Escolha uma opcao: ");
     scanf("%c", &opcao);
     getchar();
     return opcao;
@@ -110,7 +108,7 @@ char telaCadastroItens(void)
     printf(" |                    0- Voltar a tela principal                        | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
-    printf(" | Escolha uma opcao:                                                   | \n");
+    printf(" | Escolha uma opcao: ");
     scanf("%c", &opcao);
     getchar();
     return opcao;
@@ -138,7 +136,7 @@ char telaListadeCompras(void)
     printf(" |      0- Voltar a tela principal                                      | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
-    printf(" | Escolha uma opcao:                                                   | \n");
+    printf(" | Escolha uma opcao: ");
     scanf("%c", &opcao);
     getchar();
 
@@ -162,8 +160,7 @@ char telaRelatorio(void)
     printf(" |                    0- Voltar a tela principal                        | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
-    printf(" | Escolha uma opcao:                                                   | \n");
-    printf(" | ==================================================================== | \n");
+    printf(" | Escolha uma opcao: ");
     scanf("%c", &opcao);
     getchar();
     return opcao;
