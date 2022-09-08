@@ -1,4 +1,3 @@
-
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -19,20 +18,17 @@ int  main (void)
         escolha = telaCadastroUsuario();
         switch (escolha) {
         case '1':
-            telaCadastroUsuario();
+            telaUsuario();
             break;
         case '2':
-            telaCadastroItens();
+            telaEditar();
             break; 
         case  '3':
-            telaListadeCompras();
+            telaListar();
             break;
         case '4':
-            telaRelatorio();
+            telaRemove();
             break; 
-        case '5':    
-            telaSobre ();
-            break ;
         defaut :
             printf ('Opcao invalida \n');
             break ;
@@ -166,5 +162,5 @@ char telaRemove(void){
     getchar();
     
     return opcao; 
-    
+
 }
