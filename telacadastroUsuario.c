@@ -66,7 +66,7 @@ char telaCadastroUsuario(void)
 
 char cadastroUsuario(void)
 {
-    char Nome, CPF, Email, Data de nascimento, Username, Senha;
+    char Nome, CPF, Email, DatadeNascimento, Username, Senha;
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
