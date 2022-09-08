@@ -6,32 +6,45 @@
 DENTRO DESSE CADASTRO: estará os dados do usuário do sistema de controle de despensa doméstica.
 */
 
-char telaCadastro(void);
-char telaAlimento(void);
-char telaHigiene(void);
-char telaLimpeza(void);
+char telaCadastroUsuario(void);
+char cadastroUsuario(void);
+char telaEditar(void);
+char telaListar(void);
+char telaRemove(void);
 
-int  main ( void )
+int  main (void)
 {
-    char tela;
-    tela = telaCadastro ();
-    switch (tela)
-    {
+    char escolha;
+    do {
+        escolha = telaCadastroUsuario();
+        switch (escolha) {
         case '1':
-            cadastrarAlimento();
+            telaCadastroUsuario();
             break;
         case '2':
-            cadastrarHigiente();
+            telaCadastroItens();
             break; 
-        case  '3' :
-            cadastrarLimpeza();
+        case  '3':
+            telaListadeCompras();
             break;
-        case '4' :
-            printf ( "Opcao invalida!\n" );
-            break;
+        case '4':
+            telaRelatorio();
+            break; 
+        case '5':    
+            telaSobre ();
+            break ;
+        defaut :
+            printf ('Opcao invalida \n');
+            break ;
     }
+
+    } while(escolha != '0');
+
+    return  0 ;
 }
-char telaCadastro(void)
+
+
+char telaCadastroUsuario(void)
 {
     char opcao;
     system ( " clear||cls " );
@@ -122,25 +135,23 @@ char telaListar(void)
     printf(" |  Username:                                                | \n");
     printf(" |  Senha:                                                   | \n");
     printf(" |                                                           | \n");
-    printf(" |                                                           | \n")
+    printf(" |                                                           | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ========================================================= | \n");
+      
     
-   
-    
-   
-    
-
 }
 
 
 
 char telaRemove(void){
 
-     char opcao;
+    char opcao;
     system ( " clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
+    printf(" |                       SIG - Pantry                        | \n");
+    printf(" |                      (Remover Dados)                      | \n");
     printf(" |                                                           | \n");
     printf(" |                                                           | \n");
     printf(" | ----------------- 1- Nome do Item ----------------------- | \n");
@@ -152,15 +163,8 @@ char telaRemove(void){
     printf(" | Escolha uma opcao:                                        | \n");
     printf(" | ========================================================= | \n");
     scanf("%c", &opcao);  
+    getchar();
     
     return opcao; 
-
-
-
-
-
-
-
-
-
+    
 }
