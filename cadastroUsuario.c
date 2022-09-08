@@ -33,7 +33,7 @@ int  main ( void )
 }
 char telaCadastro(void)
 {
-    
+    char opcao;
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -49,14 +49,15 @@ char telaCadastro(void)
     printf(" | Escolha uma opcao:                                        | \n");
     printf(" | ========================================================= | \n");
     scanf("%c", &opcao);
-
-
+    getchar();
+    
+    return opcao;
 
 }
 
 char cadastroUsuario(void)
 {
-   
+    char Nome, CPF, Email, Data de nascimento, Username, Senha;
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -64,6 +65,7 @@ char cadastroUsuario(void)
     printf(" | ========================================================= | \n");
     printf(" |                                                           | \n");
     printf(" | Nome:                                                     | \n");
+    
     printf(" | CPF:                                                      | \n"); 
     printf(" | Email:                                                    | \n");    
     printf(" | Data de Nascimento:                                       | \n");
@@ -71,9 +73,9 @@ char cadastroUsuario(void)
     printf(" | Senha:                                                    | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Descrição: Olá, aqui serão colocadas as suas informações  | \n");
-    printf(" | pessoais para efetuarmos o seu cadastro no nosso sistema  | \n");
-    printf(" | serão apenas informações rápida para a sua segurança.     | \n");
+    printf(" | Descrição: Ola, aqui serao colocadas as suas informacoes  | \n");
+    printf(" | pessoais para efetuarmos o seu cadastro no nosso sistema. | \n");
+    printf(" | Serao apenas informacoes rapidas para a sua segurança.    | \n");
     print("  | ========================================================= | \n");
 
   
