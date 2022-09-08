@@ -5,17 +5,8 @@
 #include <unistd.h>
 
 // Assinatura das funções
-<<<<<<< HEAD
 char  telaPrincipal (void);
 void  telaSobre (void);
-=======
-char telaPrincipal (void);
-char telaCadastroUsuario(void);
-char telaCadastroItens(void);
-char telaListadeCompras(void);
-char telaRelatorio(void);
-void telaSobre (void);
->>>>>>> 632ae17745a5bd1c49be8db8f1ba5ce3a341912b
 
 
 int  main (void)
@@ -38,16 +29,11 @@ int  main (void)
             break; 
         case '5':    
             telaSobre ();
-<<<<<<< HEAD
             break ;
         defaut :
             printf ('Opcao invalida \n');
             break ;
     }
-=======
-            break;   
-        }  
->>>>>>> 632ae17745a5bd1c49be8db8f1ba5ce3a341912b
 
     } while(escolha != '0');
 
