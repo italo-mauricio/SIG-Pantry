@@ -5,56 +5,176 @@
 #include <unistd.h>
 
 // Assinatura das funções
+<<<<<<< HEAD
 char  telaPrincipal (void);
 void  telaSobre (void);
+=======
+char telaPrincipal (void);
+char telaCadastroUsuario(void);
+char telaCadastroItens(void);
+char telaListadeCompras(void);
+char telaRelatorio(void);
+void telaSobre (void);
+>>>>>>> 632ae17745a5bd1c49be8db8f1ba5ce3a341912b
 
 
 int  main (void)
 {
-    char tela;
-    tela = telaPrincipal ();
-    switch (tela)
-    {
-        /* case '1':
-            móduloCadastro();
-            parar;
-        caso '2':
-            móduloCompras();
-            parar; */
-        case  ' 3 ' :
+    char escolha;
+    do {
+        escolha = telaPrincipal();
+        switch (escolha) {
+        case '1':
+            telaCadastroUsuario();
+            break;
+        case '2':
+            telaCadastroItens();
+            break; 
+        case  '3':
+            telaListadeCompras();
+            break;
+        case '4':
+            telaRelatorio();
+            break; 
+        case '5':    
             telaSobre ();
+<<<<<<< HEAD
             break ;
         defaut :
             printf ('Opcao invalida \n');
             break ;
     }
+=======
+            break;   
+        }  
+>>>>>>> 632ae17745a5bd1c49be8db8f1ba5ce3a341912b
 
+    } while(escolha != '0');
 
-   
     return  0 ;
 }
 
 
-char  telaPrincipal ( void )
+char telaPrincipal(void)
 
 {
     char opcao;
     system ( " clear||cls " );
-    printf ( " | ================================================================= | \n " );
-    printf ( " | ========================| SIG - Pranty |========================= | \n " );
-    printf ( " | ================================================================= | \n " );
-    printf ( " | ----------------------------------------------------------------- | \n " );
-    printf ( " |                                                                   | \n " );
-    printf ( " |                       1 - Cadastrar Produtos                      | \n " );
-    printf ( " |                       2 - Lista de compras                        | \n " );
-    printf ( " |                       3 - Informacoes                             | \n " );
-    printf ( " |                       4 - Sair                                    | \n " );
-    printf ( " |                                                                   | \n " );                                                                      
-    printf ( " | ----------------------------------------------------------------- | \n " );
-    printf ( " | ================================================================= | \n " );
-    printf ( " | Escolha uma opcao:                                                | \n " );
-    printf ( " | ================================================================= | \n " );
-    scanf ( " %c " , &opcao);
+    printf (" | =================================================================== | \n");
+    printf (" | =========================| SIG - Pranty |========================== | \n");
+    printf (" | =================================================================== | \n");
+    printf (" | ------------------------------------------------------------------- | \n");
+    printf (" |                                                                     | \n");
+    printf (" |                        1 - Cadastrar usuario                        | \n");
+    printf (" |                        2 - Cadastrar itens                          | \n");
+    printf (" |                        3 - Lista de compras                         | \n");
+    printf (" |                        4 - Relatorio                                | \n");
+    printf (" |                        5 - Informacoes                              | \n");
+    printf (" |                        0 - Sair                                     | \n");
+    printf (" |                                                                     | \n");                                                                      
+    printf (" | ------------------------------------------------------------------- | \n");
+    printf (" | =================================================================== | \n");
+    printf (" | Escolha uma opcao:                                                  | \n");
+    printf (" | =================================================================== | \n");
+    scanf ( "%c", &opcao);
+    getchar();
+
+    return opcao;
+
+}
+
+char telaCadastroUsuario(void)
+{
+    char opcao;
+    system ( " clear||cls " );
+    printf(" | ==================================================================== | \n");
+    printf(" | -------------------------------------------------------------------- | \n");
+    printf(" | -------------------| SIG-Pantry - CADASTRAR USUARIO |--------------- | \n");
+    printf(" |                                                                      | \n");
+    printf(" |                     1- Cadastrar usuario                             | \n");
+    printf(" |                     2- Editar cadastro                               | \n"); 
+    printf(" |                     3- Listar usuario                                | \n");  
+    printf(" |                     3- Remover usuario                               | \n");    
+    printf(" |                     0- Voltar a tela principal                       | \n");
+    printf(" |                                                                      | \n");
+    printf(" | ==================================================================== | \n");
+    printf(" | Escolha uma opcao:                                                   | \n");
+    printf(" | ==================================================================== | \n");
+    scanf("%c", &opcao);
+    getchar();
+
+    return opcao;
+
+}
+
+char telaCadastroItens(void)
+{
+    char opcao;
+    system ( " clear||cls " );
+    printf(" | ==================================================================== | \n");
+    printf(" | -------------------------------------------------------------------- | \n");
+    printf(" | -------------------| SIG-Pantry - CADASTRAR ITENS |----------------- | \n");
+    printf(" |                                                                      | \n");
+    printf(" |                    1- Cadastrar item alimentar                       | \n");
+    printf(" |                    2- Cadastrar item de higiene pessoal              | \n"); 
+    printf(" |                    3- Cadastrar item de limpeza                      | \n");    
+    printf(" |                    0- Voltar a tela principal                        | \n");
+    printf(" |                                                                      | \n");
+    printf(" | ==================================================================== | \n");
+    printf(" | Escolha uma opcao:                                                   | \n");
+    printf(" | ==================================================================== | \n");
+    scanf("%c", &opcao);
+    getchar();
+
+    return opcao;
+
+}
+
+char telaListadeCompras(void)
+{
+    char opcao;
+    system ( " clear||cls " );
+    printf(" | ==================================================================== | \n");
+    printf(" | -------------------------------------------------------------------- | \n");
+    printf(" | -------------------| SIG-Pantry - LISTA DE COMPRAS |---------------- | \n");
+    printf(" |                                                                      | \n");
+    printf(" |      1- Visualizar itens alimentares proximo ao vencimento           | \n");
+    printf(" |      2- Visualizar itens de higiene pessoal proximo ao vencimento    | \n");
+    printf(" |      3- Visualizar itens de limpeza proximo ao vencimento            | \n");
+    printf(" |      4- Visualizar itens alimentares que estao no estoque            | \n");
+    printf(" |      5- Visualizar itens de higiente pessoal que estao no estoque    | \n");
+    printf(" |      6- Visualizar itens de limpeza que estao no estoque             | \n");
+    printf(" |      7- Montar a propria listinha                                    | \n");    
+    printf(" |      0- Voltar a tela principal                                      | \n");
+    printf(" |                                                                      | \n");
+    printf(" | ==================================================================== | \n");
+    printf(" | Escolha uma opcao:                                                   | \n");
+    printf(" | ==================================================================== | \n");
+    scanf("%c", &opcao);
+    getchar();
+
+    return opcao;
+
+}
+
+char telaRelatorio(void)
+{
+    char opcao;
+    system ( " clear||cls " );
+    printf(" | ==================================================================== | \n");
+    printf(" | -------------------------------------------------------------------- | \n");
+    printf(" | -------------------| SIG-Pantry - RELATORIO |----------------------- | \n");
+    printf(" |                                                                      | \n");
+    printf(" |                    1- Estoque de alimento                            | \n");
+    printf(" |                    2- Estoque de higiene pessoal                     | \n");
+    printf(" |                    3- Estoque de limpeza                             | \n");
+    printf(" |                    0- Voltar a tela principal                        | \n");
+    printf(" |                                                                      | \n");
+    printf(" | ==================================================================== | \n");
+    printf(" | Escolha uma opcao:                                                   | \n");
+    printf(" | ==================================================================== | \n");
+    scanf("%c", &opcao);
+    getchar();
 
     return opcao;
 
@@ -79,4 +199,7 @@ void  telaSobre ( void )
     printf ( " |                                                                    | \n " );
     printf ( " | ------------------------------------------------------------------ | \n " );
     printf ( " | ---------------------- SIG - Pranty - 2022.2 --------------------- | \n " );
+    printf ("\t\t\t>>> Tecle <ENTER> para continuar...                              | \n " );
+    getchar();
+
 }
