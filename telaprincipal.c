@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "modulocadastroUsuario.h"
-#include "modulocadastroItens.h"
+#include "modulocadastroItem.h"
+#include "modulolistadeCompras.h"
+#include "moduloRelatorio.h"
 
 
 // Assinatura das funções
 char  telaPrincipal (void);
-void  telaSobre ( void );
+void  telaSobre (void);
 
 char telaPrincipal(void)
 
