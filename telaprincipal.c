@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "modulocadastroUsuario.h"
+#include "modulocadastroItens.h"
 
 
 // Assinatura das funções
