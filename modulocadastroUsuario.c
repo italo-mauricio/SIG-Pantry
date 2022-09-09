@@ -150,10 +150,11 @@ char telaRemove(void){
     printf(" |                      (Remover Dados)                      | \n");
     printf(" |                                                           | \n");
     printf(" |                                                           | \n");
-    printf(" | ----------------- 1- Nome do Item ----------------------- | \n");
-    printf(" | ----------------- 2- Data de Validade ------------------- | \n"); 
-    printf(" | ----------------- 3- Local de armazenamento ------------- | \n");    
-    printf(" | ----------------- 0- Voltar a tela principal ------------ | \n");
+    printf(" | ----------------- 1- Username do usuario ---------------- | \n");
+    printf(" | ----------------- 2- Nome do usuario  ------------------- | \n");
+    printf(" | ----------------- 3- CPF do usuario  -------------------- | \n");
+    printf(" | ----------------- 4- Email do usuario  ------------------ | \n");
+    printf(" | ----------------- 0- Voltar a tela de cadastro ---------- | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opcao:                                        | \n");
