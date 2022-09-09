@@ -11,7 +11,7 @@
 * Departamento de Computação e Tecnologia
 * Bacharelado em Sistemas de Informação
 * Disciplina DCT1106 - Programação
-* **Integrantes:** Manuelly Rodrigues Victor e Italo Mauricio de Medeiros Santos
+* **Developers:** Manuelly Rodrigues Victor e Italo Mauricio de Medeiros Santos
 * Data de início: 22/08/2022
 
 
