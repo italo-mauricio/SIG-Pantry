@@ -1,1 +1,1 @@
-char telaRelatorio(void)
+char telaRelatorio(void);
