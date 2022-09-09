@@ -1,6 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int  main (void)
+{
+    char escolha;
+    do {
+        escolha = telaRelatorio();
+        switch (escolha) {
+        case '1':
+            estoquedeAlimento();
+            break;
+        case '2':
+            estoquedeHigiene();
+            break; 
+        case  '3':
+            estoquedeLimpeza();
+            break;
+        defaut :
+            printf ('Opcao invalida \n');
+            break;
+    }
+
+    } while(escolha != '0');
+
+    return  0 ;
+}
+
+
+
 char telaRelatorio(void)
 {
     char opcao;
