@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include "modulocadastroItem.h"
 
 /*
 FAZER AS OPÇÕES DE CADA ESCOLHA
