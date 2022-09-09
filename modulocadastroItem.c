@@ -29,7 +29,8 @@ void modulocadastroItem(void) {
             case '3': 
                 telaCadastrarLimpeza();
                 break;
-        }       
+        } 
+              
     } while (escolha != '0');
 
 }
