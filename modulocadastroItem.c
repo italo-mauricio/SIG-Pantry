@@ -74,7 +74,7 @@ char telaCadastrarAlimento(void)
     printf(" |                  2- Data de validade                      | \n"); 
     printf(" |                  3- Editar cadastro                       | \n");    
     printf(" |                  4- Excluir item                          | \n");        
-    printf(" |                  0- Voltar a tela principal               | \n");
+    printf(" |                  0- Voltar a tela de cadastro             | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opcao: \n");
@@ -111,7 +111,7 @@ char telaCadastrarHigiene(void)
     printf(" |                2- Data de validade                        | \n"); 
     printf(" |                3- Editar cadastro                         | \n");    
     printf(" |                4- Excluir item                            | \n");      
-    printf(" |                0- Voltar a tela principal                 | \n");
+    printf(" |                0- Voltar a tela de cadastro               | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opcao: \n");
@@ -133,7 +133,7 @@ char telaCadastrarLimpeza(void)
     printf(" |                  2- Data de validade                      | \n"); 
     printf(" |                  3- Editar cadastro                       | \n");    
     printf(" |                  4- Excluir item                          | \n");  
-    printf(" |                  0- Voltar a tela principal               | \n");
+    printf(" |                  0- Voltar a tela de cadastro             | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opcao: \n");
@@ -156,7 +156,7 @@ char telaLocaldeArmazenamento(void)
     printf(" |                  3- Armario da area de servico            | \n");  
     printf(" |                  4- Armario do banheiro                   | \n"); 
     printf(" |                  5- Guarda-roupa                          | \n");       
-    printf(" |                  0- Voltar a tela principal               | \n");
+    printf(" |                  0- Voltar a tela de cadastro             | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opcao: \n");
