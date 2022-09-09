@@ -14,10 +14,10 @@ void moduloCadastro(void);
 
 // Funções do módulo do cadastro de itens:
 
-void moduloCadastro(void) {
+void modulocadastroItem(void) {
     char escolha;
     do {
-        escolha = telaCadastro();
+        escolha = telaCadastroItens();
         switch(escolha) {
             case '1':
                 telaCadastrarAlimento();
