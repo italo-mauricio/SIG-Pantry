@@ -11,7 +11,6 @@ char  telaPrincipal (void);
 void  telaSobre (void);
 
 char telaPrincipal(void)
-
 {
     char opcao;
     system ( " clear||cls " );
