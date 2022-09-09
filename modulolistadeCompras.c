@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "modulolistadeCompras.h"
 
 char telaCadastroUsuario(void);
 char cadastroUsuario(void);
@@ -23,15 +24,6 @@ char telaRemove(void);
             telavisualizarLimpezaproxVencim();
             break;
         case '4':
-            telavisualizarAlimentosestoque();
-            break; 
-        case '5':
-            telavisualizarHigieneestoque();
-            break; 
-        case '6':
-            telavisualizarLimpezaestoque();
-            break; 
-        case '7':
             telaMontarLista();
             break; 
         defaut :
@@ -52,13 +44,10 @@ char telaListadeCompras(void)
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | -------------------| SIG-Pantry - LISTA DE COMPRAS |---------------- | \n");
     printf(" |                                                                      | \n");
-    printf(" |      1- Visualizar itens alimentares proximo ao vencimento           | \n");
-    printf(" |      2- Visualizar itens de higiene pessoal proximo ao vencimento    | \n");
-    printf(" |      3- Visualizar itens de limpeza proximo ao vencimento            | \n");
-    printf(" |      4- Visualizar itens alimentares que estao no estoque            | \n");
-    printf(" |      5- Visualizar itens de higiente pessoal que estao no estoque    | \n");
-    printf(" |      6- Visualizar itens de limpeza que estao no estoque             | \n");
-    printf(" |      7- Montar a propria listinha                                    | \n");    
+    printf(" |      1- Visualizar itens alimentares proximos do vencimento          | \n");
+    printf(" |      2- Visualizar itens de higiene pessoal proximos do vencimento   | \n");
+    printf(" |      3- Visualizar itens de limpeza proximos do vencimento           | \n");
+    printf(" |      4- Montar a propria listinha                                    | \n");    
     printf(" |      0- Voltar a tela principal                                      | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
