@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include "modulocadastroUsuario.h"
 
 /*
 DENTRO DESSE CADASTRO: estará os dados do usuário do sistema de controle de despensa doméstica.
@@ -73,8 +74,7 @@ char cadastroUsuario(void)
     printf(" |                  Cadastro SIG - Pantry                    | \n");
     printf(" | ========================================================= | \n");
     printf(" |                                                           | \n");
-    printf(" | Nome:                                                     | \n");
-    
+    printf(" | Nome:                                                     | \n");  
     printf(" | CPF:                                                      | \n"); 
     printf(" | Email:                                                    | \n");    
     printf(" | Data de Nascimento:                                       | \n");
