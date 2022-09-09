@@ -11,6 +11,7 @@ char telaCadastroItens(void);
 char telaCadastrarAlimento(void);
 char telaCadastrarHigiene(void);
 char telaCadastrarLimpeza(void);
+char telaLocaldeArmazenamento(void);
 void moduloCadastro(void);
 
 // Funções do módulo do cadastro de itens:
@@ -29,6 +30,9 @@ void modulocadastroItem(void) {
             case '3': 
                 telaCadastrarLimpeza();
                 break;
+            case '4': 
+                telaLocaldeArmazenamento();
+                break;
         } 
               
     } while (escolha != '0');
@@ -46,7 +50,8 @@ char telaCadastroItens(void)
     printf(" |                                                           | \n");
     printf(" |               1- Cadastrar item alimentar                 | \n");
     printf(" |               2- Cadastrar item de higiene pessoal        | \n"); 
-    printf(" |               3- Cadastrar item de limpeza                | \n");    
+    printf(" |               3- Cadastrar item de limpeza                | \n"); 
+    printf(" |               4- Local de armazenamento                   | \n");      
     printf(" |               0- Voltar a tela principal                  | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -67,9 +72,8 @@ char telaCadastrarAlimento(void)
     printf(" |                                                           | \n");
     printf(" |                  1- Nome do Item                          | \n");
     printf(" |                  2- Data de validade                      | \n"); 
-    printf(" |                  3- Local de armazenamento                | \n");
-    printf(" |                  4- Editar cadastro                       | \n");    
-    printf(" |                  5- Excluir item                          | \n");        
+    printf(" |                  3- Editar cadastro                       | \n");    
+    printf(" |                  4- Excluir item                          | \n");        
     printf(" |                  0- Voltar a tela principal               | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -105,9 +109,8 @@ char telaCadastrarHigiene(void)
     printf(" |                                                           | \n");
     printf(" |                1- Nome do Item                            | \n");
     printf(" |                2- Data de validade                        | \n"); 
-    printf(" |                3- Local de armazenamento                  | \n");
-    printf(" |                4- Editar cadastro                         | \n");    
-    printf(" |                5- Excluir item                            | \n");      
+    printf(" |                3- Editar cadastro                         | \n");    
+    printf(" |                4- Excluir item                            | \n");      
     printf(" |                0- Voltar a tela principal                 | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -128,9 +131,8 @@ char telaCadastrarLimpeza(void)
     printf(" |                                                           | \n");
     printf(" |                  1- Nome do Item                          | \n");
     printf(" |                  2- Data de validade                      | \n"); 
-    printf(" |                  3- Local de armazenamento                | \n");    
-    printf(" |                  4- Editar cadastro                       | \n");    
-    printf(" |                  5- Excluir item                          | \n");  
+    printf(" |                  3- Editar cadastro                       | \n");    
+    printf(" |                  4- Excluir item                          | \n");  
     printf(" |                  0- Voltar a tela principal               | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -139,4 +141,27 @@ char telaCadastrarLimpeza(void)
     
     return opcao;
     
+}
+
+char telaLocaldeArmazenamento(void) 
+{
+    char opcao;
+    system ( " clear||cls " );
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | ----------------- LOCAL DE ARMAZENAMENTO ---------------- | \n");
+    printf(" |                                                           | \n");
+    printf(" |                  1- Geladeira                             | \n");
+    printf(" |                  2- Armario da cozinha                    | \n");
+    printf(" |                  3- Armario da area de servico            | \n");  
+    printf(" |                  4- Armario do banheiro                   | \n"); 
+    printf(" |                  5- Guarda-roupa                          | \n");       
+    printf(" |                  0- Voltar a tela principal               | \n");
+    printf(" |                                                           | \n");
+    printf(" | ========================================================= | \n");
+    printf(" | Escolha uma opcao: \n");
+    scanf("%c", &opcao);  
+    
+    return opcao;
+
 }
