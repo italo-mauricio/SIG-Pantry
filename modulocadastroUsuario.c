@@ -6,11 +6,19 @@
 DENTRO DESSE CADASTRO: estará os dados do usuário do sistema de controle de despensa doméstica.
 */
 
+// ================ Declarando as funções =======================
 char telaCadastroUsuario(void);
 char cadastroUsuario(void);
 char telaEditar(void);
 char telaListar(void);
 char telaRemove(void);
+char removeUsuario (void);
+char removeNome(void);
+char removeCpf(void);
+char removeEmail(void);
+
+
+// ==============================================================
 
 int  main (void)
 {
@@ -19,7 +27,7 @@ int  main (void)
         escolha = telaCadastroUsuario();
         switch (escolha) {
         case '1':
-            telaUsuario();
+            cadastroUsuario();
             break;
         case '2':
             telaEditar();
@@ -29,10 +37,36 @@ int  main (void)
             break;
         case '4':
             telaRemove();
-            break; 
-        defaut :
-            printf ('Opcao invalida \n');
-            break ;
+              char remove;
+              do {
+                    remove = telaRemove();          // No momento vamos concatenar os dois swifts, porém sabemos que não é a melhor alternativa
+                    switch (remove) {
+                    case '1':
+                        removeUsuario();
+                        break;
+                    case '2':
+                        removeNome();
+                        break; 
+                    case  '3':
+                        removeCpf();
+                        break;
+                    case '4':
+                        removeEmail();
+                        break;
+                    case '5':
+                        telaCadastroUsuario();
+                            
+                    default :
+                        printf ("Opcao invalida \n");
+                        break;
+                }
+
+                } while(remove != '0');
+
+
+        default :
+            printf ("Opcao invalida \n");
+            break;
     }
 
     } while(escolha != '0');
@@ -41,23 +75,24 @@ int  main (void)
 }
 
 
-char telaCadastroUsuario(void)
+// ================================ Começo do cadastro ====================================== //
+
+char telaCadastroUsuario(void) // Tela inicial dos cadastros
 {
     char opcao;
-    system ( " clear||cls " );
+    system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ------------ SIG-Pantry - CADASTRO USUÁRIO -------------- | \n");
+    printf(" | ------------ SIG-Pantry - CADASTRO USUARIO -------------- | \n");
     printf(" |                                                           | \n");
-    printf(" |                  1 - Cadastrar Usuário                    | \n");
+    printf(" |                  1 - Cadastrar Usuario                    | \n");
     printf(" |                  2 - Editar Cadastro                      | \n"); 
-    printf(" |                  3 - Listar Usuários                      | \n");    
-    printf(" |                  4 - Remover Usuário                      | \n");
+    printf(" |                  3 - Listar Usuarios                      | \n");    
+    printf(" |                  4 - Remover Usuario                      | \n");
     printf(" |                  5 - Retornar ao Menu Inicial             | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao:                                        | \n");
-    printf(" | ========================================================= | \n");
+    printf(" | Escolha uma opcao: ");
     scanf("%c", &opcao);
     getchar();
     
@@ -65,10 +100,14 @@ char telaCadastroUsuario(void)
 
 }
 
-char cadastroUsuario(void)
+
+// =================================================================================
+
+char cadastroUsuario(void) // Cadastro central do usuário
 {
+    char esc;
     char Nome, CPF, Email, DatadeNascimento, Username, Senha;
-    system ( " clear||cls " );
+    system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                  Cadastro SIG - Pantry                    | \n");
@@ -85,16 +124,21 @@ char cadastroUsuario(void)
     printf(" | Descrição: Ola, aqui serao colocadas as suas informacoes  | \n");
     printf(" | pessoais para efetuarmos o seu cadastro no nosso sistema. | \n");
     printf(" | Serao apenas informacoes rapidas para a sua segurança.    | \n");
-    print("  | ========================================================= | \n");
+    printf("  | ======================================================== | \n");
+    printf(" Press ENTER to exit...");
+    scanf("%c", &esc);
 
-  
+    return esc;
 
 }
+
+// ============================== Editar o cadastro =================================== 
 
 char telaEditar(void)
 {
    
-    system ( " clear " );
+    char esc;
+    system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                      SIG - Pantry                         | \n");
@@ -109,14 +153,21 @@ char telaEditar(void)
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | ========================================================= | \n");
+    printf("| Press ENTER to exit... ");
+    scanf("%c", &esc);
    
+    return esc;
 
 }
 
+
+// ===================================== Listar o cadastro =================================
+
 char telaListar(void)
 {
-   
-    system ( " clear " );
+
+    char esc;
+    system ( " cls" );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                       SIG - Pantry                        | \n");
@@ -134,16 +185,22 @@ char telaListar(void)
     printf(" |                                                           | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ========================================================= | \n");
+    printf("| Press ENTER to exit... ");
+    scanf("%c", &esc);
+
+    return esc;
       
     
 }
 
 
+// =============================== Remover o cadastro ============================
 
 char telaRemove(void){
 
+
     char opcao;
-    system ( " clear " );
+    system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                       SIG - Pantry                        | \n");
@@ -154,14 +211,111 @@ char telaRemove(void){
     printf(" | ----------------- 2- Nome do usuario  ------------------- | \n");
     printf(" | ----------------- 3- CPF do usuario  -------------------- | \n");
     printf(" | ----------------- 4- Email do usuario  ------------------ | \n");
-    printf(" | ----------------- 0- Voltar a tela de cadastro ---------- | \n");
+    printf(" | ----------------- 5- Voltar a tela de cadastro ---------- | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao:                                        | \n");
-    printf(" | ========================================================= | \n");
+    printf(" | Escolha uma opcao: ");
     scanf("%c", &opcao);  
     getchar();
+
+    return opcao;
+
+
+
+}
+
+
+
+// A partir do chamamento da subfunção acima, entra nestas funções
+
+
+char removeUsuario (void)
+
+{
     
-    return opcao; 
+    char esc;
+    system ( " cls " );
+    printf("| ============================================================= | \n");
+    printf("| ------------------------------------------------------------- | \n");
+    printf("| ------------------- | Remover Username | -------------------- | \n");
+    printf("|                                                               | \n");
+    printf("| Nome do usuario que deseja removar:                           | \n");
+    printf("|                                                               | \n");
+    printf("|                                                               | \n");
+    printf("|                                                               | \n");
+    printf("| ============================================================= | \n");
+    printf("| Press ENTER to exit... ");
+    scanf("%c", &esc);
+
+
+    return esc;
+
+
+}
+
+
+char removeNome(void){
+
+    
+    char esc;
+    system ( " cls " );
+    printf("| ============================================================= | \n");
+    printf("| ------------------------------------------------------------- | \n");
+    printf("| ------------------- | Remover Nome | ------------------------ | \n");
+    printf("|                                                               | \n");
+    printf("| Nome que deseja removar:                                      | \n");
+    printf("|                                                               | \n");
+    printf("|                                                               | \n");
+    printf("|                                                               | \n");
+    printf("| ============================================================= | \n");
+    printf("| Press ENTER to exit... ");
+    scanf("%c", &esc);
+
+
+    return esc;
+
+}
+
+
+char removeCpf(void)
+{
+
+    char esc;
+    system ( " cls " );
+    printf("| ============================================================= | \n");
+    printf("| ------------------------------------------------------------- | \n");
+    printf("| ---------------------- | Remover CPF | ---------------------- | \n");
+    printf("|                                                               | \n");
+    printf("| CPF que deseja removar:                                       | \n");
+    printf("|                                                               | \n");
+    printf("|                                                               | \n");
+    printf("|                                                               | \n");
+    printf("| ============================================================= | \n");
+    printf("| Press ENTER to exit... ");
+    scanf("%c", &esc);
+
+    return esc;
+
+}
+
+char removeEmail(void)
+{
+
+    char esc;
+    system ( " cls " );
+    printf("| ============================================================= | \n");
+    printf("| ------------------------------------------------------------- | \n");
+    printf("| ---------------------- | Remover Email | -------------------- | \n");
+    printf("|                                                               | \n");
+    printf("| Email que deseja removar:                                     | \n");
+    printf("|                                                               | \n");
+    printf("|                                                               | \n");
+    printf("|                                                               | \n");
+    printf("| ============================================================= | \n");
+    printf("| Press ENTER to exit... ");
+    scanf("%c", &esc);
+
+
+    return esc;
 
 }

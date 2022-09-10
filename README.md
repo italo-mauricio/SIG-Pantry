@@ -11,7 +11,7 @@
 * Departamento de Computação e Tecnologia
 * Bacharelado em Sistemas de Informação
 * Disciplina DCT1106 - Programação
-* **Integrantes:** Manuelly Rodrigues Victor e Italo Mauricio de Medeiros Santos
+* **Developers:** Manuelly Rodrigues Victor e Italo Mauricio de Medeiros Santos
 * Data de início: 22/08/2022
 
 
@@ -30,9 +30,15 @@
 
 
 ## Descrição do Projeto:
-* O projeto tem a proposta de criar um software para controle da despensa doméstica de uma casa, sendo dividido em categorias: alimentação, higiene pessoal, limpeza etc. O programa seria uma forma de facilitar as atividades cotidianas de uma casa, fazendo o controle total do que entra e o que sai de uma despensa, por meio das datas de validades dos produtos, por exemplo.
+* O projeto tem a proposta de criar um software para controle da despensa doméstica de uma casa, sendo dividido em categorias: alimentação, higiene pessoal e limpeza. O programa é uma forma de facilitar as atividades cotidianas de uma casa, fazendo o controle total do que entra e do que sai de uma despensa, por meio das datas de validades dos produtos, por exemplo.
 * O desenvolvimento será executado em várias fases, com atualizações contínuas no GitHub para cada fase do projeto.  
 
+## Mapa do projeto:
+
+<a id="github" href="https://github.com/italomauricio1/SIG-Pantry/tree/main/Mapa%20mental%20colorido%20de%20ideia%20de%20neg%C3%B3cio%20com%20ilustra%C3%A7%C3%B5es" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="_" />
+  </a>
+</p>
 
 
 
