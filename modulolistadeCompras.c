@@ -45,9 +45,9 @@ char telaListadeCompras(void)
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | -------------------| SIG-Pantry - LISTA DE COMPRAS |---------------- | \n");
     printf(" |                                                                      | \n");
-    printf(" |      1- Visualizar itens alimentares proximos do vencimento          | \n");
-    printf(" |      2- Visualizar itens de higiene pessoal proximos do vencimento   | \n");
-    printf(" |      3- Visualizar itens de limpeza proximos do vencimento           | \n");
+    printf(" |      1- Visualizar itens alimentares proximos ao vencimento          | \n");
+    printf(" |      2- Visualizar itens de higiene pessoal proximos ao vencimento   | \n");
+    printf(" |      3- Visualizar itens de limpeza proximos ao vencimento           | \n");
     printf(" |      4- Montar a propria listinha                                    | \n");    
     printf(" |      0- Voltar a tela principal                                      | \n");
     printf(" |                                                                      | \n");
@@ -70,7 +70,7 @@ char telaAlimentoVencimento(void)
     char esc;
     printf("| ============================================================== | \n");
     printf("| -------------------------------------------------------------- | \n");
-    printf("| ------------ | Alimentos proximos do vencimento | ------------ | \n");
+    printf("| ------------ | Alimentos proximos ao vencimento | ------------ | \n");
     printf("|                                                                | \n");
     printf("|  1- Informe o nome:  \n");
     scanf("%[A-Z a-z]", nome);
@@ -96,7 +96,7 @@ char telaHigieneVencimento(void)
     char esc;
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
-    printf("| ------- | Itens de higiene proximos do vencimento | --------- | \n");
+    printf("| ------- | Itens de higiene proximos ao vencimento | --------- | \n");
     printf("|                                                               | \n");
     printf("|  1- Informe o nome:  \n");
     scanf("%[A-Z a-z]", nome);
@@ -122,7 +122,7 @@ char telaLimpezaVencimento(void)
     char esc;
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
-    printf("| -------- | Itens de limpeza proximos do vencimento | -------- | \n");
+    printf("| -------- | Itens de limpeza proximos ao vencimento | -------- | \n");
     printf("|                                                               | \n");
     printf("|  1- Informe o nome:  \n");
     scanf("%[A-Z a-z]", nome);
