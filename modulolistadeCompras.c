@@ -76,7 +76,7 @@ char telaAlimentoVencimento(void)
     scanf("%[A-Z a-z]", nome);
     printf("|  2- Informe a data de cadastro no sistema: \n");
     scanf("%[0-9, -, /, .]", datadeCadastro);
-    printf("|  3- Data de vencimento: \n");
+    printf("|  3- Informe a data de vencimento: \n");
     scanf("%[0-9, -, /, .]", datadeVencimento);
     printf("|                                                                | \n");
     printf("| ============================================================== | \n");
@@ -102,7 +102,7 @@ char telaHigieneVencimento(void)
     scanf("%[A-Z a-z]", nome);
     printf("|  2- Informe a data de cadastro no sistema: \n");
     scanf("%[0-9, -, /, .]", datadeCadastro);
-    printf("|  3- Data de vencimento: \n");
+    printf("|  3- Informe a data de vencimento: \n");
     scanf("%[0-9, -, /, .]", datadeVencimento);
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
@@ -128,7 +128,7 @@ char telaLimpezaVencimento(void)
     scanf("%[A-Z a-z]", nome);
     printf("|  2- Informe a data de cadastro no sistema: \n");
     scanf("%[0-9.,-.,/.,.]", datadeCadastro);
-    printf("|  3- Data de vencimento: \n");
+    printf("|  3- Informe a data de vencimento: \n");
     scanf("%[0-9., -., /., .]", datadeVencimento);
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
@@ -151,9 +151,9 @@ char telaMontarLista()
     printf("|                                                               | \n");
     printf("|  1- Informe o nome:  \n");
     scanf("%[A-Z a-z]", nome);
-    printf("| 2- Categoria do produto: \n");
+    printf("| 2- Informe a categoria do produto: \n");
     scanf("%[A-Z, a-z", categoriaProduto);
-    printf("| 3- Quantidade do produto:  \n");
+    printf("| 3- Informe a quantidade do produto:  \n");
     scanf("%[0-9]", quantidadeProduto);
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
