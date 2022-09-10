@@ -73,6 +73,6 @@ char telaproximoVencimento (void)
     printf("| Deseja receber uma notificacao quando o alimento estiver proxi | \n");
     printf("| mo do vencimento?                                              | \n");
 
-
+    // colocariamos aqui uma opcao no futuro
 
 }
