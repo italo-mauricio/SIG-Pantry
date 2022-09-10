@@ -11,7 +11,7 @@ char telaCadastroCompras(void);
         escolha = telaListadeCompras();
         switch (escolha) {
         case '1':
-            telaVisualizarAlimentosproxVencim();
+            telaAlimentoVencimento();
             break;
         case '2':
             telavisualizarHigieneproxVencim();
@@ -57,7 +57,7 @@ char telaListadeCompras(void)
 
 
 
-char telaproximoVencimento (void)
+char telaAlimentoVencimento (void)
 
 {
 
@@ -74,5 +74,34 @@ char telaproximoVencimento (void)
     printf("| mo do vencimento?                                              | \n");
 
     // colocariamos aqui uma opcao no futuro
+
+}
+
+
+
+char telaHigieneVencimento (void)
+{
+
+    printf("| ============================================================= | \n");
+    printf("| ------------------------------------------------------------- | \n");
+    printf("| ------------- | Higiene Proximo ao Vencimento | ------------- | \n");
+    printf("|                                                               | \n");
+    printf("| Nome do produto:                                              | \n");
+    printf("| Data de cadastro do produto:                                  | \n");
+    printf("| Data de vencimento:                                           | \n");
+    printf("|                                                               | \n");
+    printf("| ============================================================= | \n");
+    printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
+    printf("| cimento?                                                      | \n");
+    
+
+
+
+
+
+
+
+
+
 
 }
