@@ -2,7 +2,12 @@
 #include <stdlib.h>
 #include "modulolistadeCompras.h"
 
-char telaCadastroCompras(void);
+char telaListadeCompras(void);
+char telaAlimentoVencimento (void);
+char telaHigieneVencimento (void);
+char telaHigieneVencimento (void);
+
+
 
 int  main (void)
 {
@@ -23,8 +28,8 @@ int  main (void)
             telaMontarLista();
             break; 
         defaut :
-            printf ('Opcao invalida \n');
-            break ;
+            printf ("Opcao invalida \n");
+            break;
     }
 
     } while(escolha != '0');
