@@ -3,11 +3,10 @@
 #include "modulolistadeCompras.h"
 
 char telaListadeCompras(void);
-char telaAlimentoVencimento (void);
-char telaHigieneVencimento (void);
-char telaMontarLista();
-
-
+char telaAlimentoVencimento(void);
+char telaHigieneVencimento(void);
+char telaLimpezaVencimento(void);
+char telaMontarLista(void);
 
 
 int  main (void)
@@ -20,10 +19,10 @@ int  main (void)
             telaAlimentoVencimento();
             break;
         case '2':
-            telaAlimentoVencimento();
+            telaHigieneVencimento();
             break; 
         case  '3':
-            telaAlimentoVencimento();
+            telaLimpezaVencimento();
             break;
         case '4':
             telaMontarLista();
@@ -63,13 +62,13 @@ char telaListadeCompras(void)
 
 
 
-char telaAlimentoVencimento (void)
+char telaAlimentoVencimento(void)
 
 {
     char esc;
     printf("| ============================================================== | \n");
     printf("| -------------------------------------------------------------- | \n");
-    printf("| ------------- | Alimentos próximo ao vencimento | ------------ | \n");
+    printf("| ------------ | Alimentos proximos do vencimento | ------------ | \n");
     printf("|                                                                | \n");
     printf("|  Nome do alimento:                                             | \n");
     printf("|  Data de cadastro no sistema:                                  | \n");
@@ -87,13 +86,13 @@ char telaAlimentoVencimento (void)
 
 
 
-char telaHigieneVencimento (void)
+char telaHigieneVencimento(void)
 {
 
     char esc;
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
-    printf("| ------------- | Higiene Proximo ao Vencimento | ------------- | \n");
+    printf("| ------- | Itens de higiene proximos do vencimento | --------- | \n");
     printf("|                                                               | \n");
     printf("| Nome do produto:                                              | \n");
     printf("| Data de cadastro do produto:                                  | \n");
@@ -110,13 +109,13 @@ char telaHigieneVencimento (void)
 
 
 
-char telaLimpezaVencimento (void)
+char telaLimpezaVencimento(void)
 {
 
     char esc;
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
-    printf("| ------------- | Limpeza Proximo ao Vencimento | ------------- | \n");
+    printf("| -------- | Itens de limpeza proximos do vencimento | -------- | \n");
     printf("|                                                               | \n");
     printf("| Nome do produto:                                              | \n");
     printf("| Data de cadastro do produto:                                  | \n");
@@ -138,7 +137,7 @@ char telaMontarLista()
     char esc;
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
-    printf("| ------------- | Montar a Sua Lista de Compras| -------------- | \n");
+    printf("| ------------- | Montar a sua Lista de Compras| -------------- | \n");
     printf("|                                                               | \n");
     printf("| Nome do produto:                                              | \n");
     printf("| Categoria do produto:                                         | \n");
