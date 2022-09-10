@@ -56,8 +56,7 @@ char telaCadastroUsuario(void)
     printf(" |                  5 - Retornar ao Menu Inicial             | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao:                                        | \n");
-    printf(" | ========================================================= | \n");
+    printf(" | Escolha uma opcao: \n");
     scanf("%c", &opcao);
     getchar();
     
@@ -157,8 +156,7 @@ char telaRemove(void){
     printf(" | ----------------- 0- Voltar a tela de cadastro ---------- | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao:                                        | \n");
-    printf(" | ========================================================= | \n");
+    printf(" | Escolha uma opcao: \n");
     scanf("%c", &opcao);  
     getchar();
     
