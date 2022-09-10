@@ -4,7 +4,7 @@
 
 char telaCadastroCompras(void);
 
-/* int  main (void)
+int  main (void)
 {
     char escolha;
     do {
@@ -14,10 +14,10 @@ char telaCadastroCompras(void);
             telaAlimentoVencimento();
             break;
         case '2':
-            telavisualizarHigieneproxVencim();
+            telaAlimentoVencimento();
             break; 
         case  '3':
-            telavisualizarLimpezaproxVencim();
+            telaAlimentoVencimento();
             break;
         case '4':
             telaMontarLista();
@@ -30,7 +30,7 @@ char telaCadastroCompras(void);
     } while(escolha != '0');
 
     return  0 ;
-} */
+} 
 
 char telaListadeCompras(void)
 {
@@ -93,13 +93,26 @@ char telaHigieneVencimento (void)
     printf("| ============================================================= | \n");
     printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
     printf("| cimento?                                                      | \n");
-    
+
+
+}
 
 
 
+char telaLimpezaVencimento (void)
+{
 
-
-
+    printf("| ============================================================= | \n");
+    printf("| ------------------------------------------------------------- | \n");
+    printf("| ------------- | Limpeza Proximo ao Vencimento | ------------- | \n");
+    printf("|                                                               | \n");
+    printf("| Nome do produto:                                              | \n");
+    printf("| Data de cadastro do produto:                                  | \n");
+    printf("| Data de vencimento:                                           | \n");
+    printf("|                                                               | \n");
+    printf("| ============================================================= | \n");
+    printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
+    printf("| cimento?                                                      | \n");
 
 
 
