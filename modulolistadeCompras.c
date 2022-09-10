@@ -71,6 +71,8 @@ char telaAlimentoVencimento(void)
     printf("| ------------ | Alimentos proximos do vencimento | ------------ | \n");
     printf("|                                                                | \n");
     printf("|  Nome do alimento:                                             | \n");
+    char nome;
+    
     printf("|  Data de cadastro no sistema:                                  | \n");
     printf("|  Data de vencimento:                                           | \n");
     printf("|                                                                | \n");
@@ -79,8 +81,7 @@ char telaAlimentoVencimento(void)
     printf("| mo do vencimento?                                              | \n");
     printf("| Press ENTER to exit... ");
     scanf("%c", &esc);
-
-
+    getchar();
 
 }
 
@@ -103,7 +104,7 @@ char telaHigieneVencimento(void)
     printf("| cimento?                                                      | \n");
     printf("| Press ENTER to exit... ");
     scanf("%c", &esc);
-
+    getchar();
 
 }
 
@@ -126,7 +127,7 @@ char telaLimpezaVencimento(void)
     printf("| cimento?                                                      | \n");
     printf("| Press ENTER to exit... ");
     scanf("%c", &esc);
-
+    getchar();
 
 }
 
@@ -148,6 +149,6 @@ char telaMontarLista()
     printf("| cimento?                                                      | \n");
     printf("| Press ENTER to exit... ");
     scanf("%c", &esc);
-
+    getchar();
 
 }
