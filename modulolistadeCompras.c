@@ -138,11 +138,11 @@ char telaMontarLista()
     char esc;
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
-    printf("| ------------- | Limpeza Proximo ao Vencimento | ------------- | \n");
+    printf("| ------------- | Montar a Sua Lista de Compras| -------------- | \n");
     printf("|                                                               | \n");
     printf("| Nome do produto:                                              | \n");
-    printf("| Data de cadastro do produto:                                  | \n");
-    printf("| Data de vencimento:                                           | \n");
+    printf("| Categoria do produto:                                         | \n");
+    printf("| Quantidade do produto:                                        | \n");
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
     printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
