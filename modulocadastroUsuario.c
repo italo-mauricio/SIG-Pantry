@@ -6,11 +6,19 @@
 DENTRO DESSE CADASTRO: estará os dados do usuário do sistema de controle de despensa doméstica.
 */
 
+// ================ Declarando as funções =======================
 char telaCadastroUsuario(void);
 char cadastroUsuario(void);
 char telaEditar(void);
 char telaListar(void);
 char telaRemove(void);
+char removeUsuario (void);
+char removeNome(void);
+char removeCpf(void);
+char removeEmail(void);
+
+
+// ==============================================================
 
 int  main (void)
 {
@@ -29,8 +37,30 @@ int  main (void)
             break;
         case '4':
             telaRemove();
-            break; 
-        defaut :
+              char remove;
+            do {
+                remove = telaRemove();
+                switch (remove) {
+                case '1':
+                    removeUsuario();
+                    break;
+                case '2':
+                    removeNome();
+                    break; 
+                case  '3':
+                    removeCpf();
+                    break;
+                case '4':
+                    removeEmail();
+                    break; 
+                default :
+                    printf ("Opcao invalida \n");
+                    break;
+            }
+
+            } while(remove != '0');
+
+        default :
             printf ("Opcao invalida \n");
             break;
     }
@@ -98,6 +128,7 @@ char cadastroUsuario(void)
 char telaEditar(void)
 {
    
+    char esc;
     system ( " clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -113,13 +144,17 @@ char telaEditar(void)
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | ========================================================= | \n");
+    printf("| Press ENTER to exit... ");
+    scanf("%c", &esc);
    
+    return esc;
 
 }
 
 char telaListar(void)
 {
-   
+
+    char esc;
     system ( " clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -138,13 +173,17 @@ char telaListar(void)
     printf(" |                                                           | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ========================================================= | \n");
+    printf("| Press ENTER to exit... ");
+    scanf("%c", &esc);
+
+    return esc;
       
     
 }
 
 
-
 char telaRemove(void){
+
 
     char opcao;
     system ( " clear " );
@@ -164,7 +203,97 @@ char telaRemove(void){
     printf(" | Escolha uma opcao: \n");
     scanf("%c", &opcao);  
     getchar();
+
+    return opcao;
+
+
+
+}
+
+
+char removeUsuario (void)
+
+{
+
+    char esc;
+    printf("| ============================================================= | \n");
+    printf("| ------------------------------------------------------------- | \n");
+    printf("| ------------------- | Remover Username | -------------------- | \n");
+    printf("|                                                               | \n");
+    printf("| Nome do usuario que deseja removar:                           | \n");
+    printf("|                                                               | \n");
+    printf("|                                                               | \n");
+    printf("|                                                               | \n");
+    printf("| ============================================================= | \n");
+    printf("| Press ENTER to exit... ");
+    scanf("%c", &esc);
+
+
+    return esc;
+
+
+}
+
+
+char removeNome(void){
+
     
-    return opcao; 
+    char esc;
+    printf("| ============================================================= | \n");
+    printf("| ------------------------------------------------------------- | \n");
+    printf("| ------------------- | Remover Nome | ------------------------ | \n");
+    printf("|                                                               | \n");
+    printf("| Nome que deseja removar:                                      | \n");
+    printf("|                                                               | \n");
+    printf("|                                                               | \n");
+    printf("|                                                               | \n");
+    printf("| ============================================================= | \n");
+    printf("| Press ENTER to exit... ");
+    scanf("%c", &esc);
+
+
+    return esc;
+
+}
+
+
+char removeCpf(void)
+{
+
+    char esc;
+    printf("| ============================================================= | \n");
+    printf("| ------------------------------------------------------------- | \n");
+    printf("| ---------------------- | Remover CPF | ---------------------- | \n");
+    printf("|                                                               | \n");
+    printf("| CPF que deseja removar:                                       | \n");
+    printf("|                                                               | \n");
+    printf("|                                                               | \n");
+    printf("|                                                               | \n");
+    printf("| ============================================================= | \n");
+    printf("| Press ENTER to exit... ");
+    scanf("%c", &esc);
+
+    return esc;
+
+}
+
+char removeEmail(void)
+{
+
+    char esc;
+    printf("| ============================================================= | \n");
+    printf("| ------------------------------------------------------------- | \n");
+    printf("| ---------------------- | Remover Email | -------------------- | \n");
+    printf("|                                                               | \n");
+    printf("| Email que deseja removar:                                     | \n");
+    printf("|                                                               | \n");
+    printf("|                                                               | \n");
+    printf("|                                                               | \n");
+    printf("| ============================================================= | \n");
+    printf("| Press ENTER to exit... ");
+    scanf("%c", &esc);
+
+
+    return esc;
 
 }
