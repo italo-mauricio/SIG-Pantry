@@ -66,7 +66,8 @@ char telaAlimentoVencimento(void)
 
 {
     char nome[20];
-    int datadeCadastro[10], datadeVencimento[10];
+    char datadeCadastro[10];
+    char datadeVencimento[10];
     char esc;
     printf("| ============================================================== | \n");
     printf("| -------------------------------------------------------------- | \n");
@@ -75,9 +76,9 @@ char telaAlimentoVencimento(void)
     printf("|  1- Informe o nome:  \n");
     scanf("%[A-Z a-z]", nome);
     printf("|  2- Informe a data de cadastro no sistema: \n");
-    scanf("%[0-9, -, /, .]", datadeCadastro);
+    scanf("%[0-9., -., /., .]", datadeCadastro);
     printf("|  3- Informe a data de vencimento: \n");
-    scanf("%[0-9, -, /, .]", datadeVencimento);
+    scanf("%[0-9., -., /., .]", datadeVencimento);
     printf("|                                                                | \n");
     printf("| ============================================================== | \n");
     printf("| Deseja receber uma notificacao quando o alimento estiver proxi | \n");
@@ -92,7 +93,8 @@ char telaAlimentoVencimento(void)
 char telaHigieneVencimento(void)
 {
     char nome[20];
-    int datadeCadastro[10], datadeVencimento[10];
+    char datadeCadastro[10];
+    char datadeVencimento[10];
     char esc;
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
@@ -101,9 +103,9 @@ char telaHigieneVencimento(void)
     printf("|  1- Informe o nome:  \n");
     scanf("%[A-Z a-z]", nome);
     printf("|  2- Informe a data de cadastro no sistema: \n");
-    scanf("%[0-9, -, /, .]", datadeCadastro);
+    scanf("%[0-9., -., /., .]", datadeCadastro);
     printf("|  3- Informe a data de vencimento: \n");
-    scanf("%[0-9, -, /, .]", datadeVencimento);
+    scanf("%[0-9., -., /., .]", datadeVencimento);
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
     printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
@@ -114,11 +116,11 @@ char telaHigieneVencimento(void)
 }
 
 
-
 char telaLimpezaVencimento(void)
 {
     char nome[20];
-    int datadeCadastro[10], datadeVencimento[10];
+    char datadeCadastro[10];
+    char datadeVencimento[10];
     char esc;
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
@@ -142,7 +144,8 @@ char telaLimpezaVencimento(void)
 
 char telaMontarLista()
 {
-    char nome[20], categoriaProduto[10];
+    char nome[20];
+    char categoriaProduto[10];
     int quantidadeProduto[10];
     char esc;
     printf("| ============================================================= | \n");
@@ -161,4 +164,5 @@ char telaMontarLista()
     printf("| cimento?                                                      | \n");
     scanf("%c", &esc);
     getchar();
+    
 }
