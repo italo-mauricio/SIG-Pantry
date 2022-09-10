@@ -5,7 +5,8 @@
 char telaListadeCompras(void);
 char telaAlimentoVencimento (void);
 char telaHigieneVencimento (void);
-char telaHigieneVencimento (void);
+char telaMontarLista();
+
 
 
 
@@ -27,7 +28,7 @@ int  main (void)
         case '4':
             telaMontarLista();
             break; 
-        defaut :
+        default :
             printf ("Opcao invalida \n");
             break;
     }
@@ -65,7 +66,7 @@ char telaListadeCompras(void)
 char telaAlimentoVencimento (void)
 
 {
-
+    char esc;
     printf("| ============================================================== | \n");
     printf("| -------------------------------------------------------------- | \n");
     printf("| ------------- | Alimentos próximo ao vencimento | ------------ | \n");
@@ -77,8 +78,10 @@ char telaAlimentoVencimento (void)
     printf("| ============================================================== | \n");
     printf("| Deseja receber uma notificacao quando o alimento estiver proxi | \n");
     printf("| mo do vencimento?                                              | \n");
+    printf("| Press ENTER to exit: \n");
+    scanf("%c", &esc);
 
-    // colocariamos aqui uma opcao no futuro
+
 
 }
 
@@ -118,6 +121,28 @@ char telaLimpezaVencimento (void)
     printf("| ============================================================= | \n");
     printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
     printf("| cimento?                                                      | \n");
+
+
+}
+
+
+char telaMontarLista()
+{
+
+    printf("| ============================================================= | \n");
+    printf("| ------------------------------------------------------------- | \n");
+    printf("| ------------- | Limpeza Proximo ao Vencimento | ------------- | \n");
+    printf("|                                                               | \n");
+    printf("| Nome do produto:                                              | \n");
+    printf("| Data de cadastro do produto:                                  | \n");
+    printf("| Data de vencimento:                                           | \n");
+    printf("|                                                               | \n");
+    printf("| ============================================================= | \n");
+    printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
+    printf("| cimento?                                                      | \n");
+
+
+
 
 
 
