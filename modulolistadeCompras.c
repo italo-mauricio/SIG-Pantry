@@ -65,16 +65,17 @@ char telaListadeCompras(void)
 char telaAlimentoVencimento(void)
 
 {
+    
     char esc;
     printf("| ============================================================== | \n");
     printf("| -------------------------------------------------------------- | \n");
     printf("| ------------ | Alimentos proximos do vencimento | ------------ | \n");
     printf("|                                                                | \n");
-    printf("|  Nome do alimento:                                             | \n");
+    printf("|  1- Nome do alimento:                                             | \n");
     char nome;
-    
-    printf("|  Data de cadastro no sistema:                                  | \n");
-    printf("|  Data de vencimento:                                           | \n");
+
+    printf("|  2- Data de cadastro no sistema:                                  | \n");
+    printf("|  3- Data de vencimento:                                           | \n");
     printf("|                                                                | \n");
     printf("| ============================================================== | \n");
     printf("| Deseja receber uma notificacao quando o alimento estiver proxi | \n");
@@ -95,9 +96,9 @@ char telaHigieneVencimento(void)
     printf("| ------------------------------------------------------------- | \n");
     printf("| ------- | Itens de higiene proximos do vencimento | --------- | \n");
     printf("|                                                               | \n");
-    printf("| Nome do produto:                                              | \n");
-    printf("| Data de cadastro do produto:                                  | \n");
-    printf("| Data de vencimento:                                           | \n");
+    printf("| 1- Nome do produto:                                           | \n");
+    printf("| 2- Data de cadastro do produto:                               | \n");
+    printf("| 3- Data de vencimento:                                        | \n");
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
     printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
@@ -118,9 +119,9 @@ char telaLimpezaVencimento(void)
     printf("| ------------------------------------------------------------- | \n");
     printf("| -------- | Itens de limpeza proximos do vencimento | -------- | \n");
     printf("|                                                               | \n");
-    printf("| Nome do produto:                                              | \n");
-    printf("| Data de cadastro do produto:                                  | \n");
-    printf("| Data de vencimento:                                           | \n");
+    printf("| 1- Nome do produto:                                           | \n");
+    printf("| 2- Data de cadastro do produto:                               | \n");
+    printf("| 3- Data de vencimento:                                        | \n");
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
     printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
@@ -140,9 +141,9 @@ char telaMontarLista()
     printf("| ------------------------------------------------------------- | \n");
     printf("| ------------- | Montar a sua Lista de Compras| -------------- | \n");
     printf("|                                                               | \n");
-    printf("| Nome do produto:                                              | \n");
-    printf("| Categoria do produto:                                         | \n");
-    printf("| Quantidade do produto:                                        | \n");
+    printf("| 1- Nome do produto:                                           | \n");
+    printf("| 2- Categoria do produto:                                      | \n");
+    printf("| 3- Quantidade do produto:                                     | \n");
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
     printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
