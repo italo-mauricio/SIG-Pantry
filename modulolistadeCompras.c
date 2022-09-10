@@ -51,8 +51,7 @@ char telaListadeCompras(void)
     printf(" |      0- Voltar a tela principal                                      | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
-    printf(" | Escolha uma opcao:                                                   | \n");
-    printf(" | ==================================================================== | \n");
+    printf(" | Escolha uma opcao: \n");
     scanf("%c", &opcao);
     getchar();
 
