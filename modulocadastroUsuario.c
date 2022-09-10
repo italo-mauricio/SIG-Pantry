@@ -19,7 +19,7 @@ int  main (void)
         escolha = telaCadastroUsuario();
         switch (escolha) {
         case '1':
-            telaUsuario();
+            cadastroUsuario();
             break;
         case '2':
             telaEditar();
@@ -31,8 +31,8 @@ int  main (void)
             telaRemove();
             break; 
         defaut :
-            printf ('Opcao invalida \n');
-            break ;
+            printf ("Opcao invalida \n");
+            break;
     }
 
     } while(escolha != '0');
@@ -56,7 +56,7 @@ char telaCadastroUsuario(void)
     printf(" |                  5 - Retornar ao Menu Inicial             | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao: \n");
+    printf(" | Escolha uma opcao: ");
     scanf("%c", &opcao);
     getchar();
     
@@ -66,6 +66,7 @@ char telaCadastroUsuario(void)
 
 char cadastroUsuario(void)
 {
+    char esc;
     char Nome, CPF, Email, DatadeNascimento, Username, Senha;
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
@@ -84,7 +85,11 @@ char cadastroUsuario(void)
     printf(" | Descrição: Ola, aqui serao colocadas as suas informacoes  | \n");
     printf(" | pessoais para efetuarmos o seu cadastro no nosso sistema. | \n");
     printf(" | Serao apenas informacoes rapidas para a sua segurança.    | \n");
-    print("  | ========================================================= | \n");
+    printf("  | ======================================================== | \n");
+    printf(" Press ENTER to exit...");
+    scanf("%c", &esc);
+
+    return esc;
 
   
 
