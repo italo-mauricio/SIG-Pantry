@@ -2,11 +2,7 @@
 #include <stdlib.h>
 #include "modulolistadeCompras.h"
 
-char telaCadastroUsuario(void);
-char cadastroUsuario(void);
-char telaEditar(void);
-char telaListar(void);
-char telaRemove(void);
+char telaCadastroCompras(void);
 
 /* int  main (void)
 {
@@ -56,5 +52,27 @@ char telaListadeCompras(void)
     getchar();
 
     return opcao;
+
+}
+
+
+
+char telaproximoVencimento (void)
+
+{
+
+    printf("| ============================================================== | \n");
+    printf("| -------------------------------------------------------------- | \n");
+    printf("| ------------- | Alimentos próximo ao vencimento | ------------ | \n");
+    printf("|                                                                | \n");
+    printf("|  Nome do alimento:                                             | \n");
+    printf("|  Data de cadastro no sistema:                                  | \n");
+    printf("|  Data de vencimento:                                           | \n");
+    printf("|                                                                | \n");
+    printf("| ============================================================== | \n");
+    printf("| Deseja receber uma notificacao quando o alimento estiver proxi | \n");
+    printf("| mo do vencimento?                                              | \n");
+
+
 
 }
