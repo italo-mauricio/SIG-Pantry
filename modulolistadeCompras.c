@@ -161,5 +161,4 @@ char telaMontarLista()
     printf("| cimento?                                                      | \n");
     scanf("%c", &esc);
     getchar();
-
 }
