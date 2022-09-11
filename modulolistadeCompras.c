@@ -19,7 +19,7 @@ int  main (void)
             telaAlimentoVencimento();
             char alimentosVencimento;
               do {
-                    alimentosVencimento = telaAlimentoVencimento();          // No momento vamos concatenar os dois swifts, porém sabemos que não é a melhor alternativa
+                    alimentosVencimento = telaAlimentoVencimento();         
                     switch (alimentosVencimento) {
                     case '1':
                         nomeItemAlimentar();
