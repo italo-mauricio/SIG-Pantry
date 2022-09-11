@@ -18,6 +18,26 @@ int  main (void)
         case '1':
             telaAlimentoVencimento();
             break;
+        /*    char alimentosVencimento;
+              do {
+                    alimentosVencimento = telaAlimentoVencimento();       //repetir isso para os demais  
+                    switch (alimentosVencimento) {
+                    case '1':
+                        nomeItemAlimentar();
+                        break;
+                    case '2':
+                        dataCadastroAlimento();
+                        break; 
+                    case '0':
+                        telaListadeCompras();
+                            
+                    default :
+                        printf ("Opcao invalida \n");
+                        break;
+                } 
+
+                } while(alimentosVencimento != '0'); */
+
         case '2':
             telaHigieneVencimento();
             break; 
@@ -67,7 +87,6 @@ char telaAlimentoVencimento(void)
 {
     char nome[20];
     char datadeCadastro[10];
-    char datadeVencimento[10];
     char esc;
     printf("| ============================================================== | \n");
     printf("| -------------------------------------------------------------- | \n");
@@ -77,12 +96,11 @@ char telaAlimentoVencimento(void)
     scanf("%[A-Z a-z]", nome);
     printf("|  2- Informe a data de cadastro no sistema: \n");
     scanf("%[0-9., -., /., .]", datadeCadastro);
-    printf("|  3- Informe a data de vencimento: \n");
-    scanf("%[0-9., -., /., .]", datadeVencimento);
+    printf("| 0- Voltar a tela de lista de compras;                          | \n");
     printf("|                                                                | \n");
     printf("| ============================================================== | \n");
-    printf("| Deseja receber uma notificacao quando o alimento estiver proxi | \n");
-    printf("| mo do vencimento? Sim ou nao?                                  | \n");
+  /*  printf("| Deseja receber uma notificacao quando o alimento estiver proxi | \n");
+    printf("| mo do vencimento? Sim ou nao?                                  | \n"); */
     scanf("%c", &esc);
     getchar();
 
@@ -94,7 +112,6 @@ char telaHigieneVencimento(void)
 {
     char nome[20];
     char datadeCadastro[10];
-    char datadeVencimento[10];
     char esc;
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
@@ -104,12 +121,11 @@ char telaHigieneVencimento(void)
     scanf("%[A-Z a-z]", nome);
     printf("|  2- Informe a data de cadastro no sistema: \n");
     scanf("%[0-9., -., /., .]", datadeCadastro);
-    printf("|  3- Informe a data de vencimento: \n");
-    scanf("%[0-9., -., /., .]", datadeVencimento);
+    printf("|  0- Voltar a tela de lista de compras;                        | \n");
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
-    printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
-    printf("| cimento?                                                      | \n");
+  /*  printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
+    printf("| cimento?                                                      | \n"); */
     scanf("%c", &esc);
     getchar();
 
@@ -120,7 +136,6 @@ char telaLimpezaVencimento(void)
 {
     char nome[20];
     char datadeCadastro[10];
-    char datadeVencimento[10];
     char esc;
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
@@ -130,12 +145,11 @@ char telaLimpezaVencimento(void)
     scanf("%[A-Z a-z]", nome);
     printf("|  2- Informe a data de cadastro no sistema: \n");
     scanf("%[0-9.,-.,/.,.]", datadeCadastro);
-    printf("|  3- Informe a data de vencimento: \n");
-    scanf("%[0-9., -., /., .]", datadeVencimento);
+    printf("|  0- Voltar a tela de lista de compras;                        | \n");
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
-    printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
-    printf("| cimento?                                                      | \n");
+  /*  printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
+    printf("| cimento?                                                      | \n"); */
     scanf("%c", &esc);
     getchar();
 
@@ -158,10 +172,11 @@ char telaMontarLista()
     scanf("%[A-Z, a-z", categoriaProduto);
     printf("| 3- Informe a quantidade do produto:  \n");
     scanf("%[0-9]", quantidadeProduto);
+    printf("| 0- Voltar a tela de lista de compras;                         | \n");
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
-    printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
-    printf("| cimento?                                                      | \n");
+   /* printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
+    printf("| cimento?                                                      | \n"); */
     scanf("%c", &esc);
     getchar();
     
