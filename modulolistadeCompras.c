@@ -17,7 +17,29 @@ int  main (void)
         switch (escolha) {
         case '1':
             telaAlimentoVencimento();
-            break;
+            char alimentosVencimento;
+              do {
+                    alimentosVencimento = telaAlimentoVencimento();          // No momento vamos concatenar os dois swifts, porém sabemos que não é a melhor alternativa
+                    switch (alimentosVencimento) {
+                    case '1':
+                        nomeItemAlimentar();
+                        break;
+                    case '2':
+                        dataCadastroAlimento();
+                        break; 
+                    case  '3':
+                        dataValidadeAlimento();
+                        break;
+                    case '0':
+                        telaListadeCompras();
+                            
+                    default :
+                        printf ("Opcao invalida \n");
+                        break;
+                }
+
+                } while(alimentosVencimento != '0');
+
         case '2':
             telaHigieneVencimento();
             break; 
