@@ -77,16 +77,24 @@ char telaCadastroUsuario(void) // Tela inicial dos cadastros
 char cadastroUsuario(void) // Cadastro central do usuário
 {
     char esc;
-    char Nome, CPF, Email, DatadeNascimento, Username, Senha;
+    char nome [20];
+    char CPF [11];
+    char Email;
+    int DatadeNascimento;
+    char Username;
+    int Senha;
     system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                  Cadastro SIG - Pantry                    | \n");
     printf(" | ========================================================= | \n");
     printf(" |                                                           | \n");
-    printf(" | Nome:                                                     | \n");  
-    printf(" | CPF:                                                      | \n"); 
-    printf(" | Email:                                                    | \n");    
+    printf(" | Informe seu nome: \n");
+    scanf("%[A-Z a-z]", nome); 
+    printf(" | Informe o seu CPF: \n");
+    scanf("%c", CPF); 
+    printf(" | Informe o seu Email: \n");    
+    scanf("%c", Email);
     printf(" | Data de Nascimento:                                       | \n");
     printf(" | Username:                                                 | \n");
     printf(" | Senha:                                                    | \n");
