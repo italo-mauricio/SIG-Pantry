@@ -161,12 +161,12 @@ char telaLocaldeArmazenamento(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ----------------- LOCAL DE ARMAZENAMENTO ---------------- | \n");
     printf(" |                                                           | \n");
-    printf(" |                  1- Geladeira                             | \n");
-    printf(" |                  2- Armario da cozinha                    | \n");
-    printf(" |                  3- Armario da area de servico            | \n");  
-    printf(" |                  4- Armario do banheiro                   | \n"); 
-    printf(" |                  5- Guarda-roupa                          | \n");       
-    printf(" |                  0- Voltar a tela de cadastro             | \n");
+    printf(" |                 1- Geladeira                              | \n");
+    printf(" |                 2- Armario da cozinha                     | \n");
+    printf(" |                 3- Armario da area de servico             | \n");  
+    printf(" |                 4- Armario do banheiro                    | \n"); 
+    printf(" |                 5- Guarda-roupa                           | \n");       
+    printf(" |                 0- Voltar a tela de cadastro              | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opcao: \n");
