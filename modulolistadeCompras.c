@@ -169,15 +169,17 @@ char telaMontarLista()
     printf("|  1- Informe o nome:  \n");
     scanf("%[A-Z a-z]", nome);
     printf("| 2- Informe a categoria do produto: \n");
-    scanf("%[A-Z, a-z", categoriaProduto);
+    scanf("%[A-Z, a-z", &categoriaProduto);
     printf("| 3- Informe a quantidade do produto:  \n");
-    scanf("%[0-9]", quantidadeProduto);
+    scanf("%[0-9]", &quantidadeProduto);
     printf("| 0- Voltar a tela de lista de compras;                         | \n");
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
-   /* printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
-    printf("| cimento?                                                      | \n"); */
+    printf(" | Escolha uma opcao: ");
     scanf("%c", &esc);
     getchar();
+    
+   /* printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
+    printf("| cimento?                                                      | \n"); */
     
 }
