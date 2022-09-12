@@ -35,7 +35,7 @@
 
 ## Mapa do projeto:
 
-<a id="github" href="https://github.com/italomauricio1/SIG-Pantry/tree/main/Mapa%20mental%20colorido%20de%20ideia%20de%20neg%C3%B3cio%20com%20ilustra%C3%A7%C3%B5es" target="_blank">
+<a id="github" href="https://github.com/italomauricio1/SIG-Pantry/tree/main/Mapa%20mental%20do%20projeto" target="_blank">
     <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="_" />
   </a>
 </p>
