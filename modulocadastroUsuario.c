@@ -76,13 +76,7 @@ char telaCadastroUsuario(void) // Tela inicial dos cadastros
 
 char cadastroUsuario(void) // Cadastro central do usuário
 {
-    char esc;
-    char nome [20];
-    char CPF [11];
-    char Email;
-    char DatadeNascimento;
-    char Username;
-    char Senha;
+    char esc;;
     system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -90,21 +84,27 @@ char cadastroUsuario(void) // Cadastro central do usuário
     printf(" | ======================================================== | \n");
     printf(" |                                                           | \n");
     printf(" | Informe seu nome: ");
+    char nome [20];
     scanf("%[A-Z a-z]", nome);
     getchar(); 
     printf(" | Informe o seu CPF: ");
+    char CPF [11];
     scanf("%c", &CPF); 
     getchar();
-    printf(" | Informe o seu Email: ");    
+    printf(" | Informe o seu Email: ");
+    char Email;    
     scanf("%c", &Email);
     getchar();
     printf(" | Informe sua Data de Nascimentoo: ");
+    char DatadeNascimento;
     scanf("%c", &DatadeNascimento);
     getchar();
     printf(" | Escolha um Username: ");
+    char Username;
     scanf("%c", &Username);
     getchar();
     printf(" | Informe sua Senha: ");
+    char Senha;
     scanf("%c", &Senha);
     getchar();
     printf(" | Usuario cadastrado com sucesso!                           | \n");
