@@ -18,7 +18,7 @@ void telaSobre ( void )
     printf ( " |  Este programa consiste no controle das atividades de uma despensa | \n " );
     printf ( " |    doméstica, sendo dividida em categorias no intuito de ajudar na | \n " );
     printf ( " |                organização das atividades cotidianas.              | \n " );
-    printf ( " |             Equipe: Manuelly Rodrigues e Italo Mauricio            | \n " );
+    printf ( " |           Developers: Manuelly Rodrigues e Italo Mauricio          | \n " );
     printf ( " |                                                                    | \n " );
     printf ( " | ------------------------------------------------------------------ | \n " );
     printf ( " | ---------------------- SIG - Pranty - 2022.2 --------------------- | \n " );
