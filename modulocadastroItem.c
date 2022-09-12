@@ -4,9 +4,9 @@
 
 // Assinatura das funções:
 char telaCadastroItens(void);
-char telaCadastrarAlimento(void);
-char telaCadastrarHigiene(void);
-char telaCadastrarLimpeza(void);
+void telaCadastrarAlimento(void);
+void telaCadastrarHigiene(void);
+void telaCadastrarLimpeza(void);
 char telaLocaldeArmazenamento(void);
 void modulocadastroItem(void);
 
@@ -59,9 +59,8 @@ char telaCadastroItens(void)
 
 }
 
-char telaCadastrarAlimento(void)
+void telaCadastrarAlimento(void)
 {
-    //char opcao;
     char nomeItem [20];
     char dataValidade [10];
     system ( " clear||cls " );
@@ -82,7 +81,7 @@ char telaCadastrarAlimento(void)
     printf(" | ========================================================= | \n");
     //printf(" | Escolha uma opcao: \n");
     //scanf("%c", &opcao);  
-    printf(" Press ENTER to exit...");
+    printf("Press ENTER to exit...");
     getchar();
 
 }
@@ -102,9 +101,8 @@ char telaCadastrarAlimento(void)
 
 }*/
 
-char telaCadastrarHigiene(void)
+void telaCadastrarHigiene(void)
 {
-    //char opcao;
     char nomeItem [20];
     char dataValidade [10];
     system ( " clear||cls " );
@@ -125,14 +123,13 @@ char telaCadastrarHigiene(void)
     printf(" | ========================================================= | \n");
     //printf(" | Escolha uma opcao: \n");
     //scanf("%c", &opcao);  
-    printf(" Press ENTER to exit...");
+    printf("Press ENTER to exit...");
     getchar();
 
 }
 
-char telaCadastrarLimpeza(void)
+void telaCadastrarLimpeza(void)
 {
-    //char opcao;
     char nomeItem[20];
     char dataValidade[10];
     system ( " clear||cls " );
@@ -153,7 +150,7 @@ char telaCadastrarLimpeza(void)
     printf(" | ========================================================= | \n");
     //printf(" | Escolha uma opcao: \n");
     //scanf("%c", &opcao);  
-    printf(" Press ENTER to exit...");
+    printf("Press ENTER to exit...");
     getchar();
     
 }
