@@ -1,4 +1,4 @@
-char moduloCadastroItens(void);
+char telaCadastroItens(void);
 char telaCadastrarAlimento(void);
 char telaCadastrarHigiene(void);
 char telaCadastrarLimpeza(void);
