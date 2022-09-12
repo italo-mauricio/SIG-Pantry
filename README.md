@@ -33,6 +33,12 @@
 * O projeto tem a proposta de criar um software para controle da despensa doméstica de uma casa, sendo dividido em categorias: alimentação, higiene pessoal e limpeza. O programa é uma forma de facilitar as atividades cotidianas de uma casa, fazendo o controle total do que entra e do que sai de uma despensa, por meio das datas de validades dos produtos, por exemplo.
 * O desenvolvimento será executado em várias fases, com atualizações contínuas no GitHub para cada fase do projeto.  
 
+## Mapa do projeto:
+
+<a id="github" href="https://github.com/italomauricio1/SIG-Pantry/tree/main/Mapa%20mental%20do%20projeto" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="_" />
+  </a>
+</p>
 
 
 
