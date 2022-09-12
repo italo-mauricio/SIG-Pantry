@@ -118,11 +118,11 @@ char telaHigieneVencimento(void)
     printf("| ------------------------------------------------------------- | \n");
     printf("| ------- | Itens de higiene proximos ao vencimento | --------- | \n");
     printf("|                                                               | \n");
-    printf("|  1- Informe o nome:  \n");
+    printf("|  1- Informe o nome: \n");
     scanf("%[A-Z a-z]", nome);
     printf("|  2- Informe a data de cadastro no sistema: \n");
     scanf("%[0-9., -., /., .]", &datadeCadastro);
-    printf("|  0- Voltar a tela de lista de compras;                        | \n");
+    printf("|  0- Voltar a tela de lista de compras;  \n");
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
   /*  printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
