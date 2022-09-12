@@ -95,7 +95,7 @@ char telaAlimentoVencimento(void)
     printf("|  1- Informe o nome:  \n");
     scanf("%[A-Z a-z]", nome);
     printf("|  2- Informe a data de cadastro no sistema: \n");
-    scanf("%[0-9., -., /., .]", datadeCadastro);
+    scanf("%[0-9., -., /., .]", &datadeCadastro);
     printf("| 0- Voltar a tela de lista de compras;                          | \n");
     printf("|                                                                | \n");
     printf("| ============================================================== | \n");
@@ -120,7 +120,7 @@ char telaHigieneVencimento(void)
     printf("|  1- Informe o nome:  \n");
     scanf("%[A-Z a-z]", nome);
     printf("|  2- Informe a data de cadastro no sistema: \n");
-    scanf("%[0-9., -., /., .]", datadeCadastro);
+    scanf("%[0-9., -., /., .]", &datadeCadastro);
     printf("|  0- Voltar a tela de lista de compras;                        | \n");
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
@@ -144,7 +144,7 @@ char telaLimpezaVencimento(void)
     printf("|  1- Informe o nome:  \n");
     scanf("%[A-Z a-z]", nome);
     printf("|  2- Informe a data de cadastro no sistema: \n");
-    scanf("%[0-9.,-.,/.,.]", datadeCadastro);
+    scanf("%[0-9.,-.,/.,.]", &datadeCadastro);
     printf("|  0- Voltar a tela de lista de compras;                        | \n");
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
@@ -166,16 +166,15 @@ char telaMontarLista()
     printf("| ------------------------------------------------------------- | \n");
     printf("| ------------- | Montar a sua Lista de Compras| -------------- | \n");
     printf("|                                                               | \n");
-    printf("|  1- Informe o nome:  \n");
+    printf("|  1- Informe o nome: \n");
     scanf("%[A-Z a-z]", nome);
     printf("| 2- Informe a categoria do produto: \n");
-    scanf("%[A-Z, a-z", &categoriaProduto);
-    printf("| 3- Informe a quantidade do produto:  \n");
+    scanf("%[A-Z a-z", &categoriaProduto);
+    printf("| 3- Informe a quantidade do produto: \n");
     scanf("%[0-9]", &quantidadeProduto);
     printf("| 0- Voltar a tela de lista de compras;                         | \n");
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
-    printf(" | Escolha uma opcao: ");
     scanf("%c", &esc);
     getchar();
     
