@@ -7,7 +7,38 @@
 #include "moduloSobre.h"
 
 // Assinatura das funções
-char  telaPrincipal (void);
+char telaPrincipal(void);
+
+int  main (void)
+{
+    char escolha;
+    do {
+        escolha = telaPrincipal();
+        switch (escolha) {
+        case '1':
+            telaCadastroUsuario();
+            break;
+        case '2':
+            telaCadastroItens();
+            break; 
+        case  '3':
+            telaListadeCompras();
+            break;
+        case '4':
+            telaRelatorio();
+            break; 
+        case '5':    
+            telaSobre ();
+            break;
+        default:
+            printf ('Opcao invalida \n');
+            break;
+    }
+
+    } while(escolha != '0');
+
+    return 0 ;
+}
 
 char telaPrincipal(void)
 {
@@ -27,11 +58,11 @@ char telaPrincipal(void)
     printf (" |                                                                     | \n");                                                                      
     printf (" | ------------------------------------------------------------------- | \n");
     printf (" | =================================================================== | \n");
-    printf (" | Escolha uma opcao: \n");
+    printf (" | Escolha uma opcao:                                                  | \n");
+    printf (" | =================================================================== | \n");
     scanf ( "%c", &opcao);
     getchar();
 
     return opcao;
-
 }
 
