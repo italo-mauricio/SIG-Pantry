@@ -8,7 +8,6 @@ char telaHigieneVencimento(void);
 char telaLimpezaVencimento(void);
 char telaMontarLista(void);
 
-
 int  main (void)
 {
     char escolha;
