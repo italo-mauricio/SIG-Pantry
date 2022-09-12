@@ -81,7 +81,7 @@ void telaCadastrarAlimento(void)
     printf(" | ========================================================= | \n");
     //printf(" | Escolha uma opcao: \n");
     //scanf("%c", &opcao);  
-    printf(" Press ENTER to exit...");
+    printf("Press ENTER to exit...");
     getchar();
 
 }
@@ -124,7 +124,7 @@ void telaCadastrarHigiene(void)
     printf(" | ========================================================= | \n");
     //printf(" | Escolha uma opcao: \n");
     //scanf("%c", &opcao);  
-    printf(" Press ENTER to exit...");
+    printf("Press ENTER to exit...");
     getchar();
 
 }
@@ -152,7 +152,7 @@ void telaCadastrarLimpeza(void)
     printf(" | ========================================================= | \n");
     //printf(" | Escolha uma opcao: \n");
     //scanf("%c", &opcao);  
-    printf(" Press ENTER to exit...");
+    printf("Press ENTER to exit...");
     getchar();
     
 }
