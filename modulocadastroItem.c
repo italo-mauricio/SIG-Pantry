@@ -103,7 +103,6 @@ void telaCadastrarAlimento(void)
 
 void telaCadastrarHigiene(void)
 {
-    //char opcao;
     char nomeItem [20];
     char dataValidade [10];
     system ( " clear||cls " );
@@ -131,7 +130,6 @@ void telaCadastrarHigiene(void)
 
 void telaCadastrarLimpeza(void)
 {
-    //char opcao;
     char nomeItem[20];
     char dataValidade[10];
     system ( " clear||cls " );
