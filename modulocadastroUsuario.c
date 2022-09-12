@@ -197,7 +197,7 @@ char telaRemove(void){
     printf(" | Deseja realmente excluir?                                 | \n");
     printf(" |                                                           | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ========================================================= | \n");        
+    printf(" | ============================================================ | \n");        
     printf(" | Press ENTER for exit... ");
     scanf("%c", &opcao);  
     getchar();
