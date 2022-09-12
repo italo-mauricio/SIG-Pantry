@@ -10,7 +10,7 @@ char telaCadastrarLimpeza(void);
 char telaLocaldeArmazenamento(void);
 void modulocadastroItem(void);
 
-// Funções do módulo do cadastro de itens:
+// Funções do módulo de cadastro de itens:
 
 void modulocadastroItem(void) {
     char escolha;
