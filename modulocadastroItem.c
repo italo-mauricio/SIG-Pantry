@@ -65,21 +65,28 @@ char telaCadastroItens(void)
 char telaCadastrarAlimento(void)
 {
     char opcao;
+    char nomeItem [20];
+    char dataValidade [10];
+
+
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ----------------- CADASTRAR ITEM ALIMENTAR -------------- | \n");
-    printf(" |                                                           | \n");
-    printf(" |                  1- Nome do Item                          | \n");
-    printf(" |                  2- Data de validade                      | \n"); 
-    printf(" |                  3- Editar cadastro                       | \n");    
-    printf(" |                  4- Excluir item                          | \n");        
-    printf(" |                  0- Voltar a tela de cadastro             | \n");
+    printf(" |                                                           | \n");    
+    printf(" |  1- Informe o nome do item: \n");
+    scanf("%[A-Z a-z]", nomeItem);
+    printf(" |  2- Informe a data de validade: \n");
+    scanf("%[0-9., -., /., .]", &dataValidade);
+    printf(" |  3- Editar cadastro \n");    
+    printf(" |  4- Excluir item  \n");        
+    printf(" |  0- Voltar a tela de cadastro \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opcao: \n");
     scanf("%c", &opcao);  
-    
+    printf(" Press ENTER to exit...");
+
     return opcao;
 
 }
