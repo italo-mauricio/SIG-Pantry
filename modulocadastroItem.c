@@ -112,6 +112,7 @@ char telaCadastrarHigiene(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ----------- CADASTRAR ITEM DE HIGIENE PESSOAL ----------- | \n");
     printf(" |                                                           | \n");
+    printf(" | Informe o nome do item: \n");
     scanf("%[A-Z a-z]", nomeItem);
     getchar();
     printf(" | Informe a data de validade: \n");
@@ -139,6 +140,7 @@ char telaCadastrarLimpeza(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ---------------- CADASTRAR ITEM DE LIMPEZA -------------- | \n");
     printf(" |                                                           | \n");
+    printf(" | Informe o nome do item: \n");
     scanf("%[A-Z a-z]", nomeItem);
     getchar();
     printf(" | Informe a data de validade: \n");
