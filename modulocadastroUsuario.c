@@ -111,8 +111,6 @@ void cadastroUsuario(void) // Cadastro central do usuário
     printf(" Press ENTER to exit...");
     getchar();
 
- 
-
 }
 
 // ============================== Editar o cadastro =================================== 
