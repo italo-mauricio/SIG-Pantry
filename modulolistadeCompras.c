@@ -105,6 +105,8 @@ char telaAlimentoVencimento(void)
     scanf("%c", &esc);
     getchar();
 
+    return esc;
+
 }
 
 
@@ -131,6 +133,8 @@ char telaHigieneVencimento(void)
     scanf("%c", &esc);
     getchar();
 
+    return esc;
+
 }
 
 
@@ -155,6 +159,8 @@ char telaLimpezaVencimento(void)
     printf(" Press ENTER to exit...");   
     scanf("%c", &esc);
     getchar();
+
+    return esc;
 
 }
 
@@ -184,5 +190,7 @@ char telaMontarLista()
     
    /* printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
     printf("| cimento?                                                      | \n"); */
+
+    return esc;
     
 }
