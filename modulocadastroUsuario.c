@@ -86,7 +86,7 @@ void cadastroUsuario(void) // Cadastro central do usuário
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                  Cadastro SIG - Pantry                    | \n");
-    printf(" | ========================================================= | \n");
+    printf(" | ========================================================== | \n");
     printf(" |                                                           | \n");
     printf(" | Informe seu nome: ");
     scanf("%[A-Z a-z]", nome);
