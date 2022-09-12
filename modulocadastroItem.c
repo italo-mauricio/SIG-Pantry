@@ -44,11 +44,11 @@ char telaCadastroItens(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------------- SIG-Pantry - CADASTRAR ITENS ------------- | \n");
     printf(" |                                                           | \n");
-    printf(" |               1- Cadastrar item alimentar                 | \n");
-    printf(" |               2- Cadastrar item de higiene pessoal        | \n"); 
-    printf(" |               3- Cadastrar item de limpeza                | \n"); 
-    printf(" |               4- Local de armazenamento                   | \n");      
-    printf(" |               0- Voltar a tela principal                  | \n");
+    printf(" |              1- Cadastrar item alimentar                  | \n");
+    printf(" |              2- Cadastrar item de higiene pessoal         | \n"); 
+    printf(" |              3- Cadastrar item de limpeza                 | \n"); 
+    printf(" |              4- Local de armazenamento                    | \n");      
+    printf(" |              0- Voltar a tela principal                   | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opcao: \n");
