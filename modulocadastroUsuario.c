@@ -87,7 +87,7 @@ char cadastroUsuario(void) // Cadastro central do usuário
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                  Cadastro SIG - Pantry                    | \n");
-    printf(" | ========================================================= | \n");
+    printf(" | ======================================================== | \n");
     printf(" |                                                           | \n");
     printf(" | Informe seu nome: ");
     scanf("%[A-Z a-z]", nome);
@@ -98,7 +98,7 @@ char cadastroUsuario(void) // Cadastro central do usuário
     printf(" | Informe o seu Email: ");    
     scanf("%c", &Email);
     getchar();
-    printf(" | Informe sua Data de Nascimento: ");
+    printf(" | Informe sua Data de Nascimentoo: ");
     scanf("%c", &DatadeNascimento);
     getchar();
     printf(" | Escolha um Username: ");
@@ -137,7 +137,7 @@ char telaEditar(void)
     printf(" | Atualizar Senha:                                          | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | ========================================================= | \n");
+    printf(" | ========================================================== | \n");
     printf("| Press ENTER to exit... ");
     scanf("%c", &esc);
    
