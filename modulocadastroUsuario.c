@@ -8,7 +8,7 @@ DENTRO DESSE CADASTRO: estará os dados do usuário do sistema de controle de de
 
 // ================ Declarando as funções =======================
 char telaCadastroUsuario(void);
-char cadastroUsuario(void);
+void cadastroUsuario(void);
 char telaEditar(void);
 char telaListar(void);
 char telaRemove(void);
@@ -74,46 +74,44 @@ char telaCadastroUsuario(void) // Tela inicial dos cadastros
 
 // =================================================================================
 
-char cadastroUsuario(void) // Cadastro central do usuário
+void cadastroUsuario(void) // Cadastro central do usuário
 {
-    char esc;;
+    char nome [20];
+    char CPF [11];
+    char Email [20]; 
+    char DatadeNascimento [23];
+    char Username [42];
+    char Senha [23];
     system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                  Cadastro SIG - Pantry                    | \n");
-    printf(" | ======================================================== | \n");
+    printf(" | ========================================================= | \n");
     printf(" |                                                           | \n");
     printf(" | Informe seu nome: ");
-    char nome [20];
     scanf("%[A-Z a-z]", nome);
     getchar(); 
     printf(" | Informe o seu CPF: ");
-    char CPF [11];
-    scanf("%c", &CPF); 
+    scanf("%[0-9]", CPF); 
     getchar();
-    printf(" | Informe o seu Email: ");
-    char Email;    
-    scanf("%c", &Email);
+    printf(" | Informe o seu Email: ");   
+    scanf("%[A-Z]", Email);
     getchar();
-    printf(" | Informe sua Data de Nascimentoo: ");
-    char DatadeNascimento;
-    scanf("%c", &DatadeNascimento);
+    printf(" | Informe sua Data de Nascimento: ");
+    scanf("%[A-Z]", DatadeNascimento);
     getchar();
     printf(" | Escolha um Username: ");
-    char Username;
-    scanf("%c", &Username);
+    scanf("%[A-Z]", Username);
     getchar();
     printf(" | Informe sua Senha: ");
-    char Senha;
-    scanf("%c", &Senha);
+    scanf("%[A-Z]", Senha);
     getchar();
     printf(" | Usuario cadastrado com sucesso!                           | \n");
     printf(" | ========================================================= | \n");
     printf(" Press ENTER to exit...");
-    scanf("%c", &esc);
     getchar();
 
-    return esc;
+ 
 
 }
 
