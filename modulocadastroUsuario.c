@@ -136,12 +136,8 @@ char telaEditar(void)
     printf(" | 0- Voltar a tela de cadastro;                             | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-<<<<<<< HEAD
     printf(" | ========================================================== | \n");
     printf("| Press ENTER to exit... ");
-=======
-    printf(" | Escolha uma opcao: \n");
->>>>>>> 0b0f9897c6353a52e9b9a2a0e7f272e573e2999c
     scanf("%c", &esc);
     getchar();
    
@@ -198,7 +194,6 @@ char telaRemove(void){
     printf(" |                      (Remover Dados)                      | \n");
     printf(" |                                                           | \n");
     printf(" |                                                           | \n");
-<<<<<<< HEAD
     printf(" | Digite qual usuário você quer remover:                    | \n");
     printf(" | Digite a senha de acesso:                                 | \n");
     printf(" | Deseja realmente excluir?                                 | \n");
@@ -207,119 +202,7 @@ char telaRemove(void){
     printf(" | ============================================================ | \n");        
     printf(" | Press ENTER for exit... ");
     scanf("%c", &opcao);  
-=======
-    printf(" |  1- Username do usuario                                   | \n");
-    printf(" |  2- Nome do usuario                                       | \n");
-    printf(" |  3- CPF do usuario                                        | \n");
-    printf(" |  4- Email do usuario                                      | \n");
-    printf(" |  0- Voltar a tela de cadastro                             | \n");
-    printf(" |                                                           | \n");
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao: \n");
-    scanf("%c", &opcao);
->>>>>>> 0b0f9897c6353a52e9b9a2a0e7f272e573e2999c
     getchar();
-
     return opcao;
 
 }
-
-
-<<<<<<< HEAD
-=======
-
-// A partir do chamamento da subfunção acima, entra nestas funções
-
-
-char removeUsuario(void)
-
-{
-    
-    char esc;
-    system ( " cls " );
-    printf("| ============================================================= | \n");
-    printf("| ------------------------------------------------------------- | \n");
-    printf("| ------------------- | Remover Username | -------------------- | \n");
-    printf("|                                                               | \n");
-    printf("| 1- Nome do usuario que deseja removar:                        | \n");
-    printf("|                                                               | \n");
-    printf("|                                                               | \n");
-    printf("|                                                               | \n");
-    printf("| ============================================================= | \n");
-    printf("| Press ENTER to exit... ");
-    scanf("%c", &esc);
-
-
-    return esc;
-
-
-}
-
-
-char removeNome(void){
-
-    
-    char esc;
-    system ( " cls " );
-    printf("| ============================================================= | \n");
-    printf("| ------------------------------------------------------------- | \n");
-    printf("| ------------------- | Remover Nome | ------------------------ | \n");
-    printf("|                                                               | \n");
-    printf("| Nome que deseja removar:                                      | \n");
-    printf("|                                                               | \n");
-    printf("|                                                               | \n");
-    printf("|                                                               | \n");
-    printf("| ============================================================= | \n");
-    printf("| Press ENTER to exit... ");
-    scanf("%c", &esc);
-
-
-    return esc;
-
-}
-
-
-char removeCpf(void)
-{
-
-    char esc;
-    system ( " cls " );
-    printf("| ============================================================= | \n");
-    printf("| ------------------------------------------------------------- | \n");
-    printf("| ---------------------- | Remover CPF | ---------------------- | \n");
-    printf("|                                                               | \n");
-    printf("| CPF que deseja removar:                                       | \n");
-    printf("|                                                               | \n");
-    printf("|                                                               | \n");
-    printf("|                                                               | \n");
-    printf("| ============================================================= | \n");
-    printf("| Press ENTER to exit... ");
-    scanf("%c", &esc);
-
-    return esc;
-
-}
-
-char removeEmail(void)
-{
-
-    char esc;
-    system ( " cls " );
-    printf("| ============================================================= | \n");
-    printf("| ------------------------------------------------------------- | \n");
-    printf("| ---------------------- | Remover Email | -------------------- | \n");
-    printf("|                                                               | \n");
-    printf("| Email que deseja removar:                                     | \n");
-    printf("|                                                               | \n");
-    printf("|                                                               | \n");
-    printf("|                                                               | \n");
-    printf("| ============================================================= | \n");
-    printf("| Press ENTER to exit... ");
-    scanf("%c", &esc);
-
-
-    return esc;
-
-}
->>>>>>> 0b0f9897c6353a52e9b9a2a0e7f272e573e2999c
