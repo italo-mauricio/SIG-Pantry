@@ -2,12 +2,8 @@
 #include<stdlib.h>
 #include "modulocadastroItem.h"
 
-/*
-FAZER AS OPÇÕES DE CADA ESCOLHA
-*/
-
 // Assinatura das funções:
-char telaCadastroItens(void);
+char moduloCadastroItens(void);
 char telaCadastrarAlimento(void);
 char telaCadastrarHigiene(void);
 char telaCadastrarLimpeza(void);
@@ -40,7 +36,7 @@ void modulocadastroItem(void) {
 }
 
 
-char telaCadastroItens(void)
+char moduloCadastroItens(void)
 {
     char opcao;
     system ( " clear||cls " );
@@ -57,6 +53,7 @@ char telaCadastroItens(void)
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opcao: \n");
     scanf("%c", &opcao);
+    getchar();
 
     return opcao;
 
