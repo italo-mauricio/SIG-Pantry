@@ -78,10 +78,10 @@ void cadastroUsuario(void) // Cadastro central do usuário
 {
     char nome [20];
     char CPF [11];
-    char Email [20]; 
-    char DatadeNascimento [23];
-    char Username [42];
-    char Senha [23];
+    char Email [30]; 
+    char DatadeNascimento [8];
+    char Username [10];
+    char Senha [8];
     system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -95,7 +95,7 @@ void cadastroUsuario(void) // Cadastro central do usuário
     scanf("%[0-9 -]", CPF); 
     getchar();
     printf(" | Informe o seu Email: ");   
-    scanf("%[A-Z @ _ a-z 0-9]", Email);
+    scanf("%[A-Z @ _ a-z 0-9 .]", Email);
     getchar();
     printf(" | Informe sua Data de Nascimento: ");
     scanf("%[/ 0-9]", DatadeNascimento);
