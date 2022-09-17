@@ -18,32 +18,32 @@ char telaPrincipal(void);
 
 int  main (void)
 {
-    int escolha;
+    char opcao;
     do {
-        escolha = telaPrincipal();
-        switch (escolha) {
-        case 1:
+        opcao = telaPrincipal();
+        switch (opcao) {
+        case '1':
             telaCadastroUsuario();
             break;
-        case 2:
+        case '2':
             telaCadastroItens();
             break; 
-        case 3:
+        case '3':
             telaListadeCompras();
             break;
-        case 4:
+        case '4':
             telaRelatorio();
             break; 
-        case 5:    
+        case '5':    
             telaSobre ();
             break;
         default:
             printf("Opcao invalida");
             break;
         }        
-    }while(escolha != '0');
+    }while(opcao != '0');
    
-    return 0;
+
 
 }
 
@@ -67,7 +67,7 @@ char telaPrincipal (void)
     printf (" | =================================================================== | \n");
     printf (" | Escolha uma opcao: ");
 
-    scanf ( "%c", &opcao);
+    scanf ( "%c", opcao);
 
     return opcao;
 }
