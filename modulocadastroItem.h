@@ -1,5 +1,5 @@
 char telaCadastroItens(void);
-char telaCadastrarAlimento(void);
+void telaCadastrarAlimento(void);
 char telaCadastrarHigiene(void);
 char telaCadastrarLimpeza(void);
 char telaLocaldeArmazenamento(void);

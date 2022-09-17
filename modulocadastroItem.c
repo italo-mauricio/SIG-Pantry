@@ -4,15 +4,15 @@
 
 // Assinatura das funções:
 char telaCadastroItens(void);
-char telaCadastrarAlimento(void);
+void telaCadastrarAlimento(void);
 char telaCadastrarHigiene(void);
 char telaCadastrarLimpeza(void);
 char telaLocaldeArmazenamento(void);
-void modulocadastroItem(void);
+char modulocadastroItem(void);
 
 // Funções do módulo de cadastro de itens:
 
-void modulocadastroItem(void) {
+char modulocadastroItem(void) {
     char escolha;
     do {
         escolha = telaCadastroItens();
@@ -32,7 +32,7 @@ void modulocadastroItem(void) {
         } 
               
     } while (escolha != '0');
-
+    return escolha;
 }
 
 
@@ -59,7 +59,7 @@ char telaCadastroItens(void)
 
 }
 
-char telaCadastrarAlimento(void)
+void telaCadastrarAlimento(void)
 {
     //char opcao;
     char nomeItem [20];
@@ -72,7 +72,7 @@ char telaCadastrarAlimento(void)
     printf(" |  1- Informe o nome do item: \n");
     scanf("%[A-Z a-z]", nomeItem);
     printf(" |  2- Informe a data de validade: \n");
-    scanf("%[0-9., -., /., .]", &dataValidade);
+    scanf("%[0-9 / ]", dataValidade);
     printf(" |  3- Editar cadastro \n");    
     printf(" |  4- Excluir item  \n");        
     printf(" |  0- Voltar a tela de cadastro \n");
@@ -82,8 +82,8 @@ char telaCadastrarAlimento(void)
     //scanf("%c", &opcao);  
     printf(" Press ENTER to exit...");
 
-    return '0';
-
+    
+    
 }
 
 /*void telaCadastrarAlimento(void) 
@@ -99,11 +99,13 @@ char telaCadastrarAlimento(void)
         printf('Voltar a tela de Cadastro de Itens');
     }
 
-}*/
+}
+*/
 
 char telaCadastrarHigiene(void)
 {
     //char opcao;
+    char esc;
     char nomeItem [20];
     char dataValidade [10];
     system ( " clear||cls " );
@@ -114,22 +116,24 @@ char telaCadastrarHigiene(void)
     printf(" |  1- Informe o nome do item: \n");
     scanf("%[A-Z a-z]", nomeItem);
     printf(" |  2- Informe a data de validade: \n");
-    scanf("%[0-9., -., /., .]", &dataValidade);
+    scanf("%[0-9 / ]", dataValidade);
     printf(" |  3- Editar cadastro \n");    
     printf(" |  4- Excluir item  \n");        
     printf(" |  0- Voltar a tela de cadastro \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    //printf(" | Escolha uma opcao: \n");
-    //scanf("%c", &opcao);  
+    printf(" | Press ENTER for exit...");
+    scanf("%c", &esc); 
+    getchar();
+    return esc; 
     
-    return '0';
 
 }
 
 char telaCadastrarLimpeza(void)
 {
     //char opcao;
+    char esc;
     char nomeItem[20];
     char dataValidade[10];
     system ( " clear||cls " );
@@ -140,18 +144,19 @@ char telaCadastrarLimpeza(void)
     printf(" |  1- Informe o nome do item: \n");
     scanf("%[A-Z a-z]", nomeItem);
     printf(" |  2- Informe a data de validade: \n");
-    scanf("%[0-9., -., /., .]", &dataValidade);
+    scanf("%[0-9., -., /., .]", dataValidade);
     printf(" |  3- Editar cadastro \n");    
     printf(" |  4- Excluir item  \n");        
     printf(" |  0- Voltar a tela de cadastro \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    //printf(" | Escolha uma opcao: \n");
-    //scanf("%c", &opcao);  
-    
-    return '0';
+    printf(" | Press ENTER for exit... ");
+    scanf("%c", &esc); 
+    getchar();
+    return esc; 
     
 }
+
 
 char telaLocaldeArmazenamento(void) 
 {
@@ -169,7 +174,7 @@ char telaLocaldeArmazenamento(void)
     printf(" |                 0- Voltar a tela de cadastro              | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao: \n");
+    printf(" | Escolha uma opcao: ");
     scanf("%c", &opcao);  
     
     return opcao;
