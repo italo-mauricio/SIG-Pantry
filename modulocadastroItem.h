@@ -1,7 +1,7 @@
 //cabeçalho das funções usadas no arquivo.c
 char telaCadastroItens(void);
-void telaCadastrarAlimento(void);
-void telaCadastrarHigiene(void);
-void telaCadastrarLimpeza(void);
+char telaCadastrarAlimento(void);
+char telaCadastrarHigiene(void);
+char telaCadastrarLimpeza(void);
 char telaLocaldeArmazenamento(void);
-void modulocadastroItem(void);
+char modulocadastroItem(void);

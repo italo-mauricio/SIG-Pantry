@@ -2,10 +2,31 @@
 #include <stdlib.h>
 #include "moduloSobre.h"
 
-void telaSobre ( void );
 
-void telaSobre ( void )
+char telasobre ( void );
+
+
+int main (void) {
+    int escolha;
+    do {
+        escolha = telasobre();
+        switch(escolha) {
+            case '1':
+                telasobre();
+                break;
+            default:
+                break;           
+        } 
+              
+    } while (escolha != '0');
+    return 0;
+}
+
+
+
+char telasobre ( void )
 {
+    char esc;
     system ( " clear||cls " );
     printf ( " | ------------------------------------------------------------------ | \n " );
     printf ( " | ---- // UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - CERES // --- | \n " );
@@ -23,7 +44,10 @@ void telaSobre ( void )
     printf ( " |                                                                    | \n " );
     printf ( " | ------------------------------------------------------------------ | \n " );
     printf ( " | ---------------------- SIG - Pranty - 2022.2 --------------------- | \n " );
-    printf ("\t\t\t>>> Tecle <ENTER> para continuar...                              | \n " );
-    getchar();
+    printf ("\t\t\t>>> Tecle <ENTER> para continuar.. " );
+    scanf("%c", &esc);
+
+    return esc;
+
 
 }

@@ -8,9 +8,9 @@ char telaHigieneVencimento(void);
 char telaLimpezaVencimento(void);
 char telaMontarLista(void);
 
-char  main (void)
+int  main (void)
 {
-    char escolha;
+    int escolha;
     do {
         escolha = telaListadeCompras();
         switch (escolha) {
@@ -52,6 +52,8 @@ char  main (void)
 
     } while(escolha != '0');
     printf("Obrigado, volte sempre!");
+
+    return 0;
 
 
 } 
@@ -124,7 +126,7 @@ char telaHigieneVencimento(void)
     scanf("%[A-Z a-z]", nome);
     getchar();
     printf("|  2- Informe a data de cadastro no sistema: ");
-    scanf("%[0-9 / ]", &datadeCadastro);
+    scanf("%[0-9 / ]", datadeCadastro);
     getchar();
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
@@ -153,7 +155,7 @@ char telaLimpezaVencimento(void)
     scanf("%[A-Z a-z]", nome);
     getchar();
     printf("|  2- Informe a data de cadastro no sistema: ");
-    scanf("%[0-9 /]", &datadeCadastro);
+    scanf("%[0-9 /]", datadeCadastro);
     getchar();
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");

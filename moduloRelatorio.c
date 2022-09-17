@@ -5,9 +5,16 @@
 
 char telaRelatorio(void);
 
-int  main (void)
+
+char telaRelatorio(void);
+char estoquedeAlimento(void);
+char estoquedeHigiene(void);
+char estoquedeLimpeza(void);
+
+
+int main (void)
 {
-    char escolha;
+    int escolha;
     do {
         escolha = telaRelatorio();
         switch (escolha) {
@@ -20,8 +27,8 @@ int  main (void)
         case  '3':
             estoquedeLimpeza();
             break;
-        defaut :
-            printf ('Opcao invalida \n');
+        default :
+            printf ("Opcao invalida");
             break;
     }
 
@@ -46,10 +53,90 @@ char telaRelatorio(void)
     printf(" |                    0- Voltar a tela principal                        | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
-    printf(" | Escolha uma opcao: \n");
+    printf(" | Escolha uma opcao: ");
     scanf("%c", &opcao);
     getchar();
 
     return opcao;
+
+}
+
+
+char estoquedeAlimento(void)
+{
+
+    char esc;
+    system (" Clear||cls ");
+    printf(" | ===================================================================== | \n");
+    printf(" | --------------------------------------------------------------------- | \n");
+    printf(" | ----------------------- | Estoque | --------------------------------- | \n");
+    printf(" |                                                                       | \n");
+    printf(" |                                                                       | \n");
+    printf(" |   Aqui ficara o estoque futuramente                                   | \n");
+    printf(" |                                                                       | \n");
+    printf(" |                                                                       | \n");
+    printf(" |                                                                       | \n");
+    printf(" |                                                                       | \n");
+    printf(" | ----------------------------------------------------------------------| \n");
+    printf(" | ======================== SIG - Pantry =============================== | \n");
+    printf(" Press ENTER for exit.....");
+    scanf("%c", &esc);
+
+    return esc;
+
+}
+
+char estoquedeHigiene(void)
+{
+    char esc;
+        system (" Clear||cls ");
+        printf(" | ===================================================================== | \n");
+        printf(" | --------------------------------------------------------------------- | \n");
+        printf(" | ----------------------- | Estoque | --------------------------------- | \n");
+        printf(" |                                                                       | \n");
+        printf(" |                                                                       | \n");
+        printf(" |   Aqui ficara o estoque de higiene                                    | \n");
+        printf(" |                                                                       | \n");
+        printf(" |                                                                       | \n");
+        printf(" |                                                                       | \n");
+        printf(" |                                                                       | \n");
+        printf(" | ----------------------------------------------------------------------| \n");
+        printf(" | ======================== SIG - Pantry =============================== | \n");
+        printf(" Press ENTER for exit.....");
+        scanf("%c", &esc);
+
+        return esc;
+
+
+
+}
+
+
+char estoquedeLimpeza(void)
+{
+
+      char esc;
+        system (" Clear||cls ");
+        printf(" | ===================================================================== | \n");
+        printf(" | --------------------------------------------------------------------- | \n");
+        printf(" | ----------------------- | Estoque | --------------------------------- | \n");
+        printf(" |                                                                       | \n");
+        printf(" |                                                                       | \n");
+        printf(" |   Aqui ficara o estoque de limpeza                                    | \n");
+        printf(" |                                                                       | \n");
+        printf(" |                                                                       | \n");
+        printf(" |                                                                       | \n");
+        printf(" |                                                                       | \n");
+        printf(" | ----------------------------------------------------------------------| \n");
+        printf(" | ======================== SIG - Pantry =============================== | \n");
+        printf(" Press ENTER for exit.....");
+        scanf("%c", &esc);
+
+        return esc;
+
+
+
+
+
 
 }

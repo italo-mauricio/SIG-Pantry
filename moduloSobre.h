@@ -1,1 +1,1 @@
-void telaSobre (void);
+char telasobre(void);

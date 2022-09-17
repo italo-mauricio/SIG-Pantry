@@ -6,12 +6,20 @@
 #include "moduloRelatorio.h"
 #include "moduloSobre.h"
 
+
 // Assinatura das funções
+char telacadastroUsuario(void);
+char telaCadastroItens(void);
+char telaListadeCompras(void);
+char telaRelatorio(void);
+char telaSobre(void);
 char telaPrincipal(void);
+
+
 
 int  main (void)
 {
-    char escolha;
+    int escolha;
     do {
         escolha = telaPrincipal();
         switch (escolha) {
@@ -31,16 +39,15 @@ int  main (void)
             telaSobre ();
             break;
         default:
-            printf ('Opcao invalida \n');
+            printf("Opcao invalida");
             break;
-    }
+        }        
+    }while(escolha != '0');
+    return 0;
 
-    } while(escolha != '0');
-
-    return 0 ;
 }
 
-int main (void)
+char telaPrincipal (void)
 {
     char opcao;
     system ( " clear||cls " );
@@ -58,10 +65,9 @@ int main (void)
     printf (" |                                                                     | \n");                                                                      
     printf (" | ------------------------------------------------------------------- | \n");
     printf (" | =================================================================== | \n");
-    printf (" | Escolha uma opcao:                                                  | \n");
-    printf (" | =================================================================== | \n");
+    printf (" | Escolha uma opcao: ");
+
     scanf ( "%c", &opcao);
-    getchar();
 
     return opcao;
 }
