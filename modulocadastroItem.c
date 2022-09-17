@@ -63,6 +63,7 @@ void telaCadastrarAlimento(void)
 {
     char nomeItem [20];
     char dataValidade [10];
+    char opcao;
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -71,18 +72,18 @@ void telaCadastrarAlimento(void)
     printf(" | Informe o nome do item: \n");
     scanf("%[A-Z a-z]", nomeItem);
     getchar();
-    printf(" | Informe a data de validade: \n");
-    scanf("%[0-9., -., /., .]", dataValidade);
+    printf(" | Informe a data de validade nesse modelo (__/__/____): \n");
+    scanf("%[0-9/.]", dataValidade);
     getchar();
-   // printf(" |  3- Editar cadastro \n");    
-   // printf(" |  4- Excluir item  \n");        
-   // printf(" |  0- Voltar a tela de cadastro \n");
-    printf(" | Item cadastrado com sucesso!                              | \n");
+    printf(" |  3- Editar cadastro \n");    
+    printf(" |  4- Excluir item  \n");        
+    printf(" |  0- Voltar a tela de cadastro \n");
+    printf(" |  Item cadastrado com sucesso!                              | \n");
     printf(" | ========================================================= | \n");
-    //printf(" | Escolha uma opcao: \n");
-    //scanf("%c", &opcao);  
-    printf("Press ENTER to exit...");
+    printf(" | Escolha uma opcao: \n");
+    scanf("%c", &opcao);  
     getchar();
+    printf("Press ENTER to exit...");
 
 }
 
@@ -105,6 +106,7 @@ void telaCadastrarHigiene(void)
 {
     char nomeItem [20];
     char dataValidade [10];
+    char opcao;
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -113,18 +115,18 @@ void telaCadastrarHigiene(void)
     printf(" | Informe o nome do item: \n");
     scanf("%[A-Z a-z]", nomeItem);
     getchar();
-    printf(" | Informe a data de validade: \n");
-    scanf("%[0-9., -., /., .]", dataValidade);
+    printf(" | Informe a data de validade nesse modelo (__/__/____): \n");
+    scanf("%[0-9/.]", dataValidade);
     getchar();
-   // printf(" |  3- Editar cadastro \n");    
-   // printf(" |  4- Excluir item  \n");        
-   // printf(" |  0- Voltar a tela de cadastro \n");
-    printf(" | Item cadastrado com sucesso!                              | \n");
+    printf(" |  3- Editar cadastro \n");    
+    printf(" |  4- Excluir item  \n");        
+    printf(" |  0- Voltar a tela de cadastro \n");
+    printf(" |  Item cadastrado com sucesso!                              | \n");
     printf(" | ========================================================= | \n");
-    //printf(" | Escolha uma opcao: \n");
-    //scanf("%c", &opcao);  
-    printf("Press ENTER to exit...");
+    printf(" | Escolha uma opcao: \n");
+    scanf("%c", &opcao);  
     getchar();
+    printf("Press ENTER to exit...");
 
 }
 
@@ -132,6 +134,7 @@ void telaCadastrarLimpeza(void)
 {
     char nomeItem[20];
     char dataValidade[10];
+    char opcao;
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -140,19 +143,19 @@ void telaCadastrarLimpeza(void)
     printf(" | Informe o nome do item: \n");
     scanf("%[A-Z a-z]", nomeItem);
     getchar();
-    printf(" | Informe a data de validade: \n");
-    scanf("%[0-9., -., /., .]", dataValidade);
+    printf(" | Informe a data de validade nesse modelo (__/__/____): \n");
+    scanf("%[0-9/.]", dataValidade);
     getchar();
-   // printf(" |  3- Editar cadastro \n");    
-   // printf(" |  4- Excluir item  \n");        
-   // printf(" |  0- Voltar a tela de cadastro \n");
-    printf(" | Item cadastrado com sucesso!                              | \n");
+    printf(" |  3- Editar cadastro \n");    
+    printf(" |  4- Excluir item  \n");        
+    printf(" |  0- Voltar a tela de cadastro \n");
+    printf(" |  Item cadastrado com sucesso!                              | \n");
     printf(" | ========================================================= | \n");
-    //printf(" | Escolha uma opcao: \n");
-    //scanf("%c", &opcao);  
-    printf("Press ENTER to exit...");
+    printf(" | Escolha uma opcao: \n");
+    scanf("%c", &opcao);  
     getchar();
-    
+    printf("Press ENTER to exit...");
+
 }
 
 char telaLocaldeArmazenamento(void) 
