@@ -9,7 +9,7 @@
 // Assinatura das funções
 char  telaPrincipal (void);
 
-char telaPrincipal(void)
+int main (void)
 {
     char opcao;
     system ( " clear||cls " );

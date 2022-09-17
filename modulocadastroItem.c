@@ -8,11 +8,11 @@ void telaCadastrarAlimento(void);
 char telaCadastrarHigiene(void);
 char telaCadastrarLimpeza(void);
 char telaLocaldeArmazenamento(void);
-char modulocadastroItem(void);
+
 
 // Funções do módulo de cadastro de itens:
 
-char modulocadastroItem(void) {
+int main (void) {
     char escolha;
     do {
         escolha = telaCadastroItens();
@@ -32,7 +32,7 @@ char modulocadastroItem(void) {
         } 
               
     } while (escolha != '0');
-    return escolha;
+
 }
 
 
