@@ -12,11 +12,12 @@ void cadastroUsuario(void);
 char telaEditar(void);
 char telaListar(void);
 char telaRemove(void);
+char modulocadastroUsuario(void);
 
 
 // ==============================================================
 
-int  main (void)
+char modulocadastroUsuario(void)
 {
     char escolha;
     do {
@@ -34,7 +35,6 @@ int  main (void)
         case '4':
             telaRemove();
             break;
-
         default :
             printf ("Opcao invalida \n");
             break;
@@ -42,7 +42,7 @@ int  main (void)
 
     } while(escolha != '0');
 
-    return  0 ;
+    return escolha;
 }
 
 

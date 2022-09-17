@@ -7,14 +7,15 @@ char telaAlimentoVencimento(void);
 char telaHigieneVencimento(void);
 char telaLimpezaVencimento(void);
 char telaMontarLista(void);
+char modulolistadeCompras(void);
 
-int  main (void)
+char modulolistadeCompras (void)
 {
     int escolha;
     do {
         escolha = telaListadeCompras();
         switch (escolha) {
-        case '1':
+        case 1:
             telaAlimentoVencimento();
             break;
         /*    char alimentosVencimento;
@@ -37,23 +38,23 @@ int  main (void)
 
                 } while(alimentosVencimento != '0'); */
 
-        case '2':
+        case 2:
             telaHigieneVencimento();
             break; 
-        case  '3':
+        case 3:
             telaLimpezaVencimento();
             break;
-        case '4':
+        case 4:
             telaMontarLista();
             break; 
         default :
             break;
     }
 
-    } while(escolha != '0');
+    } while(escolha != 0);
     printf("Obrigado, volte sempre!");
 
-    return 0;
+    return escolha;
 
 
 } 
