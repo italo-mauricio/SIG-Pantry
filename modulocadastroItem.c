@@ -82,8 +82,6 @@ char telaCadastrarAlimento(void)
     getchar();    
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    //printf(" | Escolha uma opcao: \n");
-    //scanf("%c", &opcao);  
     printf(" Press ENTER to exit...");
     scanf("%c", &esc);
 
@@ -116,23 +114,25 @@ char telaCadastrarHigiene(void)
     char esc;
     char nomeItem [20];
     char dataValidade [10];
+    int quantitem;
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ----------- CADASTRAR ITEM DE HIGIENE PESSOAL ----------- | \n");
     printf(" |                                                           | \n");
-    printf(" |  1- Informe o nome do item: \n");
+    printf(" |  1- Informe o nome do item: ");
     scanf("%[A-Z a-z]", nomeItem);
-    printf(" |  2- Informe a data de validade: \n");
+    getchar();
+    printf(" |  2- Informe a data de validade: ");
     scanf("%[0-9 / ]", dataValidade);
-    printf(" |  3- Editar cadastro \n");    
-    printf(" |  4- Excluir item  \n");        
-    printf(" |  0- Voltar a tela de cadastro \n");
+    getchar();
+    printf(" |  Informe a quantidade de itens: ");
+    scanf("%d", &quantitem);
+    getchar();    
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit...");
     scanf("%c", &esc); 
-    getchar();
     return esc; 
     
 
