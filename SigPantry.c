@@ -23,19 +23,19 @@ int  main (void)
     do {
         escolha = telaPrincipal();
         switch (escolha) {
-        case '1':
+        case 1:
             telaCadastroUsuario();
             break;
-        case '2':
+        case 2:
             telaCadastroItens();
             break; 
-        case  '3':
+        case 3:
             telaListadeCompras();
             break;
-        case '4':
+        case 4:
             telaRelatorio();
             break; 
-        case '5':    
+        case 5:    
             telaSobre ();
             break;
         default:
