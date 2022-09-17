@@ -12,8 +12,8 @@ char telaLocaldeArmazenamento(void);
 
 // Funções do módulo de cadastro de itens:
 
-char main (void) {
-    char escolha;
+int main (void) {
+    int escolha;
     do {
         escolha = telaCadastroItens();
         switch(escolha) {
@@ -30,8 +30,10 @@ char main (void) {
                 telaLocaldeArmazenamento();
                 break;
         } 
-              
+     
     } while (escolha != '0');
+
+    return 0;
 
 }
 

@@ -12,9 +12,9 @@ char estoquedeHigiene(void);
 char estoquedeLimpeza(void);
 
 
-char main (void)
+int main (void)
 {
-    char escolha;
+    int escolha;
     do {
         escolha = telaRelatorio();
         switch (escolha) {
@@ -28,7 +28,7 @@ char main (void)
             estoquedeLimpeza();
             break;
         default :
-            printf ('Opcao invalida ');
+            printf ("Opcao invalida");
             break;
     }
 

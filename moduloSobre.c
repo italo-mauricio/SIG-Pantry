@@ -6,8 +6,8 @@
 char telasobre ( void );
 
 
-char main (void) {
-    char escolha;
+int main (void) {
+    int escolha;
     do {
         escolha = telasobre();
         switch(escolha) {
@@ -19,7 +19,7 @@ char main (void) {
         } 
               
     } while (escolha != '0');
-
+    return 0;
 }
 
 
