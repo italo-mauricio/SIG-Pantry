@@ -5,7 +5,7 @@
 #include "modulolistadeCompras.h"
 #include "moduloRelatorio.h"
 #include "moduloSobre.h"
-#include "SigPantry.h"
+
 
 // Assinatura das funções
 char telacadastroUsuario(void);
@@ -13,6 +13,7 @@ char telaCadastroItens(void);
 char telaListadeCompras(void);
 char telaRelatorio(void);
 char telaSobre(void);
+char telaPrincipal(void);
 
 
 
