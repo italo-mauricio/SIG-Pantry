@@ -92,7 +92,7 @@ void cadastroUsuario(void) // Cadastro central do usuário
     scanf("%[A-Z a-z ~ ]", nome);
     getchar(); 
     printf(" | Informe o seu CPF: ");
-    scanf("%[0-9 -]", CPF); 
+    scanf("%[0-9.-]", CPF); 
     getchar();
     printf(" | Informe o seu Email: ");   
     scanf("%[A-Z @ _ a-z 0-9 .]", Email);
