@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include "moduloRelatorio.h"
 
+
+char telaRelatorio(void);
+
 int  main (void)
 {
     char escolha;

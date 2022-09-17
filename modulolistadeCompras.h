@@ -1,3 +1,4 @@
+//cabeçalho das funções usadas no arquivo.c
 char telaListadeCompras(void);
 char telaAlimentoVencimento(void);
 char telaHigieneVencimento(void);
