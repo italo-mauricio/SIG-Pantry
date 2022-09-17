@@ -3,9 +3,10 @@
 
 
 char telaRelatorio(void);
+char estoquedeAlimento(void);
 
 
-char  main (void)
+char main (void)
 {
     char escolha;
     do {
@@ -20,7 +21,7 @@ char  main (void)
         case  '3':
             estoquedeLimpeza();
             break;
-        defaut :
+        default :
             printf ('Opcao invalida \n');
             break;
     }
@@ -51,5 +52,42 @@ char telaRelatorio(void)
     getchar();
 
     return opcao;
+
+}
+
+
+char estoquedeAlimento(void)
+{
+
+    char esc;
+    system (" Clear||cls ");
+    printf(" | ===================================================================== | \n");
+    printf(" | --------------------------------------------------------------------- | \n");
+    printf(" | ----------------------- | Estoque | --------------------------------- | \n");
+    printf(" |                                                                       | \n");
+    printf(" |                                                                       | \n");
+    printf(" |   Aqui ficara o estoque futuramente                                   | \n");
+    printf(" |                                                                       | \n");
+    printf(" |                                                                       | \n");
+    printf(" |                                                                       | \n");
+    printf(" |                                                                       | \n");
+    printf(" | ----------------------------------------------------------------------| \n");
+    printf(" | ======================== SIG - Pantry =============================== | \n");
+    printf(" Press ENTER for exit.....");
+    scanf("%c", &esc);
+    getchar();
+
+    return esc;
+
+
+
+
+
+
+
+
+
+
+
 
 }
