@@ -4,7 +4,7 @@
 
 // Assinatura das funções:
 char telaCadastroItens(void);
-void telaCadastrarAlimento(void);
+char telaCadastrarAlimento(void);
 char telaCadastrarHigiene(void);
 char telaCadastrarLimpeza(void);
 char telaLocaldeArmazenamento(void);
@@ -12,7 +12,7 @@ char telaLocaldeArmazenamento(void);
 
 // Funções do módulo de cadastro de itens:
 
-int main (void) {
+char main (void) {
     char escolha;
     do {
         escolha = telaCadastroItens();
@@ -51,7 +51,7 @@ char telaCadastroItens(void)
     printf(" |              0- Voltar a tela principal                   | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao: \n");
+    printf(" | Escolha uma opcao: ");
     scanf("%c", &opcao);
     getchar();
 
@@ -59,28 +59,36 @@ char telaCadastroItens(void)
 
 }
 
-void telaCadastrarAlimento(void)
+char telaCadastrarAlimento(void)
 {
     //char opcao;
+    char esc;
     char nomeItem [20];
     char dataValidade [10];
+    int quantitem; 
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ----------------- CADASTRAR ITEM ALIMENTAR -------------- | \n");
     printf(" |                                                           | \n");    
-    printf(" |  1- Informe o nome do item: \n");
+    printf(" |  Informe o nome do item: ");
     scanf("%[A-Z a-z]", nomeItem);
-    printf(" |  2- Informe a data de validade: \n");
+    getchar();
+    printf(" |  Informe a data de validade: ");
     scanf("%[0-9 / ]", dataValidade);
-    printf(" |  3- Editar cadastro \n");    
-    printf(" |  4- Excluir item  \n");        
-    printf(" |  0- Voltar a tela de cadastro \n");
+    getchar();
+    printf(" |  Informe a quantidade de itens: ");
+    scanf("%d", &quantitem);
+    getchar();    
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     //printf(" | Escolha uma opcao: \n");
     //scanf("%c", &opcao);  
     printf(" Press ENTER to exit...");
+    scanf("%c", &esc);
+
+
+    return esc;
 
     
     
