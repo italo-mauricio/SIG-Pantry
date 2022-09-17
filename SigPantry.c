@@ -16,7 +16,6 @@ char telaSobre(void);
 char telaPrincipal(void);
 
 
-
 int  main (void)
 {
     int escolha;
@@ -43,6 +42,7 @@ int  main (void)
             break;
         }        
     }while(escolha != '0');
+   
     return 0;
 
 }
