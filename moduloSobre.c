@@ -3,17 +3,17 @@
 #include "moduloSobre.h"
 
 
-char telaSobre (void);
-char moduloSobre (void);
+char telaSobre(void);
+char moduloSobre(void);
 
 
-char moduloSobre (void) {
+char moduloSobre(void) {
     int escolha;
     do {
-        escolha = telasobre();
+        escolha = telaSobre();
         switch(escolha) {
             case 1:
-                telasobre();
+                telaSobre();
                 break;
             default:
                 break;           
@@ -25,7 +25,7 @@ char moduloSobre (void) {
 
 
 
-char telaSobre ( void )
+char telaSobre(void)
 {
     char esc;
     system ( " clear||cls " );
