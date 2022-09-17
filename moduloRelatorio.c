@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int  main (void)
+
+char telaRelatorio(void);
+
+
+char  main (void)
 {
     char escolha;
     do {
