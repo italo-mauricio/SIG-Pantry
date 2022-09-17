@@ -40,7 +40,7 @@ int  main (void)
     return 0 ;
 }
 
-char telaPrincipal(void)
+int main (void)
 {
     char opcao;
     system ( " clear||cls " );

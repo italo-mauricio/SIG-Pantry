@@ -4,15 +4,15 @@
 
 // Assinatura das funções:
 char telaCadastroItens(void);
-void telaCadastrarAlimento(void);
-void telaCadastrarHigiene(void);
-void telaCadastrarLimpeza(void);
+char telaCadastrarAlimento(void);
+char telaCadastrarHigiene(void);
+char telaCadastrarLimpeza(void);
 char telaLocaldeArmazenamento(void);
-void modulocadastroItem(void);
+
 
 // Funções do módulo de cadastro de itens:
 
-void modulocadastroItem(void) {
+char main (void) {
     char escolha;
     do {
         escolha = telaCadastroItens();
@@ -44,14 +44,14 @@ char telaCadastroItens(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------------- SIG-Pantry - CADASTRAR ITENS ------------- | \n");
     printf(" |                                                           | \n");
-    printf(" |             1- Cadastrar item alimentar                   | \n");
-    printf(" |             2- Cadastrar item de higiene pessoal          | \n"); 
-    printf(" |             3- Cadastrar item de limpeza                  | \n"); 
-    printf(" |             4- Local de armazenamento                     | \n");      
-    printf(" |             0- Voltar a tela principal                    | \n");
+    printf(" |              1- Cadastrar item alimentar                  | \n");
+    printf(" |              2- Cadastrar item de higiene pessoal         | \n"); 
+    printf(" |              3- Cadastrar item de limpeza                 | \n"); 
+    printf(" |              4- Local de armazenamento                    | \n");      
+    printf(" |              0- Voltar a tela principal                   | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao: \n");
+    printf(" | Escolha uma opcao: ");
     scanf("%c", &opcao);
     getchar();
 
@@ -59,32 +59,37 @@ char telaCadastroItens(void)
 
 }
 
-void telaCadastrarAlimento(void)
+char telaCadastrarAlimento(void)
 {
+    //char opcao;
+    char esc;
     char nomeItem [20];
     char dataValidade [10];
-    char opcao;
+    int quantitem; 
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ----------------- CADASTRAR ITEM ALIMENTAR -------------- | \n");
     printf(" |                                                           | \n");    
-    printf(" | Informe o nome do item: \n");
+    printf(" |  Informe o nome do item: ");
     scanf("%[A-Z a-z]", nomeItem);
     getchar();
-    printf(" | Informe a data de validade nesse modelo (__/__/____): \n");
-    scanf("%[0-9/.]", dataValidade);
+    printf(" |  Informe a data de validade: ");
+    scanf("%[0-9 / ]", dataValidade);
     getchar();
-    printf(" |  3- Editar cadastro \n");    
-    printf(" |  4- Excluir item  \n");        
-    printf(" |  0- Voltar a tela de cadastro \n");
-    printf(" |  Item cadastrado com sucesso!                              | \n");
+    printf(" |  Informe a quantidade de itens: ");
+    scanf("%d", &quantitem);
+    getchar();    
+    printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao: \n");
-    scanf("%c", &opcao);  
-    getchar();
-    printf("Press ENTER to exit...");
+    printf(" Press ENTER to exit...");
+    scanf("%c", &esc);
 
+
+    return esc;
+
+    
+    
 }
 
 /*void telaCadastrarAlimento(void) 
@@ -100,63 +105,66 @@ void telaCadastrarAlimento(void)
         printf('Voltar a tela de Cadastro de Itens');
     }
 
-}*/
+}
+*/
 
-void telaCadastrarHigiene(void)
+char telaCadastrarHigiene(void)
 {
+    //char opcao;
+    char esc;
     char nomeItem [20];
     char dataValidade [10];
-    char opcao;
+    int quantitem;
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ----------- CADASTRAR ITEM DE HIGIENE PESSOAL ----------- | \n");
     printf(" |                                                           | \n");
-    printf(" | Informe o nome do item: \n");
+    printf(" |  1- Informe o nome do item: ");
     scanf("%[A-Z a-z]", nomeItem);
     getchar();
-    printf(" | Informe a data de validade nesse modelo (__/__/____): \n");
-    scanf("%[0-9/.]", dataValidade);
+    printf(" |  2- Informe a data de validade: ");
+    scanf("%[0-9 / ]", dataValidade);
     getchar();
-    printf(" |  3- Editar cadastro \n");    
-    printf(" |  4- Excluir item  \n");        
-    printf(" |  0- Voltar a tela de cadastro \n");
-    printf(" |  Item cadastrado com sucesso!                              | \n");
+    printf(" |  Informe a quantidade de itens: ");
+    scanf("%d", &quantitem);
+    getchar();    
+    printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao: \n");
-    scanf("%c", &opcao);  
-    getchar();
-    printf("Press ENTER to exit...");
+    printf(" | Press ENTER for exit...");
+    scanf("%c", &esc); 
+    return esc; 
+    
 
 }
 
-void telaCadastrarLimpeza(void)
+char telaCadastrarLimpeza(void)
 {
+    //char opcao;
+    char esc;
     char nomeItem[20];
     char dataValidade[10];
-    char opcao;
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ---------------- CADASTRAR ITEM DE LIMPEZA -------------- | \n");
     printf(" |                                                           | \n");
-    printf(" | Informe o nome do item: \n");
+    printf(" |  1- Informe o nome do item: \n");
     scanf("%[A-Z a-z]", nomeItem);
-    getchar();
-    printf(" | Informe a data de validade nesse modelo (__/__/____): \n");
-    scanf("%[0-9/.]", dataValidade);
-    getchar();
+    printf(" |  2- Informe a data de validade: \n");
+    scanf("%[0-9., -., /., .]", dataValidade);
     printf(" |  3- Editar cadastro \n");    
     printf(" |  4- Excluir item  \n");        
     printf(" |  0- Voltar a tela de cadastro \n");
-    printf(" |  Item cadastrado com sucesso!                              | \n");
+    printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao: \n");
-    scanf("%c", &opcao);  
+    printf(" | Press ENTER for exit... ");
+    scanf("%c", &esc); 
     getchar();
-    printf("Press ENTER to exit...");
-
+    return esc; 
+    
 }
+
 
 char telaLocaldeArmazenamento(void) 
 {
@@ -166,17 +174,16 @@ char telaLocaldeArmazenamento(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ----------------- LOCAL DE ARMAZENAMENTO ---------------- | \n");
     printf(" |                                                           | \n");
-    printf(" |               1- Geladeira                                | \n");
-    printf(" |               2- Armario da cozinha                       | \n");
-    printf(" |               3- Armario da area de servico               | \n");  
-    printf(" |               4- Armario do banheiro                      | \n"); 
-    printf(" |               5- Guarda-roupa                             | \n");       
-    printf(" |               0- Voltar a tela de cadastro                | \n");
+    printf(" |                 1- Geladeira                              | \n");
+    printf(" |                 2- Armario da cozinha                     | \n");
+    printf(" |                 3- Armario da area de servico             | \n");  
+    printf(" |                 4- Armario do banheiro                    | \n"); 
+    printf(" |                 5- Guarda-roupa                           | \n");       
+    printf(" |                 0- Voltar a tela de cadastro              | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao: \n");
+    printf(" | Escolha uma opcao: ");
     scanf("%c", &opcao);  
-    getchar();
     
     return opcao;
 
