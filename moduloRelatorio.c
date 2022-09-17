@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "moduloRelatorio.h"
 
 int  main (void)
 {
