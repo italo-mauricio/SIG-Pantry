@@ -4,37 +4,36 @@
 
 
 char telaRelatorio(void);
-
-
-char telaRelatorio(void);
+char moduloRelatorio (void);
 char estoquedeAlimento(void);
 char estoquedeHigiene(void);
 char estoquedeLimpeza(void);
 
 
-int main (void)
+char moduloRelatorio (void)
 {
     int escolha;
     do {
         escolha = telaRelatorio();
         switch (escolha) {
-        case '1':
+        case 1:
             estoquedeAlimento();
             break;
-        case '2':
+        case 2:
             estoquedeHigiene();
             break; 
-        case  '3':
+        case 3:
             estoquedeLimpeza();
             break;
         default :
             printf ("Opcao invalida");
             break;
+
     }
 
     } while(escolha != '0');
 
-    return  0 ;
+    return escolha;
 }
 
 
@@ -133,10 +132,5 @@ char estoquedeLimpeza(void)
         scanf("%c", &esc);
 
         return esc;
-
-
-
-
-
 
 }
