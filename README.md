@@ -14,6 +14,11 @@
 * **Developers:** Manuelly Rodrigues Victor e Italo Mauricio de Medeiros Santos
 * Data de início: 22/08/2022
 
+## Features:
+
+- ✅ Cadastro de usuário
+- ✅ Cadastro de produtos
+- ✅ Cadastro de serviços
 
 
 ## :hammer_and_wrench: Linguagem usada:   
