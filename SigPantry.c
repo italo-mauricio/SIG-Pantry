@@ -37,11 +37,13 @@ int  main (void)
         case '5':    
             telaSobre ();
             break;
+        case '0':
+            break;
         default:
             printf("Opcao invalida");
             break;
         }        
-    }while(opcao != '0');
+    }while(' ');
    
     return 0;
 
