@@ -132,9 +132,9 @@ char telaCadastrarHigiene(void)
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit...");
     scanf("%c", &esc); 
+
     return esc; 
     
-
 }
 
 char telaCadastrarLimpeza(void)

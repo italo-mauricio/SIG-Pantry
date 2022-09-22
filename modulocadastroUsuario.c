@@ -135,7 +135,7 @@ char telaEditar(void)
     printf(" | 0- Voltar a tela de cadastro;                             | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | ========================================================== | \n");
+    printf(" | ========================================================= | \n");
     printf("| Press ENTER to exit... ");
     scanf("%c", &esc);
     getchar();
@@ -149,7 +149,6 @@ char telaEditar(void)
 
 char telaListar(void)
 {
-
     char esc;
     system ( " cls" );
     printf(" | ========================================================= | \n");
@@ -173,17 +172,14 @@ char telaListar(void)
     scanf("%c", &esc);
     getchar();
    
-
     return esc;
-      
-    
+         
 }
 
 
 // =============================== Remover o cadastro ============================
 
 char telaRemove(void){
-
 
     char opcao;
     system ( " cls " );
