@@ -71,6 +71,7 @@ char telaListadeCompras(void)
     printf(" |      2- Visualizar itens de higiene pessoal proximos ao vencimento   | \n");
     printf(" |      3- Visualizar itens de limpeza proximos ao vencimento           | \n");
     printf(" |      4- Montar a propria listinha                                    | \n");    
+    printf(" |      0- Voltar a tela principal                                      | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
     printf(" | Escolha uma opcao: ");

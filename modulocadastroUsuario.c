@@ -61,6 +61,7 @@ char telaCadastroUsuario(void) // Tela inicial dos cadastros
     printf(" |                  3 - Listar Usuarios                      | \n");    
     printf(" |                  4 - Remover Usuario                      | \n");
     printf(" |                  5 - Retornar ao Menu Inicial             | \n");
+    printf(" |                  0- Voltar a tela principal               | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opcao: ");

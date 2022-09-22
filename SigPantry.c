@@ -66,8 +66,8 @@ char telaPrincipal (void)
     printf (" | ------------------------------------------------------------------- | \n");
     printf (" | =================================================================== | \n");
     printf (" | Escolha uma opcao: ");
-
-    scanf ( "%c", opcao);
+    scanf ( "%c", &opcao);
+    getchar();
 
     return opcao;
 }
