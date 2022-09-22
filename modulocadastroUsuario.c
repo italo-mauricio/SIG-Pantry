@@ -61,6 +61,7 @@ char telaCadastroUsuario(void) // Tela inicial dos cadastros
     printf(" |                  3 - Listar Usuarios                      | \n");    
     printf(" |                  4 - Remover Usuario                      | \n");
     printf(" |                  5 - Retornar ao Menu Inicial             | \n");
+    printf(" |                  0- Voltar a tela principal               | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opcao: ");
@@ -134,7 +135,7 @@ char telaEditar(void)
     printf(" | 0- Voltar a tela de cadastro;                             | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | ========================================================== | \n");
+    printf(" | ========================================================= | \n");
     printf("| Press ENTER to exit... ");
     scanf("%c", &esc);
     getchar();
@@ -148,7 +149,6 @@ char telaEditar(void)
 
 char telaListar(void)
 {
-
     char esc;
     system ( " cls" );
     printf(" | ========================================================= | \n");
@@ -172,17 +172,14 @@ char telaListar(void)
     scanf("%c", &esc);
     getchar();
    
-
     return esc;
-      
-    
+         
 }
 
 
 // =============================== Remover o cadastro ============================
 
 char telaRemove(void){
-
 
     char opcao;
     system ( " cls " );

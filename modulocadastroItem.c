@@ -88,11 +88,8 @@ char telaCadastrarAlimento(void)
     printf(" Press ENTER to exit...");
     scanf("%c", &esc);
 
-
     return esc;
 
-    
-    
 }
 
 /*void telaCadastrarAlimento(void) 
@@ -113,7 +110,6 @@ char telaCadastrarAlimento(void)
 
 char telaCadastrarHigiene(void)
 {
-    //char opcao;
     char esc;
     char nomeItem [20];
     char dataValidade [10];
@@ -136,9 +132,9 @@ char telaCadastrarHigiene(void)
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit...");
     scanf("%c", &esc); 
+
     return esc; 
     
-
 }
 
 char telaCadastrarLimpeza(void)
