@@ -15,7 +15,6 @@ char telaRelatorio(void);
 char telaSobre(void);
 char telaPrincipal(void);
 
-
 int main (void)
 {
     char opcao;
