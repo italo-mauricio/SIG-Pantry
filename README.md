@@ -13,7 +13,13 @@
 * Disciplina DCT1106 - Programação
 * **Developers:** Manuelly Rodrigues Victor e Italo Mauricio de Medeiros Santos
 * Data de início: 22/08/2022
+* [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## Features:
+
+- ✅ Cadastro de usuário
+- ✅ Cadastro de produtos
+- ✅ Cadastro de serviços
 
 
 ## :hammer_and_wrench: Linguagem usada:   
