@@ -16,7 +16,7 @@ char telaSobre(void);
 char telaPrincipal(void);
 
 
-int  main (void)
+int main (void)
 {
     char opcao;
     do {
@@ -37,10 +37,14 @@ int  main (void)
         case '5':    
             telaSobre ();
             break;
+        case '0':
+            printf("Fim do programa");
+            break;
         default:
             printf("Opcao invalida");
             break;
-        }        
+        }  
+
     }while(opcao != '0');
    
     return 0;
