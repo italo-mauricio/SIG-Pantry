@@ -2,27 +2,8 @@
 #include <stdlib.h>
 #include "moduloSobre.h"
 
-char moduloSobre(void) {
-    int escolha;
-    do {
-        escolha = telaSobre();
-        switch(escolha) {
-            case 1:
-                telaSobre();
-                break;
-            default:
-                break;           
-        } 
-              
-    } while (escolha != 0);
-    return escolha;
-}
-
-
-
-char telaSobre(void)
+void telaSobre(void)
 {
-    char esc;
     system ( " clear||cls " );
     printf ( " | ------------------------------------------------------------------ | \n " );
     printf ( " | ---- // UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - CERES // --- | \n " );
@@ -41,9 +22,6 @@ char telaSobre(void)
     printf ( " | ------------------------------------------------------------------ | \n " );
     printf ( " | ---------------------- SIG - Pranty - 2022.2 --------------------- | \n " );
     printf ("\t\t\t>>> Tecle <ENTER> para continuar.. " );
-    scanf("%c", &esc);
-
-    return esc;
-
+    getchar();
 
 }
