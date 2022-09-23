@@ -23,5 +23,6 @@ void telaSobre(void)
     printf ( " | ---------------------- SIG - Pranty - 2022.2 --------------------- | \n " );
     printf ("\t\t\t>>> Tecle <ENTER> para continuar.. " );
     getchar();
+    
 
 }
