@@ -12,9 +12,8 @@ char telacadastroUsuario(void);
 char telaCadastroItens(void);
 char telaListadeCompras(void);
 char telaRelatorio(void);
-char telaSobre(void);
+void telaSobre(void);
 char telaPrincipal(void);
-
 
 int main (void)
 {
@@ -74,5 +73,6 @@ char telaPrincipal (void)
     getchar();
 
     return opcao;
+    
 }
 
