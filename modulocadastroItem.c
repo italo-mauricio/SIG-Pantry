@@ -2,14 +2,6 @@
 #include<stdlib.h>
 #include "modulocadastroItem.h"
 
-// Assinatura das funções:
-char telaCadastroItens(void);
-char telaCadastrarAlimento(void);
-char telaCadastrarHigiene(void);
-char telaCadastrarLimpeza(void);
-char telaLocaldeArmazenamento(void);
-char modulocadastroItem(void);
-
 
 // Funções do módulo de cadastro de itens:
 

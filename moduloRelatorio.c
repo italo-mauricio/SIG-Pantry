@@ -2,14 +2,6 @@
 #include <stdlib.h>
 #include "moduloRelatorio.h"
 
-
-char telaRelatorio(void);
-char moduloRelatorio (void);
-char estoquedeAlimento(void);
-char estoquedeHigiene(void);
-char estoquedeLimpeza(void);
-
-
 char moduloRelatorio (void)
 {
     int escolha;
