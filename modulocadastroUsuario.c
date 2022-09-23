@@ -6,17 +6,6 @@
 DENTRO DESSE CADASTRO: estará os dados do usuário do sistema de controle de despensa doméstica.
 */
 
-// ================ Declarando as funções =======================
-char telaCadastroUsuario(void);
-void cadastroUsuario(void);
-char telaEditar(void);
-char telaListar(void);
-char telaRemove(void);
-char modulocadastroUsuario(void);
-
-
-// ==============================================================
-
 char modulocadastroUsuario(void)
 {
     char escolha;

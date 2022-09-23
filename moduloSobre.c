@@ -2,11 +2,6 @@
 #include <stdlib.h>
 #include "moduloSobre.h"
 
-
-char telaSobre(void);
-char moduloSobre(void);
-
-
 char moduloSobre(void) {
     int escolha;
     do {
