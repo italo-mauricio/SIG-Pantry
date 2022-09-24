@@ -66,7 +66,7 @@ char telaNomeProduto(void)
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | --------------------- NOME DA MARCA --------------------- | \n");
+    printf(" | --------------------- NOME DO PRODUTO ------------------- | \n");
     printf(" |                                                           | \n");    
     printf(" |  1- Informe o nome do produto: ");
     scanf("%[A-Z a-z]", nomeProduto);
