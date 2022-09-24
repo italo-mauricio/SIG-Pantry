@@ -8,8 +8,6 @@
 #include "moduloEntradaItens.h"
 #include "moduloSaidaItens.h"
 
-
-
 // Assinatura das funções
 char telacadastroUsuario(void);
 char telaCadastroItens(void);
@@ -22,10 +20,10 @@ char telaSaidaItens(void);
 
 int main (void)
 {
-    char opcao;
+    char escolha;
     do {
-        opcao = telaPrincipal();
-        switch (opcao) {
+        escolha = telaPrincipal();
+        switch (escolha) {
         case '1':
             telaCadastroUsuario();
             break;
@@ -40,20 +38,24 @@ int main (void)
             break; 
         case '5':    
             telaSaidaItens();
+            break;
         case '6':
             telaRelatorio();
             break; 
         case '7':
             telaSobre();
             break;
+        case '0':
+            printf("Fim do programa");
+            break;
         default:
             printf("Opcao invalida");
             break;
         }  
 
-    }while(opcao != '0');
+    }while(escolha != '0');
    
-    return opcao;
+    return escolha;
 
 }
 
