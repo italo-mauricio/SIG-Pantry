@@ -5,7 +5,7 @@
 #include "modulolistadeCompras.h"
 #include "moduloRelatorio.h"
 #include "moduloSobre.h"
-//#include "moduloEntradaItens.h"
+#include "moduloEntradaItens.h"
 #include "moduloSaidaItens.h"
 
 
