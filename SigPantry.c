@@ -75,4 +75,5 @@ char telaPrincipal (void)
     return opcao;
     
 }
+// colocar opções de entrada e saída no menu principal e alterar itens no cadastrar itens
 

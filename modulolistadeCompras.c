@@ -70,7 +70,7 @@ char telaListadeCompras(void)
     printf(" | Escolha uma opcao: ");
     scanf("%c", &opcao);
     getchar();
-
+//adicionar itens à lista (o que você cadastrou para comprar + o que já tem no estoque com quant mínima)
     return opcao;
 
 }

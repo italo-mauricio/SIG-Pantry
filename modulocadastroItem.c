@@ -2,7 +2,6 @@
 #include<stdlib.h>
 #include "modulocadastroItem.h"
 
-
 // Funções do módulo de cadastro de itens:
 
 char modulocadastroItem(void) {
@@ -39,11 +38,11 @@ char telaCadastroItens(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------------- SIG-Pantry - CADASTRAR ITENS ------------- | \n");
     printf(" |                                                           | \n");
-    printf(" |              1- Cadastrar item alimentar                  | \n");
-    printf(" |              2- Cadastrar item de higiene pessoal         | \n"); 
-    printf(" |              3- Cadastrar item de limpeza                 | \n"); 
-    printf(" |              4- Local de armazenamento                    | \n");      
-    printf(" |              0- Voltar a tela principal                   | \n");
+    printf(" |                 1- Nome do produto                        | \n");
+    printf(" |                 2- Nome da marca                          | \n"); 
+    printf(" |                 3- Codigo de barra                        | \n"); 
+    printf(" |                 4- Data de validade                       | \n");      
+    printf(" |                 0- Voltar a tela principal                | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opcao: ");
@@ -54,33 +53,20 @@ char telaCadastroItens(void)
 
 }
 
-char telaCadastrarAlimento(void)
+char telaNomeProduto(void)
 {
-    //char opcao;
-    char esc;
     char nomeItem [20];
-    char dataValidade [10];
-    int quantitem; 
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ----------------- CADASTRAR ITEM ALIMENTAR -------------- | \n");
+    printf(" | -------------------- NOME DO PRODUTO -------------------- | \n");
     printf(" |                                                           | \n");    
     printf(" |  Informe o nome do item: ");
     scanf("%[A-Z a-z]", nomeItem);
-    getchar();
-    printf(" |  Informe a data de validade: ");
-    scanf("%[0-9 / ]", dataValidade);
-    getchar();
-    printf(" |  Informe a quantidade de itens: ");
-    scanf("%d", &quantitem);
-    getchar();    
+    getchar(); 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" Press ENTER to exit...");
-    scanf("%c", &esc);
-
-    return esc;
 
 }
 
