@@ -39,12 +39,12 @@ int main (void)
             break; 
         case '5':    
             telaSobre ();
-        /*case '6':
+        case '6':
             telaEntradaItens();
             break;
         case '7':
             telaSaidaItens();
-            break;*/
+            break;
         case '0':
             printf("Fim do programa");
             break;
