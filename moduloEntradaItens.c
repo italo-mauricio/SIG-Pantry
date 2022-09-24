@@ -4,4 +4,4 @@
 
 //Fazer as telas...
 
-USAR A FUNÇÃO: char telaEntradaItens(void); //pois já foi declarada na main
+//USAR A FUNÇÃO: char telaEntradaItens(void); //pois já foi declarada na main
