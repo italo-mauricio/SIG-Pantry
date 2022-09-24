@@ -23,7 +23,7 @@ char moduloRelatorio (void)
 
     }
 
-    } while(escolha != '0');
+    } while(escolha != 0);
 
     return escolha;
 }

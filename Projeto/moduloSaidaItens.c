@@ -15,6 +15,9 @@ char moduloSaidaItens(void)
             case 2:
                 telaQuantProduto();
                 break;
+            default:
+                printf("Opcao invalida");
+                break;
         } 
      
     } while (escolha != 0);

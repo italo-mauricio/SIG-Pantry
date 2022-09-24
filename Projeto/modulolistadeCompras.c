@@ -2,14 +2,18 @@
 #include <stdlib.h>
 #include "modulolistadeCompras.h"
 
-char modulolistadeCompras(void)
+
+
+
+
+char menulistadeCompras(void)
 {
     int escolha;
     do {
         escolha = telaListadeCompras();
         switch (escolha) {
         case 1:
-            telaListadeCompras();
+            telaMontarLista();
             break;
         /*    char alimentosVencimento;
               do {
@@ -45,15 +49,19 @@ char modulolistadeCompras(void)
             break;
 
         default:
+            printf("Opcao invalida\n");
             break;
     }
 
     } while(escolha != 0);
-    printf("Obrigado! Volte sempre!");
+        printf("Obrigado! Volte sempre!");
 
     return escolha;
 
 } 
+
+
+
 
 char telaListadeCompras(void)
 {
@@ -79,6 +87,9 @@ char telaListadeCompras(void)
 
 } 
 
+
+
+
 char telaItensQuantMinima(void)
 {
     char esc;
@@ -98,6 +109,9 @@ char telaItensQuantMinima(void)
     return esc;
 
 }
+
+
+
 
 char telaItensProxVencimento(void)
 {
@@ -120,10 +134,10 @@ char telaItensProxVencimento(void)
 }
 
 
+
 char telaAdicionarItensaLista(void)
 {
-    char nome[20];
-    char datadeCadastro[10];
+
     char esc;
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
@@ -144,13 +158,15 @@ char telaAdicionarItensaLista(void)
 }
 
 
+
+
 char telaMontarLista(void)
 {
     char nome[20];
     char categoriaProduto[10];
     int quantidadeProduto;
     char esc;
-    system ( " clear||cls " );
+    system (" clear||cls ");
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
     printf("| ------------- | Montar a sua Lista de Compras| -------------- | \n");
@@ -174,6 +190,9 @@ char telaMontarLista(void)
    return esc;
 
 }
+
+
+
 char telaItensCadastrados(void)
 {
     char esc;

@@ -1,12 +1,12 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "modulocadastroItem.h"
+#include "moduloEntradaItens.h"
 
 //Fazer as telas...
 
 
 
-char telaEntradaItens(void)
+char menuentradaitens(void)
 {
     int escolha;
     do {
@@ -16,7 +16,7 @@ char telaEntradaItens(void)
                 telaNomeProdutoAdicionado();
                 break;
             case 2:
-                telaQuantProduto();
+                telaQuantProdutos();
                 break;
         } 
      
@@ -27,7 +27,7 @@ char telaEntradaItens(void)
 }
 
 
-char telaSaidaItens(void)
+char telaEntradaItens(void)
 {
     char esc;
     system ( " clear||cls " );
@@ -70,7 +70,7 @@ char telaNomeProdutoAdicionado(void)
 
 }
 
-char telaQuantProduto(void)
+char telaQuantProdutos(void)
 {
     char quantProduto [13];
     char esc;
