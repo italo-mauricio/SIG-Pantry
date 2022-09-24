@@ -9,7 +9,7 @@ char modulolistadeCompras(void)
         escolha = telaListadeCompras();
         switch (escolha) {
         case 1:
-            telaItensQuantMinima();
+            telaListadeCompras();
             break;
         /*    char alimentosVencimento;
               do {
@@ -32,14 +32,18 @@ char modulolistadeCompras(void)
                 } while(alimentosVencimento != '0'); */
 
         case 2:
-            telaItensProxVencimento();
+            telaItensQuantMinima();
             break; 
         case 3:
-            telaAdicionarItensaLista();
+            telaItensProxVencimento();
             break;
         case 4:
-            telaItensCadastrados();
+            telaAdicionarItensaLista();
             break; 
+        case 5:
+            telaItensCadastrados();
+            break;
+
         default:
             break;
     }
@@ -59,10 +63,11 @@ char telaListadeCompras(void)
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | -------------------| SIG-Pantry - LISTA DE COMPRAS |---------------- | \n");
     printf(" |                                                                      | \n");
-    printf(" |          1- Visualizar itens no estoque com quantidade minima        | \n");
-    printf(" |          2- Visualizar itens proximos ao vencimento                  | \n");
-    printf(" |          3- Adicionar itens a lista                                  | \n"); 
-    printf(" |          4- Visualizar itens ja cadastrados na lista                 | \n");      
+    printf(" |          1- Montar sua lista de compras                              | \n");
+    printf(" |          2- Visualizar itens no estoque com quantidade minima        | \n");
+    printf(" |          3- Visualizar itens proximos ao vencimento                  | \n");
+    printf(" |          4- Adicionar itens a lista                                  | \n"); 
+    printf(" |          5- Visualizar itens ja cadastrados na lista                 | \n");      
     printf(" |          0- Voltar a tela principal                                  | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
@@ -139,7 +144,7 @@ char telaAdicionarItensaLista(void)
 }
 
 
-/*char telaMontarLista()
+char telaMontarLista()
 {
     char nome[20];
     char categoriaProduto[10];
@@ -164,11 +169,11 @@ char telaAdicionarItensaLista(void)
     printf(" Press ENTER to exit...");
     scanf("%c", &esc);
     
-   /* printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
-    printf("| cimento?                                                      | \n"); 
+   /* printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");*/
 
-    return esc; */
+   return esc;
 
+}
 char telaItensCadastrados(void)
 {
     char esc;

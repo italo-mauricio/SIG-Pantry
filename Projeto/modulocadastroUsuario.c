@@ -171,7 +171,7 @@ char telaListar(void)
     printf(" |                                                           | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao: \n");
+    printf(" | Escolha uma opcao: ");
     scanf("%c", &esc);
     getchar();
    
