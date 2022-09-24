@@ -20,6 +20,8 @@
 - ✅ Cadastro de usuário
 - ✅ Cadastro de produtos
 - ✅ Cadastro de serviços
+- ✅ Entrada e saída de produtos
+- ✅ Módulos integrados entre si
 
 
 ## :hammer_and_wrench: Linguagem usada:   
