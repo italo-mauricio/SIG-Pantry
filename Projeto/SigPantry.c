@@ -38,6 +38,7 @@ int main (void)
             break; 
         case '5':    
             telaSaidaItens();
+            break;
         case '6':
             telaRelatorio();
             break; 
