@@ -9,6 +9,7 @@
 #include "moduloSaidaItens.h"
 
 
+
 // Assinatura das funções
 char telacadastroUsuario(void);
 char telaCadastroItens(void);
@@ -16,7 +17,7 @@ char telaListadeCompras(void);
 char telaRelatorio(void);
 void telaSobre(void);
 char telaPrincipal(void);
-//char telaEntradaItens(void);
+char telaEntradaItens(void);
 char telaSaidaItens(void);
 
 int main (void)
@@ -35,18 +36,15 @@ int main (void)
             telaListadeCompras();
             break;
         case '4':
-            telaRelatorio();
-            break; 
-        case '5':    
-            telaSobre ();
-        case '6':
             telaEntradaItens();
             break; 
-        case '7':
+        case '5':    
             telaSaidaItens();
-            break;
-        case '0':
-            printf("Fim do programa");
+        case '6':
+            telaRelatorio();
+            break; 
+        case '7':
+            telaSobre();
             break;
         default:
             printf("Opcao invalida");
@@ -55,7 +53,7 @@ int main (void)
 
     }while(opcao != '0');
    
-    return 0;
+    return opcao;
 
 }
 

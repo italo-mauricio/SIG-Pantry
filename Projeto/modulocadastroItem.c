@@ -25,6 +25,9 @@ char modulocadastroItem(void) {
             case 6: 
                 telaLocaldeArmazenamento();
                 break;
+            default:
+                printf("Opcao Invalida\n");
+                break;
         } 
      
     } while (escolha != 0);

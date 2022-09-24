@@ -2,14 +2,18 @@
 #include <stdlib.h>
 #include "modulolistadeCompras.h"
 
-char modulolistadeCompras(void)
+
+
+
+
+char menulistadeCompras(void)
 {
     int escolha;
     do {
         escolha = telaListadeCompras();
         switch (escolha) {
         case 1:
-            telaItensQuantMinima();
+            telaMontarLista();
             break;
         /*    char alimentosVencimento;
               do {
@@ -32,24 +36,32 @@ char modulolistadeCompras(void)
                 } while(alimentosVencimento != '0'); */
 
         case 2:
-            telaItensProxVencimento();
+            telaItensQuantMinima();
             break; 
         case 3:
-            telaAdicionarItensaLista();
+            telaItensProxVencimento();
             break;
         case 4:
-            telaItensCadastrados();
+            telaAdicionarItensaLista();
             break; 
+        case 5:
+            telaItensCadastrados();
+            break;
+
         default:
+            printf("Opcao invalida\n");
             break;
     }
 
     } while(escolha != 0);
-    printf("Obrigado! Volte sempre!");
+        printf("Obrigado! Volte sempre!");
 
     return escolha;
 
 } 
+
+
+
 
 char telaListadeCompras(void)
 {
@@ -59,10 +71,11 @@ char telaListadeCompras(void)
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | -------------------| SIG-Pantry - LISTA DE COMPRAS |---------------- | \n");
     printf(" |                                                                      | \n");
-    printf(" |          1- Visualizar itens no estoque com quantidade minima        | \n");
-    printf(" |          2- Visualizar itens proximos ao vencimento                  | \n");
-    printf(" |          3- Adicionar itens a lista                                  | \n"); 
-    printf(" |          4- Visualizar itens ja cadastrados na lista                 | \n");      
+    printf(" |          1- Montar sua lista de compras                              | \n");
+    printf(" |          2- Visualizar itens no estoque com quantidade minima        | \n");
+    printf(" |          3- Visualizar itens proximos ao vencimento                  | \n");
+    printf(" |          4- Adicionar itens a lista                                  | \n"); 
+    printf(" |          5- Visualizar itens ja cadastrados na lista                 | \n");      
     printf(" |          0- Voltar a tela principal                                  | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
@@ -73,6 +86,9 @@ char telaListadeCompras(void)
     return opcao;
 
 } 
+
+
+
 
 char telaItensQuantMinima(void)
 {
@@ -93,6 +109,9 @@ char telaItensQuantMinima(void)
     return esc;
 
 }
+
+
+
 
 char telaItensProxVencimento(void)
 {
@@ -115,10 +134,10 @@ char telaItensProxVencimento(void)
 }
 
 
+
 char telaAdicionarItensaLista(void)
 {
-    char nome[20];
-    char datadeCadastro[10];
+
     char esc;
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
@@ -139,13 +158,15 @@ char telaAdicionarItensaLista(void)
 }
 
 
-/*char telaMontarLista()
+
+
+char telaMontarLista(void)
 {
     char nome[20];
     char categoriaProduto[10];
     int quantidadeProduto;
     char esc;
-    system ( " clear||cls " );
+    system (" clear||cls ");
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
     printf("| ------------- | Montar a sua Lista de Compras| -------------- | \n");
@@ -164,10 +185,13 @@ char telaAdicionarItensaLista(void)
     printf(" Press ENTER to exit...");
     scanf("%c", &esc);
     
-   /* printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");
-    printf("| cimento?                                                      | \n"); 
+   /* printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");*/
 
-    return esc; */
+   return esc;
+
+}
+
+
 
 char telaItensCadastrados(void)
 {

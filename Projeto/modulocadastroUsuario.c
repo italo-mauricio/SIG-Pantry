@@ -107,7 +107,11 @@ void cadastroUsuario(void) // Cadastro central do usuário
 
 char telaEditar(void)
 {
-   
+    char nome[20];
+    char email[20];
+    char nascimento [10];
+    char username[10];
+    char senha [8];
     char esc;
     system ( " cls " );
     printf(" | ========================================================= | \n");
@@ -116,11 +120,21 @@ char telaEditar(void)
     printf(" |                    (Atualizar Dados)                      | \n");
     printf(" | ========================================================= | \n");
     printf(" |                                                           | \n");
-    printf(" | 1- Atualizar Nome:                                        | \n");
-    printf(" | 2- Atualizar Email:                                       | \n"); 
-    printf(" | 3- Atualizar Data nascimento:                             | \n");    
-    printf(" | 4- Atualizar Username:                                    | \n");
-    printf(" | 5- Atualizar Senha:                                       | \n");
+    printf(" | 1- Atualizar Nome: ");
+    scanf("%[A-Z ~ a-z]", nome);
+    getchar();
+    printf(" | 2- Atualizar Email: ");
+    scanf("%[a-z 0-9 @ _]", email);
+    getchar(); 
+    printf(" | 3- Atualizar Data nascimento: ");
+    scanf("%[0-9 /]", nascimento);
+    getchar();    
+    printf(" | 4- Atualizar Username: ");
+    scanf("%[A-Z a-z 0-9]", username);
+    getchar();
+    printf(" | 5- Atualizar Senha: ");
+    scanf("%[0-9 a-z]", senha);
+    getchar();
     printf(" | 0- Voltar a tela de cadastro;                             | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -157,7 +171,7 @@ char telaListar(void)
     printf(" |                                                           | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao: \n");
+    printf(" | Escolha uma opcao: ");
     scanf("%c", &esc);
     getchar();
    
