@@ -5,10 +5,6 @@
 //Fazer as telas...
 
 
-char telaEntradaItens(void); //pois já foi declarada na main
-char telaNomeProdutoAdicionado(void);
-char telaQuantProduto();
-
 
 char telaEntradaItens(void)
 {
@@ -64,7 +60,7 @@ char telaNomeProdutoAdicionado(void)
     printf(" |  1- Informe o nome do produto que sera adicionado: ");
     scanf("%[A-Z a-z]", nomeProdutoAdicionado);
     getchar(); 
-    printf(" |  0- Voltar a tela de saida \n");
+    printf(" |  0- Voltar a tela de entrada \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
@@ -86,7 +82,7 @@ char telaQuantProduto(void)
     printf(" |  1- Informe a quantidade de produto adicionado: ");
     scanf("%[A-Z a-z., 0-9., -]", quantProduto);
     getchar(); 
-    printf(" |  0- Voltar a tela de saida \n");
+    printf(" |  0- Voltar a tela de entrada \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");

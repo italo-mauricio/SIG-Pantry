@@ -41,7 +41,7 @@ int main (void)
             telaSobre ();
         case '6':
             telaEntradaItens();
-            break; */
+            break; 
         case '7':
             telaSaidaItens();
             break;
