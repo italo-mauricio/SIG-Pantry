@@ -5,7 +5,7 @@
 #include "modulolistadeCompras.h"
 #include "moduloRelatorio.h"
 #include "moduloSobre.h"
-#include "moduloEntradaItens.h"
+//#include "moduloEntradaItens.h"
 #include "moduloSaidaItens.h"
 
 
@@ -16,7 +16,7 @@ char telaListadeCompras(void);
 char telaRelatorio(void);
 void telaSobre(void);
 char telaPrincipal(void);
-char telaEntradaItens(void);
+//char telaEntradaItens(void);
 char telaSaidaItens(void);
 
 int main (void)
@@ -41,7 +41,7 @@ int main (void)
             telaSobre ();
         case '6':
             telaEntradaItens();
-            break;
+            break; */
         case '7':
             telaSaidaItens();
             break;
@@ -86,5 +86,4 @@ char telaPrincipal (void)
     return opcao;
     
 }
-// colocar opções de entrada e saída no menu principal e alterar itens no cadastrar itens
 

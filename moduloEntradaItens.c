@@ -4,6 +4,7 @@
 
 //Fazer as telas...
 
+
 char telaEntradaItens(void); //pois já foi declarada na main
 char telaNomeProdutoAdicionado(void);
 char telaQuantProduto();
@@ -94,3 +95,5 @@ char telaQuantProduto(void)
     return esc; 
 
 }
+
+
