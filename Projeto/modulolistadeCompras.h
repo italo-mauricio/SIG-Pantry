@@ -5,3 +5,4 @@ char telaItensQuantMinima(void);
 char telaItensProxVencimento(void);
 char telaAdicionarItensaLista(void);
 char telaItensCadastrados(void);
+char telaMontarLista(void)

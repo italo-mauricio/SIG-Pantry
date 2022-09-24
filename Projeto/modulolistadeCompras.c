@@ -144,7 +144,7 @@ char telaAdicionarItensaLista(void)
 }
 
 
-char telaMontarLista()
+char telaMontarLista(void)
 {
     char nome[20];
     char categoriaProduto[10];
