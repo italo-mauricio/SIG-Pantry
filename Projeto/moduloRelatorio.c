@@ -28,8 +28,6 @@ char moduloRelatorio (void)
     return escolha;
 }
 
-
-
 char telaRelatorio(void)
 {
     char esc;
@@ -59,7 +57,7 @@ char estoquedeAlimento(void)
     system (" Clear||cls ");
     printf(" | ===================================================================== | \n");
     printf(" | --------------------------------------------------------------------- | \n");
-    printf(" | ----------------------- | Estoque | --------------------------------- | \n");
+    printf(" | --------------------------- | Estoque | ----------------------------- | \n");
     printf(" |                                                                       | \n");
     printf(" |                                                                       | \n");
     printf(" |   Aqui ficara o estoque futuramente                                   | \n");
@@ -82,7 +80,7 @@ char estoquedeHigiene(void)
     system (" Clear||cls ");
     printf(" | ===================================================================== | \n");
     printf(" | --------------------------------------------------------------------- | \n");
-    printf(" | ----------------------- | Estoque | --------------------------------- | \n");
+    printf(" | -------------------------- | Estoque | ------------------------------ | \n");
     printf(" |                                                                       | \n");
     printf(" |                                                                       | \n");
     printf(" |   Aqui ficara o estoque de higiene                                    | \n");
@@ -106,7 +104,7 @@ char estoquedeLimpeza(void)
     system (" Clear||cls ");
     printf(" | ===================================================================== | \n");
     printf(" | --------------------------------------------------------------------- | \n");
-    printf(" | ----------------------- | Estoque | --------------------------------- | \n");
+    printf(" | -------------------------- | Estoque | ------------------------------ | \n");
     printf(" |                                                                       | \n");
     printf(" |                                                                       | \n");
     printf(" |   Aqui ficara o estoque de limpeza                                    | \n");
