@@ -45,7 +45,7 @@ char modulolistadeCompras (void)
     }
 
     } while(escolha != 0);
-    printf("Obrigado, volte sempre!");
+    printf("Obrigado! Volte sempre!");
 
     return escolha;
 
@@ -60,25 +60,22 @@ char telaListadeCompras(void)
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | -------------------| SIG-Pantry - LISTA DE COMPRAS |---------------- | \n");
     printf(" |                                                                      | \n");
-    printf(" |      1- Visualizar itens alimentares proximos ao vencimento          | \n");
-    printf(" |      2- Visualizar itens de higiene pessoal proximos ao vencimento   | \n");
-    printf(" |      3- Visualizar itens de limpeza proximos ao vencimento           | \n");
-    printf(" |      4- Montar a propria listinha                                    | \n");    
-    printf(" |      0- Voltar a tela principal                                      | \n");
+    printf(" |          1- Visualizar itens no estoque com quantidade minima        | \n");
+    printf(" |          2- Visualizar itens proximos ao vencimento                  | \n");
+    printf(" |          3- Adicionar itens a lista                                  | \n"); 
+    printf(" |          4- Visualizar itens ja cadastrados na lista                 | \n");      
+    printf(" |          0- Voltar a tela principal                                  | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
     printf(" | Escolha uma opcao: ");
     scanf("%c", &opcao);
     getchar();
-//adicionar itens à lista (o que você cadastrou para comprar + o que já tem no estoque com quant mínima)
+    
     return opcao;
 
-}
-
-
+} 
 
 char telaAlimentoVencimento(void)
-
 {
     char esc;
     char nome[20];
