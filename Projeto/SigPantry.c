@@ -20,10 +20,10 @@ char telaSaidaItens(void);
 
 int main (void)
 {
-    char opcao;
+    char escolha;
     do {
-        opcao = telaPrincipal();
-        switch (opcao) {
+        escolha = telaPrincipal();
+        switch (escolha) {
         case '1':
             telaCadastroUsuario();
             break;
@@ -44,14 +44,17 @@ int main (void)
         case '7':
             telaSobre();
             break;
+        case '0':
+            printf("Fim do programa");
+            break;
         default:
             printf("Opcao invalida");
             break;
         }  
 
-    }while(opcao != '0');
+    }while(escolha != '0');
    
-    return opcao;
+    return escolha;
 
 }
 

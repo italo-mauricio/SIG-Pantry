@@ -2,10 +2,6 @@
 #include <stdlib.h>
 #include "modulolistadeCompras.h"
 
-
-
-
-
 char menulistadeCompras(void)
 {
     int escolha;
@@ -47,7 +43,6 @@ char menulistadeCompras(void)
         case 5:
             telaItensCadastrados();
             break;
-
         default:
             printf("Opcao invalida\n");
             break;
@@ -59,9 +54,6 @@ char menulistadeCompras(void)
     return escolha;
 
 } 
-
-
-
 
 char telaListadeCompras(void)
 {
@@ -87,9 +79,6 @@ char telaListadeCompras(void)
 
 } 
 
-
-
-
 char telaItensQuantMinima(void)
 {
     char esc;
@@ -110,9 +99,6 @@ char telaItensQuantMinima(void)
 
 }
 
-
-
-
 char telaItensProxVencimento(void)
 {
     char esc;
@@ -132,8 +118,6 @@ char telaItensProxVencimento(void)
     return esc;
 
 }
-
-
 
 char telaAdicionarItensaLista(void)
 {
@@ -156,9 +140,6 @@ char telaAdicionarItensaLista(void)
     return esc;
 // nessa opção de itens à sua escolha cria-se uma outra tela, onde terá nome; quantidade...
 }
-
-
-
 
 char telaMontarLista(void)
 {
@@ -191,8 +172,6 @@ char telaMontarLista(void)
 
 }
 
-
-
 char telaItensCadastrados(void)
 {
     char esc;
@@ -212,5 +191,3 @@ char telaItensCadastrados(void)
     return esc;
 
 }
-
-

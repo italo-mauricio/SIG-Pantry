@@ -25,7 +25,6 @@ char moduloSaidaItens(void)
 
 }
 
-
 char telaSaidaItens(void)
 {
     char esc;
