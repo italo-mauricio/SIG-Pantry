@@ -8,8 +8,6 @@
 #include "moduloEntradaItens.h"
 #include "moduloSaidaItens.h"
 
-
-
 // Assinatura das funções
 char telacadastroUsuario(void);
 char telaCadastroItens(void);

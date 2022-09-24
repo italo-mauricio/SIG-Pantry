@@ -2,7 +2,6 @@
 #include<stdlib.h>
 #include "moduloSaidaItens.h"
 
-
 char moduloSaidaItens(void)
 {
     int escolha;

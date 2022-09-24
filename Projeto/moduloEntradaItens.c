@@ -2,10 +2,6 @@
 #include<stdlib.h>
 #include "moduloEntradaItens.h"
 
-//Fazer as telas...
-
-
-
 char menuentradaitens(void)
 {
     int escolha;
