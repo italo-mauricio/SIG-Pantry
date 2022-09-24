@@ -5,7 +5,7 @@
 #include "modulolistadeCompras.h"
 #include "moduloRelatorio.h"
 #include "moduloSobre.h"
-//#include "moduloEntradaItens.h"
+#include "moduloEntradaItens.h"
 #include "moduloSaidaItens.h"
 
 
@@ -39,9 +39,9 @@ int main (void)
             break; 
         case '5':    
             telaSobre ();
-        /*case '6':
+        case '6':
             telaEntradaItens();
-            break; */
+            break; 
         case '7':
             telaSaidaItens();
             break;
