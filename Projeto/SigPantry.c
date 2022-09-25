@@ -8,15 +8,7 @@
 #include "moduloEntradaItens.h"
 #include "moduloSaidaItens.h"
 
-// Assinatura das funções
-char telacadastroUsuario(void);
-char telaCadastroItens(void);
-char telaListadeCompras(void);
-char telaRelatorio(void);
-void telaSobre(void);
-char telaPrincipal(void);
-char telaEntradaItens(void);
-char telaSaidaItens(void);
+
 
 int main (void)
 {
