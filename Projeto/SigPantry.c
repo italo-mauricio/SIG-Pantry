@@ -8,7 +8,7 @@
 #include "moduloEntradaItens.h"
 #include "moduloSaidaItens.h"
 
-
+char telaPrincipal(void);
 
 int main (void)
 {
