@@ -25,6 +25,12 @@ char modulocadastroItem(void) {
             case 6: 
                 telaLocaldeArmazenamento();
                 break;
+            case 7:
+                telaeditaritem();
+                break;
+            case 8:
+                telaexcluiritem();
+                break;
             default:
                 printf("Opcao Invalida\n");
                 break;
@@ -50,7 +56,9 @@ char telaCadastroItens(void)
     printf(" |                 3- Codigo de barras                       | \n"); 
     printf(" |                 4- Data de validade                       | \n");   
     printf(" |                 5- Categoria do produto                   | \n"); 
-    printf(" |                 6- Local de armazenamento                 | \n");                 
+    printf(" |                 6- Local de armazenamento                 | \n");
+    printf(" |                 7- Atualizar itens                        | \n");
+    printf(" |                 8- Excluir itens                          | \n");                 
     printf(" |                 0- Voltar a tela principal                | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -206,5 +214,75 @@ char telaLocaldeArmazenamento(void)
     scanf("%c", &opcao);  
     
     return opcao;
+
+}
+
+
+char telaeditaritem(void)
+{
+
+    char opcao;
+    char nome [20];
+    char barras [13];
+    char data [10];
+    char categoria [20];
+    int armazenamento;
+    system( " clear || cls");
+    printf(" | ============================================================== | \n");
+    printf(" | -------------------------------------------------------------- | \n");
+    printf(" | --------------------- ATUALIZAR ITENS ------------------------ | \n");
+    printf(" |                                                                | \n");
+    printf(" |   Atualizar nome: ");
+    scanf("%[A-z a-z]", nome);
+    getchar();
+    printf(" |  Atualizar código de barras: ");
+    scanf("%[0-9]", barras);
+    printf(" |  Atualizar data de validade: ");
+    scanf("%[0-9 / ]", data);
+    getchar();
+    printf(" |  Atualizar categoria: ");
+    scanf("[A-Z a-z 0-9]", categoria);
+    getchar();
+    printf(" |  Atualizar local de armazenamento: ");
+    scanf("%d", &armazenamento);
+    getchar();
+    printf(" | ------------------------------------------------------------- | \n");
+    printF(" | ============================================================= | \n");
+    print( " Press ENTER for continue...");
+    scanf("%c", &opcao);
+    getchar();
+    return opcao;
+
+
+}
+
+
+char telaexcluiritem(void)
+
+{
+    char opcao;
+    char barra [13];
+    system( " clear || cls ");
+    printf(" | ============================================================== | \n");
+    printf(" | -------------------------------------------------------------- | \n");
+    printf(" | ----------------------- Excluir ITENS ------------------------ | \n");
+    printf(" |                                                                | \n");
+    printf(" | Digite o código de barra do produto: ");
+    scanf("%[0-9]", barra);
+    getchar();
+    // aqui terá um if se o código de barra for encontrado ele entrará nas opções
+    // if barra == (nosso banco de dados);
+        // digite a quantidade de itens que deseja excluir;
+        // os itens serão removidos.
+    printf(" | -------------------------------------------------------------- | \n");
+    printf(" | ============================================================== | \n");
+    printf(" Press ENTER for continue... ");
+    scanf("%c", &opcao);
+    getchar();
+
+    return opcao;
+
+
+
 
 }
