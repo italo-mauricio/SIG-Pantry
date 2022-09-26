@@ -8,3 +8,4 @@ char telaDatadeValidade(void);
 char telaCategoriadoProduto(void);
 char telaLocaldeArmazenamento(void);
 char telaeditaritem(void);
+char telaexcluiritem(void);
