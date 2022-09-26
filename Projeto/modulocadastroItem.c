@@ -277,7 +277,7 @@ char telaexcluiritem(void)
     printf(" | -------------------------------------------------------------- | \n");
     printf(" | ============================================================== | \n");
     printf(" Press ENTER for continue... ");
-    scanf("%c", opcao);
+    scanf("%c", &opcao);
     getchar();
 
     return opcao;
