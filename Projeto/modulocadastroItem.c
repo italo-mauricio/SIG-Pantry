@@ -8,27 +8,21 @@ char modulocadastroItem(void) {
         escolha = telaMenuItens();
         switch(escolha) {
             case 1:
-                telaNomeProduto();
+                telaCadastrarItem();
                 break;
             case 2:
-                telaNomeMarca();
-                break;
-            case 3: 
-                telaCodigoBarras();
-                break;
-            case 4: 
-                telaDatadeValidade();
-                break;
-            case 5: 
                 telaCategoriadoProduto();
                 break;
-            case 6: 
+            case 3: 
                 telaLocaldeArmazenamento();
                 break;
-            case 7:
+            case 4:
+                telaEstoqueMinimo();
+                break;
+            case 5:
                 telaEditarItem();
                 break;
-            case 8:
+            case 6:
                 telaExcluirItem();
                 break;
             default:
@@ -147,12 +141,12 @@ char telaLocaldeArmazenamento(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ----------------- LOCAL DE ARMAZENAMENTO ---------------- | \n");
     printf(" |                                                           | \n");
-    printf(" |                 1- Geladeira                              | \n");
-    printf(" |                 2- Armário da cozinha                     | \n");
-    printf(" |                 3- Armário da área de servico             | \n");  
-    printf(" |                 4- Armário do banheiro                    | \n"); 
-    printf(" |                 5- Guarda-roupa                           | \n");       
-    printf(" |                 0- Voltar à tela de cadastro              | \n");
+    printf(" |                1- Geladeira                               | \n");
+    printf(" |                2- Armário da cozinha                      | \n");
+    printf(" |                3- Armário da área de serviço              | \n");  
+    printf(" |                4- Armário do banheiro                     | \n"); 
+    printf(" |                5- Guarda-roupa                            | \n");       
+    printf(" |                0- Voltar à tela de cadastro               | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opção: ");
@@ -162,7 +156,7 @@ char telaLocaldeArmazenamento(void)
 
 }
 
-char telaCadastrarItem(void)
+char telaEstoqueMinimo(void)
 {
     char esc;
     char estoqueMinimo [20];
@@ -218,9 +212,7 @@ char telaEditarItem(void)
     getchar();
     return opcao;
 
-
 }
-
 
 char telaExcluirItem(void)
 {
