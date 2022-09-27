@@ -5,7 +5,7 @@
 char modulocadastroItem(void) {
     int escolha;
     do {
-        escolha = telaCadastroItens();
+        escolha = telaMenuItens();
         switch(escolha) {
             case 1:
                 telaNomeProduto();
@@ -26,10 +26,10 @@ char modulocadastroItem(void) {
                 telaLocaldeArmazenamento();
                 break;
             case 7:
-                telaeditaritem();
+                telaEditarItem();
                 break;
             case 8:
-                telaexcluiritem();
+                telaExcluirItem();
                 break;
             default:
                 printf("Opcao Invalida\n");
@@ -43,13 +43,13 @@ char modulocadastroItem(void) {
 }
 
 
-char telaCadastroItens(void)
+char telaManuItens(void)
 {
     char esc;
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | -------------- SIG-Pantry - CADASTRAR ITENS ------------- | \n");
+    printf(" | ----------------- SIG-Pantry - MENU ITENS --------------- | \n");
     printf(" |                                                           | \n");
     printf(" |                 1- Nome do produto                        | \n");
     printf(" |                 2- Nome da marca                          | \n"); 
@@ -218,7 +218,7 @@ char telaLocaldeArmazenamento(void)
 }
 
 
-char telaeditaritem(void)
+char telaEditarItem(void)
 {
 
     char opcao;
@@ -257,7 +257,7 @@ char telaeditaritem(void)
 }
 
 
-char telaexcluiritem(void)
+char telaExcluirItem(void)
 
 {
     char opcao;
