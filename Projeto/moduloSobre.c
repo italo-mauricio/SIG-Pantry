@@ -20,7 +20,7 @@ void telaSobre(void)
     printf ( " |           Developers: Manuelly Rodrigues e Italo Maurício          | \n " );
     printf ( " |                                                                    | \n " );
     printf ( " | ------------------------------------------------------------------ | \n " );
-    printf ( " | ---------------------- SIG - Pranty - 2022.2 --------------------- | \n " );
+    printf ( " | ---------------------- SIG - Pantry - 2022.2 --------------------- | \n " );
     printf ("\t\t\t>>> Tecle <ENTER> para continuar.. " );
     getchar();    
 
