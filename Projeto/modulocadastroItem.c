@@ -162,10 +162,30 @@ char telaLocaldeArmazenamento(void)
 
 }
 
+char telaCadastrarItem(void)
+{
+    char esc;
+    char estoqueMinimo [20];
+    system ( " clear||cls " );
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | ----------- SIG-Pantry - ESTOQUE MÍNIMO DO ITEM --------- | \n");
+    printf(" |                                                           | \n");
+    printf(" | Estoque mínimo do produto cadastrado: ");
+    scanf("%[0-9]", estoqueMinimo);
+    getchar(); 
+    printf(" | 0- Voltar à tela de cadastro \n");
+    printf(" |                                                           | \n");
+    printf(" | ========================================================= | \n");
+    printf(" | Press ENTER for exit... ");
+    scanf("%c", &esc); 
+    getchar();
+    return esc;
+
+}
 
 char telaEditarItem(void)
 {
-
     char opcao;
     char nome [20];
     char barras [13];
@@ -203,7 +223,6 @@ char telaEditarItem(void)
 
 
 char telaExcluirItem(void)
-
 {
     char opcao;
     char barra [13];
