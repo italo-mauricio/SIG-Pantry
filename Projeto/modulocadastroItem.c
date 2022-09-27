@@ -51,14 +51,12 @@ char telaManuItens(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ----------------- SIG-Pantry - MENU ITENS --------------- | \n");
     printf(" |                                                           | \n");
-    printf(" |                 1- Nome do produto                        | \n");
-    printf(" |                 2- Nome da marca                          | \n"); 
-    printf(" |                 3- Código de barras                       | \n"); 
-    printf(" |                 4- Data de validade                       | \n");   
-    printf(" |                 5- Categoria do produto                   | \n"); 
-    printf(" |                 6- Local de armazenamento                 | \n");
-    printf(" |                 7- Atualizar itens                        | \n");
-    printf(" |                 8- Excluir itens                          | \n");                 
+    printf(" |                 1- Cadastrar item                         | \n"); 
+    printf(" |                 2- Categoria do produto                   | \n"); 
+    printf(" |                 3- Local de armazenamento                 | \n");
+    printf(" |                 4- Estoque mínimo do item                 | \n");
+    printf(" |                 5- Atualizar itens                        | \n");
+    printf(" |                 6- Excluir itens                          | \n");                 
     printf(" |                 0- Voltar à tela principal                | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -70,25 +68,38 @@ char telaManuItens(void)
 
 }
 
-char telaNomeProduto(void)
+
+char telaCadastrarItem(void)
 {
-    char nomeProduto [20];
     char esc;
+    char nomeProduto [20];
+    char nomeMarca [20];
+    char codigoBarras [13];
+    char dataValidade [10];
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | --------------------- NOME DO PRODUTO ------------------- | \n");
-    printf(" |                                                           | \n");    
-    printf(" |  1- Informe o nome do produto: ");
+    printf(" | -------------- SIG-Pantry - CADASTRAR ITENS ------------- | \n");
+    printf(" |                                                           | \n");
+    printf(" | Nome do produto: ");
     scanf("%[A-Z a-z]", nomeProduto);
     getchar(); 
-    printf(" |  0- Voltar à tela de cadastro \n");
+    printf(" | Nome da marca: ");
+    scanf("%[A-Z a-z]", nomeMarca);
+    getchar(); 
+    printf(" | Código de barras: ");
+    scanf("%[A-Z a-z., 0-9., -]", codigoBarras);
+    getchar(); 
+    printf(" | Data de validade do produto (dd/mm/aa): ");
+    scanf("%[0-9., /]", dataValidade);
+    getchar(); 
+    printf(" | 0- Voltar à tela de cadastro \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
     scanf("%c", &esc); 
     getchar();
-    return esc; 
+    return esc;
 
 }
 /*void telaCadastrarAlimento(void) 
@@ -106,72 +117,6 @@ char telaNomeProduto(void)
 
 }
 */
-
-char telaNomeMarca(void)
-{
-    char nomeMarca [20];
-    char esc;
-    system ( " clear||cls " );
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" | --------------------- NOME DA MARCA --------------------- | \n");
-    printf(" |                                                           | \n");    
-    printf(" |  1- Informe o nome da marca: ");
-    scanf("%[A-Z a-z]", nomeMarca);
-    getchar(); 
-    printf(" |  0- Voltar à tela de cadastro \n");
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
-    printf(" | Press ENTER for exit... ");
-    scanf("%c", &esc); 
-    getchar();
-    return esc; 
-
-}
-
-char telaCodigoBarras(void)
-{
-    char codigoBarras [13];
-    char esc;
-    system ( " clear||cls " );
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" | --------------------- CÓDIGO DE BARRAS ------------------ | \n");
-    printf(" |                                                           | \n");    
-    printf(" |  1- Informe o código de barras: ");
-    scanf("%[A-Z a-z., 0-9., -]", codigoBarras);
-    getchar(); 
-    printf(" |  0- Voltar à tela de cadastro \n");
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
-    printf(" | Press ENTER for exit... ");
-    scanf("%c", &esc); 
-    getchar();
-    return esc; 
-
-}
-
-char telaDatadeValidade(void)
-{
-    char dataValidade [13];
-    char esc;
-    system ( " clear||cls " );
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" | --------------------- DATA DE VALIDADE ------------------ | \n");
-    printf(" |                                                           | \n");    
-    printf(" |  1- Informe a data de validade do produto (dd/mm/aa): ");
-    scanf("%[0-9., /]", dataValidade);
-    getchar(); 
-    printf(" |  0- Voltar à tela de cadastro \n");
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
-    printf(" | Press ENTER for exit... ");
-    scanf("%c", &esc); 
-    getchar();
-    return esc; 
-
-}
 
 char telaCategoriadoProduto(void)
 {
