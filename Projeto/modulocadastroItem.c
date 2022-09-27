@@ -247,8 +247,8 @@ char telaeditaritem(void)
     scanf("%d", &armazenamento);
     getchar();
     printf(" | ------------------------------------------------------------- | \n");
-    printF(" | ============================================================= | \n");
-    print( " Press ENTER for continue...");
+    printf(" | ============================================================= | \n");
+    printf( " Press ENTER for continue...");
     scanf("%c", &opcao);
     getchar();
     return opcao;
