@@ -32,7 +32,7 @@ char modulocadastroItem(void) {
                 telaExcluirItem();
                 break;
             default:
-                printf("Opcao Invalida\n");
+                printf("Opção inválida\n");
                 break;
         } 
      
@@ -53,16 +53,16 @@ char telaManuItens(void)
     printf(" |                                                           | \n");
     printf(" |                 1- Nome do produto                        | \n");
     printf(" |                 2- Nome da marca                          | \n"); 
-    printf(" |                 3- Codigo de barras                       | \n"); 
+    printf(" |                 3- Código de barras                       | \n"); 
     printf(" |                 4- Data de validade                       | \n");   
     printf(" |                 5- Categoria do produto                   | \n"); 
     printf(" |                 6- Local de armazenamento                 | \n");
     printf(" |                 7- Atualizar itens                        | \n");
     printf(" |                 8- Excluir itens                          | \n");                 
-    printf(" |                 0- Voltar a tela principal                | \n");
+    printf(" |                 0- Voltar à tela principal                | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao: ");
+    printf(" | Escolha uma opção: ");
     scanf("%c", &esc);
     getchar();
 
@@ -82,7 +82,7 @@ char telaNomeProduto(void)
     printf(" |  1- Informe o nome do produto: ");
     scanf("%[A-Z a-z]", nomeProduto);
     getchar(); 
-    printf(" |  0- Voltar a tela de cadastro \n");
+    printf(" |  0- Voltar à tela de cadastro \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
@@ -119,7 +119,7 @@ char telaNomeMarca(void)
     printf(" |  1- Informe o nome da marca: ");
     scanf("%[A-Z a-z]", nomeMarca);
     getchar(); 
-    printf(" |  0- Voltar a tela de cadastro \n");
+    printf(" |  0- Voltar à tela de cadastro \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
@@ -136,12 +136,12 @@ char telaCodigoBarras(void)
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | --------------------- CODIGO DE BARRAS ------------------ | \n");
+    printf(" | --------------------- CÓDIGO DE BARRAS ------------------ | \n");
     printf(" |                                                           | \n");    
-    printf(" |  1- Informe o codigo de barras: ");
+    printf(" |  1- Informe o código de barras: ");
     scanf("%[A-Z a-z., 0-9., -]", codigoBarras);
     getchar(); 
-    printf(" |  0- Voltar a tela de cadastro \n");
+    printf(" |  0- Voltar à tela de cadastro \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
@@ -160,10 +160,10 @@ char telaDatadeValidade(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | --------------------- DATA DE VALIDADE ------------------ | \n");
     printf(" |                                                           | \n");    
-    printf(" |  1- Informe a data de validade do produto (00/00/0000): ");
+    printf(" |  1- Informe a data de validade do produto (dd/mm/aa): ");
     scanf("%[0-9., /]", dataValidade);
     getchar(); 
-    printf(" |  0- Voltar a tela de cadastro \n");
+    printf(" |  0- Voltar à tela de cadastro \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
@@ -184,10 +184,10 @@ char telaCategoriadoProduto(void)
     printf(" |                 1- Item alimentar                         | \n");
     printf(" |                 2- Item de higiene pessoal                | \n"); 
     printf(" |                 3- Item de limpeza                        | \n");         
-    printf(" |                 0- Voltar a tela principal                | \n");
+    printf(" |                 0- Voltar à tela principal                | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao: ");
+    printf(" | Escolha uma opção: ");
     scanf("%c", &esc); 
     getchar();
     return esc; 
@@ -203,14 +203,14 @@ char telaLocaldeArmazenamento(void)
     printf(" | ----------------- LOCAL DE ARMAZENAMENTO ---------------- | \n");
     printf(" |                                                           | \n");
     printf(" |                 1- Geladeira                              | \n");
-    printf(" |                 2- Armario da cozinha                     | \n");
-    printf(" |                 3- Armario da area de servico             | \n");  
-    printf(" |                 4- Armario do banheiro                    | \n"); 
+    printf(" |                 2- Armário da cozinha                     | \n");
+    printf(" |                 3- Armário da área de servico             | \n");  
+    printf(" |                 4- Armário do banheiro                    | \n"); 
     printf(" |                 5- Guarda-roupa                           | \n");       
-    printf(" |                 0- Voltar a tela de cadastro              | \n");
+    printf(" |                 0- Voltar à tela de cadastro              | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao: ");
+    printf(" | Escolha uma opção: ");
     scanf("%c", &opcao);  
     
     return opcao;
@@ -265,9 +265,9 @@ char telaExcluirItem(void)
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
-    printf(" | ----------------------- Excluir ITENS ------------------------ | \n");
+    printf(" | ----------------------- EXCLUIR ITENS ------------------------ | \n");
     printf(" |                                                                | \n");
-    printf(" | Digite o código de barra do produto: ");
+    printf(" | Digite o código de barras do produto: ");
     scanf("%[0-9]", barra);
     getchar();
     // aqui terá um if se o código de barra for encontrado ele entrará nas opções
@@ -281,8 +281,5 @@ char telaExcluirItem(void)
     getchar();
 
     return opcao;
-
-
-
 
 }

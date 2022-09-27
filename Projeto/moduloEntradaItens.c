@@ -31,12 +31,12 @@ char telaEntradaItens(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ------ SIG-Pantry - ENTRADA DE ITENS DA DESPENSA -------- | \n");
     printf(" |                                                           | \n");
-    printf(" |              1- Nome do produto adicionado                | \n");
-    printf(" |              2- Quantidade de produto                     | \n");                 
-    printf(" |              0- Voltar a tela principal                   | \n");
+    printf(" |            1- Código de barras do produto adicionado      | \n");
+    printf(" |            2- Quantidade de produto                       | \n");                 
+    printf("              0- Voltar à tela principal                     | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao: ");
+    printf(" | Escolha uma opção: ");
     scanf("%c", &esc);
     getchar();
 
@@ -46,17 +46,17 @@ char telaEntradaItens(void)
 
 char telaNomeProdutoAdicionado(void)
 {
-    char nomeProdutoAdicionado [20];
+    char codigodeBarras [13];
     char esc;
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ---------------- NOME DO PRODUTO ADICIONADO ------------- | \n");
     printf(" |                                                           | \n");    
-    printf(" |  1- Informe o nome do produto que sera adicionado: ");
-    scanf("%[A-Z a-z]", nomeProdutoAdicionado);
+    printf(" |  1- Informe o código de barras do produto que será adicionado: ");
+    scanf("%[A-Z a-z]", codigodeBarras);
     getchar(); 
-    printf(" |  0- Voltar a tela de entrada \n");
+    printf(" |  0- Voltar à tela de entrada \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
@@ -78,7 +78,7 @@ char telaQuantProdutos(void)
     printf(" |  1- Informe a quantidade de produto adicionado: ");
     scanf("%[A-Z a-z., 0-9., -]", quantProduto);
     getchar(); 
-    printf(" |  0- Voltar a tela de entrada \n");
+    printf(" |  0- Voltar à tela de entrada \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");

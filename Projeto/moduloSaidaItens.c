@@ -15,7 +15,7 @@ char moduloSaidaItens(void)
                 telaQuantProduto();
                 break;
             default:
-                printf("Opcao invalida");
+                printf("Opção inválida!");
                 break;
         } 
      
@@ -31,14 +31,14 @@ char telaSaidaItens(void)
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | -------- SIG-Pantry - SAIDA DE ITENS DA DESPENSA -------- | \n");
+    printf(" | -------- SIG-Pantry - SAÍDA DE ITENS DA DESPENSA -------- | \n");
     printf(" |                                                           | \n");
-    printf(" |              1- Nome do produto retirado                  | \n");
-    printf(" |              2- Quantidade de produto                     | \n");                 
-    printf(" |              0- Voltar a tela principal                   | \n");
+    printf(" |            1- Código de barras do produto retirado        | \n");
+    printf(" |            2- Quantidade de produto                       | \n");                 
+    printf(" |            0- Voltar à tela principal                     | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opcao: ");
+    printf(" | Escolha uma opção: ");
     scanf("%c", &esc);
     getchar();
 
@@ -48,17 +48,17 @@ char telaSaidaItens(void)
 
 char telaNomeProdutoRetirado(void)
 {
-    char nomeProdutoRetirado [20];
+    char CodigodeBarras [13];
     char esc;
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ---------------- NOME DO PRODUTO RETIRADO --------------- | \n");
     printf(" |                                                           | \n");    
-    printf(" |  1- Informe o nome do produto que sera retirado: ");
-    scanf("%[A-Z a-z]", nomeProdutoRetirado);
+    printf(" |  1- Informe o código de barras do produto que será retirado: ");
+    scanf("%[0-9]", CodigodeBarras);
     getchar(); 
-    printf(" |  0- Voltar a tela de saida \n");
+    printf(" |  0- Voltar à tela de saída \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
@@ -80,7 +80,7 @@ char telaQuantProduto(void)
     printf(" |  1- Informe a quantidade de produto retirado: ");
     scanf("%[A-Z a-z., 0-9., -]", quantProduto);
     getchar(); 
-    printf(" |  0- Voltar a tela de saida \n");
+    printf(" |  0- Voltar à tela de saída \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
