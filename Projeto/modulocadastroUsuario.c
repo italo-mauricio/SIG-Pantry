@@ -45,11 +45,11 @@ char telaMenuUsuario(void) // Tela inicial dos cadastros
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------------- SIG-Pantry - MENU USUÁRIO ---------------- | \n");
     printf(" |                                                           | \n");
-    printf(" |                  1 - Cadastrar Usuário                    | \n");
-    printf(" |                  2 - Editar Cadastro                      | \n"); 
-    printf(" |                  3 - Listar Usuários                      | \n");    
-    printf(" |                  4 - Remover Usuário                      | \n");
-    printf(" |                  0 - Voltar à tela principal              | \n");
+    printf(" |                 1 - Cadastrar Usuário                     | \n");
+    printf(" |                 2 - Editar Cadastro                       | \n"); 
+    printf(" |                 3 - Listar Usuários                       | \n");    
+    printf(" |                 4 - Remover Usuário                       | \n");
+    printf(" |                 0 - Voltar à tela principal               | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opção: ");
