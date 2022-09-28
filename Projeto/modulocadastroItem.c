@@ -191,7 +191,7 @@ char telaEditarItem(void)
     printf(" | -------------------------------------------------------------- | \n");
     printf(" | --------------------- ATUALIZAR ITENS ------------------------ | \n");
     printf(" |                                                                | \n");
-    printf(" |   Atualizar nome: ");
+    printf(" |  Atualizar nome: ");
     scanf("%[A-z a-z]", nome);
     getchar();
     printf(" |  Atualizar código de barras: ");
@@ -202,9 +202,9 @@ char telaEditarItem(void)
     printf(" |  Atualizar categoria: ");
     scanf("%[A-Z a-z 0-9]", categoria);
     getchar();
-    printf(" |  Atualizar local de armazenamento: ");
-    scanf("%d", armazenamento);
-    getchar();
+    //printf(" |  Atualizar local de armazenamento: ");
+    //scanf("%d", armazenamento);
+    //getchar();
     printf(" | ------------------------------------------------------------- | \n");
     printf(" | ============================================================= | \n");
     printf( " Press ENTER for continue...");

@@ -17,7 +17,7 @@ int main (void)
         escolha = telaPrincipal();
         switch (escolha) {
         case '1':
-            telaCadastroUsuario();
+            telaMenuUsuario();
             break;
         case '2':
             telaMenuItens();
