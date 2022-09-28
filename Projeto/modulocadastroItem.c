@@ -192,18 +192,18 @@ char telaEditarItem(void)
     printf(" | --------------------- ATUALIZAR ITENS ------------------------ | \n");
     printf(" |                                                                | \n");
     printf(" |   Atualizar nome: ");
-    scanf("%[A-z a-z]", &nome);
+    scanf("%[A-z a-z]", nome);
     getchar();
     printf(" |  Atualizar código de barras: ");
-    scanf("%[0-9]", &barras);
+    scanf("%[0-9]", barras);
     printf(" |  Atualizar data de validade: ");
-    scanf("%[0-9 / ]", &data);
+    scanf("%[0-9 / ]", data);
     getchar();
     printf(" |  Atualizar categoria: ");
-    scanf("%[A-Z a-z 0-9]", &categoria);
+    scanf("%[A-Z a-z 0-9]", categoria);
     getchar();
     printf(" |  Atualizar local de armazenamento: ");
-    scanf("%d", &armazenamento);
+    scanf("%d", armazenamento);
     getchar();
     printf(" | ------------------------------------------------------------- | \n");
     printf(" | ============================================================= | \n");
@@ -224,7 +224,7 @@ char telaExcluirItem(void)
     printf(" | ----------------------- EXCLUIR ITENS ------------------------ | \n");
     printf(" |                                                                | \n");
     printf(" | Digite o código de barras do produto: ");
-    scanf("%[0-9]", &barra);
+    scanf("%[0-9]", barra);
     getchar();
     // aqui terá um if se o código de barra for encontrado ele entrará nas opções
     // if barra == (nosso banco de dados);
