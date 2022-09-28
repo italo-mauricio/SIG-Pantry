@@ -221,14 +221,11 @@ void suitefuncao(char op){
             telaAtualizarLocaldeArmazenamento();
             break;
         case '6':
-            break;
-        
+            break;        
         default:
             printf("Opção inválida\n");
             break;
         }
-
-
 
 }
 
