@@ -26,7 +26,7 @@ int main (void)
             menulistadeCompras();
             break;
         case '4':
-            menuentradaitens();
+            menuEntradaItens();
             break; 
         case '5':    
             moduloSaidaItens();
