@@ -1,6 +1,6 @@
 //cabeçalho das funções usadas no arquivo.c
-char modulocadastroUsuario(void);
-char telaMenuUsuario(void);
+void modulocadastroUsuario(void);
+int telaMenuUsuario(void);
 char telaRemove(void);
 char telaListar(void);
 char telaEditar(void);

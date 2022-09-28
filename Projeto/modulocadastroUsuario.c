@@ -6,22 +6,22 @@
 DENTRO DESSE CADASTRO: estará os dados do usuário do sistema de controle de despensa doméstica.
 */
 
-char modulocadastroUsuario(void)
+void modulocadastroUsuario(void)
 {
-    char escolha;
+    int escolha = 0;
     do {
         escolha = telaMenuUsuario();
         switch (escolha) {
-        case '1':
+        case 1:
             cadastroUsuario();
             break;
-        case '2':
+        case 2:
             telaEditar();
             break; 
-        case  '3':
+        case  3:
             telaListar();
             break;
-        case '4':
+        case 4:
             telaRemove();
             break;
         default :
@@ -29,17 +29,17 @@ char modulocadastroUsuario(void)
             break;
     }
 
-    } while(escolha != '0');
+    } while(escolha != 0);
 
-    return escolha;
+   
 }
 
 
 // ================================ Começo do cadastro ====================================== //
 
-char telaMenuUsuario(void) // Tela inicial dos cadastros
+int telaMenuUsuario(void) // Tela inicial dos cadastros
 {
-    char opcao;
+    int opcao;
     system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -53,7 +53,7 @@ char telaMenuUsuario(void) // Tela inicial dos cadastros
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opção: ");
-    scanf("%c", &opcao);
+    scanf("%d",&opcao);
     getchar();
     
     return opcao;
@@ -99,7 +99,6 @@ void cadastroUsuario(void) // Cadastro central do usuário
     printf(" | ========================================================= | \n");
     printf(" Press ENTER to exit...");
     getchar();
-
 }
 
 // ============================== Editar o cadastro =================================== 
