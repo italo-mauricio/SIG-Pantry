@@ -20,7 +20,7 @@ char modulocadastroItem(void) {
                 telaEstoqueMinimo();
                 break;
             case 5:
-                telaEditarItem();
+                telaAtualizarItem();
                 break;
             case 6:
                 telaExcluirItem();
@@ -62,7 +62,6 @@ char telaMenuItens(void)
 
 }
 
-
 char telaCadastrarItem(void)
 {
     char esc;
@@ -84,7 +83,7 @@ char telaCadastrarItem(void)
     printf(" | Código de barras: ");
     scanf("%[A-Z a-z., 0-9., -]", codigoBarras);
     getchar(); 
-    printf(" | Data de validade do produto (dd/mm/aa): ");
+    printf(" | Data de validade do produto (dd/mm/aaaa): ");
     scanf("%[0-9., /]", dataValidade);
     getchar(); 
     printf(" | 0- Voltar à tela menu itens \n");
@@ -178,7 +177,7 @@ char telaEstoqueMinimo(void)
 
 }
 
-char telaEditarItem(void)
+char telaAtualizarItem(void)
 {
     char opcao;
     system ( " clear||cls " );
@@ -201,7 +200,7 @@ char telaEditarItem(void)
 
 }
 
-void telaEditarNome(void) 
+void telaAtualizarNome(void) 
 {
     char nome [20];
     system( " clear || cls");
@@ -219,7 +218,7 @@ void telaEditarNome(void)
 
 }
 
-void telaEditarCodigodeBarras(void) 
+void telaAtualizarCodigodeBarras(void) 
 {
     char codBarras [13];
     system( " clear || cls");
@@ -237,7 +236,7 @@ void telaEditarCodigodeBarras(void)
 
 }
 
-void telaEditarDatadeValidade(void) 
+void telaAtualizarDatadeValidade(void) 
 {
     char dataVal [10];
     system( " clear || cls");
@@ -255,7 +254,7 @@ void telaEditarDatadeValidade(void)
 
 }
 
-char telaEditarCategoria(void) 
+char telaAtualizarCategoria(void) 
 {
     char esc;
     system( " clear || cls");
@@ -276,7 +275,7 @@ char telaEditarCategoria(void)
 
 }
 
-char telaEditarLocaldeArmazenamento(void) 
+char telaAtualizarLocaldeArmazenamento(void) 
 {
     char esc;
     system( " clear || cls");
