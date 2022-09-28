@@ -185,7 +185,7 @@ char telaEditarItem(void)
     char barras [13];
     char data [10];
     char categoria [20];
-    int armazenamento;
+   // int armazenamento;
     system( " clear || cls");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
