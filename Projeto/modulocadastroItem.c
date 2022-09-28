@@ -201,7 +201,7 @@ char telaEditarItem(void)
 
 }
 
-char telaEditarNome(void) 
+void telaEditarNome(void) 
 {
     char nome [20];
     system( " clear || cls");
@@ -219,7 +219,7 @@ char telaEditarNome(void)
 
 }
 
-char telaEditarCodigodeBarras(void) 
+void telaEditarCodigodeBarras(void) 
 {
     char codBarras [13];
     system( " clear || cls");
@@ -237,7 +237,7 @@ char telaEditarCodigodeBarras(void)
 
 }
 
-char telaEditarDatadeValidade(void) 
+void telaEditarDatadeValidade(void) 
 {
     char dataVal [10];
     system( " clear || cls");
