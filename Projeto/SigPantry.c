@@ -17,10 +17,10 @@ int main (void)
         escolha = telaPrincipal();
         switch (escolha) {
         case '1':
-            telaCadastroUsuario();
+            telaMenuUsuario();
             break;
         case '2':
-            telaCadastroItens();
+            telaMenuItens();
             break; 
         case '3':
             telaListadeCompras();
@@ -38,10 +38,10 @@ int main (void)
             telaSobre();
             break;
         case '0':
-            printf("Fim do programa");
+            printf("Fim do programa!");
             break;
         default:
-            printf("Opcao invalida");
+            printf("Opção inválida!");
             break;
         }  
 
@@ -60,18 +60,18 @@ char telaPrincipal (void)
     printf (" | =================================================================== | \n");
     printf (" | ------------------------------------------------------------------- | \n");
     printf (" |                                                                     | \n");
-    printf (" |                       1 - Cadastrar usuario                         | \n");
-    printf (" |                       2 - Cadastrar itens                           | \n");
-    printf (" |                       3 - Lista de compras                          | \n");
-    printf (" |                       4 - Entrada de itens                          | \n");
-    printf (" |                       5 - Saida de itens                            | \n");
-    printf (" |                       6 - Relatorio                                 | \n");
-    printf (" |                       7 - Informacoes                               | \n");
-    printf (" |                       0 - Sair                                      | \n");
+    printf (" |                        1 - Menu usuário                             | \n");
+    printf (" |                        2 - Menu itens                               | \n");
+    printf (" |                        3 - Lista de compras                         | \n");
+    printf (" |                        4 - Entrada de itens                         | \n");
+    printf (" |                        5 - Saída de itens                           | \n");
+    printf (" |                        6 - Relatório                                | \n");
+    printf (" |                        7 - Informações                              | \n");
+    printf (" |                        0 - Sair                                     | \n");
     printf (" |                                                                     | \n");                                                                      
     printf (" | ------------------------------------------------------------------- | \n");
     printf (" | =================================================================== | \n");
-    printf (" | Escolha uma opcao: ");
+    printf (" | Escolha uma opção: ");
     scanf ( "%c", &opcao);
     getchar();
 

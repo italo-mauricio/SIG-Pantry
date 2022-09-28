@@ -5,3 +5,4 @@ char moduloRelatorio (void);
 char estoquedeAlimento(void);
 char estoquedeHigiene(void);
 char estoquedeLimpeza(void);
+char listasdeCompra(void);
