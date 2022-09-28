@@ -17,22 +17,22 @@ int main (void)
         escolha = telaPrincipal();
         switch (escolha) {
         case '1':
-            telaMenuUsuario();
+            modulocadastroUsuario();
             break;
         case '2':
-            telaMenuItens();
+            modulocadastroItem();
             break; 
         case '3':
-            telaListadeCompras();
+            menulistadeCompras();
             break;
         case '4':
-            telaEntradaItens();
+            menuentradaitens();
             break; 
         case '5':    
-            telaSaidaItens();
+            moduloSaidaItens();
             break;
         case '6':
-            telaRelatorio();
+            moduloRelatorio();
             break; 
         case '7':
             telaSobre();

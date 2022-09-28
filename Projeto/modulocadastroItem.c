@@ -2,27 +2,29 @@
 #include<stdlib.h>
 #include "modulocadastroItem.h"
 
-char modulocadastroItem(void) {
-    int escolha;
+
+void modulocadastroItem(void) {
+    char escolha;
     do {
         escolha = telaMenuItens();
         switch(escolha) {
-            case 1:
+            case '1':
                 telaCadastrarItem();
                 break;
-            case 2:
+            case '2':
                 telaCategoriadoProduto();
                 break;
-            case 3: 
+            case '3': 
                 telaLocaldeArmazenamento();
                 break;
-            case 4:
+            case '4':
                 telaEstoqueMinimo();
                 break;
-            case 5:
+            case '5':
                 telaAtualizarItem();
+
                 break;
-            case 6:
+            case '6':
                 telaExcluirItem();
                 break;
             default:
@@ -30,9 +32,9 @@ char modulocadastroItem(void) {
                 break;
         } 
      
-    } while (escolha != 0);
+    } while (escolha != '0');
 
-    return escolha;
+   
 
 }
 
@@ -177,9 +179,9 @@ char telaEstoqueMinimo(void)
 
 }
 
-char telaAtualizarItem(void)
+void telaAtualizarItem(void)
 {
-    char opcao;
+    char op;
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -194,11 +196,42 @@ char telaAtualizarItem(void)
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opção: ");
-    scanf("%c", &opcao);  
-    
-    return opcao;
+    scanf("%c", &op); 
+    getchar();
+    suitefuncao(op); 
 
 }
+
+void suitefuncao(char op){
+        switch (op)
+        {
+        case '1':
+            telaAtualizarNome();
+            break;
+        case '2':
+            telaAtualizarCodigodeBarras();
+            break;
+        case '3':
+            telaAtualizarDatadeValidade();
+            break;
+        case '4':
+            telaAtualizarCategoria();
+            break;
+        case '5':
+            telaAtualizarLocaldeArmazenamento();
+            break;
+        case '6':
+            break;
+        
+        default:
+            printf("Opção inválida\n");
+            break;
+        }
+
+
+
+}
+
 
 void telaAtualizarNome(void) 
 {
@@ -213,7 +246,7 @@ void telaAtualizarNome(void)
     getchar(); 
     printf(" | ------------------------------------------------------------- | \n");
     printf(" | ============================================================= | \n");
-    printf( " Press ENTER for continue...");
+    printf(" | Nome atualizado, por favor digite ENTER...");
     getchar();
 
 }
@@ -231,13 +264,14 @@ void telaAtualizarCodigodeBarras(void)
     getchar(); 
     printf(" | ------------------------------------------------------------- | \n");
     printf(" | ============================================================= | \n");
-    printf( " Press ENTER for continue...");
+    printf( " Código de barras atualizado, por favor digite ENTER...");
     getchar();
 
 }
 
-void telaAtualizarDatadeValidade(void) 
+char telaAtualizarDatadeValidade(void) 
 {
+    char op;
     char dataVal [10];
     system( " clear || cls");
     printf(" | ============================================================== | \n");
@@ -250,8 +284,9 @@ void telaAtualizarDatadeValidade(void)
     printf(" | ------------------------------------------------------------- | \n");
     printf(" | ============================================================= | \n");
     printf( " Press ENTER for continue...");
+    scanf("%c", &op);
     getchar();
-
+    return op;
 }
 
 char telaAtualizarCategoria(void) 
