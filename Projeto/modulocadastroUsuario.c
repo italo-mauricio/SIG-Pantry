@@ -181,7 +181,8 @@ char telaListar(void)
 
 // =============================== Remover o cadastro ============================
 
-char telaRemove(void){
+char telaRemove(void)
+{
 
     char opcao;
     system ( " cls " );
