@@ -11,10 +11,7 @@
 * **Developers:** Manuelly Rodrigues Victor e Italo Mauricio de Medeiros Santos
 * Data de início: 22/08/2022
 * [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-* Mapa do projeto: <a id="github" href="https://github.com/italomauricio1/SIG-Pantry/tree/main/Mapa%20mental%20do%20projeto" target="_blank">
-    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="_" />
-  </a>
-</p>
+* Mapa do projeto: [<img src = "https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white">](https://lucid.app/lucidspark/6aa7ed58-e5f9-439a-bbc7-adb0bd6b004b/edit?beaconFlowId=2F65614FECD5419E&invitationId=inv_c5c19eca-430e-49ce-9871-1885961e695b#)
 
 ## Features:
 
