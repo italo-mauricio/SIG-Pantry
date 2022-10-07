@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include "moduloEntradaItens.h"
 
-char menuentradaitens(void)
+char menuEntradaItens(void)
 {
     int escolha;
     do {
