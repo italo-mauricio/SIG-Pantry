@@ -12,7 +12,7 @@ void menuEntradaItens(void)
                 telaRegistrarEntrada();
                 break;
             case '2':
-                CancelarEntrada();
+                telaCancelarEntrada();
                 break;
         } 
      
@@ -63,5 +63,22 @@ void telaRegistrarEntrada(void)
 
 }
 
+void telaCancelarEntrada(void)
+{
+    char codigodeBarras [13];
+    system ( " clear||cls " );
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | --------------- CANCELAR ENTRADA DE ITEM ---------------- | \n");
+    printf(" |                                                           | \n");    
+    printf(" |  Informe o código de barras do produto: ");
+    scanf("%[A-Z a-z]", codigodeBarras);
+    getchar(); 
+    printf(" |                                                           | \n");
+    printf(" | ========================================================= | \n");
+    printf(" | Press ENTER for exit... ");
+    getchar();
+
+}
 
 
