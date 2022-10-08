@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include "modulolistadeCompras.h"
 
-char menulistadeCompras(void)
+void menulistadeCompras(void)
 {
-    int escolha;
+    char escolha;
     do {
         escolha = telaListadeCompras();
         switch (escolha) {
-        case 1:
+        case '1':
             telaMontarLista();
             break;
         /*    char alimentosVencimento;
@@ -31,27 +31,25 @@ char menulistadeCompras(void)
 
                 } while(alimentosVencimento != '0'); */
 
-        case 2:
+        case '2':
             telaItensQuantMinima();
             break; 
-        case 3:
+        case '3':
             telaItensProxVencimento();
             break;
-        case 4:
+        case '4':
             telaAdicionarItensaLista();
             break; 
-        case 5:
+        case '5':
             telaItensCadastrados();
             break;
         default:
-            printf("Opcao invalida\n");
+            printf("Opção inválida\n");
             break;
     }
 
-    } while(escolha != 0);
+    } while(escolha != '0');
         printf("Obrigado! Volte sempre!");
-
-    return escolha;
 
 } 
 
@@ -79,7 +77,7 @@ char telaListadeCompras(void)
 
 } 
 
-char telaItensQuantMinima(void)
+void telaItensQuantMinima(void)
 {
     char esc;
     system ( " clear||cls " );
@@ -88,34 +86,26 @@ char telaItensQuantMinima(void)
     printf(" | ----------- | ITENS NO ESTOQUE COM QUANTIDADE MÍNIMA | ------------- | \n");
     printf(" |                                                                      | \n");
     printf(" |  Itens no estoque com quantidade mínima:  "); //criar função para puxar essa informação
-    printf(" |  0- Voltar à tela de lista de compras");
-    scanf("%c", &esc);
     getchar();
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
     printf(" Press ENTER to exit...");
 
-    return esc;
 
 }
 
-char telaItensProxVencimento(void)
+void telaItensProxVencimento(void)
 {
-    char esc;
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | ----------------- | ITENS PRÓXIMOS AO VENCIMENTO | ----------------- | \n");
     printf(" |                                                                      | \n");
     printf(" |  Itens próximos ao vencimento: ");
-    printf(" |  0- Voltar à tela lista de compras ");
-    scanf("%c", &esc);
     getchar();
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
     printf(" Press ENTER to exit...");
-
-    return esc;
 
 }
 
@@ -141,53 +131,45 @@ char telaAdicionarItensaLista(void)
 // nessa opção de itens à sua escolha cria-se uma outra tela, onde terá nome; quantidade...
 }
 
-char telaMontarLista(void)
+void telaMontarLista(void)
 {
     char nome[20];
     char categoriaProduto[10];
     int quantidadeProduto;
-    char esc;
     system (" clear||cls ");
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
-    printf("| ------------- | Montar a sua Lista de Compras| -------------- | \n");
+    printf("| ------------- | Montar a sua Lista de Compras | ------------- | \n");
     printf("|                                                               | \n");
-    printf("|  1- Informe o nome: ");
+    printf("|  Informe o nome: ");
     scanf("%[A-Z a-z]", nome);
     getchar();
-    printf("|  2- Informe a categoria do produto: ");
+    printf("|  Informe a categoria do produto: ");
     scanf("%[A-Z a-z]", categoriaProduto);
     getchar();
-    printf("|  3- Informe a quantidade do produto: ");
+    printf("|  Informe a quantidade do produto: ");
     scanf("%d", &quantidadeProduto);
     getchar();
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
     printf(" Press ENTER to exit...");
-    scanf("%c", &esc);
     
    /* printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");*/
 
-   return esc;
-
 }
 
-char telaItensCadastrados(void)
+void telaItensCadastrados(void)
 {
-    char esc;
+
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | ----------------- | ITENS JÁ CADASTRADOS NA LISTA | ---------------- | \n");
     printf(" |                                                                      | \n");
     printf(" |  Itens cadastrados na lista:  "); //criar função para puxar essa informação
-    printf(" |  0- Voltar à tela de lista de compras");
-    scanf("%c", &esc);
     getchar();
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
     printf(" Press ENTER to exit...");
-
-    return esc;
 
 }

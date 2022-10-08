@@ -1,8 +1,8 @@
 //cabeçalho das funções usadas no arquivo.c
-char menulistadeCompras(void);
+void menulistadeCompras(void);
 char telaListadeCompras(void);
-char telaItensQuantMinima(void);
-char telaItensProxVencimento(void);
+void telaItensQuantMinima(void);
+void telaItensProxVencimento(void);
 char telaAdicionarItensaLista(void);
-char telaItensCadastrados(void);
-char telaMontarLista(void);
+void telaMontarLista(void);
+void telaItensCadastrados(void);

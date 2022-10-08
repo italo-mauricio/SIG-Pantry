@@ -2,26 +2,23 @@
 #include<stdlib.h>
 #include "moduloEntradaItens.h"
 
-char menuEntradaItens(void)
+void menuEntradaItens(void)
 {
-    int escolha;
+    char escolha;
     do {
         escolha = telaEntradaItens();
         switch(escolha) {
-            case 1:
-                telaNomeProdutoAdicionado();
+            case '1':
+                telaRegistrarEntrada();
                 break;
-            case 2:
-                telaQuantProdutos();
+            case '2':
+                telaCancelarEntrada();
                 break;
         } 
      
-    } while (escolha != 0);
-
-    return escolha;
+    } while (escolha != '0');
 
 }
-
 
 char telaEntradaItens(void)
 {
@@ -31,9 +28,9 @@ char telaEntradaItens(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ------ SIG-Pantry - ENTRADA DE ITENS DA DESPENSA -------- | \n");
     printf(" |                                                           | \n");
-    printf(" |            1- Código de barras do produto adicionado      | \n");
-    printf(" |            2- Quantidade de produto                       | \n");                 
-    printf("              0- Voltar à tela principal                     | \n");
+    printf(" |                 1- Registrar entrada                      | \n");
+    printf(" |                 2- Cancelar entrada                       | \n");                 
+    printf(" |                 0- Voltar à tela principal                | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opção: ");
@@ -44,47 +41,43 @@ char telaEntradaItens(void)
 
 }
 
-char telaNomeProdutoAdicionado(void)
+void telaRegistrarEntrada(void)
 {
     char codigodeBarras [13];
-    char esc;
+    char quantProduto [13];
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ---------------- NOME DO PRODUTO ADICIONADO ------------- | \n");
+    printf(" | -------------- REGISTRAR ENTRADA DE ITEM ---------------- | \n");
     printf(" |                                                           | \n");    
-    printf(" |  1- Informe o código de barras do produto que será adicionado: ");
+    printf(" |  Informe o código de barras do produto que será adicionado: ");
     scanf("%[A-Z a-z]", codigodeBarras);
     getchar(); 
-    printf(" |  0- Voltar à tela de entrada \n");
+    printf(" |  Informe a quantidade de produto adicionado: ");
+    scanf("%[A-Z a-z., 0-9., -]", quantProduto);
+    getchar(); 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
-    scanf("%c", &esc); 
     getchar();
-    return esc; 
 
 }
 
-char telaQuantProdutos(void)
+void telaCancelarEntrada(void)
 {
-    char quantProduto [13];
-    char esc;
+    char codigodeBarras [13];
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ------------- QUANTIDADE DE PRODUTO ADICIONADO ---------- | \n");
+    printf(" | --------------- CANCELAR ENTRADA DE ITEM ---------------- | \n");
     printf(" |                                                           | \n");    
-    printf(" |  1- Informe a quantidade de produto adicionado: ");
-    scanf("%[A-Z a-z., 0-9., -]", quantProduto);
+    printf(" |  Informe o código de barras do produto: ");
+    scanf("%[A-Z a-z]", codigodeBarras);
     getchar(); 
-    printf(" |  0- Voltar à tela de entrada \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
-    scanf("%c", &esc); 
     getchar();
-    return esc; 
 
 }
 

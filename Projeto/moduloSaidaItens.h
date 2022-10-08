@@ -1,4 +1,4 @@
-char telaQuantProduto(void);
+void moduloSaidaItens(void);
 char telaSaidaItens(void);
-char moduloSaidaItens(void);
-char telaNomeProdutoRetirado(void);
+void telaRegistrarSaida(void);
+void telaCancelarSaida(void);

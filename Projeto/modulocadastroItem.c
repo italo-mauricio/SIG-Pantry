@@ -34,10 +34,7 @@ void modulocadastroItem(void) {
      
     } while (escolha != '0');
 
-   
-
 }
-
 
 char telaMenuItens(void)
 {
@@ -64,9 +61,8 @@ char telaMenuItens(void)
 
 }
 
-char telaCadastrarItem(void)
+void telaCadastrarItem(void)
 {
-    char esc;
     char nomeProduto [20];
     char nomeMarca [20];
     char codigoBarras [13];
@@ -88,13 +84,10 @@ char telaCadastrarItem(void)
     printf(" | Data de validade do produto (dd/mm/aaaa): ");
     scanf("%[0-9., /]", dataValidade);
     getchar(); 
-    printf(" | 0- Voltar à tela menu itens \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
-    scanf("%c", &esc); 
     getchar();
-    return esc;
 
 }
 /*void telaCadastrarAlimento(void) 
@@ -157,9 +150,8 @@ char telaLocaldeArmazenamento(void)
 
 }
 
-char telaEstoqueMinimo(void)
+void telaEstoqueMinimo(void)
 {
-    char esc;
     char estoqueMinimo [20];
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
@@ -169,13 +161,10 @@ char telaEstoqueMinimo(void)
     printf(" | Estoque mínimo do produto cadastrado: ");
     scanf("%[0-9]", estoqueMinimo);
     getchar(); 
-    printf(" | 0- Voltar à tela menu itens \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
-    scanf("%c", &esc); 
     getchar();
-    return esc;
 
 }
 
@@ -266,9 +255,9 @@ void telaAtualizarCodigodeBarras(void)
 
 }
 
-char telaAtualizarDatadeValidade(void) 
+void telaAtualizarDatadeValidade(void) 
 {
-    char op;
+
     char dataVal [10];
     system( " clear || cls");
     printf(" | ============================================================== | \n");
@@ -281,9 +270,8 @@ char telaAtualizarDatadeValidade(void)
     printf(" | ------------------------------------------------------------- | \n");
     printf(" | ============================================================= | \n");
     printf( " Press ENTER for continue...");
-    scanf("%c", &op);
     getchar();
-    return op;
+
 }
 
 char telaAtualizarCategoria(void) 
@@ -331,9 +319,8 @@ char telaAtualizarLocaldeArmazenamento(void)
 
 }
 
-char telaExcluirItem(void)
+void telaExcluirItem(void)
 {
-    char opcao;
     char barra [13];
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
@@ -350,9 +337,6 @@ char telaExcluirItem(void)
     printf(" | -------------------------------------------------------------- | \n");
     printf(" | ============================================================== | \n");
     printf(" Press ENTER for continue... ");
-    scanf("%c", &opcao);
     getchar();
-
-    return opcao;
 
 }
