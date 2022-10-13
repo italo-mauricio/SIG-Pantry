@@ -4,47 +4,6 @@
 
 int lerEmail(void)
 {
-/* o que é um e-mail invalido? 
-
-Tem mais de um '@' ou nenhum
-Tem somente numerais ou nada nos extremos de '@'
-Tem 1 ou mais dots (.) em sequência ou seguido de '@'
-Tem parte local [antes do '@'] de tamanho maior que 64 caracteres
-Tem espaço "   "
-Não tem caixa de entrada. */
-
-
-
-}
-
-
-int lerCPF(void)
-{
-
-
-}
-
-
-int lerData(void)
-{
-
-
-}
-
-int lerString(void)
-{
-
-
-}
-
-int lerCodigoBarras(void)
-{
-
-
-}
-
-int lerEmail(void){
-
   char email[50]={"abc@xyz.com"};
   int tam=strlen(email);
   int arroba = 0, ponto = 0, antesPonto = 0, depoisPonto = 0, i;
@@ -80,4 +39,34 @@ int lerEmail(void){
         printf("Invalido");
 
 
+
+
+
 }
+
+
+int lerCPF(void)
+{
+
+
+}
+
+
+int lerData(void)
+{
+
+
+}
+
+int lerString(void)
+{
+
+
+}
+
+int lerCodigoBarras(void)
+{
+
+
+}
+
