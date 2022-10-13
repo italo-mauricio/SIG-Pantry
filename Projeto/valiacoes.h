@@ -1,1 +1,1 @@
-int lerEmail(void);
+int lerEmail(char email[]);

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "valiacoes.h"
 
-int lerEmail(void)
+int lerEmail(char email[])
 {
   char email[50]={"abc@xyz.com"};
   int tam=strlen(email);
