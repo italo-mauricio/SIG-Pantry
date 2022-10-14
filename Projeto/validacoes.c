@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "valiacoes.h"
 
-int lerEmail(char email[])
+int lerEmail(void)
 {
   char email[50]={"abc@xyz.com"};
   int tam=strlen(email);
@@ -58,15 +59,49 @@ int lerData(void)
 
 }
 
-int lerString(void)
-{
-
-
-}
 
 int lerCodigoBarras(void)
 {
 
 
+} 
+
+
+int lerNome(void)
+{
+    char tamanho;
+    char i;
+    char nome [20];
+    tamanho = strlen(nome);
+    if (tamanho > 1) {
+        return 0;
+    }
+        for (int i = 0; i < tamanho; i++) {
+            if (nome[i] == 'a' && nome[i] <= 'z') {
+                return 0;
+            }
+            if (nome[i] == 'A' && nome[i] <= 'Z') {
+                return 0;
+            } 
+            if (nome[i] == ' ') {
+                return 0;  
+            }         
+            if (nome[i] == '.') {
+                return 1;
+            }
+            if (nome[i] == ',') {
+                return 1;
+            }
+            if (nome[i] == '/') {
+                return 1;
+            }
+            if (nome[i] == ';') {
+                return 1;
+            }
+            else {
+                return 1;  
+            }          
+        }  
 }
 
+}

@@ -66,7 +66,6 @@ int telaMenuUsuario(void) // Tela inicial dos cadastros
 void cadastroUsuario(void) // Cadastro central do usuário
 {
     char nome [20];
-    char CPF [11];
     char Email [30]; 
     char DatadeNascimento [8];
     char Username [10];
@@ -80,9 +79,6 @@ void cadastroUsuario(void) // Cadastro central do usuário
     printf(" | Informe o seu nome: ");
     scanf("%[A-Z a-z ~ ]", nome);
     getchar(); 
-    printf(" | Informe o seu CPF: ");
-    scanf("%[0-9.-]", CPF); 
-    getchar();
     printf(" | Informe o seu E-mail: ");   
     scanf("%[A-Z @ _ a-z 0-9 .]", Email);
     while (!lerEmail(Email))
@@ -105,6 +101,13 @@ void cadastroUsuario(void) // Cadastro central do usuário
     printf(" Press ENTER to exit...");
     getchar();
 }
+
+//do{
+  //  nome = lerNome(void);
+// } while(!lerNome)
+
+
+
 
 // ============================== Editar o cadastro =================================== 
 
