@@ -45,14 +45,6 @@ int lerEmail(void)
 
 }
 
-
-int lerCPF(void)
-{
-
-
-}
-
-
 int lerData(void)
 {
 
@@ -104,3 +96,60 @@ int lerNome(void)
         }  
 }
 
+
+int lerUsernameSenha(void) 
+{
+  char username[20];
+  char tamanho;
+  char i;
+  printf("Digite o seu username: \n");
+  scanf("%s", username);
+  
+  tamanho = strlen(username);
+  
+  if (tamanho > 4) { //para não ter usuários com só: @ ou a@ ou 12... 
+    return 0;
+  }
+    for (int i = 0; i < tamanho; i++) {
+      if (username[i] == 'a' && username[i] <= 'z'){
+        return 0;
+      }
+      if (username[i] == 'A' && username[i] <= 'Z') {
+        return 0;
+      }
+      if (username[i] == '_') {
+        return 0;
+      }
+      if (username[i] == '-') {
+        return 0;
+      }
+      if (username[i] == ' '){
+        return 0;  
+      }
+      if (username[i] == '.') {
+        return 0;
+      }
+      if (username[i] == ',') {
+        return 0;
+      }
+      if (username[i] == '/') {
+        return 0;
+      }
+      if (username[i] == ';') {
+        return 0;
+      }
+      if (username[i] == '@') {
+        return 0;
+      }
+      if (username[i] == '0' && username[i] <= 9) {
+        return 0;
+      }
+      if (username[i] == '`' || username[i] == '^' || username[i] == '~') {
+        return 1;
+      }    
+      else {
+        return 1;  
+      }     
+    } 
+    
+}
