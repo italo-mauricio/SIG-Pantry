@@ -81,6 +81,11 @@ void cadastroUsuario(void) // Cadastro central do usuário
     getchar(); 
     printf(" | Informe o seu E-mail: ");   
     scanf("%[A-Z @ _ a-z 0-9 .]", Email);
+    while (!lerEmail(Email))
+    {
+        printf("teste");
+    }
+    
     getchar();
     printf(" | Informe sua data de nascimento (dd/mm/aaaa): ");
     scanf("%[/ 0-9]", DatadeNascimento);
