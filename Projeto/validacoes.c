@@ -96,6 +96,7 @@ int lerNome(void)
         }  
 }
 
+
 int lerUsernameSenha(void) 
 {
   char username[20];
