@@ -4,4 +4,4 @@ int lerEmail(void);
 int lerData(void);
 int lerUsernameSenha(char usernameSenha[], int tamanho);
 int lerQuantidade(char numero[], int tamanho);
-
+void deixarTelaLimpa(void);
