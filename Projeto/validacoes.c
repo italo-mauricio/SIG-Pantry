@@ -49,52 +49,16 @@ int lerData(void)
 }
 
 
-int lerCodigoBarras(void)
-{
+//int lerCodigoBarras(void)
+//{
 
 
-} 
-
-
-int lerNome(char nome[], int tamanho)
-{
-
-    if (tamanho > 1) {
-        return 0;
-    }
-        for (int i = 0; i < tamanho; i++) {
-            if (nome[i] == 'a' && nome[i] <= 'z') {
-                return 0;
-            }
-            if (nome[i] == 'A' && nome[i] <= 'Z') {
-                return 0;
-            } 
-            if (nome[i] == ' ') {
-                return 0;  
-            }         
-            if (nome[i] == '.') {
-                return 1;
-            }
-            if (nome[i] == ',') {
-                return 1;
-            }
-            if (nome[i] == '/') {
-                return 1;
-            }
-            if (nome[i] == ';') {
-                return 1;
-            }
-            else {
-                return 1;  
-            }          
-        }  
-}
+//} 
 
 
 int lerUsernameSenha(char usernameSenha[], int tamanho) 
 {
- 
-  
+  tamanho = strlen(usernameSenha);   
   if (tamanho < 4) { //para não ter usuários com só: @ ou a@ ou 12... 
     return 1;
   } else {
@@ -123,16 +87,14 @@ int lerUsernameSenha(char usernameSenha[], int tamanho)
     
 }
 
-
-
-
-int lerLetras(char nome[], int tamanho){
-
+int lerLetras(char nome[], int tamanho)
+{
+  tamanho = strlen(nome);
 
   if (tamanho < 1) {
       return 1; 
   } else {
-      for (int i = 0; i <= (tamanho -1); i++) 
+      for (int i = 0; i <= (tamanho - 1); i++) 
         if ((nome[i] <= 'z') && (nome[i] >= 'A'))
         {
            if ((nome[i] <= 'a') && (nome[i] <= 'Z') || (nome[i] == ' ')) 
@@ -149,7 +111,23 @@ int lerLetras(char nome[], int tamanho){
   }
 
 
-int teste(void){
+int lerQuantidade(char numero[], int tamanho)
+{
+  tamanho = strlen(numero);
 
-  return 0;
+  if (tamanho < 1) {
+      return 1; 
+  } else {
+      for (int i = 0; i <= (tamanho - 1); i++) 
+        if ((numero[i] <= '9') && (numero[i] >= '0'))
+        {
+              if((numero[i] == '@') || (numero[i] == '.') || (numero[i] == ';')) {
+                return 1;
+              }
+            } else{  
+              return 1;
+      
+              }          
+      } 
+
 }
