@@ -147,3 +147,9 @@ int lerLetras(char nome[], int tamanho){
       }    
 
   }
+
+
+int teste(void){
+
+  return 0;
+}
