@@ -56,12 +56,9 @@ int lerCodigoBarras(void)
 } 
 
 
-int lerNome(void)
+int lerNome(char nome[], int tamanho)
 {
-    char tamanho;
-    char i;
-    char nome [20];
-    tamanho = strlen(nome);
+
     if (tamanho > 1) {
         return 0;
     }
@@ -94,15 +91,9 @@ int lerNome(void)
 }
 
 
-int lerUsernameSenha(void) 
+int lerUsernameSenha(char usernameSenha[], int tamanho) 
 {
-  char usernameSenha[20];
-  char tamanho;
-
-  printf("Digite o/a seu/sua username/senha: \n");
-  scanf("%s", usernameSenha);
-  
-  tamanho = strlen(usernameSenha);
+ 
   
   if (tamanho < 4) { //para não ter usuários com só: @ ou a@ ou 12... 
     return 1;
@@ -135,14 +126,9 @@ int lerUsernameSenha(void)
 
 
 
-int lerLetras(void){
+int lerLetras(char nome[], int tamanho){
 
-  char tamanho;
-  char nome [20];
-  printf("Nome: ");
-  scanf("%s", nome);
-  
-  tamanho = strlen(nome);
+
   if (tamanho < 1) {
       return 1; 
   } else {
