@@ -40,9 +40,6 @@ int lerEmail(void)
         printf("Invalido");
 
 
-
-
-
 }
 
 int lerData(void)
@@ -99,57 +96,38 @@ int lerNome(void)
 
 int lerUsernameSenha(void) 
 {
-  char username[20];
+  char usernameSenha[20];
   char tamanho;
-  char i;
-  printf("Digite o seu username: \n");
-  scanf("%s", username);
+
+  printf("Digite o/a seu/sua username/senha: \n");
+  scanf("%s", usernameSenha);
   
-  tamanho = strlen(username);
+  tamanho = strlen(usernameSenha);
   
-  if (tamanho > 4) { //para não ter usuários com só: @ ou a@ ou 12... 
-    return 0;
-  }
+  if (tamanho < 4) { //para não ter usuários com só: @ ou a@ ou 12... 
+    return 1;
+  } else {
     for (int i = 0; i < tamanho; i++) {
-      if (username[i] == 'a' && username[i] <= 'z'){
+      if ((usernameSenha[i] == 'a') && (usernameSenha[i] <= 'z')) {
         return 0;
       }
-      if (username[i] == 'A' && username[i] <= 'Z') {
+      else if ((usernameSenha[i] == 'A') && (usernameSenha[i] <= 'Z')) {
         return 0;
       }
-      if (username[i] == '_') {
+      else if ((usernameSenha[i] == '_') || (usernameSenha[i] == '-')) {
         return 0;
       }
-      if (username[i] == '-') {
+      else if ((usernameSenha[i] == '@') || (usernameSenha[i] == '.')) {
         return 0;
       }
-      if (username[i] == ' '){
-        return 0;  
-      }
-      if (username[i] == '.') {
+      else if ((usernameSenha[i] == '0') && (usernameSenha[i] <= 9)) {
         return 0;
-      }
-      if (username[i] == ',') {
-        return 0;
-      }
-      if (username[i] == '/') {
-        return 0;
-      }
-      if (username[i] == ';') {
-        return 0;
-      }
-      if (username[i] == '@') {
-        return 0;
-      }
-      if (username[i] == '0' && username[i] <= 9) {
-        return 0;
-      }
-      if (username[i] == '`' || username[i] == '^' || username[i] == '~') {
-        return 1;
-      }    
+      }   
       else {
-        return 1;  
+        break;  
       }     
-    } 
+    }
+
+} 
     
 }
