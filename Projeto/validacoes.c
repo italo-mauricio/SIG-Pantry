@@ -131,3 +131,33 @@ int lerUsernameSenha(void)
 } 
     
 }
+
+
+
+
+int lerLetras(void){
+
+  char tamanho;
+  char nome [20];
+  printf("Nome: ");
+  scanf("%s", nome);
+  
+  tamanho = strlen(nome);
+  if (tamanho < 1) {
+      return 1; 
+  } else {
+      for (int i = 0; i <= (tamanho -1); i++) 
+        if ((nome[i] <= 'z') && (nome[i] >= 'A'))
+        {
+           if ((nome[i] <= 'a') && (nome[i] <= 'Z') || (nome[i] == ' ')) 
+            return 0;
+              if((nome[i] == '@') || (nome[i] == 0) || (nome[i] <= 9)) {
+                return 1;
+              }
+            } else{  
+              return 1;
+      
+              }          
+      }    
+
+  }
