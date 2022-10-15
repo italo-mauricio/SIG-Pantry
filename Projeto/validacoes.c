@@ -131,3 +131,10 @@ int lerQuantidade(char numero[], int tamanho)
       } 
 
 }
+
+void deixarTelaLimpa(void) //adaptado de by @flgorgonio
+{
+  if(system("clear") || system("cls")) {
+  }
+  
+}
