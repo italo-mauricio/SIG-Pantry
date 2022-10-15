@@ -19,7 +19,7 @@ int lerEmail(void)
         break; // se @ vier antes de 3 caracteres, erro
     }
     else if (arroba) { // se já encontrou @
-      if (ponto) { // se já encontrou . depois de @
+      if (ponto) { // se já encontrou . depois de @@
         depoisPonto++;
       }
       else if(c == '.') {
