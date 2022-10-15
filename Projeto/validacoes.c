@@ -35,9 +35,9 @@ int lerEmail(void)
   } // for
 
     if (i == tam && depoisPonto > 1)
-        printf("Valido");
+        return 0;
     else
-        printf("Invalido");
+        return 1;
 
 
 }
