@@ -84,8 +84,9 @@ int lerLetras(char nome[])
       for (int i = 0; i <= (tamanho - 1); i++) 
         if ((nome[i] <= 'z') && (nome[i] >= 'A'))
         {
-           if ((nome[i] <= 'a') && (nome[i] <= 'Z') || (nome[i] == ' ')) 
-                return 0;
+           if (((nome[i] <= 'a') && (nome[i] <= 'Z')) || (nome[i] == ' ')) {
+            return 0;
+           }
               if((nome[i] == '@') || (nome[i] == 0) || (nome[i] <= 9)) {
                 return 1;
               }
@@ -97,6 +98,8 @@ int lerLetras(char nome[])
 
   }
 
+int meses[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+char decimais[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
 int dataValida(char maiorDia[]) { //adaptado de by @flgorgonio
   
