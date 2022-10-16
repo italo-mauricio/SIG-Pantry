@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include "modulocadastroItem.h"
+#include "validacoes.h"
 
 
 void modulocadastroItem(void) {
@@ -266,6 +267,7 @@ void telaAtualizarDatadeValidade(void)
     printf(" |                                                                | \n");
     printf(" |  Digite a data de validade do produto (dd/mm/aaaa): ");
     scanf("%[0-9., /]", dataVal);
+
     getchar(); 
     printf(" | ------------------------------------------------------------- | \n");
     printf(" | ============================================================= | \n");
