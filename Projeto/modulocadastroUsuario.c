@@ -66,7 +66,7 @@ int telaMenuUsuario(void) // Tela inicial dos cadastros
 
 void cadastroUsuario(void) // Cadastro central do usuário
 {
-    char nome [20];
+    char nome;
     int Email ; 
     char DatadeNascimento [8];
     char Username [10];
@@ -77,23 +77,40 @@ void cadastroUsuario(void) // Cadastro central do usuário
     printf(" |                  Cadastro SIG - Pantry                    | \n");
     printf(" | ========================================================= | \n");
     printf(" |                                                           | \n");
-    printf(" | Informe o seu nome: ");
-    scanf("%[A-Z a-z ~ ]", nome);
-    getchar(); 
-    printf(" | Informe o seu E-mail: ");   
-    scanf("%[A-Z @ _ a-z 0-9 .]", Email);
-   
+    nome = lerLetras;
+    do {
+        printf(" | Informe o seu nome: ");
+        scanf("%[A-Z a-z ~ ]", nome);
+    } while(!nome);
+
+    Email = lerEmail;
+    do {
+        printf(" | Informe o seu E-mail: ");   
+        scanf("%[A-Z @ _ a-z 0-9 .]", Email);
+    } while (!Email);
+
+    DatadeNascimento = dataValida;
+    do {
+        printf(" | Informe sua data de nascimento (dd/mm/aaaa): ");
+        scanf("%[/ 0-9]", DatadeNascimento);
+
+    } while(!DatadeNascimento);
+
+
+    Username = lerUsernameSenha;
+    do {
+        printf(" | Escolha um username: ");
+        scanf("%[A-Z 0-9 a-z]", Username);
+
+    } while(!Username);
+
+    Senha = lerUsernameSenha;
+    do {
+        printf(" | Informe sua senha: ");
+        scanf("%[A-Z a-z 0-9]", Senha);
+
+    } while(!Senha);
     
-    getchar();
-    printf(" | Informe sua data de nascimento (dd/mm/aaaa): ");
-    scanf("%[/ 0-9]", DatadeNascimento);
-    getchar();
-    printf(" | Escolha um username: ");
-    scanf("%[A-Z 0-9 a-z]", Username);
-    getchar();
-    printf(" | Informe sua senha: ");
-    scanf("%[A-Z a-z 0-9]", Senha);
-    getchar();
     printf(" | Usuário cadastrado com sucesso!                           | \n");
     printf(" | ========================================================= | \n");
     printf(" Press ENTER to exit...");
