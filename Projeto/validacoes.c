@@ -111,7 +111,7 @@ int dataValida(char maiorDia[]) { //adaptado de by @flgorgonio
       if (aa < 0 || mm < 1 || mm > 12 || dd < 1)
           return 0;
       if (mm == 2) {
-          if (bissexto(aa))
+          if (anoBissexto(aa))
             maiorDia = 29;
           else
             maiorDia = 28;
