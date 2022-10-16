@@ -69,7 +69,7 @@ int lerUsernameSenha(char usernameSenha[], int tamanho)
       }     
     }
 
-} 
+    } 
     
 }
 
