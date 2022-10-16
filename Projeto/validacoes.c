@@ -102,40 +102,35 @@ int lerLetras(char nome[])
 int meses[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 char decimais[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
-int dataValida(char maiorDia[]) { //adaptado by @flgorgonio
-  
-  char maiorDia;
-  int aa;
-  int mm;
-  int dd;
-      if (aa < 0 || mm < 1 || mm > 12 || dd < 1)
-          return 0;
-      if (mm == 2) {
-          if (anoBissexto(aa))
-            maiorDia = 29;
-          else
-            maiorDia = 28;
-        } else if (mm == 4 || mm == 6 ||
-                    mm == 9 || mm == 11) {
-                      maiorDia = 30;
-        } else
-          maiorDia = 31;
-
-        if (dd > maiorDia)
-          return 0;
-
-        return 1;
-        }
-
-
-int anoBissexto(int aa) { //adaptado by @flgorgonio
-    if ((aa % 4 == 0) && (aa % 100 != 0)) {
-      return 1;
-        } else if (aa % 400 == 0) {
-          return 1;
-    } else {
-      return 0;
-  }
+int valida_data(int dia, int mes, int ano)
+    {
+    if ((dia >= 1 && dia <= 31) && (mes >= 1 && mes <= 12) && (ano >= 1900 && ano <= 2100)) //verifica se os numeros sao validos
+        {
+            if ((dia == 29 && mes == 2) && ((ano % 4) == 0)) //verifica se o ano e bissexto
+            {
+                return 1;
+            }
+            if (dia <= 28 && mes == 2) //verifica o mes de feveireiro
+            {
+                return 1;
+            }
+            if ((dia <= 30) && (mes == 4 || mes == 6 || mes == 9 || mes == 11)) //verifica os meses de 30 dias
+            {
+                return 1;
+            }
+            if ((dia <=31) && (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes ==8 || mes == 10 || mes == 12)) //verifica os meses de 31 dias
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+      }
+       else
+           {
+                return 0;
+           }
 }
 
   

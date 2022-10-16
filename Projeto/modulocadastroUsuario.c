@@ -89,12 +89,12 @@ void cadastroUsuario(void) // Cadastro central do usuário
         scanf("%[A-Z @ _ a-z 0-9 .]", Email);
     } while (!lerEmail(Email));
 
-    do {
+    /*do {
         printf(" | Informe sua data de nascimento (dd/mm/aaaa): ");
-        scanf("%[/ 0-9]", DatadeNascimento);
+        scanf("%[0-9 /]", DatadeNascimento);
 
-    } while(!dataValida(DatadeNascimento));
-  ;
+    } while(!valida_data(DatadeNascimento));
+  ;*/
     do {
         printf(" | Escolha um username: ");
         scanf("%[A-Z a-z 0-9]", Username);
