@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include "modulocadastroUsuario.h"
 #include "validacoes.h"
+#include <string.h>
 
 /*
 DENTRO DESSE CADASTRO: estará os dados do usuário do sistema de controle de despensa doméstica.
@@ -66,50 +67,45 @@ int telaMenuUsuario(void) // Tela inicial dos cadastros
 
 void cadastroUsuario(void) // Cadastro central do usuário
 {
-    char nome;
-    int Email ; 
-    char DatadeNascimento [8];
-    char Username [10];
-    char Senha [8];
+    char nome [50];
+    char Email [50]; 
+    char DatadeNascimento[50];
+    char Username [50];
+    char Senha [50];
     system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                  Cadastro SIG - Pantry                    | \n");
     printf(" | ========================================================= | \n");
     printf(" |                                                           | \n");
-    nome = lerLetras;
-    do {
+    do
+    {
         printf(" | Informe o seu nome: ");
-        scanf("%[A-Z a-z ~ ]", nome);
-    } while(!nome);
-
-    Email = lerEmail;
+        scanf("%[A-Z a-z ]", nome);
+    } while (!lerLetras(nome));
+    
     do {
         printf(" | Informe o seu E-mail: ");   
         scanf("%[A-Z @ _ a-z 0-9 .]", Email);
-    } while (!Email);
+    } while (!lerEmail(Email));
 
-    DatadeNascimento = dataValida;
     do {
         printf(" | Informe sua data de nascimento (dd/mm/aaaa): ");
         scanf("%[/ 0-9]", DatadeNascimento);
 
-    } while(!DatadeNascimento);
-
-
-    Username = lerUsernameSenha;
+    } while(!dataValida(DatadeNascimento));
+  ;
     do {
         printf(" | Escolha um username: ");
-        scanf("%[A-Z 0-9 a-z]", Username);
+        scanf("%[A-Z a-z 0-9]", Username);
 
-    } while(!Username);
+    } while(!lerUsernameSenha(Username));
 
-    Senha = lerUsernameSenha;
     do {
         printf(" | Informe sua senha: ");
         scanf("%[A-Z a-z 0-9]", Senha);
 
-    } while(!Senha);
+    } while(!lerUsernameSenha(Senha));
     
     printf(" | Usuário cadastrado com sucesso!                           | \n");
     printf(" | ========================================================= | \n");
