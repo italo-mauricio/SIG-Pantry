@@ -42,28 +42,14 @@ int lerEmail(char email[], int tam)
 
 }
 
-int lerData(void)
-{
-
-
-}
-
-
-//int lerCodigoBarras(void)
-//{
-
-
-//} 
-
-
 int lerUsernameSenha(char usernameSenha[], int tamanho) 
-{
+{// retorna 0 se for true e 1 se for false
   tamanho = strlen(usernameSenha);   
   if (tamanho < 4) { //para não ter usuários com só: @ ou a@ ou 12... 
     return 1;
   } else {
-    for (int i = 0; i < tamanho; i++) {
-      if ((usernameSenha[i] == 'a') && (usernameSenha[i] <= 'z')) {
+    for (int i = 0; i < tamanho; i++) { 
+      if ((usernameSenha[i] == 'a') && (usernameSenha[i] <= 'z')) { 
         return 0;
       }
       else if ((usernameSenha[i] == 'A') && (usernameSenha[i] <= 'Z')) {
@@ -111,9 +97,8 @@ int lerLetras(char nome[], int tamanho)
   }
 
 
-
-int dataValida(int dd, int mm, int aa) {
- 
+int dataValida(int dd, int mm, int aa) { //adaptado de by @flgorgonio
+  
   int maiorDia;
       if (aa < 0 || mm < 1 || mm > 12 || dd < 1)
           return 0;
@@ -135,7 +120,7 @@ int dataValida(int dd, int mm, int aa) {
         }
 
 
-int bissexto(int aa) {
+int anoBissexto(int aa) { //adaptado de by @flgorgonio
     if ((aa % 4 == 0) && (aa % 100 != 0)) {
       return 1;
         } else if (aa % 400 == 0) {
@@ -146,9 +131,6 @@ int bissexto(int aa) {
 }
 
   
-
-
-
 int lerQuantidade(char numero[], int tamanho)
 {
   tamanho = strlen(numero);
@@ -169,7 +151,6 @@ int lerQuantidade(char numero[], int tamanho)
       } 
 
 }
-
 
 
 void deixarTelaLimpa(void) //adaptado de by @flgorgonio
