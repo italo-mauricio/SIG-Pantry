@@ -5,7 +5,7 @@
 
 int lerEmail(char email[])
 {
-  char email[50]={"abc@xyz.com"};
+  
   int tam=strlen(email);
   int arroba = 0, ponto = 0, antesPonto = 0, depoisPonto = 0, i;
 
@@ -85,7 +85,7 @@ int lerLetras(char nome[])
         if ((nome[i] <= 'z') && (nome[i] >= 'A'))
         {
            if ((nome[i] <= 'a') && (nome[i] <= 'Z') || (nome[i] == ' ')) 
-            return 0;
+                return 0;
               if((nome[i] == '@') || (nome[i] == 0) || (nome[i] <= 9)) {
                 return 1;
               }
@@ -98,9 +98,9 @@ int lerLetras(char nome[])
   }
 
 
-int dataValida(int maiorDia[]) { //adaptado de by @flgorgonio
+int dataValida(char maiorDia[]) { //adaptado de by @flgorgonio
   
-  int maiorDia;
+  char maiorDia;
   int aa;
   int mm;
   int dd;

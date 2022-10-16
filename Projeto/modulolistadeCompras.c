@@ -79,7 +79,7 @@ char telaListadeCompras(void)
 
 void telaItensQuantMinima(void)
 {
-    char esc;
+    
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
@@ -89,7 +89,9 @@ void telaItensQuantMinima(void)
     getchar();
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
-    printf(" Press ENTER to exit...");
+    system("Pause");
+    system("cls");
+
 
 
 }

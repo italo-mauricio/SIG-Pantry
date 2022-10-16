@@ -21,7 +21,7 @@ void moduloSaidaItens(void)
      
     } while (escolha != '0');
 
-    return escolha;
+    
 
 }
 
