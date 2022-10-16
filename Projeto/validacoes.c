@@ -102,7 +102,7 @@ int lerLetras(char nome[])
 int meses[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 char decimais[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
-int dataValida(char maiorDia[]) { //adaptado de by @flgorgonio
+int dataValida(char maiorDia[]) { //adaptado by @flgorgonio
   
   char maiorDia;
   int aa;
@@ -111,7 +111,7 @@ int dataValida(char maiorDia[]) { //adaptado de by @flgorgonio
       if (aa < 0 || mm < 1 || mm > 12 || dd < 1)
           return 0;
       if (mm == 2) {
-          if (bissexto(aa))
+          if (anoBissexto(aa))
             maiorDia = 29;
           else
             maiorDia = 28;
@@ -128,7 +128,7 @@ int dataValida(char maiorDia[]) { //adaptado de by @flgorgonio
         }
 
 
-int anoBissexto(int aa) { //adaptado de by @flgorgonio
+int anoBissexto(int aa) { //adaptado by @flgorgonio
     if ((aa % 4 == 0) && (aa % 100 != 0)) {
       return 1;
         } else if (aa % 400 == 0) {
@@ -161,7 +161,7 @@ int lerQuantidade(char numero[], int tamanho)
 }
 
 
-void deixarTelaLimpa(void) //adaptado de by @flgorgonio
+void deixarTelaLimpa(void) //adaptado by @flgorgonio
 {
   if(system("clear") || system("cls")) {
   }
