@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include "modulocadastroUsuario.h"
+#include "validacoes.h"
 
 /*
 DENTRO DESSE CADASTRO: estará os dados do usuário do sistema de controle de despensa doméstica.
@@ -66,7 +67,7 @@ int telaMenuUsuario(void) // Tela inicial dos cadastros
 void cadastroUsuario(void) // Cadastro central do usuário
 {
     char nome [20];
-    char Email [30]; 
+    int Email ; 
     char DatadeNascimento [8];
     char Username [10];
     char Senha [8];
@@ -81,10 +82,7 @@ void cadastroUsuario(void) // Cadastro central do usuário
     getchar(); 
     printf(" | Informe o seu E-mail: ");   
     scanf("%[A-Z @ _ a-z 0-9 .]", Email);
-    while (!lerEmail(Email))
-    {
-        printf("teste");
-    }
+   
     
     getchar();
     printf(" | Informe sua data de nascimento (dd/mm/aaaa): ");
