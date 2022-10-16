@@ -3,9 +3,9 @@
 #include <string.h>
 #include "validacoes.h"
 
-int lerEmail(char email[], int tam)
+int lerEmail(char email[])
 {
-  char email[50]={"abc@xyz.com"};
+  
   int tam=strlen(email);
   int arroba = 0, ponto = 0, antesPonto = 0, depoisPonto = 0, i;
 
@@ -42,9 +42,9 @@ int lerEmail(char email[], int tam)
 
 }
 
-int lerUsernameSenha(char usernameSenha[], int tamanho) 
+int lerUsernameSenha(char usernameSenha[]) 
 {// retorna 0 se for true e 1 se for false
-  tamanho = strlen(usernameSenha);   
+  int tamanho = strlen(usernameSenha);   
   if (tamanho < 4) { //para não ter usuários com só: @ ou a@ ou 12... 
     return 1;
   } else {
@@ -73,9 +73,10 @@ int lerUsernameSenha(char usernameSenha[], int tamanho)
     
 }
 
-int lerLetras(char nome[], int tamanho)
+int lerLetras(char nome[])
 {
-  tamanho = strlen(nome);
+
+  int tamanho = strlen(nome);
 
   if (tamanho < 1) {
       return 1; 
@@ -84,7 +85,7 @@ int lerLetras(char nome[], int tamanho)
         if ((nome[i] <= 'z') && (nome[i] >= 'A'))
         {
            if ((nome[i] <= 'a') && (nome[i] <= 'Z') || (nome[i] == ' ')) 
-            return 0;
+                return 0;
               if((nome[i] == '@') || (nome[i] == 0) || (nome[i] <= 9)) {
                 return 1;
               }
@@ -97,9 +98,12 @@ int lerLetras(char nome[], int tamanho)
   }
 
 
-int dataValida(int dd, int mm, int aa) { //adaptado de by @flgorgonio
+int dataValida(char maiorDia[]) { //adaptado de by @flgorgonio
   
-  int maiorDia;
+  char maiorDia;
+  int aa;
+  int mm;
+  int dd;
       if (aa < 0 || mm < 1 || mm > 12 || dd < 1)
           return 0;
       if (mm == 2) {

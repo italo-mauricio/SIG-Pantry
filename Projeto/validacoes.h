@@ -1,8 +1,8 @@
-int lerLetras(char nome[], int tamanho);
-int lerEmail(char email[], int tam);
+int lerLetras(char nome[]);
+int lerEmail(char email[]);
 //int lerCodigoBarras(void);
-int lerUsernameSenha(char usernameSenha[], int tamanho);
+int lerUsernameSenha(char usernameSenha[]);
 int lerQuantidade(char numero[], int tamanho);
 void deixarTelaLimpa(void);
-int dataValida(int dd, int mm, int aa);
+int dataValida(char maiorDia[]);
 int anoBissexto(int aa);
