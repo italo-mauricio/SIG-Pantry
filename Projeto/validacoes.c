@@ -69,7 +69,8 @@ int lerUsernameSenha(char usernameSenha[])
       }     
     }
 
-    } 
+    }
+    return 0; 
     
 }
 
@@ -94,8 +95,8 @@ int lerLetras(char nome[])
               return 1;
       
               }          
-      }    
-
+      }
+      return 0;    
   }
 
 int meses[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -152,11 +153,11 @@ int lerQuantidade(char numero[], int tamanho)
                 return 1;
               }
             } else{  
-              return 1;
-      
+              return 1;      
               }          
-      } 
+      }
 
+      return 0;
 }
 
 
