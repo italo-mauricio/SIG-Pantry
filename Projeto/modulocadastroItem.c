@@ -66,6 +66,7 @@ void telaCadastrarItem(void)
 {
     char nomeProduto [20];
     char nomeMarca [20];
+    int dia, mes, ano;
     char codigoBarras [13];
     char dataValidade [10];
     system ( " clear||cls " );
@@ -73,18 +74,43 @@ void telaCadastrarItem(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------------- SIG-Pantry - CADASTRAR ITENS ------------- | \n");
     printf(" |                                                           | \n");
-    printf(" | Nome do produto: ");
-    scanf("%[A-Z a-z]", nomeProduto);
-    getchar(); 
-    printf(" | Nome da marca: ");
-    scanf("%[A-Z a-z]", nomeMarca);
-    getchar(); 
-    printf(" | Código de barras: ");
-    scanf("%[A-Z a-z., 0-9., -]", codigoBarras);
-    getchar(); 
-    printf(" | Data de validade do produto (dd/mm/aaaa): ");
-    scanf("%[0-9., /]", dataValidade);
-    getchar(); 
+    do
+    {
+        printf(" | Informe o nome do produto: ");
+        scanf("%s", nomeProduto);
+        getchar();
+        
+    } while (!lerLetras(nomeProduto));
+
+    do
+    {
+        printf(" | Informe o nome da marca: ");
+        scanf("%s", nomeMarca);
+        getchar();
+        
+    } while (!lerLetras(nomeMarca));
+
+    do
+    {
+        printf(" | Informe o código de barras: ");
+        scanf("%s", codigoBarras);
+        getchar();
+        
+    } while (!lerQuantidade(codigoBarras));
+
+    do {
+        printf(" | Informe o dia de vencimento do produto: ");
+        scanf("%d", &dia);
+        getchar();
+        printf(" | Informe o mês de vencimento do produto: ");
+        scanf("%d", &mes);
+        getchar();
+        printf(" | Informe o ano de vencimento do produto: ");
+        scanf("%d", &ano);
+        getchar();
+        
+    } while(!valida_data(dia, mes, ano));  
+
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
@@ -159,9 +185,13 @@ void telaEstoqueMinimo(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ----------- SIG-Pantry - ESTOQUE MÍNIMO DO ITEM --------- | \n");
     printf(" |                                                           | \n");
-    printf(" | Estoque mínimo do produto cadastrado: ");
-    scanf("%[0-9]", estoqueMinimo);
-    getchar(); 
+    do
+    {
+        printf(" | Informe o estoque mínimo: ");
+        scanf("%s", estoqueMinimo);
+        getchar();
+        
+    } while (!lerQuantidade(estoqueMinimo));
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
@@ -228,12 +258,17 @@ void telaAtualizarNome(void)
     printf(" | -------------------------------------------------------------- | \n");
     printf(" | ---------------------- ATUALIZAR NOME ------------------------ | \n");
     printf(" |                                                                | \n");
-    printf(" |  Digite o nome do produto: ");
-    scanf("%[A-z a-z]", nome);
-    getchar(); 
+    do
+    {
+        printf(" | Informe o novo nome do produto: ");
+        scanf("%s", nome);
+        getchar();
+        
+    } while (!lerLetras(nome));
+
     printf(" | ------------------------------------------------------------- | \n");
     printf(" | ============================================================= | \n");
-    printf(" | Nome atualizado, por favor digite ENTER...");
+    printf(" | Nome atualizado, por favor, digite ENTER...");
     getchar();
 
 }
@@ -246,12 +281,17 @@ void telaAtualizarCodigodeBarras(void)
     printf(" | -------------------------------------------------------------- | \n");
     printf(" | --------------- ATUALIZAR CÓDIGO DE BARRAS ------------------- | \n");
     printf(" |                                                                | \n");
-    printf(" |  Digite o código de barras do produto: ");
-    scanf("%[0-9]", codBarras);
-    getchar(); 
+    do
+    {
+        printf(" | Informe o código de barras: ");
+        scanf("%s", codBarras);
+        getchar();
+        
+    } while (!lerQuantidade(codBarras));
+
     printf(" | ------------------------------------------------------------- | \n");
     printf(" | ============================================================= | \n");
-    printf( " Código de barras atualizado, por favor digite ENTER...");
+    printf( " Código de barras atualizado, por favor, digite ENTER...");
     getchar();
 
 }
@@ -259,16 +299,25 @@ void telaAtualizarCodigodeBarras(void)
 void telaAtualizarDatadeValidade(void) 
 {
 
-    char dataVal [10];
+    int dia, mes, ano;
     system( " clear || cls");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
     printf(" | --------------- ATUALIZAR DATA DE VALIDADE ------------------- | \n");
     printf(" |                                                                | \n");
-    printf(" |  Digite a data de validade do produto (dd/mm/aaaa): ");
-    scanf("%[0-9., /]", dataVal);
+    do {
+        printf(" | Informe o dia de vencimento do produto: ");
+        scanf("%d", &dia);
+        getchar();
+        printf(" | Informe o mês de vencimento do produto: ");
+        scanf("%d", &mes);
+        getchar();
+        printf(" | Informe o ano de vencimento do produto: ");
+        scanf("%d", &ano);
+        getchar();
+        
+    } while(!valida_data(dia, mes, ano));
 
-    getchar(); 
     printf(" | ------------------------------------------------------------- | \n");
     printf(" | ============================================================= | \n");
     printf( " Press ENTER for continue...");
@@ -329,9 +378,14 @@ void telaExcluirItem(void)
     printf(" | -------------------------------------------------------------- | \n");
     printf(" | ----------------------- EXCLUIR ITENS ------------------------ | \n");
     printf(" |                                                                | \n");
-    printf(" | Digite o código de barras do produto: ");
-    scanf("%[0-9]", barra);
-    getchar();
+    do
+    {
+        printf(" | Informe o código de barras: ");
+        scanf("%s", barra);
+        getchar();
+        
+    } while (!lerQuantidade(barra));
+
     // aqui terá um if se o código de barra for encontrado ele entrará nas opções
     // if barra == (nosso banco de dados);
         // digite a quantidade de itens que deseja excluir;

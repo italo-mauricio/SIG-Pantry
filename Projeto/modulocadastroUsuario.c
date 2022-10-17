@@ -96,18 +96,18 @@ void cadastroUsuario(void) // Cadastro central do usuário
     } while (!lerEmail(Email));
 
     do {
-        printf(" | Informe o dia do seu nascimento: ");
+        printf(" | Informe o dia de nascimento: ");
         scanf("%d", &dia);
         getchar();
-        printf(" | Informe o mes do seu nascimento: ");
+        printf(" | Informe o mês de nascimento: ");
         scanf("%d", &mes);
         getchar();
-        printf(" | Informe o ano do seu nascimento: ");
+        printf(" | Informe o ano de nascimento: ");
         scanf("%d", &ano);
         getchar();
         
     } while(!valida_data(dia, mes, ano));
-  ;
+  
     do {
         printf(" | Escolha um username: ");
         scanf("%s", Username);
@@ -140,8 +140,11 @@ void cadastroUsuario(void) // Cadastro central do usuário
 char telaEditar(void)
 {
     char nome[20];
+
     char email[20];
-    char nascimento [10];
+
+    int dia, mes, ano;
+
     char username[10];
     char senha [8];
     char esc;
@@ -152,30 +155,54 @@ char telaEditar(void)
     printf(" |                    (Atualizar Dados)                      | \n");
     printf(" | ========================================================= | \n");
     printf(" |                                                           | \n");
-    printf(" | 1- Atualizar nome: ");
-    scanf("%[A-Z ~ a-z]", nome);
-    getchar();
-    printf(" | 2- Atualizar E-mail: ");
-    scanf("%[a-z 0-9 @ _]", email);
-    getchar(); 
-    printf(" | 3- Atualizar data de nascimento: ");
-    scanf("%[0-9 /]", nascimento);
-    getchar();    
-    printf(" | 4- Atualizar username: ");
-    scanf("%[A-Z a-z 0-9]", username);
-    getchar();
-    printf(" | 5- Atualizar senha: ");
-    scanf("%[0-9 a-z]", senha);
-    getchar();
-    printf(" | 0- Voltar à tela de cadastro;                             | \n");
+    do
+    {
+        printf(" | Informe o novo nome: ");
+        scanf("%s", nome);
+        getchar();
+        
+    } while (!lerLetras(nome));
+    
+    do {
+        printf(" | Informe o novo E-mail: ");   
+        scanf("%s", email);
+        getchar();
+
+    } while (!lerEmail(email));
+
+    do {
+        printf(" | Informe o dia de nascimento: ");
+        scanf("%d", &dia);
+        getchar();
+        printf(" | Informe o mês de nascimento: ");
+        scanf("%d", &mes);
+        getchar();
+        printf(" | Informe o ano de nascimento: ");
+        scanf("%d", &ano);
+        getchar();
+        
+    } while(!valida_data(dia, mes, ano));    
+    
+    do {
+        printf(" | Escolha um novo username: ");
+        scanf("%s", username);
+        getchar();
+
+    } while(!lerUsernameSenha(username));
+
+    do {
+        printf(" | Informe sua nova senha: ");
+        scanf("%s", senha);
+        getchar();
+
+    } while(!lerUsernameSenha(senha));
+
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | ========================================================= | \n");
     printf("| Press ENTER to exit... ");
     scanf("%c", &esc);
     getchar();
-   
-    return esc;
 
 }
 

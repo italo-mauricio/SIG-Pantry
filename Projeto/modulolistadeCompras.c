@@ -11,26 +11,6 @@ void menulistadeCompras(void)
         case '1':
             telaMontarLista();
             break;
-        /*    char alimentosVencimento;
-              do {
-                    alimentosVencimento = telaAlimentoVencimento();      // testar com if 
-                    switch (alimentosVencimento) {
-                    case '1':
-                        nomeItemAlimentar();
-                        break;
-                    case '2':
-                        dataCadastroAlimento();
-                        break; 
-                    case '0':
-                        telaListadeCompras();
-                            
-                    default :
-                        printf ("Opcao invalida \n");
-                        break;
-                } 
-
-                } while(alimentosVencimento != '0'); */
-
         case '2':
             telaItensQuantMinima();
             break; 
@@ -143,15 +123,30 @@ void telaMontarLista(void)
     printf("| ------------------------------------------------------------- | \n");
     printf("| ------------- | Montar a sua Lista de Compras | ------------- | \n");
     printf("|                                                               | \n");
-    printf("|  Informe o nome: ");
-    scanf("%[A-Z a-z]", nome);
-    getchar();
-    printf("|  Informe a categoria do produto: ");
-    scanf("%[A-Z a-z]", categoriaProduto);
-    getchar();
-    printf("|  Informe a quantidade do produto: ");
-    scanf("%d", &quantidadeProduto);
-    getchar();
+    do
+    {
+        printf(" | Informe o nome: ");
+        scanf("%s", nome);
+        getchar();
+        
+    } while (!lerLetras(nome));
+
+    do
+    {
+        printf(" | Informe a categoria do produto: ");
+        scanf("%s", categoriaProduto);
+        getchar();
+        
+    } while (!lerLetras(categoriaProduto));
+
+    do
+    {
+        printf(" | Informe a quantidade de produto: ");
+        scanf("%s", quantidadeProduto);
+        getchar();
+        
+    } while (!lerQuantidade(quantidadeProduto));
+    
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
     printf(" Press ENTER to exit...");
