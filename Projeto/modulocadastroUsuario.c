@@ -67,9 +67,11 @@ int telaMenuUsuario(void) // Tela inicial dos cadastros
 
 void cadastroUsuario(void) // Cadastro central do usuário
 {
-    char nome [50];
+    char nome[20];
+    
     char Email [50]; 
-    char DatadeNascimento[50];
+    int dia, mes, ano;
+
     char Username [50];
     char Senha [50];
     system ( " cls " );
@@ -81,20 +83,31 @@ void cadastroUsuario(void) // Cadastro central do usuário
     do
     {
         printf(" | Informe o seu nome: ");
-        scanf("%[A-Z a-z ]", nome);
+        scanf("%[A-Z, a-z]", nome);
+        getchar();
+        
     } while (!lerLetras(nome));
     
     do {
         printf(" | Informe o seu E-mail: ");   
-        scanf("%[A-Z @ _ a-z 0-9 .]", Email);
+        scanf("%[A-Z a-z @ . _]", Email);
+        getchar();
     } while (!lerEmail(Email));
 
-    /*do {
-        printf(" | Informe sua data de nascimento (dd/mm/aaaa): ");
-        scanf("%[0-9 /]", DatadeNascimento);
+    do {
+        printf(" | Informe o dia do seu nascimento: ");
+        scanf("%d", &dia);
+        getchar();
+        printf(" | Informe o mes do seu nascimento: ");
+        scanf("%d", &mes);
+        getchar();
+        printf(" | Informe o ano do seu nascimento: ");
+        scanf("%d", &ano);
+        getchar();
+        
 
-    } while(!valida_data(DatadeNascimento));
-  ;*/
+    } while(!valida_data(dia, mes, ano));
+  ;
     do {
         printf(" | Escolha um username: ");
         scanf("%[A-Z a-z 0-9]", Username);
