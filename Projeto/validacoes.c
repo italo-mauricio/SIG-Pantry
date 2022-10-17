@@ -80,23 +80,23 @@ int lerLetras(char nome[])
   int tamanho = strlen(nome);
 
   if (tamanho < 1) {
-      return 1; 
+      return 0; 
   } else {
       for (int i = 0; i <= (tamanho - 1); i++) 
         if ((nome[i] <= 'z') && (nome[i] >= 'A'))
         {
            if (((nome[i] <= 'a') && (nome[i] <= 'Z')) || (nome[i] == ' ')) {
-            return 0;
+            return 1;
            }
               if((nome[i] == '@') || (nome[i] == 0) || (nome[i] <= 9)) {
-                return 1;
+                return 0;
               }
             } else{  
-              return 1;
+              return 0;
       
               }          
       }
-      return 0;    
+      return 1;    
   }
 
 int meses[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
