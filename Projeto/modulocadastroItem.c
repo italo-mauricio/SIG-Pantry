@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "modulocadastroItem.h"
+#include <string.h>
 #include "validacoes.h"
-
+#include "modulocadastroItem.h"
 
 void modulocadastroItem(void) {
     char escolha;
@@ -68,7 +68,6 @@ void telaCadastrarItem(void)
     char nomeMarca [20];
     int dia, mes, ano;
     char codigoBarras [13];
-    char dataValidade [10];
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -188,7 +187,7 @@ void telaEstoqueMinimo(void)
     do
     {
         printf(" | Informe o estoque mínimo: ");
-        scanf("%s", estoqueMinimo);
+        scanf("%[0-9]", estoqueMinimo);
         getchar();
         
     } while (!lerQuantidade(estoqueMinimo));

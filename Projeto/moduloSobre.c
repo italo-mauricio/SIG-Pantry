@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "moduloSobre.h"
+#include <string.h>
 
 void telaSobre(void)
 {

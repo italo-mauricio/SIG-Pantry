@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "moduloRelatorio.h"
+#include <string.h>
+#include "validacoes.h"
 
 char moduloRelatorio (void)
 {

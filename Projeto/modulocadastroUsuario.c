@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include <string.h>
 #include "modulocadastroUsuario.h"
 #include "validacoes.h"
-#include <string.h>
 
 /*
 DENTRO DESSE CADASTRO: estará os dados do usuário do sistema de controle de despensa doméstica.
@@ -137,17 +137,16 @@ void cadastroUsuario(void) // Cadastro central do usuário
 
 // ============================== Editar o cadastro =================================== 
 
-char telaEditar(void)
+void telaEditar(void)
 {
     char nome[20];
-
     char email[20];
-
+  
     int dia, mes, ano;
 
     char username[10];
     char senha [8];
-    char esc;
+    
     system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -158,14 +157,14 @@ char telaEditar(void)
     do
     {
         printf(" | Informe o novo nome: ");
-        scanf("%s", nome);
+        scanf("%[A-Z a-z]", nome);
         getchar();
         
     } while (!lerLetras(nome));
     
     do {
         printf(" | Informe o novo E-mail: ");   
-        scanf("%s", email);
+        scanf("%[A-Z a-z @ . _]", email);
         getchar();
 
     } while (!lerEmail(email));
@@ -185,14 +184,14 @@ char telaEditar(void)
     
     do {
         printf(" | Escolha um novo username: ");
-        scanf("%s", username);
+        scanf("%[A-Z a-z]", username);
         getchar();
 
     } while(!lerUsernameSenha(username));
 
     do {
         printf(" | Informe sua nova senha: ");
-        scanf("%s", senha);
+        scanf("%[A-Z a-z 0-9]", senha);
         getchar();
 
     } while(!lerUsernameSenha(senha));
@@ -200,9 +199,8 @@ char telaEditar(void)
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | ========================================================= | \n");
-    printf("| Press ENTER to exit... ");
-    scanf("%c", &esc);
-    getchar();
+    system("Pause");
+    system("cls");
 
 }
 

@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include <string.h>
 #include "moduloEntradaItens.h"
+#include "validacoes.h"
 
 void menuEntradaItens(void)
 {
@@ -43,7 +45,7 @@ char telaEntradaItens(void)
 
 void telaRegistrarEntrada(void)
 {
-    char codigodeBarras [13];
+    char codigodeBarras [15];
     char quantProduto [13];
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
@@ -53,7 +55,7 @@ void telaRegistrarEntrada(void)
     do
     {
         printf(" | Informe o código de barras: ");
-        scanf("%s", codigodeBarras);
+        scanf("%[0-9]", codigodeBarras);
         getchar();
         
     } while (!lerQuantidade(codigodeBarras));
@@ -68,9 +70,8 @@ void telaRegistrarEntrada(void)
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Press ENTER for exit... ");
-    getchar();
-
+    system("Pause");
+    system("clear");
 }
 
 void telaCancelarEntrada(void)

@@ -134,12 +134,12 @@ int valida_data(int dia, int mes, int ano)
 }
 
   
-int lerQuantidade(char numero[], int tamanho)
+int lerQuantidade(char numero[])
 {
-  tamanho = strlen(numero);
+  int tamanho = strlen(numero);
 
   if (tamanho < 1) {
-      return 1; 
+      return 0; 
   } else {
       for (int i = 0; i <= (tamanho - 1); i++) 
         if ((numero[i] <= '9') && (numero[i] >= '0'))
@@ -148,11 +148,11 @@ int lerQuantidade(char numero[], int tamanho)
                 return 1;
               }
             } else{  
-              return 1;      
+              return 0;      
               }          
       }
 
-      return 0;
+      return 1;
 }
 
 
