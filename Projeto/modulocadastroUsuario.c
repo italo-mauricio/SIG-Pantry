@@ -83,15 +83,16 @@ void cadastroUsuario(void) // Cadastro central do usuário
     do
     {
         printf(" | Informe o seu nome: ");
-        scanf("%[A-Z, a-z]", nome);
+        scanf("%s", nome);
         getchar();
         
     } while (!lerLetras(nome));
     
     do {
         printf(" | Informe o seu E-mail: ");   
-        scanf("%[A-Z a-z @ . _]", Email);
+        scanf("%s", Email);
         getchar();
+
     } while (!lerEmail(Email));
 
     do {
@@ -105,18 +106,19 @@ void cadastroUsuario(void) // Cadastro central do usuário
         scanf("%d", &ano);
         getchar();
         
-
     } while(!valida_data(dia, mes, ano));
   ;
     do {
         printf(" | Escolha um username: ");
-        scanf("%[A-Z a-z 0-9]", Username);
+        scanf("%s", Username);
+        getchar();
 
     } while(!lerUsernameSenha(Username));
 
     do {
         printf(" | Informe sua senha: ");
-        scanf("%[A-Z a-z 0-9]", Senha);
+        scanf("%s", Senha);
+        getchar();
 
     } while(!lerUsernameSenha(Senha));
     
