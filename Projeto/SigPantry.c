@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "modulocadastroUsuario.h"
 #include "modulocadastroItem.h"
 #include "modulolistadeCompras.h"
@@ -8,7 +9,6 @@
 #include "moduloEntradaItens.h"
 #include "moduloSaidaItens.h"
 #include "validacoes.h"
-#include <string.h>
 
 char telaPrincipal(void);
 

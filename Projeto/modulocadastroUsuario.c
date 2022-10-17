@@ -140,7 +140,7 @@ void cadastroUsuario(void) // Cadastro central do usuário
 void telaEditar(void)
 {
     char nome[20];
-    char email[20];
+    char email[30];
   
     int dia, mes, ano;
 
