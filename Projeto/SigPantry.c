@@ -8,6 +8,7 @@
 #include "moduloEntradaItens.h"
 #include "moduloSaidaItens.h"
 #include "validacoes.h"
+#include <string.h>
 
 char telaPrincipal(void);
 

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "modulolistadeCompras.h"
+#include "validacoes.h"
 
 void menulistadeCompras(void)
 {
@@ -117,7 +119,8 @@ void telaMontarLista(void)
 {
     char nome[20];
     char categoriaProduto[10];
-    int quantidadeProduto;
+    char quantidadeProduto[15];
+
     system (" clear||cls ");
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");

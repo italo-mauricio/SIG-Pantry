@@ -46,7 +46,7 @@ int lerUsernameSenha(char usernameSenha[])
 {// retorna 0 se for true e 1 se for false
   int tamanho = strlen(usernameSenha);   
   if (tamanho < 4) { //para não ter usuários com só: @ ou a@ ou 12... 
-    return 1;
+    return 0;
   } else {
     for (int i = 0; i < tamanho; i++) { 
       if ((usernameSenha[i] == 'a') && (usernameSenha[i] <= 'z')) { 
@@ -70,7 +70,7 @@ int lerUsernameSenha(char usernameSenha[])
     }
 
     }
-    return 0; 
+    return 1; 
     
 }
 
@@ -134,12 +134,12 @@ int valida_data(int dia, int mes, int ano)
 }
 
   
-int lerQuantidade(char numero[], int tamanho)
+int lerQuantidade(char numero[])
 {
-  tamanho = strlen(numero);
+  int tamanho = strlen(numero);
 
   if (tamanho < 1) {
-      return 1; 
+      return 0; 
   } else {
       for (int i = 0; i <= (tamanho - 1); i++) 
         if ((numero[i] <= '9') && (numero[i] >= '0'))
@@ -148,11 +148,11 @@ int lerQuantidade(char numero[], int tamanho)
                 return 1;
               }
             } else{  
-              return 1;      
+              return 0;      
               }          
       }
 
-      return 0;
+      return 1;
 }
 
 

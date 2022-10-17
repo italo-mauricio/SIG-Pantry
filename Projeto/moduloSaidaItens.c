@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include<stdlib.h>
 #include "moduloSaidaItens.h"
+#include <string.h>
+#include "validacoes.h"
 
 void moduloSaidaItens(void)
 {
@@ -73,8 +75,8 @@ void telaRegistrarSaida(void)
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Press ENTER for exit... ");
-    getchar();
+    system("Pause");
+    system("cls");
 
 }
 

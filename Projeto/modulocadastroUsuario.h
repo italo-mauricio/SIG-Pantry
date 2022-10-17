@@ -3,5 +3,5 @@ void modulocadastroUsuario(void);
 int telaMenuUsuario(void);
 char telaRemove(void);
 char telaListar(void);
-char telaEditar(void);
+void telaEditar(void);
 void cadastroUsuario(void);
