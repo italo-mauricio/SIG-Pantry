@@ -14,8 +14,8 @@ int lerEmail(char email[])
     char c = email[i];
     if(c == '@') {
       if (arroba)
-        break; // não pode ter uma segunda @
-      arroba = 1;
+         break; // não pode ter uma segunda @
+      arroba++;
       if (i < 3)
         break; // se @ vier antes de 3 caracteres, erro
     }
@@ -36,9 +36,9 @@ int lerEmail(char email[])
   } // for
 
     if (i == tam && depoisPonto > 1)
-        return 0;
-    else
         return 1;
+    else
+        return 0;
 
 }
 
