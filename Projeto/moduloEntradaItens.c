@@ -50,12 +50,22 @@ void telaRegistrarEntrada(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------------- REGISTRAR ENTRADA DE ITEM ---------------- | \n");
     printf(" |                                                           | \n");    
-    printf(" |  Informe o código de barras do produto que será adicionado: ");
-    scanf("%[A-Z a-z]", codigodeBarras);
-    getchar(); 
-    printf(" |  Informe a quantidade de produto adicionado: ");
-    scanf("%[A-Z a-z., 0-9., -]", quantProduto);
-    getchar(); 
+    do
+    {
+        printf(" | Informe o código de barras: ");
+        scanf("%s", codigodeBarras);
+        getchar();
+        
+    } while (!lerQuantidade(codigodeBarras));
+
+    do
+    {
+        printf(" | Informe a quantidade de produto: ");
+        scanf("%s", quantProduto);
+        getchar();
+        
+    } while (!lerQuantidade(quantProduto));
+
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
@@ -71,9 +81,14 @@ void telaCancelarEntrada(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | --------------- CANCELAR ENTRADA DE ITEM ---------------- | \n");
     printf(" |                                                           | \n");    
-    printf(" |  Informe o código de barras do produto: ");
-    scanf("%[A-Z a-z]", codigodeBarras);
-    getchar(); 
+    do
+    {
+        printf(" | Informe o código de barras: ");
+        scanf("%s", codigodeBarras);
+        getchar();
+        
+    } while (!lerQuantidade(codigodeBarras));
+    
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
