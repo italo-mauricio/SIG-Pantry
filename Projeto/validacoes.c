@@ -3,9 +3,10 @@
 #include <string.h>
 #include "validacoes.h"
 
+// retorna 0 se for false e 1 se for true
+
 int lerEmail(char email[])
 {
-  
   int tam=strlen(email);
   int arroba = 0, ponto = 0, antesPonto = 0, depoisPonto = 0, i;
 
@@ -39,11 +40,10 @@ int lerEmail(char email[])
     else
         return 1;
 
-
 }
 
 int lerUsernameSenha(char usernameSenha[]) 
-{// retorna 0 se for true e 1 se for false
+{
   int tamanho = strlen(usernameSenha);   
   if (tamanho < 4) { //para não ter usuários com só: @ ou a@ ou 12... 
     return 0;
@@ -102,7 +102,7 @@ int lerLetras(char nome[])
 int meses[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 char decimais[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
-int valida_data(int dia, int mes, int ano)
+int valida_data(int dia, int mes, int ano) //by https://www.vivaolinux.com.br/script/Funcao-para-validacao-de-datas
     {
     if ((dia >= 1 && dia <= 31) && (mes >= 1 && mes <= 12) && (ano >= 1900 && ano <= 2100)) //verifica se os numeros sao validos
         {
