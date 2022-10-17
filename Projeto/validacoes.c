@@ -46,7 +46,7 @@ int lerUsernameSenha(char usernameSenha[])
 {// retorna 0 se for true e 1 se for false
   int tamanho = strlen(usernameSenha);   
   if (tamanho < 4) { //para não ter usuários com só: @ ou a@ ou 12... 
-    return 1;
+    return 0;
   } else {
     for (int i = 0; i < tamanho; i++) { 
       if ((usernameSenha[i] == 'a') && (usernameSenha[i] <= 'z')) { 
@@ -70,7 +70,7 @@ int lerUsernameSenha(char usernameSenha[])
     }
 
     }
-    return 0; 
+    return 1; 
     
 }
 
