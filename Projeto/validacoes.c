@@ -3,6 +3,15 @@
 #include <string.h>
 #include "validacoes.h"
 
+
+
+//------------------------------------------------------------------//
+//                       Validação de Email                         //
+//                                                                  //
+// Código by: https://pt.stackoverflow.com/users/110948/rogério-dec //
+//------------------------------------------------------------------//
+
+
 // retorna 0 se for false e 1 se for true
 
 int lerEmail(char email[])
@@ -14,8 +23,8 @@ int lerEmail(char email[])
     char c = email[i];
     if(c == '@') {
       if (arroba)
-        break; // não pode ter uma segunda @
-      arroba = 1;
+         break; // não pode ter uma segunda @
+      arroba++;
       if (i < 3)
         break; // se @ vier antes de 3 caracteres, erro
     }
@@ -36,11 +45,20 @@ int lerEmail(char email[])
   } // for
 
     if (i == tam && depoisPonto > 1)
-        return 0;
-    else
         return 1;
+    else
+        return 0;
 
 }
+
+
+
+
+
+// --------------------------------------- |
+//        Validação de Username            |
+// --------------------------------------  |
+
 
 int lerUsernameSenha(char usernameSenha[]) 
 {
@@ -74,6 +92,16 @@ int lerUsernameSenha(char usernameSenha[])
     
 }
 
+
+
+
+
+
+
+// --------------------------------------- |
+//        Validação de Letras              |
+// --------------------------------------  |
+
 int lerLetras(char nome[])
 {
 
@@ -101,6 +129,17 @@ int lerLetras(char nome[])
 
 int meses[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 char decimais[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
+
+
+
+//------------------------------------------------------------------//
+//                       Validação de Email                         //
+//                                                                  //
+// Código by: https://www.vivaolinux.com.br/script/Funcao-para-validacao-de-datas //
+//------------------------------------------------------------------//
+
+
 
 int valida_data(int dia, int mes, int ano) //by https://www.vivaolinux.com.br/script/Funcao-para-validacao-de-datas
     {
@@ -133,6 +172,14 @@ int valida_data(int dia, int mes, int ano) //by https://www.vivaolinux.com.br/sc
            }
 }
 
+
+
+
+
+// ---------------------------------------- |
+//        Validação de numeros              |
+// ---------------------------------------  |
+
   
 int lerQuantidade(char numero[])
 {
@@ -154,6 +201,8 @@ int lerQuantidade(char numero[])
 
       return 1;
 }
+
+
 
 
 void deixarTelaLimpa(void) //adaptado by @flgorgonio
