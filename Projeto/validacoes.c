@@ -3,6 +3,15 @@
 #include <string.h>
 #include "validacoes.h"
 
+
+
+//------------------------------------------------------------------//
+//                       Validação de Email                         //
+//                                                                  //
+// Código by: https://pt.stackoverflow.com/users/110948/rogério-dec //
+//------------------------------------------------------------------//
+
+
 // retorna 0 se for false e 1 se for true
 
 int lerEmail(char email[])
@@ -42,6 +51,15 @@ int lerEmail(char email[])
 
 }
 
+
+
+
+
+// --------------------------------------- |
+//        Validação de Username            |
+// --------------------------------------  |
+
+
 int lerUsernameSenha(char usernameSenha[]) 
 {
   int tamanho = strlen(usernameSenha);   
@@ -74,6 +92,16 @@ int lerUsernameSenha(char usernameSenha[])
     
 }
 
+
+
+
+
+
+
+// --------------------------------------- |
+//        Validação de Letras              |
+// --------------------------------------  |
+
 int lerLetras(char nome[])
 {
 
@@ -101,6 +129,17 @@ int lerLetras(char nome[])
 
 int meses[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 char decimais[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
+
+
+
+//------------------------------------------------------------------//
+//                       Validação de Email                         //
+//                                                                  //
+// Código by: https://www.vivaolinux.com.br/script/Funcao-para-validacao-de-datas //
+//------------------------------------------------------------------//
+
+
 
 int valida_data(int dia, int mes, int ano) //by https://www.vivaolinux.com.br/script/Funcao-para-validacao-de-datas
     {
@@ -133,6 +172,14 @@ int valida_data(int dia, int mes, int ano) //by https://www.vivaolinux.com.br/sc
            }
 }
 
+
+
+
+
+// ---------------------------------------- |
+//        Validação de numeros              |
+// ---------------------------------------  |
+
   
 int lerQuantidade(char numero[])
 {
@@ -154,6 +201,8 @@ int lerQuantidade(char numero[])
 
       return 1;
 }
+
+
 
 
 void deixarTelaLimpa(void) //adaptado by @flgorgonio
