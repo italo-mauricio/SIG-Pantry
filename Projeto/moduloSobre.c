@@ -16,9 +16,9 @@ void telaSobre(void)
     printf ( " |                    Docente: Dr Flavius Gorgonio                    | \n " );
     printf ( " |                                                                    | \n " );
     printf ( " |  Este programa consiste no controle das atividades de uma despensa | \n " );
-    printf ( " |    doméstica, sendo dividida em categorias no intuito de ajudar na | \n " );
-    printf ( " |                organização das atividades cotidianas.              | \n " );
-    printf ( " |           Developers: Manuelly Rodrigues e Italo Maurício          | \n " );
+    printf ( " |   doméstica, sendo dividida em categorias no intuito de ajudar na  | \n " );
+    printf ( " |               organização das atividades cotidianas.               | \n " );
+    printf ( " |          Developers: Manuelly Rodrigues e Italo Maurício           | \n " );
     printf ( " |                                                                    | \n " );
     printf ( " | ------------------------------------------------------------------ | \n " );
     printf ( " | ---------------------- SIG - Pantry - 2022.2 --------------------- | \n " );
