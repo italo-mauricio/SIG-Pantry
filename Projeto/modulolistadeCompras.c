@@ -89,7 +89,8 @@ void telaItensProxVencimento(void)
     getchar();
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
-    printf(" Press ENTER to exit...");
+    system("Pause");
+    system(" clear || cls");
 
 }
 
@@ -152,7 +153,8 @@ void telaMontarLista(void)
     
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
-    printf(" Press ENTER to exit...");
+    system("Pause");
+    system("clear||cls");
     
    /* printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");*/
 
@@ -170,6 +172,7 @@ void telaItensCadastrados(void)
     getchar();
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
-    printf(" Press ENTER to exit...");
+    system("Pause");
+    system("clear||cls");
 
 }
