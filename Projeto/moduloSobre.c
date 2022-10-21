@@ -22,7 +22,7 @@ void telaSobre(void)
     printf ( " |                                                                    | \n " );
     printf ( " | ------------------------------------------------------------------ | \n " );
     printf ( " | ---------------------- SIG - Pantry - 2022.2 --------------------- | \n " );
-    printf ("\t\t\t>>> Tecle <ENTER> para continuar.. " );
-    getchar();    
+    sytstem("Pause");
+    system("clear||cls");   
 
 }
