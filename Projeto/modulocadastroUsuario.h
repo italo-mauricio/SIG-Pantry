@@ -4,8 +4,21 @@ int telaMenuUsuario(void);
 char telaRemove(void);
 char telaListar(void);
 void telaEditar(void);
-Usuario *cadastroUsuario( );
+
 typedef struct usuario Usuario;
-struct usuario;
+struct usuario {
+  char nome[40];
+  char email[40];
+  char username[20];
+  char senha[20];
+};
+
 typedef struct data Data;
-struct data;
+struct data{
+    int dia;
+    int mes;
+    int ano;
+};
+
+Usuario* infoUsuario( );
+Data* veriData( );

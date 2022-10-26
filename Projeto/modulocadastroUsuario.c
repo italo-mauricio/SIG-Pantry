@@ -8,15 +8,16 @@
 DENTRO DESSE CADASTRO: estará os dados do usuário do sistema de controle de despensa doméstica.
 */
 
+
 void modulocadastroUsuario(void)
 {
-    Usuario *cliente;
+    Usuario* cliente;
     int escolha = 0;
     do {
         escolha = telaMenuUsuario();
         switch (escolha) {
         case 1:
-            cliente = cadastroUsuario();
+            cliente = infoUsuario();
             break;
         case 2:
             telaEditar();
@@ -33,10 +34,10 @@ void modulocadastroUsuario(void)
     }
 
     } while(escolha != 0);
-
-   
+  
 }
 
+Usuario* cadastroUsuario( );
 
 // ================================ Começo do cadastro ====================================== //
 
@@ -63,25 +64,12 @@ int telaMenuUsuario(void) // Tela inicial dos cadastros
 
 }
 
-typedef struct data Data;
-typedef struct usuario Usuario;
-struct usuario {
-  char nome[40];
-  char email[40];
-  char username[20];
-  char senha[20];
-};
-struct data{
-    int dia;
-    int mes;
-    int ano;
-};
 
-Usuario *cadastroUsuario( ) // Cadastro central do usuário
+Usuario* infoUsuario( ) // Cadastro central do usuário
 {
-    Data *dt;
-    Usuario *usu;
-    usu = (Usuario *)malloc(sizeof(Usuario));
+    // Data *dt;
+    Usuario* usu;
+    usu = (Usuario*) malloc(sizeof(Usuario));
     system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -102,19 +90,7 @@ Usuario *cadastroUsuario( ) // Cadastro central do usuário
         getchar();
 
     } while (!lerEmail(usu->email));
-
-    do {
-        printf(" | Informe o dia de nascimento: ");
-        scanf("%d", dt->dia);
-        getchar();
-        printf(" | Informe o mês de nascimento: ");
-        scanf("%d", dt->mes);
-        getchar();
-        printf(" | Informe o ano de nascimento: ");
-        scanf("%d", dt->ano);
-        getchar();
-        
-    } while(!valida_data(dt->dia, dt->mes, dt->ano));
+    veriData();
   
     do {
         printf(" | Escolha um username: ");
@@ -138,11 +114,26 @@ Usuario *cadastroUsuario( ) // Cadastro central do usuário
     return usu;
 }
 
-//do{
-  //  nome = lerNome(void);
-// } while(!lerNome)
 
 
+Data* veriData( ){
+    Data* dt;
+    do {
+        
+        printf(" | Informe o dia de nascimento: ");
+        scanf("%d",&dt->dia);
+        getchar();
+        printf(" | Informe o mês de nascimento: ");
+        scanf("%d",&dt->mes);
+        getchar();
+        printf(" | Informe o ano de nascimento: ");
+        scanf("%d",&dt->ano);
+        getchar();
+        
+     } while(!valida_data(dt->dia, dt->mes, dt->ano));
+  
+    return dt;
+}
 
 
 // ============================== Editar o cadastro =================================== 
