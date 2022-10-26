@@ -4,10 +4,7 @@
 #include "modulocadastroUsuario.h"
 #include "validacoes.h"
 
-/*
-DENTRO DESSE CADASTRO: estará os dados do usuário do sistema de controle de despensa doméstica.
-*/
-
+//DENTRO DESSE CADASTRO: estarão os dados do usuário do sistema de controle de despensa doméstica.
 
 void modulocadastroUsuario(void)
 {
@@ -64,7 +61,6 @@ int telaMenuUsuario(void) // Tela inicial dos cadastros
 
 }
 
-
 Usuario* infoUsuario( ) // Cadastro central do usuário
 {
     // Data *dt;
@@ -115,11 +111,9 @@ Usuario* infoUsuario( ) // Cadastro central do usuário
 }
 
 
-
 Data* veriData( ){
     Data* dt;
-    do {
-        
+    do {        
         printf(" | Informe o dia de nascimento: ");
         scanf("%d",&dt->dia);
         getchar();
@@ -158,14 +152,14 @@ void telaEditar(void)
     do
     {
         printf(" | Informe o novo nome: ");
-        scanf("%[A-Z a-z]", nome);
+        scanf("%s", nome);
         getchar();
         
     } while (!lerLetras(nome));
     
     do {
         printf(" | Informe o novo E-mail: ");   
-        scanf("%[A-Z a-z @ . _]", email);
+        scanf("%s", email);
         getchar();
 
     } while (!lerEmail(email));
@@ -185,14 +179,14 @@ void telaEditar(void)
     
     do {
         printf(" | Escolha um novo username: ");
-        scanf("%[A-Z a-z]", username);
+        scanf("%s", username);
         getchar();
 
     } while(!lerUsernameSenha(username));
 
     do {
         printf(" | Informe sua nova senha: ");
-        scanf("%[A-Z a-z 0-9]", senha);
+        scanf("%s", senha);
         getchar();
 
     } while(!lerUsernameSenha(senha));
