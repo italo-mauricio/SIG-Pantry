@@ -216,7 +216,7 @@ void telaAtualizarItem(void)
 
 }
 
-void suitefuncao(char op){ //FAZER AQUI O STRUCT DE ATUALIZAR
+void suitefuncao(char op){ 
         AtualNome* atualizar;
         AtualCodigo* atualiz;
         AtualData* atuali;
