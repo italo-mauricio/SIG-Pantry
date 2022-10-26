@@ -29,6 +29,6 @@ struct datav{
     int ano;
 };
 
-Usuario* infoItem( );
+Item* infoItem( );
 DataV* veriDatav( );
 
