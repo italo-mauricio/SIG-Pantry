@@ -34,7 +34,7 @@ void modulocadastroUsuario(void)
   
 }
 
-Usuario* cadastroUsuario( );
+Usuario* infoUsuario( );
 
 // ================================ Começo do cadastro ====================================== //
 
@@ -63,7 +63,6 @@ int telaMenuUsuario(void) // Tela inicial dos cadastros
 
 Usuario* infoUsuario( ) // Cadastro central do usuário
 {
-    // Data *dt;
     Usuario* usu;
     usu = (Usuario*) malloc(sizeof(Usuario));
     system ( " cls " );
@@ -86,6 +85,7 @@ Usuario* infoUsuario( ) // Cadastro central do usuário
         getchar();
 
     } while (!lerEmail(usu->email));
+  
     veriData();
   
     do {

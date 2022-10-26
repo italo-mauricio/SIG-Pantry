@@ -5,12 +5,13 @@
 #include "modulocadastroItem.h"
 
 void modulocadastroItem(void) {
+    Item* produto;
     char escolha;
     do {
         escolha = telaMenuItens();
         switch(escolha) {
             case '1':
-                telaCadastrarItem();
+                produto = infoItem();
                 break;
             case '2':
                 telaCategoriadoProduto();
@@ -36,6 +37,8 @@ void modulocadastroItem(void) {
     } while (escolha != '0');
 
 }
+ 
+Item* infoItem( );
 
 char telaMenuItens(void)
 {
@@ -62,12 +65,10 @@ char telaMenuItens(void)
 
 }
 
-void telaCadastrarItem(void)
+Item* infoItem( )
 {
-    char nomeProduto [20];
-    char nomeMarca [20];
-    int dia, mes, ano;
-    char codigoBarras [13];
+    Item* it;
+    it = (Item*) malloc(sizeof(Item));
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -76,61 +77,55 @@ void telaCadastrarItem(void)
     do
     {
         printf(" | Informe o nome do produto: ");
-        scanf("%s", nomeProduto);
+        scanf("%s", it->nomeProduto);
         getchar();
         
-    } while (!lerLetras(nomeProduto));
+    } while (!lerLetras(it->nomeProduto));
 
     do
     {
         printf(" | Informe o nome da marca: ");
-        scanf("%s", nomeMarca);
+        scanf("%s", it->nomeMarca);
         getchar();
         
-    } while (!lerLetras(nomeMarca));
+    } while (!lerLetras(it->nomeMarca));
 
     do
     {
         printf(" | Informe o código de barras: ");
-        scanf("%s", codigoBarras);
+        scanf("%s", it->codigoBarras);
         getchar();
         
-    } while (!lerQuantidade(codigoBarras));
-
-    do {
-        printf(" | Informe o dia de vencimento do produto: ");
-        scanf("%d", &dia);
-        getchar();
-        printf(" | Informe o mês de vencimento do produto: ");
-        scanf("%d", &mes);
-        getchar();
-        printf(" | Informe o ano de vencimento do produto: ");
-        scanf("%d", &ano);
-        getchar();
-        
-    } while(!valida_data(dia, mes, ano));  
+    } while (!lerQuantidade(it->codigoBarras));
+    
+    veriDatav( );
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
     getchar();
+    return it;
 
 }
-/*void telaCadastrarAlimento(void) 
+
+DataV* veriDatav( )
 {
-    char opcao;
-    if(opcao == 1){
-        printf('Nome do item:\n');
-    } if(opcao == 2) {
-        printf('Data de validade:\n');
-    } if(opcao == 3) {
-        //printf('Local de armazenamento:\n'); pensar em puxar as opções: geladeira, armário...
-    } else {
-        printf('Voltar a tela de Cadastro de Itens');
-    }
-
+    DataV* dv;
+    do {
+        printf(" | Informe o dia de vencimento do produto: ");
+        scanf("%d", &dv->dia);
+        getchar();
+        printf(" | Informe o mês de vencimento do produto: ");
+        scanf("%d", &dv->mes);
+        getchar();
+        printf(" | Informe o ano de vencimento do produto: ");
+        scanf("%d", &dv->ano);
+        getchar();
+        
+    } while(!valida_data(dv->dia, dv->mes, dv->ano));  
+    return dv;
 }
-*/
+
 
 char telaCategoriadoProduto(void)
 {
@@ -187,7 +182,7 @@ void telaEstoqueMinimo(void)
     do
     {
         printf(" | Informe o estoque mínimo: ");
-        scanf("%[0-9]", estoqueMinimo);
+        scanf("%s", estoqueMinimo);
         getchar();
         
     } while (!lerQuantidade(estoqueMinimo));
