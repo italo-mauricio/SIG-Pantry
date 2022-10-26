@@ -24,7 +24,6 @@ void modulocadastroItem(void) {
                 break;
             case '5':
                 telaAtualizarItem();
-
                 break;
             case '6':
                 telaExcluirItem();
@@ -192,8 +191,9 @@ void telaEstoqueMinimo(void)
     getchar();
 
 }
+AtualNome* atualizNome();
 
-void telaAtualizarItem(void)
+void telaAtualizarItem(void) 
 {
     char op;
     system ( " clear||cls " );
@@ -216,17 +216,20 @@ void telaAtualizarItem(void)
 
 }
 
-void suitefuncao(char op){
+void suitefuncao(char op){ //FAZER AQUI O STRUCT DE ATUALIZAR
+        AtualNome* atualizar;
+        AtualCodigo* atualiz;
+        AtualData* atuali;
         switch (op)
         {
         case '1':
-            telaAtualizarNome();
+            atualizar = atualizNome();
             break;
         case '2':
-            telaAtualizarCodigodeBarras();
+            atualiz = atualizCodigo();
             break;
         case '3':
-            telaAtualizarDatadeValidade();
+            atuali = atualizData();
             break;
         case '4':
             telaAtualizarCategoria();
@@ -244,9 +247,10 @@ void suitefuncao(char op){
 }
 
 
-void telaAtualizarNome(void) 
+AtualNome* atualizNome()
 {
-    char nome [20];
+    AtualNome* atnome;
+    atnome = (AtualNome*) malloc(sizeof(AtualNome));
     system( " clear || cls");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
@@ -255,21 +259,24 @@ void telaAtualizarNome(void)
     do
     {
         printf(" | Informe o novo nome do produto: ");
-        scanf("%s", nome);
+        scanf("%s", atnome->nome);
         getchar();
         
-    } while (!lerLetras(nome));
+    } while (!lerLetras(atnome->nome));
 
     printf(" | ------------------------------------------------------------- | \n");
     printf(" | ============================================================= | \n");
     printf(" | Nome atualizado, por favor, digite ENTER...");
     getchar();
+    
+    return atnome;
 
 }
 
-void telaAtualizarCodigodeBarras(void) 
+AtualCodigo* atualizCodigo()
 {
-    char codBarras [13];
+    AtualCodigo* atcodigo;
+    atcodigo = (AtualCodigo*) malloc(sizeof(AtualCodigo));
     system( " clear || cls");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
@@ -278,22 +285,24 @@ void telaAtualizarCodigodeBarras(void)
     do
     {
         printf(" | Informe o código de barras: ");
-        scanf("%s", codBarras);
+        scanf("%s", atcodigo->codBarras);
         getchar();
         
-    } while (!lerQuantidade(codBarras));
+    } while (!lerQuantidade(atcodigo->codBarras));
 
     printf(" | ------------------------------------------------------------- | \n");
     printf(" | ============================================================= | \n");
     printf( " Código de barras atualizado, por favor, digite ENTER...");
     getchar();
 
+    return atcodigo;
+
 }
 
-void telaAtualizarDatadeValidade(void) 
+AtualData* atualizData()
 {
-
-    int dia, mes, ano;
+    AtualData* atdata;
+    atdata = (AtualData*) malloc(sizeof(AtualData));
     system( " clear || cls");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
@@ -301,22 +310,23 @@ void telaAtualizarDatadeValidade(void)
     printf(" |                                                                | \n");
     do {
         printf(" | Informe o dia de vencimento do produto: ");
-        scanf("%d", &dia);
+        scanf("%d", &atdata->dia);
         getchar();
         printf(" | Informe o mês de vencimento do produto: ");
-        scanf("%d", &mes);
+        scanf("%d", &atdata->mes);
         getchar();
         printf(" | Informe o ano de vencimento do produto: ");
-        scanf("%d", &ano);
+        scanf("%d", &atdata->ano);
         getchar();
         
-    } while(!valida_data(dia, mes, ano));
+    } while(!valida_data(atdata->dia, atdata->mes, atdata->ano));
 
     printf(" | ------------------------------------------------------------- | \n");
     printf(" | ============================================================= | \n");
     printf( " Press ENTER for continue...");
     getchar();
 
+    return atdata;
 }
 
 char telaAtualizarCategoria(void) 

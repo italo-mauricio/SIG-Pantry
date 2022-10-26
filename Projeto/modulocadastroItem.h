@@ -29,6 +29,27 @@ struct datav{
     int ano;
 };
 
+typedef struct atualNome AtualNome;
+struct atualNome 
+{
+    char nome[30];
+};
+
+typedef struct atualCodigo AtualCodigo;
+struct atualCodigo 
+{
+    char codBarras [13];
+};
+
+typedef struct atualData AtualData;
+struct atualData
+{
+    int dia, mes, ano;
+};
+
+
 Item* infoItem( );
 DataV* veriDatav( );
-
+AtualNome* atualizNome();
+AtualCodigo* atualizCodigo();
+AtualData* atualizData();
