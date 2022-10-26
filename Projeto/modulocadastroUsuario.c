@@ -10,12 +10,13 @@ DENTRO DESSE CADASTRO: estará os dados do usuário do sistema de controle de de
 
 void modulocadastroUsuario(void)
 {
+    Usuario *cliente;
     int escolha = 0;
     do {
         escolha = telaMenuUsuario();
         switch (escolha) {
         case 1:
-            cadastroUsuario();
+            cliente = cadastroUsuario();
             break;
         case 2:
             telaEditar();
@@ -62,18 +63,25 @@ int telaMenuUsuario(void) // Tela inicial dos cadastros
 
 }
 
+typedef struct data Data;
+typedef struct usuario Usuario;
+struct usuario {
+  char nome[40];
+  char email[40];
+  char username[20];
+  char senha[20];
+};
+struct data{
+    int dia;
+    int mes;
+    int ano;
+};
 
-// =================================================================================
-
-void cadastroUsuario(void) // Cadastro central do usuário
+Usuario *cadastroUsuario( ) // Cadastro central do usuário
 {
-    char nome[20];
-    
-    char Email [50]; 
-    int dia, mes, ano;
-
-    char Username [50];
-    char Senha [50];
+    Data *dt;
+    Usuario *usu;
+    usu = (Usuario *)malloc(sizeof(Usuario));
     system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -83,49 +91,51 @@ void cadastroUsuario(void) // Cadastro central do usuário
     do
     {
         printf(" | Informe o seu nome: ");
-        scanf("%s", nome);
+        scanf("%s", usu->nome);
         getchar();
         
-    } while (!lerLetras(nome));
+    } while (!lerLetras(usu->nome));
     
     do {
         printf(" | Informe o seu E-mail: ");   
-        scanf("%s", Email);
+        scanf("%s", usu->email);
         getchar();
 
-    } while (!lerEmail(Email));
+    } while (!lerEmail(usu->email));
 
     do {
         printf(" | Informe o dia de nascimento: ");
-        scanf("%d", &dia);
+        scanf("%d", dt->dia);
         getchar();
         printf(" | Informe o mês de nascimento: ");
-        scanf("%d", &mes);
+        scanf("%d", dt->mes);
         getchar();
         printf(" | Informe o ano de nascimento: ");
-        scanf("%d", &ano);
+        scanf("%d", dt->ano);
         getchar();
         
-    } while(!valida_data(dia, mes, ano));
+    } while(!valida_data(dt->dia, dt->mes, dt->ano));
   
     do {
         printf(" | Escolha um username: ");
-        scanf("%s", Username);
+        scanf("%s", usu->username);
         getchar();
 
-    } while(!lerUsernameSenha(Username));
+    } while(!lerUsernameSenha(usu->username));
 
     do {
         printf(" | Informe sua senha: ");
-        scanf("%s", Senha);
+        scanf("%s", usu->senha);
         getchar();
 
-    } while(!lerUsernameSenha(Senha));
+    } while(!lerUsernameSenha(usu->senha));
     
     printf(" | Usuário cadastrado com sucesso!                           | \n");
     printf(" | ========================================================= | \n");
     printf(" Press ENTER to exit...");
     getchar();
+
+    return usu;
 }
 
 //do{

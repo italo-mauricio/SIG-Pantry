@@ -22,7 +22,7 @@ void telaSobre(void)
     printf ( " |                                                                    | \n " );
     printf ( " | ------------------------------------------------------------------ | \n " );
     printf ( " | ---------------------- SIG - Pantry - 2022.2 --------------------- | \n " );
-    sytstem("Pause");
+    system("Pause");
     system("clear||cls");   
 
 }
