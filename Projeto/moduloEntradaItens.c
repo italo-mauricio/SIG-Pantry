@@ -6,15 +6,17 @@
 
 void menuEntradaItens(void)
 {
+    Entrada* regEntrada;
+    CancelarEnt* cancEnt;
     char escolha;
     do {
         escolha = telaEntradaItens();
         switch(escolha) {
             case '1':
-                telaRegistrarEntrada();
+                regEntrada = infoEntrada( );
                 break;
             case '2':
-                telaCancelarEntrada();
+                cancEnt = infoCancelarEntrada();
                 break;
         } 
      
@@ -43,10 +45,10 @@ char telaEntradaItens(void)
 
 }
 
-void telaRegistrarEntrada(void)
+Entrada* infoEntrada( );
 {
-    char codigodeBarras [15];
-    char quantProduto [13];
+    Entrada* ent;
+    ent = (Entrada*) malloc(sizeof(Entrada));
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -55,28 +57,31 @@ void telaRegistrarEntrada(void)
     do
     {
         printf(" | Informe o código de barras: ");
-        scanf("%[0-9]", codigodeBarras);
+        scanf("%s", ent->codigodeBarras);
         getchar();
         
-    } while (!lerQuantidade(codigodeBarras));
+    } while (!lerQuantidade(ent->codigodeBarras));
 
     do
     {
         printf(" | Informe a quantidade de produto: ");
-        scanf("%s", quantProduto);
+        scanf("%s", ent->quantProduto);
         getchar();
         
-    } while (!lerQuantidade(quantProduto));
+    } while(!lerQuantidade(ent->quantProduto));
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    system("Pause");
-    system("clear");
+    printf(" | Press ENTER for exit... ");
+    getchar();
+
+    return ent;
 }
 
-void telaCancelarEntrada(void)
+CancelarEnt* infoCancelarEntrada()
 {
-    char codigodeBarras [13];
+    CancelarEnt* canc;
+    canc = (CancelarEnt*) malloc(sizeof(CancelarEnt));
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -85,15 +90,17 @@ void telaCancelarEntrada(void)
     do
     {
         printf(" | Informe o código de barras: ");
-        scanf("%s", codigodeBarras);
+        scanf("%s", canc->codigodeBarras);
         getchar();
         
-    } while (!lerQuantidade(codigodeBarras));
+    } while (!lerQuantidade(canc->codigodeBarras));
     
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
     getchar();
+
+    return canc;
 
 }
 
