@@ -6,15 +6,17 @@
 
 void moduloSaidaItens(void)
 {
+    Saida* regSaida;
+    CancelarSaid* cancSaida;
     char escolha;
     do {
         escolha = telaSaidaItens();
         switch(escolha) {
             case '1':
-                telaRegistrarSaida();
+                regSaida = infoSaida( );
                 break;
             case '2':
-                telaCancelarSaida();
+                cancSaida = infoCancelarSaid( );
                 break;
             default:
                 printf("Opção inválida!");
@@ -22,8 +24,6 @@ void moduloSaidaItens(void)
         } 
      
     } while (escolha != '0');
-
-    
 
 }
 
@@ -48,10 +48,10 @@ char telaSaidaItens(void)
 
 }
 
-void telaRegistrarSaida(void)
+Saida* infoSaida( )
 {
-    char CodigodeBarras [13];
-    char quantProduto [13];
+    CancelarSaid* cancs;
+    cancs = (CancelarSaid*) malloc(sizeof(CancelarSaid));
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -60,29 +60,31 @@ void telaRegistrarSaida(void)
     do
     {
         printf(" | Informe o código de barras: ");
-        scanf("%s", CodigodeBarras);
+        scanf("%s", cancs->codigodeBarras);
         getchar();
         
-    } while (!lerQuantidade(CodigodeBarras));
+    } while (!lerQuantidade(cancs->codigodeBarras));
 
     do
     {
         printf(" | Informe a quantidade de produto: ");
-        scanf("%s", quantProduto);
+        scanf("%s", cancs->QuantProduto);
         getchar();
         
-    } while (!lerQuantidade(quantProduto));
+    } while (!lerQuantidade(cancs->QuantProduto));
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     system("Pause");
     system("cls");
 
+    return cancs;
 }
 
-void telaCancelarSaida(void)
+CancelarSaid* infoCancelarSaid( )
 {
-    char CodigodeBarras [13];
+    CancelarSaid* cancelar;
+    cancelar = (CancelarSaid*) malloc(sizeof(CancelarSaid));
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -91,14 +93,16 @@ void telaCancelarSaida(void)
     do
     {
         printf(" | Informe o código de barras: ");
-        scanf("%s", CodigodeBarras);
+        scanf("%s", cancelar->codigodeBarras);
         getchar();
         
-    } while (!lerQuantidade(CodigodeBarras));
+    } while (!lerQuantidade(cancelar->codigodeBarras));
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
     getchar();
+
+    return cancelar;
 
 }

@@ -1,7 +1,5 @@
 void menuEntradaItens(void);
 char telaEntradaItens(void);
-void telaRegistrarEntrada(void);
-void telaCancelarEntrada(void);
 
 typedef struct entrada Entrada;
 struct entrada
