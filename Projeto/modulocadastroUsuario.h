@@ -2,7 +2,7 @@
 void modulocadastroUsuario(void);
 int telaMenuUsuario(void);
 void telaAtualizarUsuario(void);
-void exibeUsuario(const Usuario*, const Data*);
+void exibeUsuario(void);
 void escolhafuncao(char);
 
 typedef struct usuario Usuario;

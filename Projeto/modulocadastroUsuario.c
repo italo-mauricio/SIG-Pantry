@@ -21,7 +21,7 @@ void modulocadastroUsuario(void)
             telaAtualizarUsuario();
             break; 
         case  3:
-            exibeUsuario(cliente);
+            exibeUsuario();
             break;
         case 4:
             excluir = infoExcluirUs();
@@ -88,6 +88,7 @@ Usuario* infoUsuario( ) // Cadastro central do usuário
         getchar();
 
     } while (!lerEmail(usu->email));
+    
   
     veriData();
   
@@ -109,6 +110,11 @@ Usuario* infoUsuario( ) // Cadastro central do usuário
     printf(" | ========================================================= | \n");
     printf(" Press ENTER to exit...");
     getchar();
+    free(usu->nome);
+    free(usu->email);
+    free(usu->username);
+    free(usu->senha);
+
 
     return usu;
 }
@@ -348,8 +354,13 @@ AtualizarSenha* atualizSenha()
 
 }
 // ===================================== Listar o cadastro =================================
-void exibeUsuario(const Usuario*, const Data*) 
+void exibeUsuario(void) 
 {
+    
+    Usuario* usu;
+    usu = (Usuario*) malloc(sizeof(Usuario));
+    Data* dt;
+    dt = (Data*) malloc(sizeof(Data));
     system ( " cls" );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
