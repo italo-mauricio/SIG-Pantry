@@ -32,6 +32,7 @@ void modulocadastroUsuario(void)
 
     } while(escolha != 0);
   
+    free(cliente);
 }
 
 
@@ -113,6 +114,7 @@ Usuario* infoUsuario( ) // Cadastro central do usuário
 Data* veriData( )
 {
     Data* dt;
+    dt = (Data*) malloc(sizeof(Data));
     do {        
         printf(" | Informe o dia de nascimento: ");
         scanf("%d",&dt->dia);

@@ -112,6 +112,7 @@ Item* infoItem( )
 DataV* veriDatav( )
 {
     DataV* dv;
+    dv = (DataV*) malloc(sizeof(DataV));
     do {
         printf(" | Informe o dia de vencimento do produto: ");
         scanf("%d", &dv->dia);

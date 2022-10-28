@@ -53,8 +53,8 @@ char telaSaidaItens(void)
 
 Saida* infoSaida( )
 {
-    CancelarSaid* cancs;
-    cancs = (CancelarSaid*) malloc(sizeof(CancelarSaid));
+    Saida* cancs;
+    cancs = (Saida*) malloc(sizeof(Saida));
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
