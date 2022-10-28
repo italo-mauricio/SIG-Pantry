@@ -49,7 +49,7 @@ char telaEntradaItens(void)
 
 }
 
-Entrada* infoEntrada( );
+Entrada* infoEntrada( )
 {
     Entrada* ent;
     ent = (Entrada*) malloc(sizeof(Entrada));
