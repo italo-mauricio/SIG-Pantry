@@ -44,9 +44,16 @@ struct atualData
     int dia, mes, ano;
 };
 
+typedef struct excluirItem ExcluirItem;
+struct excluirItem
+{
+    char barra [13];
+};
 
 Item* infoItem( );
 DataV* veriDatav( );
 AtualNome* atualizNome();
 AtualCodigo* atualizCodigo();
 AtualData* atualizData();
+ExcluirItem* infoExcluir();
+

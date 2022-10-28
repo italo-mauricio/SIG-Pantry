@@ -6,6 +6,7 @@
 
 void modulocadastroItem(void) {
     Item* produto;
+    ExcluirItem* excItem;
     char escolha;
     do {
         escolha = telaMenuItens();
@@ -26,7 +27,7 @@ void modulocadastroItem(void) {
                 telaAtualizarItem();
                 break;
             case '6':
-                telaExcluirItem();
+                excItem = infoExcluir();
                 break;
             default:
                 printf("Opção inválida\n");
@@ -35,10 +36,11 @@ void modulocadastroItem(void) {
      
     } while (escolha != '0');
 
+    free (produto);
+    free (excItem);
+
 }
  
-Item* infoItem( );
-
 char telaMenuItens(void)
 {
     char esc;
@@ -191,7 +193,6 @@ void telaEstoqueMinimo(void)
     getchar();
 
 }
-AtualNome* atualizNome();
 
 void telaAtualizarItem(void) 
 {
@@ -243,6 +244,10 @@ void suitefuncao(char op){
             printf("Opção inválida\n");
             break;
         }
+
+        free (atualizar);
+        free (atualiz);
+        free (atuali);
 
 }
 
@@ -374,9 +379,10 @@ char telaAtualizarLocaldeArmazenamento(void)
 
 }
 
-void telaExcluirItem(void)
+ExcluirItem* infoExcluir()
 {
-    char barra [13];
+    ExcluirItem* exc;
+    exc = (ExcluirItem*) malloc(sizeof(ExcluirItem));
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
@@ -385,10 +391,10 @@ void telaExcluirItem(void)
     do
     {
         printf(" | Informe o código de barras: ");
-        scanf("%s", barra);
+        scanf("%s", exc->barra);
         getchar();
         
-    } while (!lerQuantidade(barra));
+    } while (!lerQuantidade(exc->barra));
 
     // aqui terá um if se o código de barra for encontrado ele entrará nas opções
     // if barra == (nosso banco de dados);
@@ -398,5 +404,7 @@ void telaExcluirItem(void)
     printf(" | ============================================================== | \n");
     printf(" Press ENTER for continue... ");
     getchar();
+
+    return exc;
 
 }
