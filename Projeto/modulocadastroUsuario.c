@@ -169,10 +169,10 @@ void escolhafuncao(char op){
         switch (op)
         {
         case '1':
-            atualizar = atualizarNome();
+            atualizar = atualizaNome();
             break;
         case '2':
-            atualiza = atualizarEmail();
+            atualiza = atualizEmail();
             break;
         case '3':
             atualiz = atualizarData();
@@ -198,8 +198,7 @@ void escolhafuncao(char op){
 
 }
 
-
-AtualizarNome* atualizNome()
+AtualizarNome* atualizaNome()
 {
     AtualizarNome* atnomeus;
     atnomeus = (AtualizarNome*) malloc(sizeof(AtualizarNome));

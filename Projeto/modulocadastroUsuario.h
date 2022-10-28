@@ -3,6 +3,7 @@ void modulocadastroUsuario(void);
 int telaMenuUsuario(void);
 void telaAtualizarUsuario(void);
 void exibeUsuario(const Usuario*, const Data*);
+void escolhafuncao(char);
 
 typedef struct usuario Usuario;
 struct usuario {
@@ -58,7 +59,7 @@ struct atualizarSenha
 Usuario* infoUsuario( );
 Data* veriData( );
 ExcluirUsuario* infoExcluirUs();
-AtualizarNome* atualizNome();
+AtualizarNome* atualizaNome();
 AtualizarEmail* atualizEmail();
 AtualizarDataNasc* atualizarData();
 AtualizarUsername* atualizUsername();
