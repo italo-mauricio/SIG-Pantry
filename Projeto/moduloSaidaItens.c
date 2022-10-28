@@ -25,6 +25,9 @@ void moduloSaidaItens(void)
      
     } while (escolha != '0');
 
+    free (regSaida);
+    free (cancSaida);
+
 }
 
 char telaSaidaItens(void)

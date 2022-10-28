@@ -22,6 +22,10 @@ void menuEntradaItens(void)
      
     } while (escolha != '0');
 
+    free (regEntrada);
+    free (cancEnt);
+
+
 }
 
 char telaEntradaItens(void)
@@ -69,7 +73,7 @@ Entrada* infoEntrada( );
         getchar();
         
     } while(!lerQuantidade(ent->quantProduto));
-
+    
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
@@ -103,5 +107,6 @@ CancelarEnt* infoCancelarEntrada()
     return canc;
 
 }
+
 
 

@@ -34,7 +34,6 @@ void modulocadastroUsuario(void)
   
 }
 
-Usuario* infoUsuario( );
 
 // ================================ Começo do cadastro ====================================== //
 
@@ -111,7 +110,8 @@ Usuario* infoUsuario( ) // Cadastro central do usuário
 }
 
 
-Data* veriData( ){
+Data* veriData( )
+{
     Data* dt;
     do {        
         printf(" | Informe o dia de nascimento: ");
