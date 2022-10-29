@@ -355,8 +355,7 @@ AtualizarSenha* atualizSenha()
 }
 // ===================================== Listar o cadastro =================================
 void exibeUsuario(void) 
-{
-    
+{    
     Usuario* usu;
     usu = (Usuario*) malloc(sizeof(Usuario));
     Data* dt;
