@@ -21,7 +21,7 @@ void modulocadastroUsuario(void)
             telaAtualizarUsuario();
             break; 
         case  3:
-            exibeUsuario();
+            exibeUsuario(); //cliente depois entra como parâmetro aqui
             break;
         case 4:
             excluir = infoExcluirUs();
