@@ -26,7 +26,7 @@ void modulocadastroUsuario(void)
         case 4:
             excluir = infoExcluirUs();
             break;
-        default :
+        default:
             printf ("Opção inválida! \n");
             break;
     }
