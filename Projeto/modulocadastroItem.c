@@ -333,6 +333,7 @@ AtualData* atualizData()
     getchar();
 
     return atdata;
+    
 }
 
 char telaAtualizarCategoria(void) 

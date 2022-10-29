@@ -21,7 +21,7 @@ void modulocadastroUsuario(void)
             telaAtualizarUsuario();
             break; 
         case  3:
-            exibeUsuario();
+            exibeUsuario(); //cliente depois entra como parâmetro aqui
             break;
         case 4:
             excluir = infoExcluirUs();
@@ -355,8 +355,7 @@ AtualizarSenha* atualizSenha()
 }
 // ===================================== Listar o cadastro =================================
 void exibeUsuario(void) 
-{
-    
+{    
     Usuario* usu;
     usu = (Usuario*) malloc(sizeof(Usuario));
     Data* dt;

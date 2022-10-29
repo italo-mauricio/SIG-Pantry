@@ -6,12 +6,14 @@
 
 void menulistadeCompras(void)
 {
+    MontarLista* montar;
+
     char escolha;
     do {
         escolha = telaListadeCompras();
         switch (escolha) {
         case '1':
-            telaMontarLista();
+            montar = infoMontarLista();
             break;
         case '2':
             telaItensQuantMinima();
@@ -23,7 +25,7 @@ void menulistadeCompras(void)
             telaAdicionarItensaLista();
             break; 
         case '5':
-            telaItensCadastrados();
+            exibeListaCompras(); //montar depois entra como parâmetro aqui
             break;
         default:
             printf("Opção inválida\n");
@@ -32,6 +34,8 @@ void menulistadeCompras(void)
 
     } while(escolha != '0');
         printf("Obrigado! Volte sempre!");
+
+    free(montar);
 
 } 
 
@@ -61,7 +65,6 @@ char telaListadeCompras(void)
 
 void telaItensQuantMinima(void)
 {
-    
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
@@ -73,13 +76,13 @@ void telaItensQuantMinima(void)
     printf(" | ==================================================================== | \n");
     system("Pause");
     system("cls");
-
-
+    getchar();
 
 }
 
 void telaItensProxVencimento(void)
 {
+    //criar um ponteiro que puxe a informação com base na data de validade do cadastro de itens
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
@@ -91,6 +94,7 @@ void telaItensProxVencimento(void)
     printf(" | ==================================================================== | \n");
     system("Pause");
     system(" clear || cls");
+    getchar();
 
 }
 
@@ -116,63 +120,65 @@ char telaAdicionarItensaLista(void)
 // nessa opção de itens à sua escolha cria-se uma outra tela, onde terá nome; quantidade...
 }
 
-void telaMontarLista(void)
+MontarLista* infoMontarLista()
 {
-    char nome[20];
-    char categoriaProduto[10];
-    char quantidadeProduto[15];
-
+    MontarLista* mtlista;
+    mtlista = (MontarLista*)malloc(sizeof(MontarLista));
     system (" clear||cls ");
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
-    printf("| ------------- | Montar a sua Lista de Compras | ------------- | \n");
+    printf("| ------------- | MONTAR A SUA LISTA DE COMPRAS | ------------- | \n");
     printf("|                                                               | \n");
     do
     {
         printf(" | Informe o nome: ");
-        scanf("%s", nome);
+        scanf("%s", mtlista->nome);
         getchar();
         
-    } while (!lerLetras(nome));
+    } while (!lerLetras(mtlista->nome));
 
     do
     {
         printf(" | Informe a categoria do produto: ");
-        scanf("%s", categoriaProduto);
+        scanf("%s", mtlista->categoriaProduto);
         getchar();
         
-    } while (!lerLetras(categoriaProduto));
+    } while (!lerLetras(mtlista->categoriaProduto));
 
     do
     {
         printf(" | Informe a quantidade de produto: ");
-        scanf("%s", quantidadeProduto);
+        scanf("%s", mtlista->quantidadeProduto);
         getchar();
         
-    } while (!lerQuantidade(quantidadeProduto));
+    } while (!lerQuantidade(mtlista->quantidadeProduto));
     
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
     system("Pause");
     system("clear||cls");
-    
-   /* printf("| Deseja ser notificado quando o produto estiver proximo ao ven | \n");*/
 
+    return mtlista;
+    
 }
 
-void telaItensCadastrados(void)
+//função para exibir os itens cadastrados
+void exibeListaCompras(void)
 {
-
+    MontarLista* mtlista;
+    mtlista = (MontarLista*)malloc(sizeof(MontarLista*));
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | ----------------- | ITENS JÁ CADASTRADOS NA LISTA | ---------------- | \n");
     printf(" |                                                                      | \n");
-    printf(" |  Itens cadastrados na lista:  "); //criar função para puxar essa informação
-    getchar();
+    printf(" |  Nome dos itens: %s\n", mtlista->nome); 
+    printf(" |  Categoria dos itens: %s\n", mtlista->categoriaProduto); 
+    printf(" |  Quantidade dos itens: %s\n", mtlista->quantidadeProduto); 
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
     system("Pause");
     system("clear||cls");
+    getchar();
 
 }
