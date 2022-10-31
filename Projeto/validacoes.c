@@ -102,6 +102,36 @@ int lerUsernameSenha(char usernameSenha[])
 //        Validação de Letras              |
 // --------------------------------------  |
 
+
+int validarLetras(char letra[], int tamanho){
+
+    char alfabeto[54]={'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','V','W','X','Y','Z',' ','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+
+    int cont=0;
+
+    for(int x=0; letra[x] != '\0'; x++){
+        for( int y=0;y<=53;y++){
+            if(letra[x] == alfabeto[y]){
+                cont++;
+            }
+        }
+    }
+    if (tamanho==cont){
+        return 0;
+    }else{
+        return 1;
+    }
+}
+int tamanhoString(char a[]){
+    int cont;
+
+    for(int i=0; a[i] != '\0'; i++){
+        cont++;
+    }
+
+    return cont;
+}
+
 int lerLetras(char nome[])
 {
 
@@ -129,6 +159,10 @@ int lerLetras(char nome[])
 
 int meses[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 char decimais[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
+
+
+
 
 
 

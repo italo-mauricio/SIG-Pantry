@@ -7,7 +7,7 @@ void escolhafuncao(char);
 
 typedef struct usuario Usuario;
 struct usuario {
-  char nome[40];
+  char nome[101];
   char email[40];
   char username[20];
   char senha[20];

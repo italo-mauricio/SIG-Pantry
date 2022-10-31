@@ -77,10 +77,10 @@ Usuario* infoUsuario( ) // Cadastro central do usuário
     do
     {
         printf(" | Informe o seu nome: ");
-        scanf("%s", usu->nome);
+        scanf("%[A-Z a-z 0-9 ]", usu->nome);
         getchar();
         
-    } while (!lerLetras(usu->nome));
+    } while (!validarLetras(usu->nome, tamanhoString(usu->nome)));
     
     do {
         printf(" | Informe o seu E-mail: ");   
