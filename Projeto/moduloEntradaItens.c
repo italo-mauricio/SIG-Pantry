@@ -1,30 +1,23 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "moduloEntradaItens.h"
-#include "validacoes.h"
 
 void menuEntradaItens(void)
 {
-    Entrada* regEntrada;
-    CancelarEnt* cancEnt;
     char escolha;
     do {
         escolha = telaEntradaItens();
         switch(escolha) {
             case '1':
-                regEntrada = infoEntrada( );
+                infoEntrada( );
                 break;
             case '2':
-                cancEnt = infoCancelarEntrada();
+                infoCancelarEntrada();
                 break;
         } 
      
     } while (escolha != '0');
-
-    free (regEntrada);
-    free (cancEnt);
-
 
 }
 
@@ -49,15 +42,16 @@ char telaEntradaItens(void)
 
 }
 
-Entrada* infoEntrada( )
+//Função para entrada de um item ao estoque
+void infoEntrada(void)
 {
     Entrada* ent;
-    ent = (Entrada*) malloc(sizeof(Entrada));
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------------- REGISTRAR ENTRADA DE ITEM ---------------- | \n");
     printf(" |                                                           | \n");    
+    ent = (Entrada*)malloc(sizeof(Entrada));
     do
     {
         printf(" | Informe o código de barras: ");
@@ -79,18 +73,18 @@ Entrada* infoEntrada( )
     printf(" | Press ENTER for exit... ");
     getchar();
 
-    return ent;
 }
 
-CancelarEnt* infoCancelarEntrada()
+//Função para procurar o produto que deseja fazer o cancelamento
+void infoCancelarEntrada(void)
 {
     CancelarEnt* canc;
-    canc = (CancelarEnt*) malloc(sizeof(CancelarEnt));
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | --------------- CANCELAR ENTRADA DE ITEM ---------------- | \n");
-    printf(" |                                                           | \n");    
+    printf(" |                                                           | \n");  
+    canc = (CancelarEnt*) malloc(sizeof(CancelarEnt));  
     do
     {
         printf(" | Informe o código de barras: ");
@@ -104,8 +98,21 @@ CancelarEnt* infoCancelarEntrada()
     printf(" | Press ENTER for exit... ");
     getchar();
 
-    return canc;
+}
 
+//Função para gravar no arquivo:
+void gravaEnt(Entrada* ent) 
+{
+    FILE* fp;
+    fp = fopen("ent.dat", "ab");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        exit(1);
+    }
+    
+    fwrite(ent, sizeof(Entrada), 1, fp);
+    fclose(fp);
+    
 }
 
 

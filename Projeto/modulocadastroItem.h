@@ -15,16 +15,18 @@ struct item
 {
     char nomeProduto [20];
     char nomeMarca [20];
-    int dia, mes, ano;
+    int dia;
+    int mes;
+    int ano;
     char codigoBarras [13];
 };
 
-typedef struct datav DataV;
+/*typedef struct datav DataV;
 struct datav{
     int dia;
     int mes;
     int ano;
-};
+}; */
 
 typedef struct atualNome AtualNome;
 struct atualNome 
@@ -50,10 +52,11 @@ struct excluirItem
     char barra [13];
 };
 
-Item* infoItem( );
-DataV* veriDatav( );
+void infoItem(void);
+//DataV* veriDatav( );
 AtualNome* atualizNome();
 AtualCodigo* atualizCodigo();
 AtualData* atualizData();
 ExcluirItem* infoExcluir();
+void gravaItem(Item*);
 

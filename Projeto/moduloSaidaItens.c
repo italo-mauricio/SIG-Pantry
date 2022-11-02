@@ -1,22 +1,20 @@
 #include <stdio.h>
-#include<stdlib.h>
-#include "moduloSaidaItens.h"
+#include <stdlib.h>
 #include <string.h>
+#include "moduloSaidaItens.h"
 #include "validacoes.h"
 
 void moduloSaidaItens(void)
 {
-    Saida* regSaida;
-    CancelarSaid* cancSaida;
     char escolha;
     do {
         escolha = telaSaidaItens();
         switch(escolha) {
             case '1':
-                regSaida = infoSaida( );
+                infoSaida( );
                 break;
             case '2':
-                cancSaida = infoCancelarSaid( );
+                infoCancelarSaid( );
                 break;
             default:
                 printf("Opção inválida!");
@@ -25,8 +23,6 @@ void moduloSaidaItens(void)
      
     } while (escolha != '0');
 
-    free (regSaida);
-    free (cancSaida);
 
 }
 
@@ -51,7 +47,8 @@ char telaSaidaItens(void)
 
 }
 
-Saida* infoSaida( )
+//função para informar a saída de algum item
+void infoSaida(void)
 {
     Saida* cancs;
     cancs = (Saida*) malloc(sizeof(Saida));
@@ -81,17 +78,17 @@ Saida* infoSaida( )
     system("Pause");
     system("cls");
 
-    return cancs;
 }
 
-CancelarSaid* infoCancelarSaid( )
+//função para o cancelamento da saída de algum item
+void infoCancelarSaid(void)
 {
     CancelarSaid* cancelar;
     cancelar = (CancelarSaid*) malloc(sizeof(CancelarSaid));
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ---------------- REGISTRAR SAÍDA DE ITEM ---------------- | \n");
+    printf(" | -------- REGISTRAR CANCELAMENTO DE SAÍDA DE ITEM -------- | \n");
     printf(" |                                                           | \n");    
     do
     {
@@ -106,6 +103,20 @@ CancelarSaid* infoCancelarSaid( )
     printf(" | Press ENTER for exit... ");
     getchar();
 
-    return cancelar;
 
+}
+
+//Função para gravar no arquivo:
+void gravaEnt(Saida* cancs) 
+{
+    FILE* fp;
+    fp = fopen("cancs.dat", "ab");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        exit(1);
+    }
+    
+    fwrite(cancs, sizeof(Saida), 1, fp);
+    fclose(fp);
+    
 }

@@ -2,30 +2,36 @@
 void modulocadastroUsuario(void);
 int telaMenuUsuario(void);
 void telaAtualizarUsuario(void);
-void exibeUsuario(void);
+void exibeUsuario(Usuario*);
 void escolhafuncao(char);
 
+//struct para cadastro do usuário
 typedef struct usuario Usuario;
 struct usuario {
-  char nome[101];
-  char email[40];
-  char username[20];
-  char senha[20];
+    char nome[101];
+    char email[40];
+    int dia;
+    int mes;
+    int ano;
+    char username[20];
+    char senha[20];
 };
 
-typedef struct data Data;
+/*typedef struct data Data;
 struct data{
     int dia;
     int mes;
     int ano;
-};
+}; */
 
+//struct para excluir algum dado do usuário
 typedef struct excluirUsuario ExcluirUsuario;
 struct excluirUsuario
 {
     char email [40];
 };
 
+//structs para atualização de algum parâmetro
 typedef struct atualizarNome AtualizarNome;
 struct atualizarNome
 {
@@ -42,7 +48,7 @@ typedef struct atualizarDataNasc AtualizarDataNasc;
 struct atualizarDataNasc
 {
     int dia, mes, ano;
-};
+}; 
 
 typedef struct atualizarUsername AtualizarUsername;
 struct atualizarUsername
@@ -56,11 +62,12 @@ struct atualizarSenha
     char senha[20];
 };
 
-Usuario* infoUsuario( );
-Data* veriData( );
+void InfoUsuario();
+//Data* veriData( );
 ExcluirUsuario* infoExcluirUs();
 AtualizarNome* atualizaNome();
 AtualizarEmail* atualizEmail();
 AtualizarDataNasc* atualizarData();
 AtualizarUsername* atualizUsername();
 AtualizarSenha* atualizSenha();
+void gravaUsuario(Usuario*);

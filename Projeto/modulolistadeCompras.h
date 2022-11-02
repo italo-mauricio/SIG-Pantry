@@ -13,5 +13,6 @@ struct montarLista
     char quantidadeProduto[15];
 };
 
-MontarLista* infoMontarLista();
+void infoMontarLista(void);
 void exibeListaCompras(void);
+void gravaLista(MontarLista*);
