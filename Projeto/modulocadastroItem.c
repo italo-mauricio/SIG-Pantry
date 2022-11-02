@@ -4,15 +4,14 @@
 #include "validacoes.h"
 #include "modulocadastroItem.h"
 
-void modulocadastroItem(void) {
-    Item* produto;
-    ExcluirItem* excItem;
+void modulocadastroItem(void) 
+{
     char escolha;
     do {
         escolha = telaMenuItens();
         switch(escolha) {
             case '1':
-                produto = infoItem();
+                infoItem();
                 break;
             case '2':
                 telaCategoriadoProduto();
@@ -27,7 +26,7 @@ void modulocadastroItem(void) {
                 telaAtualizarItem();
                 break;
             case '6':
-                excItem = infoExcluir();
+                infoExcluir();
                 break;
             default:
                 printf("Opção inválida\n");
@@ -36,11 +35,9 @@ void modulocadastroItem(void) {
      
     } while (escolha != '0');
 
-    free (produto);
-    free (excItem);
-
 }
- 
+
+
 char telaMenuItens(void)
 {
     char esc;
@@ -66,7 +63,8 @@ char telaMenuItens(void)
 
 }
 
-Item* infoItem( )
+//função para o cadastro dos itens
+void infoItem(void)
 {
     Item* it;
     it = (Item*) malloc(sizeof(Item));
@@ -99,17 +97,27 @@ Item* infoItem( )
         
     } while (!lerQuantidade(it->codigoBarras));
     
-    veriDatav( );
+    do {
+        printf(" | Informe o dia de vencimento do produto: ");
+        scanf("%d", &it->dia);
+        getchar();
+        printf(" | Informe o mês de vencimento do produto: ");
+        scanf("%d", &it->mes);
+        getchar();
+        printf(" | Informe o ano de vencimento do produto: ");
+        scanf("%d", &it->ano);
+        getchar();
+        
+    } while(!valida_data(it->dia, it->mes, it->ano));  
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
     getchar();
-    return it;
 
 }
 
-DataV* veriDatav( )
+/*DataV* veriDatav( )
 {
     DataV* dv;
     dv = (DataV*) malloc(sizeof(DataV));
@@ -126,8 +134,7 @@ DataV* veriDatav( )
         
     } while(!valida_data(dv->dia, dv->mes, dv->ano));  
     return dv;
-}
-
+} */
 
 char telaCategoriadoProduto(void)
 {
@@ -183,7 +190,7 @@ void telaEstoqueMinimo(void)
     printf(" |                                                           | \n");
     do
     {
-        printf(" | Informe o estoque mínimo: ");
+        printf(" | Informe o estoque mínimo do item: ");
         scanf("%s", estoqueMinimo);
         getchar();
         
@@ -195,6 +202,7 @@ void telaEstoqueMinimo(void)
 
 }
 
+//VAI TER QUE MUDAR
 void telaAtualizarItem(void) 
 {
     char op;
@@ -251,7 +259,6 @@ void suitefuncao(char op){
         free (atuali);
 
 }
-
 
 AtualNome* atualizNome()
 {
@@ -408,5 +415,20 @@ ExcluirItem* infoExcluir()
     getchar();
 
     return exc;
+
+}
+
+//função para gravar no arquivo
+void gravaItem(Item* it) 
+{
+    FILE* fp;
+    fp = fopen("it.dat", "ab");
+    if (fp == NULL) {
+        printf("Ops! Não é possível continuar o programa...\n");
+        exit(1);
+    }
+    
+    fwrite(it, sizeof(Item), 1, fp);
+    fclose(fp);
 
 }
