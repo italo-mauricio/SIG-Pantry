@@ -7,6 +7,7 @@
 void modulocadastroUsuario(void)
 {
     //ExcluirUsuario* excluir;
+    
     int escolha = 0;
     do {
         escolha = telaMenuUsuario();
@@ -18,7 +19,7 @@ void modulocadastroUsuario(void)
             telaAtualizarUsuario();
             break; 
         case  3:
-            exibeUsuario(cliente);
+            exibeUsuario();
             break;
         case 4:
             infoExcluirUs();
@@ -117,7 +118,7 @@ void InfoUsuario()
     printf(" | ========================================================= | \n");
     printf(" Press ENTER to exit...");
 //    getchar();
-    exibeUsuario(cliente);
+    exibeUsuario();
     gravaUsuario(cliente);
     free(cliente);
 
@@ -357,8 +358,10 @@ AtualizarSenha* atualizSenha()
 }
 
 //função para listar os dados do usuário
-void exibeUsuario(Usuario* cliente) 
+void exibeUsuario(void) 
 {    
+    Usuario* cliente;
+    cliente = (Usuario*)malloc(sizeof(Usuario*));
     system ( " cls" );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
