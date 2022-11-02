@@ -4,16 +4,15 @@
 #include "modulolistadeCompras.h"
 #include "validacoes.h"
 
+
 void menulistadeCompras(void)
 {
-    MontarLista* montar;
-
     char escolha;
     do {
         escolha = telaListadeCompras();
         switch (escolha) {
         case '1':
-            montar = infoMontarLista();
+            infoMontarLista();
             break;
         case '2':
             telaItensQuantMinima();
@@ -25,7 +24,7 @@ void menulistadeCompras(void)
             telaAdicionarItensaLista();
             break; 
         case '5':
-            exibeListaCompras(); //montar depois entra como parâmetro aqui
+            exibeListaCompras(); 
             break;
         default:
             printf("Opção inválida\n");
@@ -34,8 +33,6 @@ void menulistadeCompras(void)
 
     } while(escolha != '0');
         printf("Obrigado! Volte sempre!");
-
-    free(montar);
 
 } 
 
@@ -63,6 +60,7 @@ char telaListadeCompras(void)
 
 } 
 
+//Aqui será um relatório
 void telaItensQuantMinima(void)
 {
     system ( " clear||cls " );
@@ -80,6 +78,7 @@ void telaItensQuantMinima(void)
 
 }
 
+//Aqui será um relatório
 void telaItensProxVencimento(void)
 {
     //criar um ponteiro que puxe a informação com base na data de validade do cadastro de itens
@@ -100,7 +99,6 @@ void telaItensProxVencimento(void)
 
 char telaAdicionarItensaLista(void)
 {
-
     char esc;
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
@@ -120,7 +118,7 @@ char telaAdicionarItensaLista(void)
 // nessa opção de itens à sua escolha cria-se uma outra tela, onde terá nome; quantidade...
 }
 
-MontarLista* infoMontarLista()
+void infoMontarLista(void)
 {
     MontarLista* mtlista;
     mtlista = (MontarLista*)malloc(sizeof(MontarLista));
@@ -157,12 +155,10 @@ MontarLista* infoMontarLista()
     printf("| ============================================================= | \n");
     system("Pause");
     system("clear||cls");
-
-    return mtlista;
     
 }
 
-//função para exibir os itens cadastrados
+//função para exibir os itens já cadastrados na lista
 void exibeListaCompras(void)
 {
     MontarLista* mtlista;
@@ -181,4 +177,19 @@ void exibeListaCompras(void)
     system("clear||cls");
     getchar();
 
+}
+
+//função para gravar no arquivo
+void gravaLista(MontarLista* mtlista) 
+{
+    FILE* fp;
+    fp = fopen("mtlista.dat", "ab");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        exit(1);
+    }
+    
+    fwrite(mtlista, sizeof(MontarLista), 1, fp);
+    fclose(fp);
+    
 }
