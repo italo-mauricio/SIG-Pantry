@@ -15,5 +15,5 @@ struct cancelarsaid
     char QuantProduto[13];
 };
 
-Saida* infoSaida( );
-CancelarSaid* infoCancelarSaid( );
+void infoSaida(void);
+void infoCancelarSaid(void);
