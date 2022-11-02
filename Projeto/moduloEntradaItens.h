@@ -14,5 +14,6 @@ struct cancelarent
     char codigodeBarras [15];
 };
 
-Entrada* infoEntrada( );
-CancelarEnt* infoCancelarEntrada( );
+void infoEntrada(void);
+void infoCancelarEntrada(void);
+void gravaEnt(Entrada*);
