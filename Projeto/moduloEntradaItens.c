@@ -10,7 +10,7 @@ void menuEntradaItens(void)
         escolha = telaEntradaItens();
         switch(escolha) {
             case '1':
-                infoEntrada( );
+                infoEntrada();
                 break;
             case '2':
                 infoCancelarEntrada();
@@ -46,24 +46,25 @@ char telaEntradaItens(void)
 void infoEntrada(void)
 {
     Entrada* ent;
+    ent = (Entrada*)malloc(sizeof(Entrada));
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------------- REGISTRAR ENTRADA DE ITEM ---------------- | \n");
     printf(" |                                                           | \n");    
-    ent = (Entrada*)malloc(sizeof(Entrada));
+
     do
     {
         printf(" | Informe o código de barras: ");
-        scanf("%s", ent->codigodeBarras);
+        scanf("%[0-9]", ent->codigodeBarras);
         getchar();
         
-    } while (!lerQuantidade(ent->codigodeBarras));
+    }while (!lerQuantidade(ent->codigodeBarras));
 
     do
     {
         printf(" | Informe a quantidade de produto: ");
-        scanf("%s", ent->quantProduto);
+        scanf("%[0-9]", ent->quantProduto);
         getchar();
         
     } while(!lerQuantidade(ent->quantProduto));
@@ -88,10 +89,10 @@ void infoCancelarEntrada(void)
     do
     {
         printf(" | Informe o código de barras: ");
-        scanf("%s", canc->codigodeBarras);
+        scanf("%s", canc->codigoBarras);
         getchar();
         
-    } while (!lerQuantidade(canc->codigodeBarras));
+    } while (!lerQuantidade(canc->codigoBarras));
     
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
