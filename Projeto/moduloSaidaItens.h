@@ -17,3 +17,4 @@ struct cancelarsaid
 
 void infoSaida(void);
 void infoCancelarSaid(void);
+void gravaEnt(Saida*);

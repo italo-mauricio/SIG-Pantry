@@ -105,3 +105,18 @@ void infoCancelarSaid(void)
 
 
 }
+
+//Função para gravar no arquivo:
+void gravaEnt(Saida* cancs) 
+{
+    FILE* fp;
+    fp = fopen("cancs.dat", "ab");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        exit(1);
+    }
+    
+    fwrite(cancs, sizeof(Saida), 1, fp);
+    fclose(fp);
+    
+}

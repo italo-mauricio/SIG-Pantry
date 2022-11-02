@@ -101,8 +101,8 @@ void infoCancelarEntrada(void)
 }
 
 //Função para gravar no arquivo:
-
-void gravaEnt(Entrada* ent) {
+void gravaEnt(Entrada* ent) 
+{
     FILE* fp;
     fp = fopen("ent.dat", "ab");
     if (fp == NULL) {
