@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "moduloEntradaItens.h"
+#include "validacoes.h"
 
 void menuEntradaItens(void)
 {
@@ -59,7 +60,7 @@ void infoEntrada(void)
         scanf("%[0-9]", ent->codigodeBarras);
         getchar();
         
-    }while (!lerQuantidade(ent->codigodeBarras));
+    } while(!lerQuantidade(ent->codigodeBarras));
 
     do
     {
