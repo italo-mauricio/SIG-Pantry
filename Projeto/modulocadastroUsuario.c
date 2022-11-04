@@ -5,21 +5,23 @@
 #include "validacoes.h"
 
 void modulocadastroUsuario(void)
-{
-    //ExcluirUsuario* excluir;
-    
+{    
+    Usuario* usu;
     int escolha = 0;
     do {
         escolha = telaMenuUsuario();
         switch (escolha) {
         case 1:
-            InfoUsuario();
+            usu = InfoUsuario();
+            gravaUsuario(usu);
+            free(usu);
             break;
         case 2:
             telaAtualizarUsuario();
             break; 
         case  3:
-            exibeUsuario();
+            exibeUsuario(usu);
+            free(usu);
             break;
         case 4:
             infoExcluirUs();
@@ -31,8 +33,6 @@ void modulocadastroUsuario(void)
 
     } while(escolha != 0);
   
-    //free(excluir);
-
 }
 
 
@@ -59,8 +59,8 @@ int telaMenuUsuario(void)
 
 }
 
-//função para cadastro do usuário no programa
-void InfoUsuario() 
+//função para cadastro do usuário no programa - "preenche"
+Usuario* InfoUsuario(void) 
 {
     Usuario* cliente;
     cliente = (Usuario*) malloc(sizeof(Usuario));
@@ -117,13 +117,10 @@ void InfoUsuario()
     printf(" | Usuário cadastrado com sucesso!                           | \n");
     printf(" | ========================================================= | \n");
     printf(" Press ENTER to exit...");
-//    getchar();
-    exibeUsuario();
-    gravaUsuario(cliente);
-    free(cliente);
+    cliente->status = 't'; //o true mostra que foi cadastrado
+    return cliente;
 
 }
-
 
 /*Data* veriData( )
 {
@@ -357,27 +354,39 @@ AtualizarSenha* atualizSenha()
 
 }
 
-//função para listar os dados do usuário
-void exibeUsuario(void) 
+//função para listar os dados do usuário com exceção da senha
+void exibeUsuario(Usuario* cliente) 
 {    
-    Usuario* cliente;
-    cliente = (Usuario*)malloc(sizeof(Usuario*));
-    system ( " cls" );
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" |                       SIG - Pantry                        | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" |                Dados cadastrados do usuário               | \n");
-    printf(" |                                                           | \n"); 
-    printf(" | Nome: %s\n", cliente->nome);    
-    printf(" | E-mail: %s\n", cliente->email);
-    printf(" | Dia do nascimento: %d\n", cliente->dia); 
-    printf(" | Mês do nascimento: %d\n", cliente->mes); 
-    printf(" | Ano do nascimento: %d\n", cliente->ano); 
-    printf(" | Username: %s\n", cliente->username);
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
-    getchar();
+    char situacao [20];
+    if((cliente == NULL) || (cliente->'f')) {
+        printf("Usuário inexistente");
+    } else {
+        printf(" | ============= Usuário cadastrado ===================== | \n");
+        printf(" | Nome: %s\n", cliente->nome);    
+        printf(" | E-mail: %s\n", cliente->email);
+        printf(" | Dia do nascimento: %d\n", cliente->dia); 
+        printf(" | Mês do nascimento: %d\n", cliente->mes); 
+        printf(" | Ano do nascimento: %d\n", cliente->ano); 
+        printf(" | Username: %s\n", cliente->username);
+        printf(" |                                                           | \n");
+        printf(" | ========================================================= | \n");
+
+    } 
+    printf("Situação do usuário: %s\n", situacao);
+}
+
+//função para gravar no arquivo
+void gravaUsuario(Usuario* cliente) 
+{
+    FILE* fp;
+    fp = fopen("usuario.dat", "ab");
+    if (fp == NULL) {
+        printf("Ops! Não é possível continuar o programa...\n");
+        exit(1);
+    }
+    
+    fwrite(cliente, sizeof(Usuario), 1, fp);
+    fclose(fp);
 
 }
 
@@ -405,20 +414,5 @@ ExcluirUsuario* infoExcluirUs()
     getchar();
 
     return excus;
-
-}
-
-//função para gravar no arquivo
-void gravaUsuario(Usuario* cliente) 
-{
-    FILE* fp;
-    fp = fopen("cliente.dat", "ab");
-    if (fp == NULL) {
-        printf("Ops! Não é possível continuar o programa...\n");
-        exit(1);
-    }
-    
-    fwrite(cliente, sizeof(Usuario), 1, fp);
-    fclose(fp);
 
 }
