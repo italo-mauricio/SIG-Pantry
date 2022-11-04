@@ -13,7 +13,6 @@ void modulocadastroItem(void)
         switch(escolha) {
             case '1':
                 produto = infoItem();
-                gravarItem(produto);
                 free(produto);
                 break;
             case '2':
@@ -214,7 +213,7 @@ void telaEstoqueMinimo(void)
 void exibeItens(Item* it) 
 {
     char situacao [20];
-    if((it == NULL) || (it->'f')) {
+    if((it == NULL) || (it->status == 'x')) {
         printf("Itens inexistentes");
     } else {
         printf(" | ================= Itens cadastrados ===================== | \n");

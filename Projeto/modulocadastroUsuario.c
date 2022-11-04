@@ -358,7 +358,7 @@ AtualizarSenha* atualizSenha()
 void exibeUsuario(Usuario* cliente) 
 {    
     char situacao [20];
-    if((cliente == NULL) || (cliente->'f')) {
+    if((cliente == NULL) || (cliente->status == 'x')) {
         printf("Usuário inexistente");
     } else {
         printf(" | ============= Usuário cadastrado ===================== | \n");

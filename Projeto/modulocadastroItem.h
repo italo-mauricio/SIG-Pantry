@@ -60,5 +60,5 @@ AtualNome* atualizNome();
 AtualCodigo* atualizCodigo();
 AtualData* atualizData();
 ExcluirItem* infoExcluir();
-void gravaItem(Item*);
+void gravaItem(Item* it);
 
