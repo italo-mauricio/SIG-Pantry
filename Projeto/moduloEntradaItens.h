@@ -6,14 +6,17 @@ struct entrada
 {
     char codigodeBarras [20];
     char quantProduto [20];
+    char status;
 };
 
 typedef struct cancelarent CancelarEnt;
 struct cancelarent
 {
     char codigoBarras [20];
+    char status;
 };
 
-void infoEntrada(void);
-void infoCancelarEntrada(void);
-//void gravaEnt(Entrada*);
+Entrada* infoEntrada(void);
+CancelarEnt* infoCancelarEntrada(void);
+void gravaEntrada(Entrada*);
+void gravaCancelamentoEnt(CancelarEnt*);

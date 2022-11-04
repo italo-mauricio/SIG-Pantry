@@ -6,15 +6,21 @@
 
 void menuEntradaItens(void)
 {
+    Entrada* regEntrada;
+    CancelarEnt* cancEntrada;
     char escolha;
     do {
         escolha = telaEntradaItens();
         switch(escolha) {
             case '1':
-                infoEntrada();
+                regEntrada = infoEntrada();
+                gravaEntrada(regEntrada);
+                free(regEntrada);
                 break;
             case '2':
-                infoCancelarEntrada();
+                cancEntrada = infoCancelarEntrada();
+                gravaCancelamentoEnt(cancEntrada);
+                free(cancEntrada);
                 break;
         } 
      
@@ -44,7 +50,7 @@ char telaEntradaItens(void)
 }
 
 //Função para entrada de um item ao estoque
-void infoEntrada(void)
+Entrada* infoEntrada(void)
 {
     Entrada* ent;
     ent = (Entrada*)malloc(sizeof(Entrada));
@@ -57,7 +63,7 @@ void infoEntrada(void)
     do
     {
         printf(" | Informe o código de barras: ");
-        scanf("%[0-9]", ent->codigodeBarras);
+        scanf("%s", ent->codigodeBarras);
         getchar();
         
     } while(!lerQuantidade(ent->codigodeBarras));
@@ -65,7 +71,7 @@ void infoEntrada(void)
     do
     {
         printf(" | Informe a quantidade de produto: ");
-        scanf("%[0-9]", ent->quantProduto);
+        scanf("%s", ent->quantProduto);
         getchar();
         
     } while(!lerQuantidade(ent->quantProduto));
@@ -73,20 +79,36 @@ void infoEntrada(void)
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
-    getchar();
+    ent->status = 't'; //o true mostra que foi cadastrado
+    return ent;
 
 }
 
+//Função para gravar no arquivo:
+void gravaEntrada(Entrada* ent) 
+{
+    FILE* fp;
+    fp = fopen("entrada.dat", "ab");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        exit(1);
+    }
+    
+    fwrite(ent, sizeof(Entrada), 1, fp);
+    fclose(fp);
+    
+}
+
 //Função para procurar o produto que deseja fazer o cancelamento
-void infoCancelarEntrada(void)
+CancelarEnt* infoCancelarEntrada(void)
 {
     CancelarEnt* canc;
+    canc = (CancelarEnt*) malloc(sizeof(CancelarEnt));  
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | --------------- CANCELAR ENTRADA DE ITEM ---------------- | \n");
     printf(" |                                                           | \n");  
-    canc = (CancelarEnt*) malloc(sizeof(CancelarEnt));  
     do
     {
         printf(" | Informe o código de barras: ");
@@ -98,24 +120,23 @@ void infoCancelarEntrada(void)
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
-    getchar();
+    canc->status = 't'; 
+    return canc;
 
 }
 
+
 //Função para gravar no arquivo:
-void gravaEnt(Entrada* ent) 
+void gravaCancelamentoEnt(CancelarEnt* canc) 
 {
     FILE* fp;
-    fp = fopen("ent.dat", "ab");
+    fp = fopen("cancentrada.dat", "ab");
     if (fp == NULL) {
         printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
         exit(1);
     }
     
-    fwrite(ent, sizeof(Entrada), 1, fp);
+    fwrite(canc, sizeof(CancelarEnt), 1, fp);
     fclose(fp);
     
 }
-
-
-
