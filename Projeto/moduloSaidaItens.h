@@ -6,6 +6,7 @@ struct saida
 {
     char codigodeBarras[15];
     char QuantProduto[13];
+    char status;
 };
 
 typedef struct cancelarsaid CancelarSaid;
@@ -13,8 +14,10 @@ struct cancelarsaid
 {
     char codigodeBarras[15];
     char QuantProduto[13];
+    char status;
 };
 
-void infoSaida(void);
-void infoCancelarSaid(void);
-void gravaEnt(Saida*);
+Saida* infoSaida(void);
+CancelarSaid* infoCancelarSaid(void);
+void gravaSaida(Saida*);
+void gravaCancelamentoSaida(CancelarSaid*);

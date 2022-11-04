@@ -6,15 +6,21 @@
 
 void moduloSaidaItens(void)
 {
+    Saida* regSaida;
+    CancelarSaid* cancSaida;
     char escolha;
     do {
         escolha = telaSaidaItens();
         switch(escolha) {
             case '1':
-                infoSaida( );
+                regSaida = infoSaida();
+                gravaSaida(regSaida);
+                free(regSaida);
                 break;
             case '2':
-                infoCancelarSaid( );
+                cancSaida = infoCancelarSaid();
+                gravaCancelamentoSaida(cancSaida);
+                free(cancSaida);
                 break;
             default:
                 printf("Opção inválida!");
@@ -48,7 +54,7 @@ char telaSaidaItens(void)
 }
 
 //função para informar a saída de algum item
-void infoSaida(void)
+Saida* infoSaida(void)
 {
     Saida* cancs;
     cancs = (Saida*) malloc(sizeof(Saida));
@@ -75,13 +81,30 @@ void infoSaida(void)
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    system("Pause");
-    system("cls");
+    printf(" | Press ENTER for exit... ");
+    cancs->status = 't'; //o true mostra que foi cadastrado
+    return cancs;
 
 }
 
+//Função para gravar no arquivo:
+void gravaSaida(Saida* cancs) 
+{
+    FILE* fp;
+    fp = fopen("saida.dat", "ab");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        exit(1);
+    }
+    
+    fwrite(cancs, sizeof(Saida), 1, fp);
+    fclose(fp);
+    
+}
+
+
 //função para o cancelamento da saída de algum item
-void infoCancelarSaid(void)
+CancelarSaid* infoCancelarSaid(void)
 {
     CancelarSaid* cancelar;
     cancelar = (CancelarSaid*) malloc(sizeof(CancelarSaid));
@@ -101,22 +124,23 @@ void infoCancelarSaid(void)
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
-    getchar();
-
+    cancelar->status = 't'; 
+    return cancelar;
 
 }
 
+
 //Função para gravar no arquivo:
-void gravaEnt(Saida* cancs) 
+void gravaCancelamentoSaida(CancelarSaid* cancelar) 
 {
     FILE* fp;
-    fp = fopen("cancs.dat", "ab");
+    fp = fopen("cancSaida.dat", "ab");
     if (fp == NULL) {
         printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
         exit(1);
     }
     
-    fwrite(cancs, sizeof(Saida), 1, fp);
+    fwrite(cancelar, sizeof(CancelarSaid), 1, fp);
     fclose(fp);
     
 }
