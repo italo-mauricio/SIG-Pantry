@@ -6,12 +6,15 @@
 
 void modulocadastroItem(void) 
 {
+    Item* produto;
     char escolha;
     do {
         escolha = telaMenuItens();
         switch(escolha) {
             case '1':
-                infoItem();
+                produto = infoItem();
+                gravarItem(produto);
+                free(produto);
                 break;
             case '2':
                 telaCategoriadoProduto();
@@ -23,9 +26,13 @@ void modulocadastroItem(void)
                 telaEstoqueMinimo();
                 break;
             case '5':
-                telaAtualizarItem();
+                exibeItens(produto);
+                free(produto);
                 break;
             case '6':
+                telaAtualizarItem();
+                break;
+            case '7':
                 infoExcluir();
                 break;
             default:
@@ -50,6 +57,7 @@ char telaMenuItens(void)
     printf(" |                 2- Categoria do produto                   | \n"); 
     printf(" |                 3- Local de armazenamento                 | \n");
     printf(" |                 4- Estoque mínimo do item                 | \n");
+    printf(" |                 6- Listar itens                           | \n");
     printf(" |                 5- Atualizar itens                        | \n");
     printf(" |                 6- Excluir itens                          | \n");                 
     printf(" |                 0- Voltar à tela principal                | \n");
@@ -64,7 +72,7 @@ char telaMenuItens(void)
 }
 
 //função para o cadastro dos itens
-void infoItem(void)
+Item* infoItem(void)
 {
     Item* it;
     it = (Item*) malloc(sizeof(Item));
@@ -113,7 +121,8 @@ void infoItem(void)
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
-    getchar();
+    it->status = 't'; //o true mostra que foi cadastrado
+    return it;
 
 }
 
@@ -199,6 +208,41 @@ void telaEstoqueMinimo(void)
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
     getchar();
+
+}
+
+void exibeItens(Item* it) 
+{
+    char situacao [20];
+    if((it == NULL) || (it->'f')) {
+        printf("Itens inexistentes");
+    } else {
+        printf(" | ================= Itens cadastrados ===================== | \n");
+        printf(" | Nome: %s\n", it->nomeProduto);    
+        printf(" | Nome da marca: %s\n", it->nomeMarca); 
+        printf(" | Dia do vencimento: %d\n", it->dia); 
+        printf(" | Mês do vencimento: %d\n", it->mes); 
+        printf(" | Ano do vencimento: %d\n", it->ano); 
+        printf(" | Código de barras: %s\n", it->codigoBarras);
+        printf(" |                                                           | \n");
+        printf(" | ========================================================= | \n");
+
+    } 
+    printf("Situação dos itens: %s\n", situacao);
+}
+
+//função para gravar no arquivo
+void gravaItem(Item* it) 
+{
+    FILE* fp;
+    fp = fopen("itens.dat", "ab");
+    if (fp == NULL) {
+        printf("Ops! Não é possível continuar o programa...\n");
+        exit(1);
+    }
+    
+    fwrite(it, sizeof(Item), 1, fp);
+    fclose(fp);
 
 }
 
@@ -415,20 +459,5 @@ ExcluirItem* infoExcluir()
     getchar();
 
     return exc;
-
-}
-
-//função para gravar no arquivo
-void gravaItem(Item* it) 
-{
-    FILE* fp;
-    fp = fopen("it.dat", "ab");
-    if (fp == NULL) {
-        printf("Ops! Não é possível continuar o programa...\n");
-        exit(1);
-    }
-    
-    fwrite(it, sizeof(Item), 1, fp);
-    fclose(fp);
 
 }

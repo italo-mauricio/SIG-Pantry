@@ -19,6 +19,7 @@ struct item
     int mes;
     int ano;
     char codigoBarras [13];
+    char status;
 };
 
 /*typedef struct datav DataV;
@@ -52,8 +53,9 @@ struct excluirItem
     char barra [13];
 };
 
-void infoItem(void);
+Item* infoItem(void);
 //DataV* veriDatav( );
+void exibeItens(Item*);
 AtualNome* atualizNome();
 AtualCodigo* atualizCodigo();
 AtualData* atualizData();
