@@ -7,12 +7,13 @@
 
 void menulistadeCompras(void)
 {
+    MontarLista* itemproduto;
     char escolha;
     do {
         escolha = telaListadeCompras();
         switch (escolha) {
         case '1':
-            infoMontarLista();
+            itemproduto = infoMontarLista();
             break;
         case '2':
             telaItensQuantMinima();
@@ -24,7 +25,8 @@ void menulistadeCompras(void)
             telaAdicionarItensaLista();
             break; 
         case '5':
-            exibeListaCompras(); 
+            exibeListaCompras(itemproduto);
+            free(itemproduto); 
             break;
         default:
             printf("Opção inválida\n");
@@ -118,7 +120,7 @@ char telaAdicionarItensaLista(void)
 // nessa opção de itens à sua escolha cria-se uma outra tela, onde terá nome; quantidade...
 }
 
-void infoMontarLista(void)
+MontarLista* infoMontarLista(void)
 {
     MontarLista* mtlista;
     mtlista = (MontarLista*)malloc(sizeof(MontarLista));
@@ -155,29 +157,34 @@ void infoMontarLista(void)
     printf("| ============================================================= | \n");
     system("Pause");
     system("clear||cls");
-    
+    return mtlista;
 }
 
 //função para exibir os itens já cadastrados na lista
-void exibeListaCompras(void)
+void exibeListaCompras(MontarLista* mtlista)
 {
-    MontarLista* mtlista;
-    mtlista = (MontarLista*)malloc(sizeof(MontarLista*));
-    system ( " clear||cls " );
-    printf(" | ==================================================================== | \n");
-    printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | ----------------- | ITENS JÁ CADASTRADOS NA LISTA | ---------------- | \n");
-    printf(" |                                                                      | \n");
-    printf(" |  Nome dos itens: %s\n", mtlista->nome); 
-    printf(" |  Categoria dos itens: %s\n", mtlista->categoriaProduto); 
-    printf(" |  Quantidade dos itens: %s\n", mtlista->quantidadeProduto); 
-    printf(" |                                                                      | \n");
-    printf(" | ==================================================================== | \n");
-    system("Pause");
-    system("clear||cls");
-    getchar();
-
+    char situ [20];
+    if((mtlista == NULL) || (mtlista->status == 'x')){
+        printf("Item inexistente na lista de compras");
+    } else {
+        system ( " clear||cls " );
+        printf(" | ==================================================================== | \n");
+        printf(" | -------------------------------------------------------------------- | \n");
+        printf(" | ----------------- | ITENS JÁ CADASTRADOS NA LISTA | ---------------- | \n");
+        printf(" |                                                                      | \n");
+        printf(" |  Nome dos itens: %s\n", mtlista->nome); 
+        printf(" |  Categoria dos itens: %s\n", mtlista->categoriaProduto); 
+        printf(" |  Quantidade dos itens: %s\n", mtlista->quantidadeProduto); 
+        printf(" |                                                                      | \n");
+        printf(" | ==================================================================== | \n");
+        system("Pause");
+        system("clear||cls");
+        getchar();
+        
+    }
+    printf("Situação da lista de compras: %s\n", situ);
 }
+
 
 //função para gravar no arquivo
 void gravaLista(MontarLista* mtlista) 

@@ -11,8 +11,10 @@ struct montarLista
     char nome[20];
     char categoriaProduto[10];
     char quantidadeProduto[15];
+    char status;
+    
 };
 
-void infoMontarLista(void);
-void exibeListaCompras(void);
+MontarLista* infoMontarLista(void);
+void exibeListaCompras(MontarLista*);
 void gravaLista(MontarLista*);
