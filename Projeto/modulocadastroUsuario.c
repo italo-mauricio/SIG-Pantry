@@ -7,7 +7,7 @@
 void modulocadastroUsuario(void)
 {    
     Usuario* usu;
-    int escolha = 0;
+    int escolha;
     do {
         escolha = telaMenuUsuario();
         switch (escolha) {
@@ -116,7 +116,8 @@ Usuario* InfoUsuario(void)
     
     printf(" | Usuário cadastrado com sucesso!                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" Press ENTER to exit...");
+    system("Pause");
+    system("cls | clear");
     cliente->status = 't'; //o true mostra que foi cadastrado
     return cliente;
 
@@ -370,6 +371,8 @@ void exibeUsuario(Usuario* cliente)
         printf(" | Username: %s\n", cliente->username);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
+        system("Pause");
+        system("cls | clear");
 
     } 
     printf("Situação do usuário: %s\n", situacao);

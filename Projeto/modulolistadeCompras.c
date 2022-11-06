@@ -157,6 +157,7 @@ MontarLista* infoMontarLista(void)
     printf("| ============================================================= | \n");
     system("Pause");
     system("clear||cls");
+    mtlista->status = 't';
     return mtlista;
 }
 
