@@ -4,27 +4,27 @@
 #include "modulocadastroUsuario.h"
 #include "validacoes.h"
 
+
 void modulocadastroUsuario(void)
 {    
-    Usuario* usu;
     int escolha;
     do {
         escolha = telaMenuUsuario();
         switch (escolha) {
         case 1:
-            usu = InfoUsuario();
-            gravaUsuario(usu);
-            free(usu);
+            InfoUsuario(); //cadastro
             break;
         case 2:
-            telaAtualizarUsuario();
-            break; 
-        case  3:
-            exibeUsuario(usu);
-            free(usu);
+            buscaInfoUsuario(); //pesquisar
             break;
-        case 4:
-            infoExcluirUs();
+        //case 3:
+          //  telaAtualizarUsuario(); //edição
+          //  break;
+        //case 4:
+            //infoExcluirUs(); //exclusão
+          //  break; 
+        case 5:
+            listaInfoUsuario(); //relatório
             break;
         default:
             printf ("Opção inválida! \n");
@@ -35,7 +35,6 @@ void modulocadastroUsuario(void)
   
 }
 
-
 int telaMenuUsuario(void) 
 {
     int opcao;
@@ -45,9 +44,10 @@ int telaMenuUsuario(void)
     printf(" | -------------- SIG-Pantry - MENU USUÁRIO ---------------- | \n");
     printf(" |                                                           | \n");
     printf(" |                 1 - Cadastrar Usuário                     | \n");
-    printf(" |                 2 - Editar Cadastro                       | \n"); 
-    printf(" |                 3 - Listar dados                          | \n");    
-    printf(" |                 4 - Remover Usuário                       | \n");
+    printf(" |                 2 - Pesquisar dados                       | \n");
+    printf(" |                 3 - Editar Cadastro                       | \n"); 
+    printf(" |                 4 - Excluir Usuário                       | \n");
+    printf(" |                 5 - Listar dados                          | \n");    
     printf(" |                 0 - Voltar à tela principal               | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -60,16 +60,16 @@ int telaMenuUsuario(void)
 }
 
 //função para cadastro do usuário no programa - "preenche"
-Usuario* InfoUsuario(void) 
+void InfoUsuario(void) 
 {
     Usuario* cliente;
-    cliente = (Usuario*) malloc(sizeof(Usuario));
     system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                   Cadastro SIG-Pantry                     | \n");
     printf(" | ========================================================= | \n");
     printf(" |                                                           | \n");
+    cliente = (Usuario*) malloc(sizeof(Usuario));
     do
     {
         printf(" | Informe o seu nome: ");
@@ -96,10 +96,8 @@ Usuario* InfoUsuario(void)
         scanf("%d",&cliente->ano);
         getchar();
         
-     } while(!valida_data(cliente->dia, cliente->mes, cliente->ano));
-
-   // veriData();
-  
+     } while(!valida_data(cliente->dia, cliente->mes, cliente->ano));  
+ 
     do {
         printf(" | Escolha um username: ");
         scanf("%s", cliente->username);
@@ -118,30 +116,53 @@ Usuario* InfoUsuario(void)
     printf(" | ========================================================= | \n");
     system("Pause");
     system("cls | clear");
-    cliente->status = 't'; //o true mostra que foi cadastrado
-    return cliente;
+    cliente->status = 't'; //o t(true) mostra que foi cadastrado
+    free(cliente);
 
 }
 
-/*Data* veriData( )
+//A partir do username, visto que cada usuário tem o seu
+void buscaInfoUsuario(void)
 {
-    Data* dt;
-    dt = (Data*) malloc(sizeof(Data));
-    do {        
-        printf(" | Informe o dia de nascimento: ");
-        scanf("%d",&dt->dia);
-        getchar();
-        printf(" | Informe o mês de nascimento: ");
-        scanf("%d",&dt->mes);
-        getchar();
-        printf(" | Informe o ano de nascimento: ");
-        scanf("%d",&dt->ano);
-        getchar();
-        
-     } while(!valida_data(dt->dia, dt->mes, dt->ano));
-  
-    return dt;
-} */
+    FILE* fp;
+    Usuario* cliente;
+    int achou;
+    char procurado[15];
+    fp = fopen("usuario.dat", "rb");
+
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        exit(1);
+    }
+    printf("\n\n");
+    system ( " cls " );
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" |                   Buscar dados do usuário                 | \n");
+    printf(" | ========================================================= | \n");
+    printf("Informe o seu username: ");
+    scanf(" %30[^\n]", procurado);
+    cliente = (Usuario*) malloc(sizeof(Usuario));
+    achou = 0;
+    while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
+        if ((strcmp(cliente->username, procurado) == 0) && (cliente->status == '1')) {
+            achou = 1;
+        }
+        fclose(fp);
+        if (achou) {
+            exibeInfoUsuario(cliente);
+            } else {
+                printf("Os dados do usuário %s não foram encontrados\n", procurado);
+        }
+        free(cliente);
+
+    }
+
+}
+
+//void editaDadosUsu(void) {
+    
+//}
 
 //VAI PRECISAR ALTERAR
 void telaAtualizarUsuario(void) 
@@ -355,29 +376,6 @@ AtualizarSenha* atualizSenha()
 
 }
 
-//função para listar os dados do usuário com exceção da senha
-void exibeUsuario(Usuario* cliente) 
-{    
-    char situacao [20];
-    if((cliente == NULL) || (cliente->status == 'x')) {
-        printf("Usuário inexistente");
-    } else {
-        printf(" | ============= Usuário cadastrado ===================== | \n");
-        printf(" | Nome: %s\n", cliente->nome);    
-        printf(" | E-mail: %s\n", cliente->email);
-        printf(" | Dia do nascimento: %d\n", cliente->dia); 
-        printf(" | Mês do nascimento: %d\n", cliente->mes); 
-        printf(" | Ano do nascimento: %d\n", cliente->ano); 
-        printf(" | Username: %s\n", cliente->username);
-        printf(" |                                                           | \n");
-        printf(" | ========================================================= | \n");
-        system("Pause");
-        system("cls | clear");
-
-    } 
-    printf("Situação do usuário: %s\n", situacao);
-}
-
 //função para gravar no arquivo
 void gravaUsuario(Usuario* cliente) 
 {
@@ -418,4 +416,39 @@ ExcluirUsuario* infoExcluirUs()
 
     return excus;
 
+}
+
+//função para listar os dados do usuário 
+void listaInfoUsuario(void) 
+{
+    FILE* fp;
+    Usuario* cliente;
+    fp = fopen("usuario.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        exit(1);
+    }
+    printf("\n\n");
+    printf(" | ==================== Exibe usuário ====================== | \n");
+    printf(" |                                                           | \n");
+    printf(" | ========================================================= | \n");
+    cliente = (Usuario*)malloc(sizeof(Usuario));
+    while(fread(cliente, sizeof(Usuario), 1, fp)) {
+        exibeInfoUsuario(cliente);
+    }
+    fclose(fp);
+    free(cliente);
+
+}
+
+void exibeInfoUsuario(Usuario* cliente) {
+    printf(" | Nome: %s\n", cliente->nome);    
+    printf(" | E-mail: %s\n", cliente->email);
+    printf(" | Dia do nascimento: %d\n", cliente->dia); 
+    printf(" | Mês do nascimento: %d\n", cliente->mes); 
+    printf(" | Ano do nascimento: %d\n", cliente->ano); 
+    printf(" | Username: %s\n", cliente->username);
+    printf(" | Status: %c\n", cliente->status);
+    printf(" |                                                           | \n");
+    printf(" | ========================================================= | \n");
 }
