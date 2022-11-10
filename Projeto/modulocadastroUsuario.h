@@ -1,9 +1,3 @@
-//cabeçalho das funções usadas no arquivo.c
-void modulocadastroUsuario(void);
-int telaMenuUsuario(void);
-void telaAtualizarUsuario(void);
-void escolhafuncao(char);
-
 //struct para cadastro do usuário
 typedef struct usuario Usuario;
 struct usuario {
@@ -16,13 +10,6 @@ struct usuario {
     char senha[20];
     char status;
 };
-
-/*typedef struct data Data;
-struct data{
-    int dia;
-    int mes;
-    int ano;
-}; */
 
 //struct para excluir algum dado do usuário
 typedef struct excluirUsuario ExcluirUsuario;
@@ -62,13 +49,20 @@ struct atualizarSenha
     char senha[20];
 };
 
-Usuario* InfoUsuario(void);
-//Data* veriData( );
+void modulocadastroUsuario(void);
+int telaMenuUsuario(void);
+void telaAtualizarUsuario(void);
+void escolhafuncao(char);
+void InfoUsuario(void);
+void gravaUsuario(Usuario*);
+void listaInfoUsuario(void);
+void exibeInfoUsuario(Usuario* cliente);
+void buscaInfoUsuario(void);
+
+//ALTERAR:
 ExcluirUsuario* infoExcluirUs();
 AtualizarNome* atualizaNome();
 AtualizarEmail* atualizEmail();
 AtualizarDataNasc* atualizarData();
 AtualizarUsername* atualizUsername();
 AtualizarSenha* atualizSenha();
-void gravaUsuario(Usuario*);
-void exibeUsuario(Usuario*);
