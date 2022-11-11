@@ -17,7 +17,7 @@ void modulocadastroUsuario(void)
             buscaInfoUsuario(); //pesquisa
             break;
         case 3:
-            EditarUsuario(); //edição
+            //EditarUsuario(); //edição
             break;
         case 4:
             infoExcluirUs(); //exclusão
@@ -113,12 +113,12 @@ void InfoUsuario(void)
     
     printf(" | Usuário cadastrado com sucesso!                           | \n");
     printf(" | ========================================================= | \n");
-    cliente->status = 't'; //o t(true) mostra que foi cadastrado
+    cliente->status = '1'; //o t(true) mostra que foi cadastrado
+    gravaUsuario(cliente);
     free(cliente);
     system("Pause");
     system("cls | clear");
-    system("Pause");
-    system("cls | clear");
+
 
 }
 
@@ -144,26 +144,24 @@ void buscaInfoUsuario(void)
     printf("Informe o seu username: ");
     scanf(" %30[^\n]", procurado);
     getchar();
-    getchar();
     cliente = (Usuario*) malloc(sizeof(Usuario));
     achou = 0;
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
+        printf("nome do cliente |%s|\n", cliente->username);
         if ((strcmp(cliente->username, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
         }
-        fclose(fp);
-        if (achou) {
-            exibeInfoUsuario(cliente);
-            } else {
-                printf("Os dados do usuário %s não foram encontrados\n", procurado);
-        }
-        free(cliente);
-        system("Pause");
-        system("cls");
-        system("Pause");
-        system("cls");
-
     }
+    fclose(fp);
+    if (achou) {
+        exibeInfoUsuario(cliente);
+    } else {
+        printf("Os dados do usuário %s não foram encontrados\n", procurado);
+    }
+    free(cliente);
+    system("Pause");
+    system("cls");
+    
 
 }
 
