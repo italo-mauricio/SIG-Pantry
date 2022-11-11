@@ -14,14 +14,14 @@ void modulocadastroUsuario(void)
             InfoUsuario(); //cadastro
             break;
         case 2:
-            buscaInfoUsuario(); //pesquisar
+            buscaInfoUsuario(); //pesquisa
             break;
-        //case 3:
-          //  telaAtualizarUsuario(); //edição
-          //  break;
-        //case 4:
-            //infoExcluirUs(); //exclusão
-          //  break; 
+        case 3:
+            EditarUsuario(); //edição
+            break;
+        case 4:
+            infoExcluirUs(); //exclusão
+            break; 
         case 5:
             listaInfoUsuario(); //relatório
             break;
