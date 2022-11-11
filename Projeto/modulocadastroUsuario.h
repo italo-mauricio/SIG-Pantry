@@ -61,6 +61,7 @@ void buscaInfoUsuario(void);
 
 //ALTERAR:
 void infoExcluirUs(void);
+void EditarUsuario(void);
 AtualizarNome* atualizaNome();
 AtualizarEmail* atualizEmail();
 AtualizarDataNasc* atualizarData();
