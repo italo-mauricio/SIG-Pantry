@@ -14,7 +14,7 @@ void modulocadastroUsuario(void)
             InfoUsuario(); //cadastro
             break;
         case 2:
-            buscaInfoUsuario(); //pesquisar
+            buscaInfoUsuario(); //pesquisa
             break;
         case 3:
             EditarUsuario(); //edição
