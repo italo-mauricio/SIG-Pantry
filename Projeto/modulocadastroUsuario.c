@@ -4,6 +4,7 @@
 #include "modulocadastroUsuario.h"
 #include "validacoes.h"
 
+//0 - não cadastrado; 1- cadastrado
 
 void modulocadastroUsuario(void)
 {    
@@ -114,10 +115,10 @@ void InfoUsuario(void)
     
     printf(" | Usuário cadastrado com sucesso!                           | \n");
     printf(" | ========================================================= | \n");
-    system("Pause");
-    system("cls | clear");
     cliente->status = 't'; //o t(true) mostra que foi cadastrado
     free(cliente);
+    system("Pause");
+    system("cls | clear");
 
 }
 
@@ -142,6 +143,7 @@ void buscaInfoUsuario(void)
     printf(" | ========================================================= | \n");
     printf("Informe o seu username: ");
     scanf(" %30[^\n]", procurado);
+    getchar();
     cliente = (Usuario*) malloc(sizeof(Usuario));
     achou = 0;
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
@@ -155,6 +157,8 @@ void buscaInfoUsuario(void)
                 printf("Os dados do usuário %s não foram encontrados\n", procurado);
         }
         free(cliente);
+        system("Pause");
+        system("cls");
 
     }
 
@@ -392,30 +396,55 @@ void gravaUsuario(Usuario* cliente)
 }
 
 //função para remover o cadastro
-ExcluirUsuario* infoExcluirUs()
+void infoExcluirUs(void)
 {
-    ExcluirUsuario* excus;
-    excus = (ExcluirUsuario*) malloc(sizeof(ExcluirUsuario));
+    FILE* fp;
+    Usuario* cliente;
+    int achou;
+    char resp;
+    char username[20];
+    fp = fopen("usuario.dat", "r+b");
+
+    if (fp == NULL){
+        printf("Ops! Erro na abertura do arquivo!\n");
+        exit(1);
+    }
+    cliente = (Usuario*) malloc(sizeof(Usuario));
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
     printf(" | ---------------------- EXCLUIR USUÁRIO ----------------------- | \n");
     printf(" |                                                                | \n");
-    do
-    {
-        printf(" | Informe o email do usuário que deseja excluir: ");
-        scanf("%s", excus->email);
+    printf(" | Informe o username do usuário que você quer excluir: ");
+    scanf("%s", cliente->username);
+    getchar();  
+    achou = 0;
+    while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))){
+        if ((strcmp(cliente->username, username) == 0) && (cliente->status == '0')){
+            achou = 1;
+        }
+    }
+
+    if (achou){
+        exibeInfoUsuario(cliente);
         getchar();
-        
-    } while (!lerEmail(excus->email));
-
-    printf(" | -------------------------------------------------------------- | \n");
-    printf(" | ============================================================== | \n");
-    printf(" Press ENTER for continue... ");
-    getchar();
-
-    return excus;
-
+        printf("Deseja realmente excluir os dados deste usuário? (s/n) ");
+        scanf("%c", &resp);
+        if (resp == 's' || resp == 'S'){
+            cliente->status = '0';
+            fseek(fp, (-1)*sizeof(Usuario), SEEK_CUR);
+            fwrite(cliente, sizeof(Usuario), 1, fp);
+            printf("\nUsuário excluído com sucesso!");
+        }else{
+            printf("\nTudo bem, os dados não foram alterados!");
+        }
+    }else{
+        printf("O usuário não foi encontrado!");
+    }
+    free(cliente);
+    fclose(fp);
+    system("Pause");
+    system("cls | clear");
 }
 
 //função para listar os dados do usuário 
@@ -451,4 +480,6 @@ void exibeInfoUsuario(Usuario* cliente) {
     printf(" | Status: %c\n", cliente->status);
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
+    system("Pause");
+    system("cls");
 }

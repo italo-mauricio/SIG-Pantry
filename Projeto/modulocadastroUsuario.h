@@ -60,7 +60,7 @@ void exibeInfoUsuario(Usuario* cliente);
 void buscaInfoUsuario(void);
 
 //ALTERAR:
-ExcluirUsuario* infoExcluirUs();
+void infoExcluirUs(void);
 AtualizarNome* atualizaNome();
 AtualizarEmail* atualizEmail();
 AtualizarDataNasc* atualizarData();
