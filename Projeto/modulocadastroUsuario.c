@@ -116,8 +116,9 @@ void InfoUsuario(void)
     cliente->status = '1'; //o t(true) mostra que foi cadastrado
     gravaUsuario(cliente);
     free(cliente);
-    system("Pause");
-    system("cls | clear");
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
+    
 
 
 }
@@ -159,8 +160,8 @@ void buscaInfoUsuario(void)
         printf("Os dados do usuário %s não foram encontrados\n", procurado);
     }
     free(cliente);
-    system("Pause");
-    system("cls");
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
     
 
 }
@@ -444,8 +445,9 @@ void infoExcluirUs(void)
     }
     free(cliente);
     fclose(fp);
-    system("Pause");
-    system("cls|clear");
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
+    
 }
 
 //função para listar os dados do usuário 
@@ -481,6 +483,7 @@ void exibeInfoUsuario(Usuario* cliente) {
     printf(" | Status: %c\n", cliente->status);
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    system("Pause");
-    system("cls");
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
+    
 }
