@@ -4,8 +4,6 @@
 #include "modulocadastroUsuario.h"
 #include "validacoes.h"
 
-//0 - não cadastrado; 1- cadastrado
-
 void modulocadastroUsuario(void)
 {    
     int escolha;
@@ -119,6 +117,8 @@ void InfoUsuario(void)
     free(cliente);
     system("Pause");
     system("cls | clear");
+    system("Pause");
+    system("cls | clear");
 
 }
 
@@ -144,6 +144,7 @@ void buscaInfoUsuario(void)
     printf("Informe o seu username: ");
     scanf(" %30[^\n]", procurado);
     getchar();
+    getchar();
     cliente = (Usuario*) malloc(sizeof(Usuario));
     achou = 0;
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
@@ -157,6 +158,8 @@ void buscaInfoUsuario(void)
                 printf("Os dados do usuário %s não foram encontrados\n", procurado);
         }
         free(cliente);
+        system("Pause");
+        system("cls");
         system("Pause");
         system("cls");
 
@@ -425,10 +428,10 @@ void infoExcluirUs(void)
         }
     }
 
-    if (achou){
+   if (achou){
         exibeInfoUsuario(cliente);
         getchar();
-        printf("Deseja realmente excluir os dados deste usuário? (s/n) ");
+        printf("Deseja realmente excluir os dados deste usuário? (s/n)");
         scanf("%c", &resp);
         if (resp == 's' || resp == 'S'){
             cliente->status = '0';
@@ -444,7 +447,7 @@ void infoExcluirUs(void)
     free(cliente);
     fclose(fp);
     system("Pause");
-    system("cls | clear");
+    system("cls|clear");
 }
 
 //função para listar os dados do usuário 
