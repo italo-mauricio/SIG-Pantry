@@ -19,12 +19,12 @@ void menulistadeCompras(void)
         case '3':
             infoMontarLista(); //preencher a lista
             break;
-        case '4':
+        /*case '4':
             pesquisarLista(); //pesquisa
-            break;
-        case '5':
+            break; */
+        /*case '5':
             editarLista(); //edição
-            break;
+            break; */
         case '6':
             excluirLista(); //exclusão
             break;
