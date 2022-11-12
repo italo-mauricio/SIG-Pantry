@@ -6,14 +6,12 @@
 
 void modulocadastroItem(void) 
 {
-    Item* produto;
     char escolha;
     do {
         escolha = telaMenuItens();
         switch(escolha) {
             case '1':
-                produto = infoItem();
-                free(produto);
+                infoItem(); //cadastrar item
                 break;
             case '2':
                 telaCategoriadoProduto();
@@ -25,14 +23,13 @@ void modulocadastroItem(void)
                 telaEstoqueMinimo();
                 break;
             case '5':
-                exibeItens(produto);
-                free(produto);
+                telaAtualizarItem(); //edição (ainda precisa fazer)
                 break;
             case '6':
-                telaAtualizarItem();
+                infoExcluir(); //exclusão
                 break;
             case '7':
-                infoExcluir();
+                listarItens(); //relatório
                 break;
             default:
                 printf("Opção inválida\n");
@@ -56,9 +53,9 @@ char telaMenuItens(void)
     printf(" |                 2- Categoria do produto                   | \n"); 
     printf(" |                 3- Local de armazenamento                 | \n");
     printf(" |                 4- Estoque mínimo do item                 | \n");
-    printf(" |                 6- Listar itens                           | \n");
     printf(" |                 5- Atualizar itens                        | \n");
     printf(" |                 6- Excluir itens                          | \n");                 
+    printf(" |                 7- Listar itens                           | \n");
     printf(" |                 0- Voltar à tela principal                | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -70,16 +67,16 @@ char telaMenuItens(void)
 
 }
 
-//função para o cadastro dos itens
-Item* infoItem(void)
+//Função para o cadastro dos itens
+void infoItem(void)
 {
     Item* it;
-    it = (Item*) malloc(sizeof(Item));
-    system ( " clear||cls " );
+    system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------------- SIG-Pantry - CADASTRAR ITENS ------------- | \n");
     printf(" |                                                           | \n");
+    it = (Item*) malloc(sizeof(Item));
     do
     {
         printf(" | Informe o nome do produto: ");
@@ -120,29 +117,13 @@ Item* infoItem(void)
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
-    it->status = 't'; //o true mostra que foi cadastrado
-    return it;
+    it->status = '1'; //o 1 mostra que foi cadastrado
+    gravaItem(it);
+    free(it);
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
 
 }
-
-/*DataV* veriDatav( )
-{
-    DataV* dv;
-    dv = (DataV*) malloc(sizeof(DataV));
-    do {
-        printf(" | Informe o dia de vencimento do produto: ");
-        scanf("%d", &dv->dia);
-        getchar();
-        printf(" | Informe o mês de vencimento do produto: ");
-        scanf("%d", &dv->mes);
-        getchar();
-        printf(" | Informe o ano de vencimento do produto: ");
-        scanf("%d", &dv->ano);
-        getchar();
-        
-    } while(!valida_data(dv->dia, dv->mes, dv->ano));  
-    return dv;
-} */
 
 char telaCategoriadoProduto(void)
 {
@@ -210,24 +191,20 @@ void telaEstoqueMinimo(void)
 
 }
 
-void exibeItens(Item* it) 
-{
-    char situacao [20];
-    if((it == NULL) || (it->status == 'x')) {
-        printf("Itens inexistentes");
-    } else {
-        printf(" | ================= Itens cadastrados ===================== | \n");
-        printf(" | Nome: %s\n", it->nomeProduto);    
-        printf(" | Nome da marca: %s\n", it->nomeMarca); 
-        printf(" | Dia do vencimento: %d\n", it->dia); 
-        printf(" | Mês do vencimento: %d\n", it->mes); 
-        printf(" | Ano do vencimento: %d\n", it->ano); 
-        printf(" | Código de barras: %s\n", it->codigoBarras);
-        printf(" |                                                           | \n");
-        printf(" | ========================================================= | \n");
 
-    } 
-    printf("Situação dos itens: %s\n", situacao);
+//exibe produtos cadastrados
+void exibeItens(Item* it) {
+    printf(" | Nome: %s\n", it->nomeProduto);    
+    printf(" | Nome da marca: %s\n", it->nomeMarca); 
+    printf(" | Dia do vencimento: %d\n", it->dia); 
+    printf(" | Mês do vencimento: %d\n", it->mes); 
+    printf(" | Ano do vencimento: %d\n", it->ano); 
+    printf(" | Código de barras: %s\n", it->codigoBarras);
+    printf(" |                                                           | \n");
+    printf(" | ========================================================= | \n");
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
+    
 }
 
 //função para gravar no arquivo
@@ -431,32 +408,77 @@ char telaAtualizarLocaldeArmazenamento(void)
 
 }
 
-ExcluirItem* infoExcluir()
+void infoExcluir(void)
 {
-    ExcluirItem* exc;
-    exc = (ExcluirItem*) malloc(sizeof(ExcluirItem));
+    FILE* fp;
+    Item* it;
+    int achou;
+    char resp;
+    char codigoBarras[20];
+    fp = fopen("itens.dat", "r+b");
+
+    if (fp == NULL){
+        printf("Ops! Erro na abertura do arquivo!\n");
+        exit(1);
+    }
+    it = (Item*) malloc(sizeof(Item));
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
-    printf(" | ----------------------- EXCLUIR ITENS ------------------------ | \n");
+    printf(" | ------------------------ EXCLUIR ITEM ------------------------ | \n");
     printf(" |                                                                | \n");
-    do
-    {
-        printf(" | Informe o código de barras: ");
-        scanf("%s", exc->barra);
+    printf(" | Informe o código de barras do produto que você deseja excluir: ");
+    scanf("%s", it->codigoBarras);
+    getchar();  
+    achou = 0;
+    while ((!achou) && (fread(it, sizeof(Item), 1, fp))){
+        if ((strcmp(it->codigoBarras, codigoBarras) == 0) && (it->status == '0')){
+            achou = 1;
+        }
+    }
+
+   if (achou){
+        exibeItens(it);
         getchar();
-        
-    } while (!lerQuantidade(exc->barra));
-
-    // aqui terá um if se o código de barra for encontrado ele entrará nas opções
-    // if barra == (nosso banco de dados);
-        // digite a quantidade de itens que deseja excluir;
-        // os itens serão removidos.
-    printf(" | -------------------------------------------------------------- | \n");
-    printf(" | ============================================================== | \n");
-    printf(" Press ENTER for continue... ");
+        printf("Deseja realmente excluir os dados deste item? (s/n)");
+        scanf("%c", &resp);
+        if (resp == 's' || resp == 'S'){
+            it->status = '0';
+            fseek(fp, (-1)*sizeof(Item), SEEK_CUR);
+            fwrite(it, sizeof(Item), 1, fp);
+            printf("\nDados do item excluídos com sucesso!");
+        }else{
+            printf("\nTudo bem, os dados não foram alterados!");
+        }
+    }else{
+        printf("Os dados não foram encontrados!");
+    }
+    free(it);
+    fclose(fp);
+    printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+    
+}
 
-    return exc;
+//listar itens
+void listarItens(void)
+{
+    FILE* fp;
+    Item* it;
+    fp = fopen("itens.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        exit(1);
+    }
+    printf("\n\n");
+    printf(" | ===================== Exibe itens ======================= | \n");
+    printf(" |                                                           | \n");
+    printf(" | ========================================================= | \n");
+    it = (Item*)malloc(sizeof(Item));
+    while(fread(it, sizeof(Item), 1, fp)) {
+        exibeItens(it);
+    }
+    fclose(fp);
+    free(it);
 
 }

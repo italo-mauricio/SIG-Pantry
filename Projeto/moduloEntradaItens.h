@@ -1,22 +1,19 @@
-void menuEntradaItens(void);
-char telaEntradaItens(void);
-
 typedef struct entrada Entrada;
 struct entrada
 {
     char codigodeBarras [20];
     char quantProduto [20];
+    int dia, mes, ano;
     char status;
 };
 
-typedef struct cancelarent CancelarEnt;
-struct cancelarent
-{
-    char codigoBarras [20];
-    char status;
-};
-
-Entrada* infoEntrada(void);
-CancelarEnt* infoCancelarEntrada(void);
+void menuEntradaItens(void);
+char telaRegistrarEntrada(void);
+void infoEntrada(void);
+void pesquisarEntrada(void);
+void atualizarEntrada(void);
+void excluirEntrada(void);
+void listarEntrada(void);
+void buscaInfoEntrada(void);
+void exibeEntrada(Entrada* ent);
 void gravaEntrada(Entrada*);
-void gravaCancelamentoEnt(CancelarEnt*);
