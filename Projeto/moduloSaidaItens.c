@@ -4,45 +4,50 @@
 #include "moduloSaidaItens.h"
 #include "validacoes.h"
 
-void moduloSaidaItens(void)
+void menuSaidaItens(void)
 {
-    Saida* regSaida;
-    CancelarSaid* cancSaida;
     char escolha;
     do {
-        escolha = telaSaidaItens();
+        escolha = telaRegistrarSaida();
         switch(escolha) {
-            case '1':
-                regSaida = infoSaida();
-                gravaSaida(regSaida);
-                free(regSaida);
-                break;
-            case '2':
-                cancSaida = infoCancelarSaid();
-                gravaCancelamentoSaida(cancSaida);
-                free(cancSaida);
-                break;
-            default:
-                printf("Opção inválida!");
-                break;
-        } 
-     
+        case '1':
+            infoSaida(); //informações do item
+            break;
+        case '2':
+            pesquisarSaida(); //pesquisa
+            break;
+        case '3':
+            atualizarSaida(); //edição
+            break;
+        case '4':
+            excluirSaida(); //exclusão
+            break;
+        case '5':
+            listarSaida(); //relatório
+            break;     
+        default:
+            printf("Opção inválida\n");
+            break;
+        }
+          
     } while (escolha != '0');
-
 
 }
 
-char telaSaidaItens(void)
+char telaRegistrarSaida(void)
 {
     char esc;
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | -------- SIG-Pantry - SAÍDA DE ITENS DA DESPENSA -------- | \n");
+    printf(" | ---------- REGISTRAR SAÍDA DE ITENS DA DESPENSA --------- | \n");
     printf(" |                                                           | \n");
-    printf(" |                  1- Registrar saída                       | \n");
-    printf(" |                  2- Cancelar saída                        | \n");                 
-    printf(" |                  0- Voltar à tela principal               | \n");
+    printf(" |                 1- Informar saída                         | \n");
+    printf(" |                 2- Pesquisar saída                        | \n");
+    printf(" |                 3- Editar saída                           | \n");                 
+    printf(" |                 4- Excluir saída                          | \n");
+    printf(" |                 5- Listar saída                           | \n");                                                                    
+    printf(" |                 0- Voltar à tela principal                | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opção: ");
@@ -50,46 +55,48 @@ char telaSaidaItens(void)
     getchar();
 
     return esc;    
-
+   
 }
 
-//função para informar a saída de algum item
-Saida* infoSaida(void)
+//Função para informar a saída de um item do estoque
+void infoSaida(void)
 {
-    Saida* cancs;
-    cancs = (Saida*) malloc(sizeof(Saida));
-    system ( " clear||cls " );
+    Saida* said;
+    system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ---------------- REGISTRAR SAÍDA DE ITEM ---------------- | \n");
     printf(" |                                                           | \n");    
+    said = (Saida*) malloc(sizeof(Saida));
     do
     {
         printf(" | Informe o código de barras: ");
-        scanf("%s", cancs->codigodeBarras);
+        scanf("%s", said->codigodeBarras);
         getchar();
         
-    } while (!lerQuantidade(cancs->codigodeBarras));
+    } while (!lerQuantidade(said->codigodeBarras));
 
     do
     {
         printf(" | Informe a quantidade de produto: ");
-        scanf("%s", cancs->QuantProduto);
+        scanf("%s", said->QuantProduto);
         getchar();
         
-    } while (!lerQuantidade(cancs->QuantProduto));
+    } while (!lerQuantidade(said->QuantProduto));
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
+    said->status = '1';
+    gravaSaida(said);
+    free(said);
+    printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
-    cancs->status = '1'; //o true mostra que foi cadastrado
-    return cancs;
 
 }
 
 //Função para gravar no arquivo:
-void gravaSaida(Saida* cancs) 
+void gravaSaida(Saida* said) 
 {
     FILE* fp;
     fp = fopen("saida.dat", "ab");
@@ -98,51 +105,141 @@ void gravaSaida(Saida* cancs)
         exit(1);
     }
     
-    fwrite(cancs, sizeof(Saida), 1, fp);
+    fwrite(said, sizeof(Saida), 1, fp);
     fclose(fp);
     
 }
 
-
-//função para o cancelamento da saída de algum item
-CancelarSaid* infoCancelarSaid(void)
-{
-    CancelarSaid* cancelar;
-    cancelar = (CancelarSaid*) malloc(sizeof(CancelarSaid));
-    system ( " clear||cls " );
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" | -------- REGISTRAR CANCELAMENTO DE SAÍDA DE ITEM -------- | \n");
-    printf(" |                                                           | \n");    
-    do
-    {
-        printf(" | Informe o código de barras: ");
-        scanf("%s", cancelar->codigodeBarras);
-        getchar();
-        
-    } while (!lerQuantidade(cancelar->codigodeBarras));
-
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
-    printf(" | Press ENTER for exit... ");
-    getchar();
-    cancelar->status = '1'; 
-    return cancelar;
-
-}
-
-
-//Função para gravar no arquivo:
-void gravaCancelamentoSaida(CancelarSaid* cancelar) 
+//A partir do código de barras
+void buscainfoSaida(void)
 {
     FILE* fp;
-    fp = fopen("cancSaida.dat", "ab");
+    Saida* said;
+    int achou;
+    char procurado[15];
+    fp = fopen("saida.dat", "rb");
+
     if (fp == NULL) {
-        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Ops! Erro na abertura do arquivo!\n");
         exit(1);
     }
-    
-    fwrite(cancelar, sizeof(CancelarSaid), 1, fp);
+    printf("\n\n");
+    system ( " cls " );
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" |                   Buscar dados da saída                   | \n");
+    printf(" | ========================================================= | \n");
+    printf("Informe o código de barras: ");
+    scanf(" %30[^\n]", procurado);
+    getchar();
+    said = (Saida*) malloc(sizeof(Saida));
+    achou = 0;
+    while((!achou) && (fread(said, sizeof(Saida), 1, fp))) {
+        printf("Código de barras |%s|\n", said->codigodeBarras);
+        if ((strcmp(said->codigodeBarras, procurado) == 0) && (said->status == '1')) {
+            achou = 1;
+        }
+    }
     fclose(fp);
+    if (achou) {
+        exibeSaida(said);
+    } else {
+        printf("Os dados da saída %s não foram encontrados\n", procurado);
+    }
+    free(said);
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
     
+
+}
+
+void exibeSaida(Saida* said) 
+{
+    printf(" | Código de barras: %s\n", said->codigodeBarras);    
+    printf(" | Quantidade do produto: %s\n", said->QuantProduto);
+    printf(" | Status: %c\n", said->status);
+    printf(" |                                                           | \n");
+    printf(" | ========================================================= | \n");
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
+    
+}
+
+//EDITAR AQUI
+
+
+//Função para exclusão lógica
+void excluirSaida(void)
+{
+    FILE* fp;
+    Saida* said;
+    int achou;
+    char resp;
+    char codigodeBarras[20];
+    fp = fopen("saida.dat", "r+b");
+
+    if (fp == NULL){
+        printf("Ops! Erro na abertura do arquivo!\n");
+        exit(1);
+    }
+    said = (Saida*) malloc(sizeof(Saida));
+    system( " clear || cls ");
+    printf(" | ============================================================== | \n");
+    printf(" | -------------------------------------------------------------- | \n");
+    printf(" | ------------------------ EXCLUIR SAÍDA ----------------------- | \n");
+    printf(" |                                                                | \n");
+    printf(" | Informe o código de barras do produto que você deseja excluir: ");
+    scanf("%s", said->codigodeBarras);
+    getchar();  
+    achou = 0;
+    while ((!achou) && (fread(said, sizeof(Saida), 1, fp))){
+        if ((strcmp(said->codigodeBarras, codigodeBarras) == 0) && (said->status == '0')){
+            achou = 1;
+        }
+    }
+
+   if (achou){
+        exibeSaida(said);
+        getchar();
+        printf("Deseja realmente excluir os dados desta saída? (s/n)");
+        scanf("%c", &resp);
+        if (resp == 's' || resp == 'S'){
+            said->status = '0';
+            fseek(fp, (-1)*sizeof(Saida), SEEK_CUR);
+            fwrite(said, sizeof(said), 1, fp);
+            printf("\nDados da saída excluídos com sucesso!");
+        }else{
+            printf("\nTudo bem, os dados não foram alterados!");
+        }
+    }else{
+        printf("Os dados não foram encontrados!");
+    }
+    free(said);
+    fclose(fp);
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
+    
+}
+
+//listar saídas
+void listarSaida(void) 
+{
+    FILE* fp;
+    Saida* said;
+    fp = fopen("saida.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        exit(1);
+    }
+    printf("\n\n");
+    printf(" | ===================== Exibe saída ======================= | \n");
+    printf(" |                                                           | \n");
+    printf(" | ========================================================= | \n");
+    said = (Saida*)malloc(sizeof(Saida));
+    while(fread(said, sizeof(Saida), 1, fp)) {
+        exibeSaida(said);
+    }
+    fclose(fp);
+    free(said);
+
 }
