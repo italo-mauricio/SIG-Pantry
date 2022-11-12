@@ -98,6 +98,7 @@ char estoquedeHigiene(void)
     printf(" | ======================== SIG - Pantry =============================== | \n");
     printf(" Press ENTER for exit.....");
     scanf("%c", &esc);
+    getchar();
 
     return esc;
 
@@ -122,6 +123,7 @@ char estoquedeLimpeza(void)
     printf(" | ======================== SIG - Pantry =============================== | \n");
     printf(" Press ENTER for exit.....");
     scanf("%c", &esc);
+    getchar();
 
     return esc;
 
@@ -143,6 +145,7 @@ char listasdeCompra(void)
     printf(" | ======================== SIG - Pantry =============================== | \n");
     printf(" Press ENTER for exit.....");
     scanf("%c", &esc);
+    getchar();
 
     return esc;
 

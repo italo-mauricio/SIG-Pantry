@@ -74,8 +74,7 @@ void telaItensQuantMinima(void)
     getchar();
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
-    system("Pause");
-    system("cls");
+    printf(" | Pressione qualquer tecla para sair...\n");
     getchar();
 
 }
@@ -93,8 +92,7 @@ void telaItensProxVencimento(void)
     getchar();
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
-    system("Pause");
-    system(" clear || cls");
+    printf(" | Pressione qualquer tecla para sair....\n");
     getchar();
 
 }
@@ -155,9 +153,7 @@ MontarLista* infoMontarLista(void)
     
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
-    system("Pause");
-    system("clear||cls");
-    mtlista->status = 't';
+    mtlista->status = '1';
     return mtlista;
 }
 
