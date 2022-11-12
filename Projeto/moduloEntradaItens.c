@@ -14,11 +14,11 @@ void menuEntradaItens(void)
             infoEntrada(); //informações do item
             break;
         case '2':
-            pesquisarEntrada(); //pesquisa
+            buscaInfoEntrada(); //pesquisa
             break;
-        case '3':
+        /*case '3':
             atualizarEntrada(); //edição
-            break;
+            break;*/
         case '4':
             excluirEntrada(); //exclusão
             break;

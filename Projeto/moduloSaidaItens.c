@@ -14,11 +14,11 @@ void menuSaidaItens(void)
             infoSaida(); //informações do item
             break;
         case '2':
-            pesquisarSaida(); //pesquisa
+            buscainfoSaida(); //pesquisa
             break;
-        case '3':
+        /*case '3':
             atualizarSaida(); //edição
-            break;
+            break; */
         case '4':
             excluirSaida(); //exclusão
             break;

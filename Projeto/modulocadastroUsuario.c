@@ -404,7 +404,7 @@ void infoExcluirUs(void)
     Usuario* cliente;
     int achou;
     char resp;
-    char username[20];
+    char procurado[20];
     fp = fopen("usuario.dat", "r+b");
 
     if (fp == NULL){
@@ -418,11 +418,11 @@ void infoExcluirUs(void)
     printf(" | ---------------------- EXCLUIR USUÁRIO ----------------------- | \n");
     printf(" |                                                                | \n");
     printf(" | Informe o username do usuário que você quer excluir: ");
-    scanf("%s", cliente->username);
+    scanf(" %30[^\n]", procurado);
     getchar();  
     achou = 0;
     while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))){
-        if ((strcmp(cliente->username, username) == 0) && (cliente->status == '0')){
+        if ((strcmp(cliente->username, procurado) == 0) && (cliente->status == '1')){
             achou = 1;
         }
     }
@@ -437,6 +437,7 @@ void infoExcluirUs(void)
             fseek(fp, (-1)*sizeof(Usuario), SEEK_CUR);
             fwrite(cliente, sizeof(Usuario), 1, fp);
             printf("\nUsuário excluído com sucesso!");
+            gravaUsuario(cliente);
         }else{
             printf("\nTudo bem, os dados não foram alterados!");
         }

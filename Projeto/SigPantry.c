@@ -30,7 +30,7 @@ int main (void)
             menuEntradaItens();
             break; 
         case '5':    
-            moduloSaidaItens();
+            menuSaidaItens();
             break;
         case '6':
             moduloRelatorio();

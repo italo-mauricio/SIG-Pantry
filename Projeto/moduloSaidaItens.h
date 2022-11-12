@@ -15,5 +15,5 @@ void pesquisarSaida(void);
 void atualizarSaida(void);
 void excluirSaida(void);
 void listarSaida(void);
-void buscaInfoSaida(void);
+void buscainfoSaida(void);
 void exibeSaida(Saida* said);
