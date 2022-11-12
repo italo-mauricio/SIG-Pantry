@@ -429,7 +429,6 @@ void infoExcluirUs(void)
 
    if (achou){
         exibeInfoUsuario(cliente);
-        getchar();
         printf("Deseja realmente excluir os dados deste usuário? (s/n)");
         scanf("%c", &resp);
         if (resp == 's' || resp == 'S'){
@@ -438,6 +437,8 @@ void infoExcluirUs(void)
             fwrite(cliente, sizeof(Usuario), 1, fp);
             printf("\nUsuário excluído com sucesso!");
             gravaUsuario(cliente);
+            printf("| Pressione qualquer tecla para sair... ");
+            getchar();
         }else{
             printf("\nTudo bem, os dados não foram alterados!");
         }
