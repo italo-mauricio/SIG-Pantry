@@ -30,25 +30,16 @@
 
 ## IDE de desenvolvimento:
 
-* Descrição: O projeto foi totalmente desenvolvido pelo Visual Studio, todas as suas funcionalidades foram testadas nele.
+* Descrição: O projeto foi totalmente desenvolvido pelo Visual Studio Code, todas as suas funcionalidades foram testadas nele.
 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original-wordmark.svg" title="vscode" alt="vscode" width="60" height="60"/>&nbsp;
 
 
 ## Descrição geral do Projeto:
 
-- Data de atualização: 203/08/2022 (data inicial do projeto)
+- Data de atualização: 20/08/2022 (data inicial do projeto)
 
 * O projeto tem a proposta de criar um software para controle da despensa doméstica de uma casa, sendo dividido em categorias: alimentação, higiene pessoal e limpeza. O programa é uma forma de facilitar as atividades cotidianas de uma casa, fazendo o controle total do que entra e do que sai de uma despensa, por meio das datas de validades dos produtos, por exemplo.
-
-- Data de atualização: 27/09/2022
-
-* A partir desta data o projeto segue com as telas prontas, de todos os módulos, e com a navegação inclusa. Os próximos passos serão as implementações das funcionalidades de cadastro de itens e de usuários. 
-
-
-
-
-
 
 
 
