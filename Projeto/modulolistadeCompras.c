@@ -229,7 +229,7 @@ void excluirLista(void)
     MontarLista* mtlista;
     int achou;
     char resp;
-    char nomeLista[20];
+    char procura[20];
     fp = fopen("lista.dat", "r+b");
 
     if (fp == NULL){
@@ -243,11 +243,11 @@ void excluirLista(void)
     printf(" | ------------------------ EXCLUIR LISTA ----------------------- | \n");
     printf(" |                                                                | \n");
     printf(" | Informe o nome da lista que você deseja excluir: ");
-    scanf("%s", mtlista->nomeLista);
+    scanf("%s", procura);
     getchar();  
     achou = 0;
     while ((!achou) && (fread(mtlista, sizeof(MontarLista), 1, fp))){
-        if ((strcmp(mtlista->nomeLista, nomeLista) == 0) && (mtlista->status == '0')){
+        if ((strcmp(mtlista->nomeLista, procura) == 0) && (mtlista->status == '0')){
             achou = 1;
         }
     }
@@ -255,13 +255,16 @@ void excluirLista(void)
    if (achou){
         exibeListaCompras(mtlista);
         getchar();
-        printf("Deseja realmente excluir esta lista? (s/n)");
+        printf("Deseja realmente excluir os dados desta saída? (s/n)");
         scanf("%c", &resp);
         if (resp == 's' || resp == 'S'){
             mtlista->status = '0';
             fseek(fp, (-1)*sizeof(MontarLista), SEEK_CUR);
             fwrite(mtlista, sizeof(mtlista), 1, fp);
             printf("\nLista excluída com sucesso!");
+            gravaLista(mtlista);
+            printf(" Pressione qualquer tecla para sair... ");
+            getchar();
         }else{
             printf("\nTudo bem, a lista não foi alterada!");
         }
