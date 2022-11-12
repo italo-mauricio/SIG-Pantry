@@ -193,7 +193,7 @@ void telaAtualizarUsuario(void)
     printf(" | ------------------- ATUALIZAR USUÁRIO ------------------- | \n");
     printf(" |                                                           | \n");
     printf(" | Digite o username cadastrado: ");
-    scanf(" %30[^\n]", procurando);
+    scanf(" %[A-Z a-z 0-9]", procurando);
     getchar();
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
    if ((strcmp(cliente->username, procurando) == 0) && (cliente->status == '1')) {
@@ -258,10 +258,7 @@ void telaAtualizarUsuario(void)
         printf("Tudo bem, dados não foram alterados!");
     }
   
-   } else if (achou == 0) {
-        printf("Usuario nao encontrado!");
-
-   }
+   } 
   
 }
 free(cliente);
