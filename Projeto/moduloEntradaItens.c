@@ -14,11 +14,11 @@ void menuEntradaItens(void)
             infoEntrada(); //informações do item
             break;
         case '2':
-            pesquisarEntrada(); //pesquisa
+            buscaInfoEntrada(); //pesquisa
             break;
-        case '3':
+        /*case '3':
             atualizarEntrada(); //edição
-            break;
+            break;*/
         case '4':
             excluirEntrada(); //exclusão
             break;
@@ -182,7 +182,7 @@ void excluirEntrada(void)
     Entrada* ent;
     int achou;
     char resp;
-    char codigodeBarras[20];
+    char procura[20];
     fp = fopen("entrada.dat", "r+b");
 
     if (fp == NULL){
@@ -196,18 +196,17 @@ void excluirEntrada(void)
     printf(" | ---------------------- EXCLUIR ENTRADA ----------------------- | \n");
     printf(" |                                                                | \n");
     printf(" | Informe o código de barras do produto que você deseja excluir: ");
-    scanf("%s", ent->codigodeBarras);
+    scanf(" %30[^\n]", procura);
     getchar();  
     achou = 0;
     while ((!achou) && (fread(ent, sizeof(Entrada), 1, fp))){
-        if ((strcmp(ent->codigodeBarras, codigodeBarras) == 0) && (ent->status == '0')){
+        if ((strcmp(ent->codigodeBarras, procura) == 0) && (ent->status == '1')){
             achou = 1;
         }
     }
 
    if (achou){
         exibeEntrada(ent);
-        getchar();
         printf("Deseja realmente excluir os dados desta entrada? (s/n)");
         scanf("%c", &resp);
         if (resp == 's' || resp == 'S'){
@@ -215,6 +214,9 @@ void excluirEntrada(void)
             fseek(fp, (-1)*sizeof(Entrada), SEEK_CUR);
             fwrite(ent, sizeof(Entrada), 1, fp);
             printf("\nDados da entrada excluídos com sucesso!");
+            gravaEntrada(ent);
+            printf(" Pressione qualquer tecla para sair... ");
+            getchar();
         }else{
             printf("\nTudo bem, os dados não foram alterados!");
         }
