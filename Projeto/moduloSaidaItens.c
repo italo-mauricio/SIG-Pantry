@@ -175,7 +175,7 @@ void excluirSaida(void)
     Saida* said;
     int achou;
     char resp;
-    char codigodeBarras[20];
+    char procura[20];
     fp = fopen("saida.dat", "r+b");
 
     if (fp == NULL){
@@ -189,11 +189,11 @@ void excluirSaida(void)
     printf(" | ------------------------ EXCLUIR SAÍDA ----------------------- | \n");
     printf(" |                                                                | \n");
     printf(" | Informe o código de barras do produto que você deseja excluir: ");
-    scanf("%s", said->codigodeBarras);
+    scanf(" %30[^\n]", procura);
     getchar();  
     achou = 0;
     while ((!achou) && (fread(said, sizeof(Saida), 1, fp))){
-        if ((strcmp(said->codigodeBarras, codigodeBarras) == 0) && (said->status == '0')){
+        if ((strcmp(said->codigodeBarras, procura) == 0) && (said->status == '1')){
             achou = 1;
         }
     }
@@ -208,6 +208,9 @@ void excluirSaida(void)
             fseek(fp, (-1)*sizeof(Saida), SEEK_CUR);
             fwrite(said, sizeof(said), 1, fp);
             printf("\nDados da saída excluídos com sucesso!");
+            gravaSaida(said);
+            printf(" Pressione qualquer tecla para sair... ");
+            getchar();
         }else{
             printf("\nTudo bem, os dados não foram alterados!");
         }

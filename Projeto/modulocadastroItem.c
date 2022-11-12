@@ -414,7 +414,7 @@ void infoExcluir(void)
     Item* it;
     int achou;
     char resp;
-    char codigoBarras[20];
+    char procura[20];
     fp = fopen("itens.dat", "r+b");
 
     if (fp == NULL){
@@ -428,18 +428,17 @@ void infoExcluir(void)
     printf(" | ------------------------ EXCLUIR ITEM ------------------------ | \n");
     printf(" |                                                                | \n");
     printf(" | Informe o código de barras do produto que você deseja excluir: ");
-    scanf("%s", it->codigoBarras);
+    scanf(" %30[^\n]", procura);
     getchar();  
     achou = 0;
     while ((!achou) && (fread(it, sizeof(Item), 1, fp))){
-        if ((strcmp(it->codigoBarras, codigoBarras) == 0) && (it->status == '0')){
+        if ((strcmp(it->codigoBarras, procura) == 0) && (it->status == '1')){
             achou = 1;
         }
     }
 
    if (achou){
         exibeItens(it);
-        getchar();
         printf("Deseja realmente excluir os dados deste item? (s/n)");
         scanf("%c", &resp);
         if (resp == 's' || resp == 'S'){
@@ -447,6 +446,9 @@ void infoExcluir(void)
             fseek(fp, (-1)*sizeof(Item), SEEK_CUR);
             fwrite(it, sizeof(Item), 1, fp);
             printf("\nDados do item excluídos com sucesso!");
+            gravaItem(it);
+            printf(" Pressione qualquer tecla para sair... ");
+            getchar();
         }else{
             printf("\nTudo bem, os dados não foram alterados!");
         }
