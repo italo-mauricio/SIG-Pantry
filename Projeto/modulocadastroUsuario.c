@@ -17,7 +17,7 @@ void modulocadastroUsuario(void)
             buscaInfoUsuario(); //pesquisa
             break;
         case 3:
-            //EditarUsuario(); //edição
+            telaAtualizarUsuario(); //edição
             break;
         case 4:
             infoExcluirUs(); //exclusão
@@ -173,214 +173,107 @@ void buscaInfoUsuario(void)
 //VAI PRECISAR ALTERAR
 void telaAtualizarUsuario(void) 
 {
-    char op;
+    FILE* fp;
+    Usuario* cliente;
+    int achou;
+    char resp;
+    char procurando[20];
+    cliente = (Usuario*) malloc(sizeof(Usuario));
+    achou = 0;
+
+    fp = fopen("usuario.dat", "r+b");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Não é possível continuar o programa...\n");
+        exit(1);
+  }
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ------------------- ATUALIZAR USUÁRIO ------------------- | \n");
     printf(" |                                                           | \n");
-    printf(" |                   1- Nome                                 | \n");
-    printf(" |                   2- E-mail                               | \n");
-    printf(" |                   3- Data de nascimento                   | \n");  
-    printf(" |                   4- Username                             | \n"); 
-    printf(" |                   5- Senha                                | \n");       
-    printf(" |                   0- Voltar à tela menu usuário           | \n");
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opção: ");
-    scanf("%c", &op); 
+    printf(" | Digite o username cadastrado: ");
+    scanf(" %30[^\n]", procurando);
     getchar();
-    escolhafuncao(op); 
-
-}
-
-void escolhafuncao(char op){ 
-        AtualizarNome* atualizar;
-        AtualizarEmail* atualiza;
-        AtualizarDataNasc* atualiz;
-        AtualizarUsername* atuali;
-        AtualizarSenha* atual;
-        switch (op)
+    while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
+   if ((strcmp(cliente->username, procurando) == 0) && (cliente->status == '1')) {
+     achou = 1;
+   }if (achou) {
+        exibeInfoUsuario(cliente);
+        printf(" Deseja realmente editar este usuario? [s/n] ");
+        scanf("%c", &resp);
+        getchar();
+        if (resp == 's' || resp == 'S') {
+             
+        do
         {
-        case '1':
-            atualizar = atualizaNome();
-            break;
-        case '2':
-            atualiza = atualizEmail();
-            break;
-        case '3':
-            atualiz = atualizarData();
-            break;
-        case '4':
-            atuali = atualizUsername();
-            break;
-        case '5':
-            atual = atualizSenha();
-            break;
-        case '0':
-            break;        
-        default:
-            printf("Opção inválida\n");
-            break;
-        }
-
-        free (atualizar);
-        free (atualiza);
-        free (atualiz);
-        free(atuali);
-        free(atual);
-
-}
-
-AtualizarNome* atualizaNome()
-{
-    AtualizarNome* atnomeus;
-    atnomeus = (AtualizarNome*) malloc(sizeof(AtualizarNome));
-    system( " clear || cls");
-    printf(" | ============================================================== | \n");
-    printf(" |                         SIG - Pantry                           | \n");
-    printf(" |                       (Atualizar Nome)                         | \n");
-    printf(" | ============================================================== | \n");
-    printf(" |                                                                | \n");
-    do
-    {
         printf(" | Informe o novo nome: ");
-        scanf("%s", atnomeus->nome);
+        scanf("%[A-Z a-z 0-9 ]", cliente->nome);
         getchar();
         
-    } while (!lerLetras(atnomeus->nome));
-
-    printf(" | ------------------------------------------------------------- | \n");
-    printf(" | ============================================================= | \n");
-    printf(" | Nome atualizado, por favor, digite ENTER...");
-    getchar();
-    
-    return atnomeus;
-
-}
-
-AtualizarEmail* atualizEmail( )
-{
-    AtualizarEmail* atEmail;
-    atEmail = (AtualizarEmail*) malloc(sizeof(AtualizarEmail));
-    system ( " cls " );
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" |                      SIG - Pantry                         | \n");
-    printf(" |                    (Atualizar E-mail)                     | \n");
-    printf(" | ========================================================= | \n");
-    printf(" |                                                           | \n");
-    
-    do {
+        } while (!validarLetras(cliente->nome, tamanhoString(cliente->nome)));
+        
+        do {
         printf(" | Informe o novo E-mail: ");   
-        scanf("%s", atEmail->email);
+        scanf("%s", cliente->email);
         getchar();
+        } while (!lerEmail(cliente->email));
 
-    } while (!lerEmail(atEmail->email));
-
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
-    printf(" | ========================================================= | \n");
-    system("Pause");
-    system("cls");
-    getchar();
-
-    return atEmail;
-
-}
-
-AtualizarDataNasc* atualizarData()
-{
-    AtualizarDataNasc* atdatan;
-    atdatan = (AtualizarDataNasc*) malloc(sizeof(AtualizarDataNasc));
-    system( " clear || cls");
-    printf(" | ============================================================== | \n");
-    printf(" | -------------------------------------------------------------- | \n");
-    printf(" |                         SIG - Pantry                           | \n");
-    printf(" |                   (Atualizar data de nascimento)               | \n");
-    printf(" | ============================================================== | \n");
-    printf(" |                                                                | \n");
-    do {
-        printf(" | Informe o dia de vencimento do produto: ");
-        scanf("%d", &atdatan->dia);
+         do {        
+        printf(" | Informe o novo dia de nascimento: ");
+        scanf("%d",&cliente->dia);
         getchar();
-        printf(" | Informe o mês de vencimento do produto: ");
-        scanf("%d", &atdatan->mes);
+        printf(" | Informe o novo mês de nascimento: ");
+        scanf("%d",&cliente->mes);
         getchar();
-        printf(" | Informe o ano de vencimento do produto: ");
-        scanf("%d", &atdatan->ano);
+        printf(" | Informe o novo ano de nascimento: ");
+        scanf("%d",&cliente->ano);
         getchar();
         
-    } while(!valida_data(atdatan->dia, atdatan->mes, atdatan->ano));
+     } while(!valida_data(cliente->dia, cliente->mes, cliente->ano));  
+      
+        do {
+            printf(" | Escolha seu novo username: ");
+            scanf("%s", cliente->username);
+            getchar();
 
-    printf(" | ------------------------------------------------------------- | \n");
-    printf(" | ============================================================= | \n");
-    printf( " Press ENTER for continue...");
-    getchar();
+        } while(!lerUsernameSenha(cliente->username));
 
-    return atdatan;
+        do {
+        printf(" | Informe sua nova senha: ");
+        scanf("%s", cliente->senha);
+        getchar();
+
+        } while(!lerUsernameSenha(cliente->senha));
+
+        cliente->status = '1';
+        fseek(fp, (-1)*sizeof(Usuario), SEEK_CUR);
+        fwrite(cliente, sizeof(Usuario), 1, fp);
+        printf("\nUsuario editado com sucesso!!!\n");
+        gravaUsuario(cliente);
+        printf(" Pressione qualquer tecla para sair... ");
+        getchar();
+
+    } else {
+        printf("Tudo bem, dados não foram alterados!");
+    }
+  
+   } else if (achou == 0) {
+        printf("Usuario nao encontrado!");
+
+   }
+  
+}
+free(cliente);
+fclose(fp);
+
+}      
+        
+   
     
-}
 
-AtualizarUsername* atualizUsername()
-{
-    AtualizarUsername* atUsername;
-    atUsername = (AtualizarUsername*) malloc(sizeof(AtualizarUsername));
-    system ( " cls " );
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" |                      SIG - Pantry                         | \n");
-    printf(" |                  (Atualizar username)                     | \n");
-    printf(" | ========================================================= | \n");
-    printf(" |                                                           | \n");
 
-    do {
-        printf(" | Escolha um novo username: ");
-        scanf("%s", atUsername->username);
-        getchar();
 
-    } while(!lerUsernameSenha(atUsername->username));
-
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
-    printf(" | ========================================================= | \n");
-    system("Pause");
-    system("cls");
-    getchar();
-
-    return atUsername;
-
-}
-
-AtualizarSenha* atualizSenha()
-{
-    AtualizarSenha* atSenha;
-    atSenha = (AtualizarSenha*) malloc(sizeof(AtualizarSenha));
-    system ( " cls " );
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" |                      SIG - Pantry                         | \n");
-    printf(" |                    (Atualizar senha)                      | \n");
-    printf(" | ========================================================= | \n");
-    printf(" |                                                           | \n");
-
-    do {
-        printf(" | Informe uma nova senha: ");
-        scanf("%s", atSenha->senha);
-        getchar();
-
-    } while(!lerUsernameSenha(atSenha->senha));
-
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
-    printf(" | ========================================================= | \n");
-    system("Pause");
-    system("cls");
-    getchar();
-
-    return atSenha;
-
-}
 
 //função para gravar no arquivo
 void gravaUsuario(Usuario* cliente) 
