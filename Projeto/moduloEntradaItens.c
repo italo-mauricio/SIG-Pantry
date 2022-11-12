@@ -79,7 +79,8 @@ Entrada* infoEntrada(void)
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
-    ent->status = 't'; //o true mostra que foi cadastrado
+    getchar();
+    ent->status = '1'; //o true mostra que foi cadastrado
     return ent;
 
 }
@@ -120,7 +121,8 @@ CancelarEnt* infoCancelarEntrada(void)
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
-    canc->status = 't'; 
+    getchar();
+    canc->status = '1'; 
     return canc;
 
 }

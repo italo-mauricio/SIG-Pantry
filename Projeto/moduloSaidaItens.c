@@ -82,7 +82,8 @@ Saida* infoSaida(void)
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
-    cancs->status = 't'; //o true mostra que foi cadastrado
+    getchar();
+    cancs->status = '1'; //o true mostra que foi cadastrado
     return cancs;
 
 }
@@ -124,7 +125,8 @@ CancelarSaid* infoCancelarSaid(void)
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
-    cancelar->status = 't'; 
+    getchar();
+    cancelar->status = '1'; 
     return cancelar;
 
 }
