@@ -166,11 +166,7 @@ void buscaInfoUsuario(void)
 
 }
 
-//void editaDadosUsu(void) {
-    
-//}
-
-//VAI PRECISAR ALTERAR
+//edita dados do usuário
 void telaAtualizarUsuario(void) 
 {
     FILE* fp;
@@ -255,7 +251,7 @@ void telaAtualizarUsuario(void)
         getchar();
 
     } else {
-        printf("Tudo bem, dados não foram alterados!");
+        printf("Tudo bem, os dados não foram alterados!");
     }
   
    } 
@@ -266,12 +262,6 @@ fclose(fp);
 
 }      
         
-   
-    
-
-
-
-
 //função para gravar no arquivo
 void gravaUsuario(Usuario* cliente) 
 {

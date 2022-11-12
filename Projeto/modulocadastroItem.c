@@ -23,7 +23,7 @@ void modulocadastroItem(void)
                 telaEstoqueMinimo();
                 break;
             case '5':
-                telaAtualizarItem(); //edição (ainda precisa fazer)
+                telaAtualizarItem(); //edição 
                 break;
             case '6':
                 infoExcluir(); //exclusão
@@ -222,145 +222,93 @@ void gravaItem(Item* it)
 
 }
 
-//VAI TER QUE MUDAR
-void telaAtualizarItem(void) 
+//função para editar algum item
+void telaAtualizarItem(void)  
 {
-    char op;
+    FILE* fp;
+    Item* it;
+    int achou;
+    char resp;
+    char procurando[20];
+    it = (Item*) malloc(sizeof(Item));
+    achou = 0;
+
+    fp = fopen("item.dat", "r+b");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        exit(1);
+  }
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | --------------------- ATUALIZAR ITEM -------------------- | \n");
     printf(" |                                                           | \n");
-    printf(" |                  1- Nome do produto                       | \n");
-    printf(" |                  2- Código de barras                      | \n");
-    printf(" |                  3- Data de validade                      | \n");  
-    printf(" |                  4- Categoria do produto                  | \n"); 
-    printf(" |                  5- Local de armazenamento                | \n");       
-    printf(" |                  0- Voltar à tela menu itens              | \n");
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opção: ");
-    scanf("%c", &op); 
+    printf(" | Digite o código de barras cadastrado: ");
+    scanf(" %[A-Z a-z 0-9]", procurando);
     getchar();
-    suitefuncao(op); 
-
-}
-
-void suitefuncao(char op){ 
-        AtualNome* atualizar;
-        AtualCodigo* atualiz;
-        AtualData* atuali;
-        switch (op)
+    while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
+   if ((strcmp(it->codigoBarras, procurando) == 0) && (it->status == '1')) {
+     achou = 1;
+   }if (achou) {
+        exibeItens(it);
+        printf(" Deseja realmente editar este item? [s/n] ");
+        scanf("%c", &resp);
+        getchar();
+        if (resp == 's' || resp == 'S') {
+             
+        do
         {
-        case '1':
-            atualizar = atualizNome();
-            break;
-        case '2':
-            atualiz = atualizCodigo();
-            break;
-        case '3':
-            atuali = atualizData();
-            break;
-        case '4':
-            telaAtualizarCategoria();
-            break;
-        case '5':
-            telaAtualizarLocaldeArmazenamento();
-            break;
-        case '6':
-            break;        
-        default:
-            printf("Opção inválida\n");
-            break;
-        }
-
-        free (atualizar);
-        free (atualiz);
-        free (atuali);
-
-}
-
-AtualNome* atualizNome()
-{
-    AtualNome* atnome;
-    atnome = (AtualNome*) malloc(sizeof(AtualNome));
-    system( " clear || cls");
-    printf(" | ============================================================== | \n");
-    printf(" | -------------------------------------------------------------- | \n");
-    printf(" | ---------------------- ATUALIZAR NOME ------------------------ | \n");
-    printf(" |                                                                | \n");
-    do
-    {
-        printf(" | Informe o novo nome do produto: ");
-        scanf("%s", atnome->nome);
+        printf(" | Informe o novo nome: ");
+        scanf("%[A-Z a-z 0-9 ]", it->nomeProduto);
         getchar();
         
-    } while (!lerLetras(atnome->nome));
+        } while (!validarLetras(it->nomeProduto, tamanhoString(it->nomeProduto)));
+        
+        do {
+        printf(" | Informe o novo nome da marca: ");   
+        scanf("%s", it->nomeMarca);
+        getchar();
 
-    printf(" | ------------------------------------------------------------- | \n");
-    printf(" | ============================================================= | \n");
-    printf(" | Nome atualizado, por favor, digite ENTER...");
-    getchar();
-    
-    return atnome;
+        } while (!validarLetras(it->nomeMarca, tamanhoString(it->nomeMarca)));
 
-}
-
-AtualCodigo* atualizCodigo()
-{
-    AtualCodigo* atcodigo;
-    atcodigo = (AtualCodigo*) malloc(sizeof(AtualCodigo));
-    system( " clear || cls");
-    printf(" | ============================================================== | \n");
-    printf(" | -------------------------------------------------------------- | \n");
-    printf(" | --------------- ATUALIZAR CÓDIGO DE BARRAS ------------------- | \n");
-    printf(" |                                                                | \n");
-    do
-    {
-        printf(" | Informe o código de barras: ");
-        scanf("%s", atcodigo->codBarras);
+         do {        
+        printf(" | Informe o novo dia de vencimento: ");
+        scanf("%d",&it->dia);
+        getchar();
+        printf(" | Informe o novo mês de vencimento: ");
+        scanf("%d",&it->mes);
+        getchar();
+        printf(" | Informe o novo ano de vencimento: ");
+        scanf("%d",&it->ano);
         getchar();
         
-    } while (!lerQuantidade(atcodigo->codBarras));
+     } while(!valida_data(it->dia, it->mes, it->ano));  
+      
+        do {
+            printf(" | Informe o novo código de barras: ");
+            scanf("%s", it->codigoBarras);
+            getchar();
 
-    printf(" | ------------------------------------------------------------- | \n");
-    printf(" | ============================================================= | \n");
-    printf( " Código de barras atualizado, por favor, digite ENTER...");
-    getchar();
+        } while(!lerQuantidade(it->codigoBarras));
 
-    return atcodigo;
+        it->status = '1';
+        fseek(fp, (-1)*sizeof(Item), SEEK_CUR);
+        fwrite(it, sizeof(Item), 1, fp);
+        printf("\nItem editado com sucesso!!!\n");
+        gravaItem(it);
+        printf(" Pressione qualquer tecla para sair... ");
+        getchar();
 
+    } else {
+        printf("Tudo bem, os dados não foram alterados!");
+    }
+  
+   } 
+  
 }
+free(it);
+fclose(fp);
 
-AtualData* atualizData()
-{
-    AtualData* atdata;
-    atdata = (AtualData*) malloc(sizeof(AtualData));
-    system( " clear || cls");
-    printf(" | ============================================================== | \n");
-    printf(" | -------------------------------------------------------------- | \n");
-    printf(" | --------------- ATUALIZAR DATA DE VALIDADE ------------------- | \n");
-    printf(" |                                                                | \n");
-    do {
-        printf(" | Informe o dia de vencimento do produto: ");
-        scanf("%d", &atdata->dia);
-        getchar();
-        printf(" | Informe o mês de vencimento do produto: ");
-        scanf("%d", &atdata->mes);
-        getchar();
-        printf(" | Informe o ano de vencimento do produto: ");
-        scanf("%d", &atdata->ano);
-        getchar();
-        
-    } while(!valida_data(atdata->dia, atdata->mes, atdata->ano));
-
-    printf(" | ------------------------------------------------------------- | \n");
-    printf(" | ============================================================= | \n");
-    printf( " Press ENTER for continue...");
-    getchar();
-
-    return atdata;
-    
 }
 
 char telaAtualizarCategoria(void) 
