@@ -65,7 +65,7 @@ void infoEntrada(void)
     system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | -------------- REGISTRAR ENTRADA DE ITEM ---------------- | \n");
+    printf(" | -------------- Registrar entrada de item ---------------- | \n");
     printf(" |                                                           | \n");    
     ent = (Entrada*)malloc(sizeof(Entrada));
     do
@@ -193,7 +193,7 @@ void excluirEntrada(void)
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
-    printf(" | ---------------------- EXCLUIR ENTRADA ----------------------- | \n");
+    printf(" | ---------------------- Excluir entrada ----------------------- | \n");
     printf(" |                                                                | \n");
     printf(" | Informe o código de barras do produto que você deseja excluir: ");
     scanf(" %30[^\n]", procura);

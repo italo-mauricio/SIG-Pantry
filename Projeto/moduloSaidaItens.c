@@ -16,9 +16,9 @@ void menuSaidaItens(void)
         case '2':
             buscainfoSaida(); //pesquisa
             break;
-        /*case '3':
+        case '3':
             atualizarSaida(); //edição
-            break; */
+            break; 
         case '4':
             excluirSaida(); //exclusão
             break;
@@ -65,7 +65,7 @@ void infoSaida(void)
     system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ---------------- REGISTRAR SAÍDA DE ITEM ---------------- | \n");
+    printf(" | ---------------- Registrar saída de item ---------------- | \n");
     printf(" |                                                           | \n");    
     said = (Saida*) malloc(sizeof(Saida));
     do
@@ -166,7 +166,9 @@ void exibeSaida(Saida* said)
 }
 
 //EDITAR AQUI
-
+void atualizarSaida(void) {
+    
+}
 
 //Função para exclusão lógica
 void excluirSaida(void)
@@ -186,7 +188,7 @@ void excluirSaida(void)
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
-    printf(" | ------------------------ EXCLUIR SAÍDA ----------------------- | \n");
+    printf(" | ------------------------ Excluir saída ----------------------- | \n");
     printf(" |                                                                | \n");
     printf(" | Informe o código de barras do produto que você deseja excluir: ");
     scanf(" %30[^\n]", procura);
