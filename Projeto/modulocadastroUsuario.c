@@ -6,23 +6,23 @@
 
 void modulocadastroUsuario(void)
 {    
-    int escolha;
+    char op;
     do {
-        escolha = telaMenuUsuario();
-        switch (escolha) {
-        case 1:
+        op = telaMenuUsuario();
+        switch (op) {
+        case '1':
             InfoUsuario(); //cadastro
             break;
-        case 2:
+        case '2':
             buscaInfoUsuario(); //pesquisa
             break;
-        case 3:
+        case '3':
             telaAtualizarUsuario(); //edição
             break;
-        case 4:
+        case '4':
             infoExcluirUs(); //exclusão
             break; 
-        case 5:
+        case '5':
             listaInfoUsuario(); //relatório
             break;
         default:
@@ -30,13 +30,15 @@ void modulocadastroUsuario(void)
             break;
     }
 
-    } while(escolha != 0);
+    } while(op != '0');
+    
+  
   
 }
 
-int telaMenuUsuario(void) 
+char telaMenuUsuario(void) 
 {
-    int opcao;
+    char opcao;
     system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -51,7 +53,7 @@ int telaMenuUsuario(void)
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opção: ");
-    scanf("%d",&opcao);
+    scanf("%s",&opcao);
     getchar();
     
     return opcao;
