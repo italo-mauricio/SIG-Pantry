@@ -58,7 +58,7 @@ int telaMenuUsuario(void)
 
 }
 
-//função para cadastro do usuário no programa - "preenche"
+//função para cadastro do usuário no programa 
 void InfoUsuario(void) 
 {
     Usuario* cliente;
@@ -113,7 +113,7 @@ void InfoUsuario(void)
     
     printf(" | Usuário cadastrado com sucesso!                           | \n");
     printf(" | ========================================================= | \n");
-    cliente->status = '1'; //o t(true) mostra que foi cadastrado
+    cliente->status = '1'; //o 1 mostra que foi cadastrado
     gravaUsuario(cliente);
     free(cliente);
     printf(" | Pressione qualquer tecla para sair.... ");
@@ -148,7 +148,7 @@ void buscaInfoUsuario(void)
     cliente = (Usuario*) malloc(sizeof(Usuario));
     achou = 0;
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
-        printf("nome do cliente |%s|\n", cliente->username);
+        printf("Nome do cliente |%s|\n", cliente->username);
         if ((strcmp(cliente->username, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
         }
