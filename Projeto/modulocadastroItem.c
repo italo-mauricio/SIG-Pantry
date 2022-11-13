@@ -14,21 +14,24 @@ void modulocadastroItem(void)
                 infoItem(); //cadastrar item
                 break;
             case '2':
-                telaCategoriadoProduto();
+                telaCategoriadoProduto(); //escolher a categoria
                 break;
             case '3': 
-                telaLocaldeArmazenamento();
+                telaLocaldeArmazenamento(); //escolher o local de armazenamento
                 break;
             case '4':
-                telaEstoqueMinimo();
+                telaEstoqueMinimo(); //informar o estoque mínimo
                 break;
             case '5':
-                telaAtualizarItem(); //edição 
+                buscarItem(); //pesquisa
                 break;
             case '6':
-                infoExcluir(); //exclusão
+                telaAtualizarItem(); //edição 
                 break;
             case '7':
+                infoExcluir(); //exclusão
+                break;
+            case '8':
                 listarItens(); //relatório
                 break;
             default:
@@ -53,9 +56,10 @@ char telaMenuItens(void)
     printf(" |                 2- Categoria do produto                   | \n"); 
     printf(" |                 3- Local de armazenamento                 | \n");
     printf(" |                 4- Estoque mínimo do item                 | \n");
-    printf(" |                 5- Atualizar itens                        | \n");
-    printf(" |                 6- Excluir itens                          | \n");                 
-    printf(" |                 7- Listar itens                           | \n");
+    printf(" |                 5- Pesquisar item                         | \n");
+    printf(" |                 6- Atualizar itens                        | \n");
+    printf(" |                 7- Excluir itens                          | \n");                 
+    printf(" |                 8- Listar itens                           | \n");
     printf(" |                 0- Voltar à tela principal                | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -221,6 +225,50 @@ void gravaItem(Item* it)
     fclose(fp);
 
 }
+
+//a partir do código de barras a função abaixo fará a pesquisa
+void buscarItem(void)
+{
+    FILE* fp;
+    Item* it;
+    int achou;
+    char procurado[15];
+    fp = fopen("item.dat", "rb");
+
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        exit(1);
+    }
+    printf("\n\n");
+    system ( " cls " );
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" |                   Buscar dados do item                    | \n");
+    printf(" | ========================================================= | \n");
+    printf("Informe o código de barras: ");
+    scanf(" %30[^\n]", procurado);
+    getchar();
+    it = (Item*) malloc(sizeof(Item));
+    achou = 0;
+    while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
+        printf("Código de barras do produto |%s|\n", it->codigoBarras);
+        if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')) {
+            achou = 1;
+        }
+    }
+    fclose(fp);
+    if (achou) {
+        exibeItens(it);
+    } else {
+        printf("Os dados do produto %s não foram encontrados\n", procurado);
+    }
+    free(it);
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
+    
+}
+
+
 
 //função para editar algum item
 void telaAtualizarItem(void)  
@@ -410,7 +458,7 @@ void infoExcluir(void)
     
 }
 
-//listar itens
+//listar itens (relatório)
 void listarItens(void)
 {
     FILE* fp;
