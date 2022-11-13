@@ -19,6 +19,7 @@ void infoExcluir(void);
 void suitefuncao(char);
 void gravaItem(Item*);
 void telaAtualizarItem(void);
+void buscarItem(void);
 
 
 void telaEstoqueMinimo(void);

@@ -22,7 +22,7 @@ void telaSobre(void)
     printf ( " |                                                                    | \n " );
     printf ( " | ------------------------------------------------------------------ | \n " );
     printf ( " | ---------------------- SIG - Pantry - 2022.2 --------------------- | \n " );
-    printf(" | Pressione qualquer tecla para sair...\n");
+    printf ( " | Pressione qualquer tecla para sair...\n");
     getchar();  
 
 }
