@@ -20,11 +20,11 @@ void menulistadeCompras(void)
             infoMontarLista(); //preencher a lista
             break;
         case '4':
-            pesquisarLista(); //pesquisa
+            buscaLista(); //pesquisa
             break; 
-        case '5':
+       /* case '5':
             editarLista(); //edição
-            break; 
+            break; */ 
         case '6':
             excluirLista(); //exclusão
             break;
@@ -32,7 +32,7 @@ void menulistadeCompras(void)
             listaComprasPronta(); //exibição da lista pronta (relatório)
             break;
         default:
-            printf("Opção inválida\n");
+            printf("Opção in válida\n");
             break;
     }
 

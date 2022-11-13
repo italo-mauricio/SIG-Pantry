@@ -12,7 +12,7 @@ struct usuario {
 };
 
 void modulocadastroUsuario(void);
-int telaMenuUsuario(void);
+char telaMenuUsuario(void);
 void telaAtualizarUsuario(void);
 void escolhafuncao(char);
 void InfoUsuario(void);
