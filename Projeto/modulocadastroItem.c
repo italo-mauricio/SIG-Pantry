@@ -13,22 +13,19 @@ void modulocadastroItem(void)
             case '1':
                 infoItem(); //cadastrar item
                 break;
-            case '2':
-                telaCategoriadoProduto(); //escolher a categoria
-                break;
-            case '3': 
+            case '2': 
                 telaLocaldeArmazenamento(); //escolher o local de armazenamento
                 break;
-            case '4':
+            case '3':
                 buscarItem(); //pesquisa
                 break;
-            case '5':
+            case '4':
                 telaAtualizarItem(); //edição 
                 break;
-            case '6':
+            case '5':
                 infoExcluir(); //exclusão
                 break;
-            case '7':
+            case '6':
                 listarItens(); //relatório
                 break;
             default:
@@ -50,12 +47,11 @@ char telaMenuItens(void)
     printf(" | ----------------- SIG-Pantry - MENU ITENS --------------- | \n");
     printf(" |                                                           | \n");
     printf(" |                 1- Cadastrar item                         | \n"); 
-    printf(" |                 2- Categoria do produto                   | \n"); 
-    printf(" |                 3- Local de armazenamento                 | \n");
-    printf(" |                 4- Pesquisar item                         | \n");
-    printf(" |                 5- Atualizar itens                        | \n");
-    printf(" |                 6- Excluir itens                          | \n");                 
-    printf(" |                 7- Listar itens                           | \n");
+    printf(" |                 2- Local de armazenamento                 | \n");
+    printf(" |                 3- Pesquisar item                         | \n");
+    printf(" |                 4- Atualizar itens                        | \n");
+    printf(" |                 5- Excluir itens                          | \n");                 
+    printf(" |                 6- Listar itens                           | \n");
     printf(" |                 0- Voltar à tela principal                | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -92,6 +88,12 @@ void infoItem(void)
         getchar();
         
     } while (!lerLetras(it->nomeMarca));
+    do
+    {
+        printf(" | Informe a categoria do produo: ");
+        scanf("%s", it->categoria);
+        getchar();
+    } while (!lerLetras(it->categoria)); 
 
     do
     {
@@ -124,33 +126,11 @@ void infoItem(void)
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Press ENTER for exit... ");
     it->status = '1'; //o 1 mostra que foi cadastrado
     gravaItem(it);
     free(it);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
-
-}
-
-char telaCategoriadoProduto(void)
-{
-    char esc;
-    system ( " clear||cls " );
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" | ------------------ CATEGORIA DO PRODUTO ----------------- | \n");
-    printf(" |                                                           | \n");    
-    printf(" |                 1- Item alimentar                         | \n");
-    printf(" |                 2- Item de higiene pessoal                | \n"); 
-    printf(" |                 3- Item de limpeza                        | \n");         
-    printf(" |                 0- Voltar à tela menu itens               | \n");
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opção: ");
-    scanf("%c", &esc); 
-    getchar();
-    return esc; 
 
 }
 
@@ -186,6 +166,8 @@ void exibeItens(Item* it) {
     printf(" | Ano do vencimento: %d\n", it->ano); 
     printf(" | Código de barras: %s\n", it->codigoBarras);
     printf(" | Estoque mínimo: %s\n", it->estoqueMinimo);
+    printf(" | Categoria do produto: %s\n", it->categoria);
+    printf(" | Status: %c\n", it->status);
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Pressione qualquer tecla para sair.... ");
@@ -313,6 +295,13 @@ void telaAtualizarItem(void)
         getchar();
         
         } while(!valida_data(it->dia, it->mes, it->ano));  
+        do
+        {
+        printf(" | Informe a nova categoria do produto: ");
+        scanf("%s", it->categoria);
+        getchar();
+        } while (!lerLetras(it->categoria));
+        
         
         do {
             printf(" | Informe o novo código de barras: ");

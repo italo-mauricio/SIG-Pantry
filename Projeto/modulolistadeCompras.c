@@ -80,8 +80,7 @@ void telaItensQuantMinima(void)
     getchar();
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
-    system("Pause");
-    system("cls");
+    printf(" | Pressione qualquer tecla para sair... ");
     getchar();
 
 }
@@ -99,8 +98,7 @@ void telaItensProxVencimento(void)
     getchar();
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
-    system("Pause");
-    system(" clear || cls");
+    printf(" | Pressione qualquer tecla para sair... ");
     getchar();
 
 }
@@ -140,7 +138,6 @@ void infoMontarLista(void)
     
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
-    printf(" | Press ENTER for exit... ");
     mtlista->status = '1';
     gravaLista(mtlista);
     free(mtlista);
@@ -247,7 +244,7 @@ void excluirLista(void)
     getchar();  
     achou = 0;
     while ((!achou) && (fread(mtlista, sizeof(MontarLista), 1, fp))){
-        if ((strcmp(mtlista->nomeLista, procura) == 0) && (mtlista->status == '0')){
+        if ((strcmp(mtlista->nomeLista, procura) == 0) && (mtlista->status == '1')){
             achou = 1;
         }
     }
