@@ -126,7 +126,6 @@ void infoItem(void)
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Press ENTER for exit... ");
     it->status = '1'; //o 1 mostra que foi cadastrado
     gravaItem(it);
     free(it);
