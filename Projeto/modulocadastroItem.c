@@ -20,18 +20,15 @@ void modulocadastroItem(void)
                 telaLocaldeArmazenamento(); //escolher o local de armazenamento
                 break;
             case '4':
-                telaEstoqueMinimo(); //informar o estoque mínimo
-                break;
-            case '5':
                 buscarItem(); //pesquisa
                 break;
-            case '6':
+            case '5':
                 telaAtualizarItem(); //edição 
                 break;
-            case '7':
+            case '6':
                 infoExcluir(); //exclusão
                 break;
-            case '8':
+            case '7':
                 listarItens(); //relatório
                 break;
             default:
@@ -55,11 +52,10 @@ char telaMenuItens(void)
     printf(" |                 1- Cadastrar item                         | \n"); 
     printf(" |                 2- Categoria do produto                   | \n"); 
     printf(" |                 3- Local de armazenamento                 | \n");
-    printf(" |                 4- Estoque mínimo do item                 | \n");
-    printf(" |                 5- Pesquisar item                         | \n");
-    printf(" |                 6- Atualizar itens                        | \n");
-    printf(" |                 7- Excluir itens                          | \n");                 
-    printf(" |                 8- Listar itens                           | \n");
+    printf(" |                 4- Pesquisar item                         | \n");
+    printf(" |                 5- Atualizar itens                        | \n");
+    printf(" |                 6- Excluir itens                          | \n");                 
+    printf(" |                 7- Listar itens                           | \n");
     printf(" |                 0- Voltar à tela principal                | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -118,6 +114,14 @@ void infoItem(void)
         
     } while(!valida_data(it->dia, it->mes, it->ano));  
 
+    do
+    {
+        printf(" | Informe o estoque mínimo do item: ");
+        scanf("%s", it->estoqueMinimo);
+        getchar();
+        
+    } while (!lerQuantidade(it->estoqueMinimo));
+
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
@@ -173,29 +177,6 @@ char telaLocaldeArmazenamento(void)
 
 }
 
-void telaEstoqueMinimo(void)
-{
-    char estoqueMinimo [20];
-    system ( " clear||cls " );
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" | ----------- SIG-Pantry - ESTOQUE MÍNIMO DO ITEM --------- | \n");
-    printf(" |                                                           | \n");
-    do
-    {
-        printf(" | Informe o estoque mínimo do item: ");
-        scanf("%s", estoqueMinimo);
-        getchar();
-        
-    } while (!lerQuantidade(estoqueMinimo));
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
-    printf(" | Press ENTER for exit... ");
-    getchar();
-
-}
-
-
 //exibe produtos cadastrados
 void exibeItens(Item* it) {
     printf(" | Nome: %s\n", it->nomeProduto);    
@@ -204,6 +185,7 @@ void exibeItens(Item* it) {
     printf(" | Mês do vencimento: %d\n", it->mes); 
     printf(" | Ano do vencimento: %d\n", it->ano); 
     printf(" | Código de barras: %s\n", it->codigoBarras);
+    printf(" | Estoque mínimo: %s\n", it->estoqueMinimo);
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Pressione qualquer tecla para sair.... ");
@@ -319,7 +301,7 @@ void telaAtualizarItem(void)
 
         } while (!validarLetras(it->nomeMarca, tamanhoString(it->nomeMarca)));
 
-         do {        
+        do {        
         printf(" | Informe o novo dia de vencimento: ");
         scanf("%d",&it->dia);
         getchar();
@@ -330,14 +312,21 @@ void telaAtualizarItem(void)
         scanf("%d",&it->ano);
         getchar();
         
-     } while(!valida_data(it->dia, it->mes, it->ano));  
-      
+        } while(!valida_data(it->dia, it->mes, it->ano));  
+        
         do {
             printf(" | Informe o novo código de barras: ");
             scanf("%s", it->codigoBarras);
             getchar();
 
         } while(!lerQuantidade(it->codigoBarras));
+
+        do {
+            printf(" | Informe o novo estoque mínimo: ");
+            scanf("%s", it->estoqueMinimo);
+            getchar();
+
+        } while(!lerQuantidade(it->estoqueMinimo));
 
         it->status = '1';
         fseek(fp, (-1)*sizeof(Item), SEEK_CUR);

@@ -8,6 +8,7 @@ struct item
     int ano;
     char codigoBarras [20];
     char status;
+    char estoqueMinimo [20];
 };
 
 void modulocadastroItem(void);
@@ -21,8 +22,6 @@ void gravaItem(Item*);
 void telaAtualizarItem(void);
 void buscarItem(void);
 
-
-void telaEstoqueMinimo(void);
 char telaCategoriadoProduto(void);
 char telaLocaldeArmazenamento(void);
 char telaAtualizarCategoria(void);
