@@ -70,7 +70,7 @@ void infoItem(void)
     system ( " cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | -------------- SIG-Pantry - CADASTRAR ITENS ------------- | \n");
+    printf(" | -------------- SIG-Pantry - Cadastrar itens ------------- | \n");
     printf(" |                                                           | \n");
     it = (Item*) malloc(sizeof(Item));
     do
@@ -140,7 +140,7 @@ char telaLocaldeArmazenamento(void)
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ----------------- LOCAL DE ARMAZENAMENTO ---------------- | \n");
+    printf(" | ----------------- Local de armazenamento ---------------- | \n");
     printf(" |                                                           | \n");
     printf(" |                1- Geladeira                               | \n");
     printf(" |                2- Armário da cozinha                      | \n");
@@ -253,7 +253,7 @@ void telaAtualizarItem(void)
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | --------------------- ATUALIZAR ITEM -------------------- | \n");
+    printf(" | --------------------- Atualizar item -------------------- | \n");
     printf(" |                                                           | \n");
     printf(" | Digite o código de barras cadastrado: ");
     scanf(" %[A-Z a-z 0-9]", procurando);
@@ -343,7 +343,7 @@ char telaAtualizarCategoria(void)
     system( " clear || cls");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
-    printf(" | --------------- ATUALIZAR CATEGORIA DO PRODUTO --------------- | \n");
+    printf(" | --------------- Atualizar categoria do produto --------------- | \n");
     printf(" |                                                                | \n");    
     printf(" |                   1- Item alimentar                            | \n");
     printf(" |                   2- Item de higiene pessoal                   | \n"); 
@@ -364,7 +364,7 @@ char telaAtualizarLocaldeArmazenamento(void)
     system( " clear || cls");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
-    printf(" | -------------- ATUALIZAR LOCAL DE ARMAZENAMENTO -------------- | \n");
+    printf(" | -------------- Atualizar local de armazenamento -------------- | \n");
     printf(" |                                                                | \n");    
     printf(" |                   1- Geladeira                                 | \n");
     printf(" |                   2- Armário da cozinha                        | \n");
@@ -399,7 +399,7 @@ void infoExcluir(void)
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
-    printf(" | ------------------------ EXCLUIR ITEM ------------------------ | \n");
+    printf(" | ------------------------ Excluir item ------------------------ | \n");
     printf(" |                                                                | \n");
     printf(" | Informe o código de barras do produto que você deseja excluir: ");
     scanf(" %30[^\n]", procura);

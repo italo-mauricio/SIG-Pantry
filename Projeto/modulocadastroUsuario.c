@@ -42,10 +42,10 @@ int telaMenuUsuario(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------------- SIG-Pantry - MENU USUÁRIO ---------------- | \n");
     printf(" |                                                           | \n");
-    printf(" |                 1 - Cadastrar Usuário                     | \n");
+    printf(" |                 1 - Cadastrar usuário                     | \n");
     printf(" |                 2 - Pesquisar dados                       | \n");
-    printf(" |                 3 - Editar Cadastro                       | \n"); 
-    printf(" |                 4 - Excluir Usuário                       | \n");
+    printf(" |                 3 - Editar cadastro                       | \n"); 
+    printf(" |                 4 - Excluir usuário                       | \n");
     printf(" |                 5 - Listar dados                          | \n");    
     printf(" |                 0 - Voltar à tela principal               | \n");
     printf(" |                                                           | \n");
@@ -186,7 +186,7 @@ void telaAtualizarUsuario(void)
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ------------------- ATUALIZAR USUÁRIO ------------------- | \n");
+    printf(" | ------------------- Atualizar usuário ------------------- | \n");
     printf(" |                                                           | \n");
     printf(" | Digite o username cadastrado: ");
     scanf(" %[A-Z a-z 0-9]", procurando);
@@ -295,7 +295,7 @@ void infoExcluirUs(void)
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
-    printf(" | ---------------------- EXCLUIR USUÁRIO ----------------------- | \n");
+    printf(" | ---------------------- Excluir usuário ----------------------- | \n");
     printf(" |                                                                | \n");
     printf(" | Informe o username do usuário que você quer excluir: ");
     scanf(" %30[^\n]", procurado);

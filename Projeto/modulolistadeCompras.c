@@ -19,12 +19,12 @@ void menulistadeCompras(void)
         case '3':
             infoMontarLista(); //preencher a lista
             break;
-        /*case '4':
+        case '4':
             pesquisarLista(); //pesquisa
-            break; */
-        /*case '5':
+            break; 
+        case '5':
             editarLista(); //edição
-            break; */
+            break; 
         case '6':
             excluirLista(); //exclusão
             break;
@@ -74,7 +74,7 @@ void telaItensQuantMinima(void)
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | ----------- | ITENS NO ESTOQUE COM QUANTIDADE MÍNIMA | ------------- | \n");
+    printf(" | ----------- | Itens no estoque com quantidade mínima | ------------- | \n");
     printf(" |                                                                      | \n");
     printf(" |  Itens no estoque com quantidade mínima:  "); 
     getchar();
@@ -92,7 +92,7 @@ void telaItensProxVencimento(void)
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | ----------------- | ITENS PRÓXIMOS AO VENCIMENTO | ----------------- | \n");
+    printf(" | ----------------- | Itens próximos ao vencimento | ----------------- | \n");
     printf(" |                                                                      | \n");
     printf(" |  Itens próximos ao vencimento: ");
     getchar();
@@ -109,7 +109,7 @@ void infoMontarLista(void)
     system ( " cls " );
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
-    printf("| ------------- | MONTAR A SUA LISTA DE COMPRAS | ------------- | \n");
+    printf("| ------------- | Montar a sua lista de compras | ------------- | \n");
     printf("|                                                               | \n");
     mtlista = (MontarLista*)malloc(sizeof(MontarLista));
     do
@@ -237,7 +237,7 @@ void excluirLista(void)
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
-    printf(" | ------------------------ EXCLUIR LISTA ----------------------- | \n");
+    printf(" | ------------------------ Excluir lista ----------------------- | \n");
     printf(" |                                                                | \n");
     printf(" | Informe o nome da lista que você deseja excluir: ");
     scanf("%s", procura);
