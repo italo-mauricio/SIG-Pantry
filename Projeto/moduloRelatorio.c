@@ -6,20 +6,20 @@
 
 char moduloRelatorio (void)
 {
-    int escolha;
+    char escolha;
     do {
         escolha = telaRelatorio();
         switch (escolha) {
-        case 1:
+        case '1':
             estoquedeAlimento();
             break;
-        case 2:
+        case '2':
             estoquedeHigiene();
             break; 
-        case 3:
+        case '3':
             estoquedeLimpeza();
             break;
-        case 4:
+        case '4':
             listasdeCompra();
             break;
         default :
@@ -27,7 +27,7 @@ char moduloRelatorio (void)
             break;
     }
 
-    } while(escolha != 0);
+    } while(escolha != '0');
 
     return escolha;
 }
