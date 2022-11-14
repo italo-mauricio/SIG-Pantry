@@ -11,10 +11,10 @@ void modulocadastroItem(void)
         escolha = telaMenuItens();
         switch(escolha) {
             case '1':
-                infoItem(); //cadastrar item
+                infoItem(); //cadastro do item
                 break;
             case '2': 
-                telaLocaldeArmazenamento(); //escolher o local de armazenamento
+                telaLocaldeArmazenamento(); //escolha do local de armazenamento
                 break;
             case '3':
                 buscarItem(); //pesquisa
@@ -23,9 +23,12 @@ void modulocadastroItem(void)
                 telaAtualizarItem(); //edição 
                 break;
             case '5':
-                infoExcluir(); //exclusão
+                telaAtualizarLocaldeArmazenamento(); //edição 
                 break;
             case '6':
+                infoExcluir(); //exclusão
+                break;
+            case '7':
                 listarItens(); //relatório
                 break;
             default:
@@ -46,13 +49,14 @@ char telaMenuItens(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ----------------- SIG-Pantry - MENU ITENS --------------- | \n");
     printf(" |                                                           | \n");
-    printf(" |                 1- Cadastrar item                         | \n"); 
-    printf(" |                 2- Local de armazenamento                 | \n");
-    printf(" |                 3- Pesquisar item                         | \n");
-    printf(" |                 4- Atualizar itens                        | \n");
-    printf(" |                 5- Excluir itens                          | \n");                 
-    printf(" |                 6- Listar itens                           | \n");
-    printf(" |                 0- Voltar à tela principal                | \n");
+    printf(" |                1- Cadastrar item                          | \n"); 
+    printf(" |                2- Local de armazenamento                  | \n");
+    printf(" |                3- Pesquisar item                          | \n");
+    printf(" |                4- Atualizar cadastro                      | \n");
+    printf(" |                5- Atualizar local de armazenamento        | \n");
+    printf(" |                6- Excluir itens                           | \n");                 
+    printf(" |                7- Listar itens                            | \n");
+    printf(" |                0- Voltar à tela principal                 | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Escolha uma opção: ");
@@ -90,10 +94,11 @@ void infoItem(void)
     } while (!lerLetras(it->nomeMarca));
     do
     {
-        printf(" | Informe a categoria do produo: ");
+        printf(" | Informe o número correspondente a categoria do produto: \n1- Higiente pessoal; \n2- Limpeza; \n3- Alimento): \n");
         scanf("%s", it->categoria);
         getchar();
-    } while (!lerLetras(it->categoria)); 
+
+    } while (!lerQuantidade(it->categoria)); 
 
     do
     {
@@ -136,6 +141,7 @@ void infoItem(void)
 
 char telaLocaldeArmazenamento(void) 
 {
+    Item* it;
     char opcao;
     system ( " clear||cls " );
     printf(" | ========================================================= | \n");
@@ -150,10 +156,13 @@ char telaLocaldeArmazenamento(void)
     printf(" |                0- Voltar à tela menu itens                | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
+    it = (Item*) malloc(sizeof(Item));
     printf(" | Escolha uma opção: ");
     scanf("%c", &opcao);  
-    
     return opcao;
+    gravaItem(it);
+    free(it);
+    getchar();
 
 }
 
@@ -297,10 +306,11 @@ void telaAtualizarItem(void)
         } while(!valida_data(it->dia, it->mes, it->ano));  
         do
         {
-        printf(" | Informe a nova categoria do produto: ");
+        printf(" | Informe a nova categoria do produto \n1- Higiente pessoal; \n2- Limpeza; \n3- Alimento: ");
         scanf("%s", it->categoria);
         getchar();
-        } while (!lerLetras(it->categoria));
+
+        } while (!lerQuantidade(it->categoria));
         
         
         do {
@@ -337,30 +347,11 @@ fclose(fp);
 
 }
 
-char telaAtualizarCategoria(void) 
-{
-    char esc;
-    system( " clear || cls");
-    printf(" | ============================================================== | \n");
-    printf(" | -------------------------------------------------------------- | \n");
-    printf(" | --------------- Atualizar categoria do produto --------------- | \n");
-    printf(" |                                                                | \n");    
-    printf(" |                   1- Item alimentar                            | \n");
-    printf(" |                   2- Item de higiene pessoal                   | \n"); 
-    printf(" |                   3- Item de limpeza                           | \n");         
-    printf(" |                   0- Voltar à tela menu itens                  | \n");
-    printf(" |                                                                | \n");
-    printf(" | ============================================================== | \n");
-    printf(" | Escolha uma opção: ");
-    scanf("%c", &esc); 
-    getchar();
-    return esc; 
-
-}
 
 char telaAtualizarLocaldeArmazenamento(void) 
 {
-    char esc;
+    Item* it;
+    char opcao;
     system( " clear || cls");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
@@ -374,11 +365,13 @@ char telaAtualizarLocaldeArmazenamento(void)
     printf(" |                   0- Voltar à tela menu itens                  | \n");
     printf(" |                                                                | \n");
     printf(" | ============================================================== | \n");
+    it = (Item*) malloc(sizeof(Item));
     printf(" | Escolha uma opção: ");
-    scanf("%c", &esc); 
+    scanf("%c", &opcao);  
+    return opcao;
+    gravaItem(it);
+    free(it);
     getchar();
-    return esc; 
-
 
 }
 
@@ -441,7 +434,7 @@ void listarItens(void)
 {
     FILE* fp;
     Item* it;
-    fp = fopen("itens.dat", "rb");
+    fp = fopen("item.dat", "rb");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         exit(1);
