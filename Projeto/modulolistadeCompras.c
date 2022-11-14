@@ -106,6 +106,7 @@ void telaItensProxVencimento(void)
 void infoMontarLista(void)
 {
     MontarLista* mtlista;
+    char resp [10];
     system ( " cls " );
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
@@ -114,7 +115,7 @@ void infoMontarLista(void)
     mtlista = (MontarLista*)malloc(sizeof(MontarLista));
     do
     {
-        printf(" | Informe um nome para a sua lista: "); 
+        printf(" | Informe um nome para a sua lista: "); //ciar condicional para só ter um nome ou usar o username
         scanf("%s", mtlista->nomeLista);
         getchar();
         
@@ -122,19 +123,43 @@ void infoMontarLista(void)
     
     do
     {
-        printf(" | Informe o nome do produto: "); //criar condicional "deseja cadastrar mais prod?"
+        printf(" | Informe o nome do produto: "); 
         scanf("%s", mtlista->nome);
         getchar();
         
     } while (!lerLetras(mtlista->nome));
 
-    do
+    do 
     {
         printf(" | Informe a quantidade de produto: ");
         scanf("%s", mtlista->quantidadeProduto);
         getchar();
         
     } while (!lerQuantidade(mtlista->quantidadeProduto));
+
+    printf("Deseja adicionar outro produto a lista? s/n");
+    scanf("%s", resp);
+    
+    if ((resp == 's') || (resp == 'S')) {
+        do
+        {
+            printf(" | Informe o nome do produto: "); 
+            scanf("%s", mtlista->nome);
+            getchar();
+            
+        } while (!lerLetras(mtlista->nome));
+        
+        do
+        {
+            printf(" | Informe a quantidade de produto: ");
+            scanf("%s", mtlista->quantidadeProduto);
+            getchar();
+            
+        } while (!lerQuantidade(mtlista->quantidadeProduto));
+        
+        } else {
+            printf("Ok! Vamos prosseguir");
+        }
     
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
