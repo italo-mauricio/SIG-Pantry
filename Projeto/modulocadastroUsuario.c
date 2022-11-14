@@ -31,9 +31,7 @@ void modulocadastroUsuario(void)
     }
 
     } while(op != '0');
-    
-  
-  
+      
 }
 
 char telaMenuUsuario(void) 

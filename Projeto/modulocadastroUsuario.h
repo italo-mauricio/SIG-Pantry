@@ -11,6 +11,7 @@ struct usuario {
     char status;
 };
 
+//cabeçalho das funções usadas no arquivo .c
 void modulocadastroUsuario(void);
 char telaMenuUsuario(void);
 void telaAtualizarUsuario(void);
