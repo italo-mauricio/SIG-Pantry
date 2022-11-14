@@ -106,7 +106,7 @@ void telaItensProxVencimento(void)
 void infoMontarLista(void)
 {
     MontarLista* mtlista;
-    char resp [10];
+    char resp;
     system ( " cls " );
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
@@ -138,7 +138,8 @@ void infoMontarLista(void)
     } while (!lerQuantidade(mtlista->quantidadeProduto));
 
     printf("Deseja adicionar outro produto a lista? s/n");
-    scanf("%s", resp);
+    scanf("%c", &resp);
+    getchar();
     
     if ((resp == 's') || (resp == 'S')) {
         do
@@ -156,6 +157,7 @@ void infoMontarLista(void)
             getchar();
             
         } while (!lerQuantidade(mtlista->quantidadeProduto));
+        gravaLista(mtlista);
         
         } else {
             printf("Ok! Vamos prosseguir");
