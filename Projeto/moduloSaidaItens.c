@@ -3,6 +3,7 @@
 #include <string.h>
 #include "moduloSaidaItens.h"
 #include "validacoes.h"
+#include "modulocadastroUsuario.h"
 
 void menuSaidaItens(void)
 {

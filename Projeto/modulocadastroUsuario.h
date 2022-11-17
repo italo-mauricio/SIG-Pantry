@@ -1,13 +1,13 @@
 //struct para cadastro do usuário
 typedef struct usuario Usuario;
 struct usuario {
-    char nome[101];
-    char email[40];
+    char nomeUsuario[101];
+    char emailUsuario[40];
     int dia;
     int mes;
     int ano;
-    char username[20];
-    char senha[20];
+    char usernameUsuario[20];
+    char senhaUsuario[20];
     char status;
 };
 
@@ -22,3 +22,4 @@ void listaInfoUsuario(void);
 void exibeInfoUsuario(Usuario* cliente);
 void buscaInfoUsuario(void);
 void infoExcluirUs(void);
+int validaUsername(Usuario* cliente);

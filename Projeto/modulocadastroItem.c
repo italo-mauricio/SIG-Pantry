@@ -3,6 +3,7 @@
 #include <string.h>
 #include "validacoes.h"
 #include "modulocadastroItem.h"
+#include "modulocadastroUsuario.h"
 
 void modulocadastroItem(void) 
 {
