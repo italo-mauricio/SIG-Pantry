@@ -3,6 +3,7 @@
 #include <string.h>
 #include "modulolistadeCompras.h"
 #include "validacoes.h"
+#include "modulocadastroUsuario.h"
 
 void menulistadeCompras(void)
 {
