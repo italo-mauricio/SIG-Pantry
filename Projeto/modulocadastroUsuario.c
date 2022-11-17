@@ -98,15 +98,17 @@ void InfoUsuario(void)
      } while(!valida_data(cliente->dia, cliente->mes, cliente->ano));  
 
     do {
+
         printf(" | Escolha um username: "); 
         scanf("%s", cliente->usernameUsuario);
-        
-        if (validaUsername(cliente)) {
-            continue;
-        }
         getchar();
+       
+    
 
-    } while(!lerUsernameSenha(cliente->usernameUsuario));
+    } while(!lerUsernameSenha(cliente->usernameUsuario)|| (!validaUsername(cliente)));
+    
+    
+    
 
     do {
         printf(" | Informe sua senha: ");
