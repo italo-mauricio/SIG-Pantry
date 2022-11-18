@@ -17,7 +17,7 @@ void modulocadastroUsuario(void)
             buscaInfoUsuario(); //pesquisa
             break;
         case '3':
-            telaAtualizarUsuario(); //edição
+            atualizarUsuario(); //edição
             break;
         case '4':
             infoExcluirUs(); //exclusão
@@ -173,98 +173,130 @@ void buscaInfoUsuario(void)
 
 }
 
-//edita dados do usuário
-void telaAtualizarUsuario(void) 
+//função para editar dados do usuário
+void atualizarUsuario(void) //adaptada by @ViniciusMaiaM
 {
-    FILE* fp;
+    FILE *fp;
     Usuario* cliente;
-    int achou;
     char resp;
-    char procurando[20];
-    cliente = (Usuario*) malloc(sizeof(Usuario));
-    achou = 0;
+    char escolha;
 
-    fp = fopen("usuario.dat", "r+b");
-    if (fp == NULL) {
-        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    if ((cliente == NULL) || (cliente->status == '0')) {
+        printf("\nUsuário não encontrado\n");
         exit(1);
-  }
-    system ( " clear||cls " );
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" | ------------------- Atualizar usuário ------------------- | \n");
-    printf(" |                                                           | \n");
-    printf(" | Digite o username cadastrado: ");
-    scanf(" %[A-Z a-z 0-9]", procurando);
-    getchar();
-    while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
-   if ((strcmp(cliente->usernameUsuario, procurando) == 0) && (cliente->status == '1')) {
-     achou = 1;
-   }if (achou) {
-        exibeInfoUsuario(cliente);
-        printf(" Deseja realmente editar este usuario? [s/n] ");
-        scanf("%c", &resp);
-        getchar();
-        if (resp == 's' || resp == 'S') {
-             
-        do
-        {
-        printf(" | Informe o novo nome: ");
-        scanf("%[A-Z a-z 0-9 ]", cliente->nomeUsuario);
-        getchar();
-        
-        } while (!validarLetras(cliente->nomeUsuario, tamanhoString(cliente->nomeUsuario)));
-        
-        do {
-        printf(" | Informe o novo E-mail: ");   
-        scanf("%s", cliente->emailUsuario);
-        getchar();
-        } while (!lerEmail(cliente->emailUsuario));
-
-         do {        
-        printf(" | Informe o novo dia de nascimento: ");
-        scanf("%d",&cliente->dia);
-        getchar();
-        printf(" | Informe o novo mês de nascimento: ");
-        scanf("%d",&cliente->mes);
-        getchar();
-        printf(" | Informe o novo ano de nascimento: ");
-        scanf("%d",&cliente->ano);
-        getchar();
-        
-     } while(!valida_data(cliente->dia, cliente->mes, cliente->ano));  
-      
-        do {
-            printf(" | Escolha seu novo username: ");
-            scanf("%s", cliente->usernameUsuario);
-            getchar();
-
-        } while(!lerUsernameSenha(cliente->usernameUsuario));
-
-        do {
-        printf(" | Informe sua nova senha: ");
-        scanf("%s", cliente->senhaUsuario);
-        getchar();
-
-        } while(!lerUsernameSenha(cliente->senhaUsuario));
-
-        cliente->status = '1';
-        fseek(fp, (-1)*sizeof(Usuario), SEEK_CUR);
-        fwrite(cliente, sizeof(Usuario), 1, fp);
-        printf("\nUsuário editado com sucesso!!!\n");
-        gravaUsuario(cliente);
-        printf(" Pressione qualquer tecla para sair... ");
-        getchar();
-
-    } else {
-        printf("Tudo bem, os dados não foram alterados!");
     }
-  
-   } 
-  
-}
-free(cliente);
-fclose(fp);
+
+    fp = fopen("usuario.dat", "r+t");
+    if (fp == NULL) {
+        printf("Ocorreu um erro na abertura do arquivo");
+        exit(1);
+    }
+
+    exibeInfoUsuario(cliente);
+    printf("\nEste é o usuário que você quer alterar os dados? S/s");
+    scanf("%c", &resp);
+    getchar();
+
+    if (resp == 'S' || resp == 's'){
+        printf(" | ========================================================= | \n");
+        printf(" | --------------------------------------------------------- | \n");
+        printf(" | ------------------- Atualizar usuário ------------------- | \n");
+        printf(" |                                                           | \n");
+        printf(" |                 1- Editar nome                            | \n");
+        printf(" |                 2- Editar e-mail                          | \n");
+        printf(" |                 3- Editar data de nascimento              | \n");                 
+        printf(" |                 4- Editar username                        | \n");
+        printf(" |                 5- Editar senha                           | \n");                                                                    
+        printf(" |                 0- Voltar à tela principal                | \n");    
+        printf(" |                                                           | \n");
+        printf(" | --------------------------------------------------------- | \n");
+        printf(" | Selecione uma opção: ");
+        scanf("%c", &escolha);
+        getchar();
+        cliente = (Usuario*) malloc(sizeof(Usuario));
+        while (escolha != '0')
+        {
+            switch (escolha){
+                case '1':
+                do
+                {
+                    printf(" | Informe o novo nome: ");
+                    scanf("%[A-Z a-z 0-9 ]", cliente->nomeUsuario);
+                    getchar();
+            
+                } while (!validarLetras(cliente->nomeUsuario, tamanhoString(cliente->nomeUsuario)));
+                printf("\nUsuário editado com sucesso!\n");
+                break;
+
+                case '2':
+                do 
+                {
+                    printf(" | Informe o novo E-mail: ");   
+                    scanf("%s", cliente->emailUsuario);
+                    getchar();
+
+                } while (!lerEmail(cliente->emailUsuario));
+                printf("\nUsuário editado com sucesso!\n");
+                break;
+
+                case '3':
+                do 
+                {        
+                    printf(" | Informe o novo dia de nascimento: ");
+                    scanf("%d", &cliente->dia);
+                    getchar();
+                    printf(" | Informe o novo mês de nascimento: ");
+                    scanf("%d", &cliente->mes);
+                    getchar();
+                    printf(" | Informe o novo ano de nascimento: ");
+                    scanf("%d", &cliente->ano);
+                    getchar();
+            
+                } while(!valida_data(cliente->dia, cliente->mes, cliente->ano));  
+                printf("\nUsuário editado com sucesso!\n");
+                break;
+
+                case '4':
+                do
+                {
+                    printf(" | Escolha um novo username: "); 
+                    scanf("%s", cliente->usernameUsuario);
+                    getchar();
+        
+                } while(!lerUsernameSenha(cliente->usernameUsuario)|| (!validaUsername(cliente)));
+                printf("\nUsuário editado com sucesso!\n");
+                break;
+
+                case '5':
+                do
+                {
+                    printf(" | Escolha uma nova senha: "); 
+                    scanf("%s", cliente->senhaUsuario);
+                    getchar();
+        
+                } while(!lerUsernameSenha(cliente->senhaUsuario));
+                printf("\nUsuário editado com sucesso!\n");
+                break;
+
+                default:
+                    printf("\nPor favor, insira uma opção válida.\n");
+                    break;
+                }
+
+                escolha = '0';
+            }
+            fseek(fp, (-1) * sizeof(Usuario), SEEK_CUR);
+            fwrite(cliente, sizeof(Usuario), 1, fp);
+        }
+
+    else {
+        printf("\nOk, os dados não foram alterados!\n");
+    }
+    fclose(fp);
+    free(cliente);
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
+
 
 }      
         
