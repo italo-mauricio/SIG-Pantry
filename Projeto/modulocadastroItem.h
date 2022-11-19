@@ -11,7 +11,7 @@ struct item
     char status;
     char estoqueMinimo[20];
     char categoria[10];
-    char localArmazenamento[20];
+    char localArmazenamento[50];
   
 };
 
@@ -19,7 +19,8 @@ struct item
 void modulocadastroItem(void);
 char telaMenuItens(void);
 void infoItem(void);
-void exibeItens(Item* it);
+
+
 void listarItens(void);
 void infoExcluir(void);
 void suitefuncao(char);

@@ -297,7 +297,7 @@ void atualizarUsuario(void) //adaptada by @ViniciusMaiaM
 
                 escolha = '0';
             }
-            fseek(fp, (-1) * sizeof(Usuario), SEEK_CUR);
+            fseek(fp, (-1)*sizeof(Usuario), SEEK_CUR);
             fwrite(cliente, sizeof(Usuario), 1, fp);
         }
 
