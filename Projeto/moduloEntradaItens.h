@@ -10,10 +10,6 @@ struct entrada
 void menuEntradaItens(void);
 char telaRegistrarEntrada(void);
 void infoEntrada(void);
-void pesquisarEntrada(void);
-void atualizarEntrada(void);
-void excluirEntrada(void);
 void listarEntrada(void);
 void buscaInfoEntrada(void);
-void exibeEntrada(Entrada* ent);
 void gravaEntrada(Entrada*);

@@ -380,7 +380,7 @@ void telaAtualizarItem(void)
 
                 case '7':
                 telaAtualizarLocaldeArmazenamento();
-                getchar;
+                getchar();
                 printf("\nItem editado com sucesso!\n");
                 break;
                                 
