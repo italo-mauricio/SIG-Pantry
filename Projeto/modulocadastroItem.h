@@ -11,6 +11,7 @@ struct item
     char status;
     char estoqueMinimo[20];
     char categoria[10];
+    char localArmazenamento[20];
 };
 
 //cabeçalho das funções usadas no arquivo .c

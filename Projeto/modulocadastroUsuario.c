@@ -102,14 +102,9 @@ void InfoUsuario(void)
         printf(" | Escolha um username: "); 
         scanf("%s", cliente->usernameUsuario);
         getchar();
-       
-    
 
     } while(!lerUsernameSenha(cliente->usernameUsuario)|| (!validaUsername(cliente)));
-    
-    
-    
-
+        
     do {
         printf(" | Informe sua senha: ");
         scanf("%s", cliente->senhaUsuario);
@@ -129,7 +124,6 @@ void InfoUsuario(void)
     
 }  
 
-
 //A partir do username, visto que cada usuário tem o seu
 void buscaInfoUsuario(void)
 {
@@ -144,7 +138,7 @@ void buscaInfoUsuario(void)
         exit(1);
     }
     printf("\n\n");
-    system(" cls || clear");
+    system(" cls || clear ");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                   Buscar dados do usuário                 | \n");
@@ -161,8 +155,8 @@ void buscaInfoUsuario(void)
     }
     fclose(fp);
     if (achou) {
-        system(" cls || clear");
-        printf(" | ================== Cliente Encontrado =================== |\n");
+        system(" cls || clear" );
+        printf(" | ================== Usuário encontrado =================== |\n");
         printf(" |                                                           |\n");
         printf(" | Nome: %s\n", cliente->nomeUsuario);    
         printf(" | E-mail: %s\n", cliente->emailUsuario);
@@ -183,7 +177,6 @@ void buscaInfoUsuario(void)
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
     
-
 }
 
 //função para editar dados do usuário
@@ -316,7 +309,6 @@ void atualizarUsuario(void) //adaptada by @ViniciusMaiaM
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
 
-
 }      
         
 //função para gravar no arquivo
@@ -404,7 +396,7 @@ void listaInfoUsuario(void)
     cliente = (Usuario*)malloc(sizeof(Usuario));
     while(fread(cliente, sizeof(Usuario), 1, fp)) {
         system(" cls || clear");
-        printf(" | ==================== Exibe usuário ====================== | \n");
+        printf(" | ==================== Lista usuário ====================== | \n");
         printf(" |                                                           | \n");
         exibeInfoUsuario(cliente);
     }
@@ -415,7 +407,7 @@ void listaInfoUsuario(void)
 
 void exibeInfoUsuario(Usuario* cliente) {
     system(" cls || clear");
-    printf(" | ================== Clientes Cadastrados ================= |\n");
+    printf(" | =================== Usuário cadastrado ================== |\n");
     printf(" |                                                           |\n");
     printf(" | Nome: %s\n", cliente->nomeUsuario);    
     printf(" | E-mail: %s\n", cliente->emailUsuario);
