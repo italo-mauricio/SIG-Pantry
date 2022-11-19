@@ -155,7 +155,6 @@ void buscaInfoUsuario(void)
     cliente = (Usuario*) malloc(sizeof(Usuario));
     achou = 0;
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
-        printf("Nome do cliente |%s|\n", cliente->usernameUsuario);
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
         }
