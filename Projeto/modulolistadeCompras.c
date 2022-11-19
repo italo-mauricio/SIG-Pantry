@@ -5,6 +5,7 @@
 #include "validacoes.h"
 #include "modulocadastroUsuario.h"
 #include "modulocadastroItem.h"
+#include "moduloSaidaItens.h"
 
 void menulistadeCompras(void)
 {
@@ -13,10 +14,10 @@ void menulistadeCompras(void)
         escolha = telaListadeCompras();
         switch (escolha) {
         case '1':
-            telaItensQuantMinima(); //listar estoque mínimo
+            itensQuantMinima(); //listar estoque mínimo
             break; 
         case '2':
-            telaItensProxVencimento(); //listar itens próximos ao vencimento
+            itensProxVencimento(); //listar itens próximos ao vencimento
             break;
         case '3':
             infoMontarLista(); //preencher a lista
@@ -69,26 +70,53 @@ char telaListadeCompras(void)
 
 } 
 
-//Aqui será um relatório/lista
-void telaItensQuantMinima(void)
+//função feita para informar a quantid. mínima de itens com base no que foi registrado 
+char itensQuantMinima(void)     
 {
-    //criar um ponteiro que puxe a informação com base no estoque mín do cadastro de itens
-    system ( " clear||cls " );
-    printf(" | ==================================================================== | \n");
-    printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | ----------- | Itens no estoque com quantidade mínima | ------------- | \n");
-    printf(" |                                                                      | \n");
-    printf(" |  Itens no estoque com quantidade mínima:  "); 
-    getchar();
-    printf(" |                                                                      | \n");
-    printf(" | ==================================================================== | \n");
-    printf(" | Pressione qualquer tecla para sair... ");
-    getchar();
+    FILE *fp;
+    Usuario* cliente;
+    Saida* said;
+    int achou;
+    char resp;
+    char procurado[20];
+
+    fp = fopen("usuario.dat", "rt");
+    if (fp == NULL)
+    {
+        printf("Ocorreu um erro na abertura do arquivo");
+        exit(1);
+    }
+    cliente = (Usuario*)malloc(sizeof(Usuario));
+
+    fp = fopen("saida.dat", "rt");
+    if (fp == NULL)
+    {
+        printf("Ocorreu um erro na abertura do arquivo");
+        exit(1);
+    }
+    said = (Saida*)malloc(sizeof(Saida));
+        
+    system( " clear || cls ");
+    printf(" | ============================================================== | \n");
+    printf(" | -------------------------------------------------------------- | \n");
+    printf(" | --------- Itens com quantidade mínima na despensa ------------ | \n");
+    printf(" |              ");
+
+
+/* [14:04, 19/11/2022] Vinicius: Puxar a informação de
+[14:04, 19/11/2022] Vinicius: Número mínimo
+[14:04, 19/11/2022] Vinicius: O total de saídas
+[14:04, 19/11/2022] Vinicius: Faz a conta
+[14:04, 19/11/2022] Vinicius: E retorna o resultado disso
+[14:04, 19/11/2022] Vinicius: Aí, acredito que vc tbm teria que verificar o id de cada um
+[14:04, 19/11/2022] Vinicius: Pra ver se era esse mesmo */
+
+//tem que pedir o código de barras (id)
 
 }
 
 //Aqui será um relatório/lista
-void telaItensProxVencimento(void)
+void itensProxVencimento(void)
 {
     //criar um ponteiro que puxe a informação com base na data de validade do cadastro de itens
     system ( " clear||cls " );
@@ -104,6 +132,7 @@ void telaItensProxVencimento(void)
     getchar();
 
 }
+
 //ver se procura pelo nome da lista ou pelo username do usuário
 void infoMontarLista(void)
 {
@@ -207,6 +236,7 @@ void buscaLista(void)
 {
     FILE* fp;
     MontarLista* mtlista;
+    Usuario* cliente;
     int achou;
     char procurado[15];
     fp = fopen("lista.dat", "rb");
@@ -225,6 +255,7 @@ void buscaLista(void)
     scanf(" %30[^\n]", procurado);
     getchar();
     mtlista = (MontarLista*) malloc(sizeof(MontarLista));
+    cliente = (Usuario*) malloc(sizeof(Usuario));
     achou = 0;
     while((!achou) && (fread(mtlista, sizeof(MontarLista), 1, fp))) {
         printf("Nome da lista |%s|\n", mtlista->nomeLista);
@@ -270,8 +301,11 @@ void exibeListaCompras(MontarLista* mtlista)
     
 }
 
-//EDITAR AQUI
+//função para edição
+void editarLista(void) 
+{
 
+}
 
 //Função para exclusão lógica
 void excluirLista(void)

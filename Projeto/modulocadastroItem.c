@@ -15,21 +15,15 @@ void modulocadastroItem(void)
                 infoItem(); //cadastro do item
                 break;
             case '2': 
-                telaLocaldeArmazenamento(); //escolha do local de armazenamento
-                break;
-            case '3':
                 buscarItem(); //pesquisa
                 break;
-            case '4':
+            case '3':
                 telaAtualizarItem(); //edição 
                 break;
-            case '5':
-                telaAtualizarLocaldeArmazenamento(); //edição 
-                break;
-            case '6':
+            case '4':
                 infoExcluir(); //exclusão
                 break;
-            case '7':
+            case '5':
                 listarItens(); //relatório
                 break;
             default:
@@ -51,12 +45,10 @@ char telaMenuItens(void)
     printf(" | ----------------- SIG-Pantry - MENU ITENS --------------- | \n");
     printf(" |                                                           | \n");
     printf(" |                1- Cadastrar item                          | \n"); 
-    printf(" |                2- Local de armazenamento                  | \n");
-    printf(" |                3- Pesquisar item                          | \n");
-    printf(" |                4- Atualizar cadastro                      | \n");
-    printf(" |                5- Atualizar local de armazenamento        | \n");
-    printf(" |                6- Excluir itens                           | \n");                 
-    printf(" |                7- Listar itens                            | \n");
+    printf(" |                2- Pesquisar item                          | \n");
+    printf(" |                3- Atualizar cadastro                      | \n");
+    printf(" |                4- Excluir itens                           | \n");                 
+    printf(" |                5- Listar itens                            | \n");
     printf(" |                0- Voltar à tela principal                 | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -130,13 +122,8 @@ void infoItem(void)
         
     } while (!lerQuantidade(it->estoqueMinimo));
     
-    do
-    {
-        printf(" | Escolha o local de armazenamento: ");
-        scanf("%s", it->localArmazenamento);
-        getchar();
-    } while (!validarLetras(it->localArmazenamento, tamanhoString(it->localArmazenamento)));
-    
+    telaLocaldeArmazenamento();
+    getchar();
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -172,7 +159,6 @@ char telaLocaldeArmazenamento(void)
     gravaItem(it);
     free(it);
     getchar();
-//ver como salvar isso em "localArmazenamento"
 
 }
 
@@ -310,6 +296,7 @@ void telaAtualizarItem(void)
         printf(" |                 4- Editar código de barras                | \n");
         printf(" |                 5- Editar categoria do produto            | \n");                                                                    
         printf(" |                 6- Editar estoque mínimo                  | \n");                                                                    
+        printf(" |                 7- Editar local de armazenamento          | \n");                                                                    
         printf(" |                 0- Voltar à tela principal                | \n");    
         printf(" |                                                           | \n");
         printf(" | --------------------------------------------------------- | \n");
@@ -391,6 +378,12 @@ void telaAtualizarItem(void)
                 printf("\nItem editado com sucesso!\n");
                 break;
 
+                case '7':
+                telaAtualizarLocaldeArmazenamento();
+                getchar;
+                printf("\nItem editado com sucesso!\n");
+                break;
+                                
                 default:
                     printf("\nPor favor, insira uma opção válida.\n");
                     break;

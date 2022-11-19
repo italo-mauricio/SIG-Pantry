@@ -4,7 +4,7 @@
 #include "moduloEntradaItens.h"
 #include "validacoes.h"
 #include "modulocadastroUsuario.h"
-
+#include "modulocadastroItem.h"
 
 void menuEntradaItens(void)
 {
