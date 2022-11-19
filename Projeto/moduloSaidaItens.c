@@ -63,7 +63,7 @@ char telaRegistrarSaida(void)
 void infoSaida(void)
 {
     Saida* said;
-    system ( " cls " );
+    system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ---------------- Registrar saída de item ---------------- | \n");
@@ -164,7 +164,8 @@ void buscainfoSaida(void)
 }
 
 void exibeSaida(Saida* said) 
-{
+{   
+    system(" cls || clear ");
     printf(" | ==================== Saída registrada =================== |\n");
     printf(" |                                                           |\n");    
     printf(" | Código de barras: %s\n", said->codigodeBarras);    

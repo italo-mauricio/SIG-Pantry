@@ -129,6 +129,14 @@ void infoItem(void)
         getchar();
         
     } while (!lerQuantidade(it->estoqueMinimo));
+    
+    do
+    {
+        printf(" | Escolha o local de armazenamento: ");
+        scanf("%s", it->localArmazenamento);
+        getchar();
+    } while (!validarLetras(it->localArmazenamento, tamanhoString(it->localArmazenamento)));
+    
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");

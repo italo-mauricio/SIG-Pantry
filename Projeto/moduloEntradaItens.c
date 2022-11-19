@@ -5,6 +5,7 @@
 #include "validacoes.h"
 #include "modulocadastroUsuario.h"
 
+
 void menuEntradaItens(void)
 {
     char escolha;
@@ -35,10 +36,12 @@ void menuEntradaItens(void)
 
 }
 
+
+
 char telaRegistrarEntrada(void)
 {
     char esc;
-    system ( " clear||cls " );
+    system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------- REGISTRAR ENTRADA DE ITENS NA DESPENSA --------- | \n");
@@ -59,11 +62,13 @@ char telaRegistrarEntrada(void)
 
 }
 
+
+
 //Função para cadastrar a entrada de um item ao estoque
 void infoEntrada(void)
 {
     Entrada* ent;
-    system ( " cls " );
+    system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------------- Registrar entrada de item ---------------- | \n");
@@ -109,6 +114,8 @@ void infoEntrada(void)
 
 }
 
+
+
 //Função para gravar no arquivo
 void gravaEntrada(Entrada* ent) 
 {
@@ -123,6 +130,8 @@ void gravaEntrada(Entrada* ent)
     fclose(fp);
     
 }
+
+
 
 //função de pesquisa a partir do código de barras
 void buscaInfoEntrada(void)
@@ -158,7 +167,7 @@ void buscaInfoEntrada(void)
     if (achou) {
         system(" cls || clear ");
         printf(" | ================== Entrada encontrada =================== |\n");
-        printf(" |                                                           |\n");        printf(" | Código de barras: %s\n", ent->codigodeBarras);    
+        printf(" |                                                           |\n");         
         printf(" | Código de barras: %s\n", ent->codigodeBarras);    
         printf(" | Quantidade do produto: %s\n", ent->quantProduto);
         printf(" | Dia do vencimento: %d\n", ent->dia); 
@@ -179,8 +188,11 @@ void buscaInfoEntrada(void)
     
 }
 
+
+
 //exibe produtos registrados na entrada
-void exibeEntrada(Entrada* ent) {
+void exibeEntrada(Entrada* ent)
+ {
     system(" cls || clear");
     printf(" | =================== Entrada cadastrada ================== |\n");
     printf(" |                                                           |\n");       
@@ -196,6 +208,8 @@ void exibeEntrada(Entrada* ent) {
     getchar();
     
 }
+
+
 
 //função para editar
 void atualizarEntrada(void)
@@ -300,6 +314,8 @@ void atualizarEntrada(void)
 
 }
 
+
+
 //função para exclusão lógica
 void excluirEntrada(void)
 {
@@ -354,6 +370,8 @@ void excluirEntrada(void)
     getchar();
     
 }
+
+
 
 
 //listar entradas
