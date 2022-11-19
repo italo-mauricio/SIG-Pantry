@@ -121,7 +121,26 @@ void infoItem(void)
         getchar();
         
     } while (!lerQuantidade(it->estoqueMinimo));
+
+    do
+    {
+        printf(" | =============== Local de Armazenamento ================= |\n");
+        printf(" |                                                          |\n");
+        printf(" | Por favor, digite uma destas opções abaixo!              |\n");
+        printf(" |                                                          |\n");
+        printf(" |                    Geladeira                             |\n");
+        printf(" |                    Armário de cozinha                    |\n");
+        printf(" |                    Área de serviço                       |\n");
+        printf(" |                    Banheiro                              |\n");
+        printf(" |                    Guarda-roupa                          |\n");
+        printf(" |                                                          |\n");
+        printf(" | Digite a sua opção: (sem acento) ");
+        scanf("%[A-Z a-z]", it->localArmazenamento);
+        getchar();
+
+    } while (!validarLetras(it->localArmazenamento, tamanhoString(it->localArmazenamento)));
     
+
     telaLocaldeArmazenamento();
     getchar();
 
@@ -205,7 +224,7 @@ void buscarItem(void)
     Item* it;
     int achou;
     char procurado[15];
-    fp = fopen("item.dat", "rb");
+    fp = fopen("itens.dat", "rb");
 
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
@@ -244,8 +263,7 @@ void buscarItem(void)
         printf(" | Status: %c\n", it->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
-        printf(" | Pressione qualquer tecla para sair.... ");
-        getchar();
+   
     
     } else {
         printf("Os dados do produto %s não foram encontrados\n", procurado);
@@ -472,8 +490,6 @@ void infoExcluir(void)
             fwrite(it, sizeof(Item), 1, fp);
             printf("\nDados do item excluídos com sucesso!");
             gravaItem(it);
-            printf(" Pressione qualquer tecla para sair... ");
-            getchar();
         }else{
             printf("\nTudo bem, os dados não foram alterados!");
         }
@@ -492,7 +508,7 @@ void listarItens(void)
 {
     FILE* fp;
     Item* it;
-    fp = fopen("item.dat", "rb");
+    fp = fopen("itens.dat", "rb");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         exit(1);

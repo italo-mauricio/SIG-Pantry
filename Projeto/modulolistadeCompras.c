@@ -74,19 +74,19 @@ char telaListadeCompras(void)
 char itensQuantMinima(void)     
 {
     FILE *fp;
-    Usuario* cliente;
+    Item* it;
     Saida* said;
     int achou;
     char resp;
     char procurado[20];
 
-    fp = fopen("usuario.dat", "rt");
+    fp = fopen("itens.dat", "rt");
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo");
         exit(1);
     }
-    cliente = (Usuario*)malloc(sizeof(Usuario));
+    it = (Item*)malloc(sizeof(Item));
 
     fp = fopen("saida.dat", "rt");
     if (fp == NULL)
