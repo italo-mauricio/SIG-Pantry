@@ -110,12 +110,13 @@ void infoMontarLista(void)
     MontarLista* mtlista;
     Usuario* cliente;
     char resp;
-    system ( " cls " );
+    system ( " cls || clear " );
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
     printf("| ------------- | Montar a sua lista de compras | ------------- | \n");
     printf("|                                                               | \n");
     mtlista = (MontarLista*)malloc(sizeof(MontarLista));
+    cliente = (Usuario*) malloc(sizeof(Usuario));
     do
     {
         printf(" | Informe o seu username: "); 
@@ -277,7 +278,6 @@ void excluirLista(void)
 {
     FILE* fp;
     MontarLista* mtlista;
-    Usuario* cliente;
     int achou;
     char resp;
     char procura[20];

@@ -129,6 +129,14 @@ void infoItem(void)
         getchar();
         
     } while (!lerQuantidade(it->estoqueMinimo));
+    
+    do
+    {
+        printf(" | Escolha o local de armazenamento: ");
+        scanf("%s", it->localArmazenamento);
+        getchar();
+    } while (!validarLetras(it->localArmazenamento, tamanhoString(it->localArmazenamento)));
+    
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -245,7 +253,8 @@ void buscarItem(void)
         printf(" | Mês do vencimento: %d\n", it->mes); 
         printf(" | Ano do vencimento: %d\n", it->ano); 
         printf(" | Categoria do produto: %s\n", it->categoria); 
-        printf(" | Estoque mínimo: %s\n", it->estoqueMinimo); 
+        printf(" | Estoque mínimo: %s\n", it->estoqueMinimo);
+        printf(" | Local de armazenamento: %s\n", it->localArmazenamento); 
         printf(" | Status: %c\n", it->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
@@ -411,7 +420,7 @@ char telaAtualizarLocaldeArmazenamento(void)
     system( " clear || cls");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
-    printf(" | -------------- Atualizar local de armazenamento -------------- | \n");
+    printf(" | ----------------- Exibir local de armazenamento -------------- | \n");
     printf(" |                                                                | \n");    
     printf(" |                   1- Geladeira                                 | \n");
     printf(" |                   2- Armário da cozinha                        | \n");
@@ -423,11 +432,11 @@ char telaAtualizarLocaldeArmazenamento(void)
     printf(" | ============================================================== | \n");
     it = (Item*) malloc(sizeof(Item));
     printf(" | Escolha uma opção: ");
-    scanf("%c", &opcao);  
-    return opcao;
+    scanf("%c", &opcao);
+    getchar();
     gravaItem(it);
     free(it);
-    getchar();
+    return opcao;
 
 }
 
