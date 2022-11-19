@@ -17,9 +17,9 @@ void menuEntradaItens(void)
         case '2':
             buscaInfoEntrada(); //pesquisa
             break;
-        /*case '3':
+        case '3':
             atualizarEntrada(); //edição
-            break;*/
+            break;
         case '4':
             excluirEntrada(); //exclusão
             break;
@@ -71,7 +71,7 @@ void infoEntrada(void)
     ent = (Entrada*)malloc(sizeof(Entrada));
     do
     {
-        printf(" | Informe o código de barras do item: ");
+        printf(" | Informe o código de barras do produto: ");
         scanf("%s", ent->codigodeBarras);
         getchar();
         
@@ -79,17 +79,25 @@ void infoEntrada(void)
 
     do {        
         printf(" | Informe o dia de vencimento: ");
-        scanf("%d",&ent->dia);
+        scanf("%d", &ent->dia);
         getchar();
         printf(" | Informe o mês: ");
-        scanf("%d",&ent->mes);
+        scanf("%d", &ent->mes);
         getchar();
         printf(" | Informe o ano: ");
-        scanf("%d",&ent->ano);
+        scanf("%d", &ent->ano);
         getchar();
         
-     } while(!valida_data(ent->dia, ent->mes, ent->ano));  
-    
+     } while(!valida_data(ent->dia, ent->mes, ent->ano)); 
+
+    do
+    {
+        printf(" | Informe a quantidade de produto: ");
+        scanf("%s", ent->quantProduto);
+        getchar();
+        
+    } while(!lerQuantidade(ent->quantProduto));
+
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
@@ -116,7 +124,7 @@ void gravaEntrada(Entrada* ent)
     
 }
 
-//A partir do código de barras
+//função de pesquisa a partir do código de barras
 void buscaInfoEntrada(void)
 {
     FILE* fp;
@@ -130,7 +138,7 @@ void buscaInfoEntrada(void)
         exit(1);
     }
     printf("\n\n");
-    system ( " cls " );
+    system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                   Buscar dados da entrada                 | \n");
@@ -148,7 +156,20 @@ void buscaInfoEntrada(void)
     }
     fclose(fp);
     if (achou) {
-        exibeEntrada(ent);
+        system(" cls || clear ");
+        printf(" | ================== Entrada encontrada =================== |\n");
+        printf(" |                                                           |\n");        printf(" | Código de barras: %s\n", ent->codigodeBarras);    
+        printf(" | Código de barras: %s\n", ent->codigodeBarras);    
+        printf(" | Quantidade do produto: %s\n", ent->quantProduto);
+        printf(" | Dia do vencimento: %d\n", ent->dia); 
+        printf(" | Mês do vencimento: %d\n", ent->mes); 
+        printf(" | Ano do vencimento: %d\n", ent->ano); 
+        printf(" | Status: %c\n", ent->status);
+        printf(" |                                                           | \n");
+        printf(" | ========================================================= | \n");
+        printf(" | Pressione qualquer tecla para sair.... ");
+        getchar();
+
     } else {
         printf("Os dados da entrada %s não foram encontrados\n", procurado);
     }
@@ -160,8 +181,11 @@ void buscaInfoEntrada(void)
 
 //exibe produtos registrados na entrada
 void exibeEntrada(Entrada* ent) {
+    system(" cls || clear");
+    printf(" | =================== Entrada cadastrada ================== |\n");
+    printf(" |                                                           |\n");       
     printf(" | Código de barras: %s\n", ent->codigodeBarras);    
-    printf(" | Quantidade do produto: %s\n", ent->quantProduto);
+    printf(" | Quantidade de produto: %s\n", ent->quantProduto);
     printf(" | Dia do vencimento: %d\n", ent->dia); 
     printf(" | Mês do vencimento: %d\n", ent->mes); 
     printf(" | Ano do vencimento: %d\n", ent->ano); 
@@ -173,8 +197,108 @@ void exibeEntrada(Entrada* ent) {
     
 }
 
-//EDITAR AQUI
+//função para editar
+void atualizarEntrada(void)
+{
+    FILE *fp;
+    Entrada* ent;
+    char resp;
+    char escolha;
+    ent = (Entrada*) malloc(sizeof(Entrada));
+    system(" cls || clear");
+    printf(" | Digite o código de barras cadastrado: ");
+    scanf("%s", ent->codigodeBarras);
+    getchar();
+    if ((ent == NULL) || (ent->status == '0')) {
+        printf("\nEntrada não encontrada\n");
+        exit(1);
+    }
 
+    fp = fopen("entrada.dat", "r+t");
+    if (fp == NULL) {
+        printf("Ocorreu um erro na abertura do arquivo");
+        exit(1);
+    }
+
+    exibeEntrada(ent);
+    printf("\nEsta é a entrada que você quer alterar os dados? S/N");
+    scanf("%c", &resp);
+    getchar();
+    system("cls || clear");
+    if (resp == 'S' || resp == 's'){
+        system(" cls || clear");
+        printf(" | ========================================================= | \n");
+        printf(" | --------------------------------------------------------- | \n");
+        printf(" | ------------------- Atualizar entrada ------------------- | \n");
+        printf(" |                                                           | \n");
+        printf(" |                 1- Editar código de barras                | \n");
+        printf(" |                 2- Editar data de vencimento              | \n");                 
+        printf(" |                 3- Editar quantidade                      | \n");
+        printf(" |                 0- Voltar à tela principal                | \n");    
+        printf(" |                                                           | \n");
+        printf(" | --------------------------------------------------------- | \n");
+        printf(" | Selecione uma opção: ");
+        scanf("%c", &escolha);
+        getchar();
+        while (escolha != '0')
+        {
+            switch (escolha){
+                case '1':
+                do
+                {
+                    printf(" | Informe o novo código de barras do item: ");
+                    scanf("%s", ent->codigodeBarras);
+                    getchar();
+        
+                } while(!lerQuantidade(ent->codigodeBarras));
+                printf("\nEntrada editada com sucesso!\n");
+                break;
+
+                case '2':
+                do {        
+                    printf(" | Informe o novo dia de vencimento: ");
+                    scanf("%d", &ent->dia);
+                    getchar();
+                    printf(" | Informe o novo mês: ");
+                    scanf("%d", &ent->mes);
+                    getchar();
+                    printf(" | Informe o novo ano: ");
+                    scanf("%d", &ent->ano);
+                    getchar();
+        
+                } while(!valida_data(ent->dia, ent->mes, ent->ano));
+                printf("\nEntrada editada com sucesso!\n");
+                break;
+
+                case '3':
+                do
+                {
+                    printf(" | Informe a nova quantidade de produto: ");
+                    scanf("%s", ent->quantProduto);
+                    getchar();
+                    
+                } while(!lerQuantidade(ent->quantProduto));
+
+                default:
+                    printf("\nPor favor, insira uma opção válida.\n");
+                    break;
+                }
+
+                escolha = '0';
+            }
+            fseek(fp, (-1) * sizeof(Entrada), SEEK_CUR);
+            fwrite(ent, sizeof(Entrada), 1, fp);
+        }
+
+    else {
+        printf("\nOk, os dados não foram alterados!\n");
+    }
+    fclose(fp);
+    free(ent);
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
+
+}
 
 //função para exclusão lógica
 void excluirEntrada(void)
@@ -214,7 +338,7 @@ void excluirEntrada(void)
             ent->status = '0';
             fseek(fp, (-1)*sizeof(Entrada), SEEK_CUR);
             fwrite(ent, sizeof(Entrada), 1, fp);
-            printf("\nDados da entrada excluídos com sucesso!");
+            printf("\nEntrada excluída com sucesso!");
             gravaEntrada(ent);
             printf(" Pressione qualquer tecla para sair... ");
             getchar();
@@ -222,7 +346,7 @@ void excluirEntrada(void)
             printf("\nTudo bem, os dados não foram alterados!");
         }
     }else{
-        printf("Os dados não foram encontrados!");
+        printf("A entrada não foi encontrada!");
     }
     free(ent);
     fclose(fp);
@@ -242,12 +366,12 @@ void listarEntrada(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         exit(1);
     }
-    printf("\n\n");
-    printf(" | ==================== Exibe entrada ====================== | \n");
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
+
     ent = (Entrada*)malloc(sizeof(Entrada));
     while(fread(ent, sizeof(Entrada), 1, fp)) {
+        system(" cls || clear");
+        printf(" | ==================== Lista entrada ====================== | \n");
+        printf(" |                                                           | \n");
         exibeEntrada(ent);
     }
     fclose(fp);

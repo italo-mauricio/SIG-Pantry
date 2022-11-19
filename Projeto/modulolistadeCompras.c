@@ -4,6 +4,7 @@
 #include "modulolistadeCompras.h"
 #include "validacoes.h"
 #include "modulocadastroUsuario.h"
+#include "modulocadastroItem.h"
 
 void menulistadeCompras(void)
 {
@@ -23,9 +24,9 @@ void menulistadeCompras(void)
         case '4':
             buscaLista(); //pesquisa
             break; 
-       /* case '5':
+        case '5':
             editarLista(); //edição
-            break; */ 
+            break;  
         case '6':
             excluirLista(); //exclusão
             break;
@@ -107,6 +108,7 @@ void telaItensProxVencimento(void)
 void infoMontarLista(void)
 {
     MontarLista* mtlista;
+    Usuario* cliente;
     char resp;
     system ( " cls " );
     printf("| ============================================================= | \n");
@@ -116,7 +118,15 @@ void infoMontarLista(void)
     mtlista = (MontarLista*)malloc(sizeof(MontarLista));
     do
     {
-        printf(" | Informe um nome para a sua lista: "); //ciar condicional para só ter um nome ou usar o username
+        printf(" | Informe o seu username: "); 
+        scanf("%s", cliente->usernameUsuario);
+        getchar();
+        
+    } while (!lerLetras(mtlista->nomeLista));
+        
+    do
+    {
+        printf(" | Informe um nome para a sua lista: "); 
         scanf("%s", mtlista->nomeLista);
         getchar();
         
@@ -169,6 +179,8 @@ void infoMontarLista(void)
     mtlista->status = '1';
     gravaLista(mtlista);
     free(mtlista);
+    gravaUsuario(cliente);
+    free(cliente);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
 
@@ -189,7 +201,7 @@ void gravaLista(MontarLista* mtlista)
     
 }
 
-//A partir do código de barras
+//função de pesquisa a partir do username (id do usuário)
 void buscaLista(void)
 {
     FILE* fp;
@@ -203,12 +215,12 @@ void buscaLista(void)
         exit(1);
     }
     printf("\n\n");
-    system ( " cls " );
+    system ( " cls  || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                   Buscar dados da lista                   | \n");
     printf(" | ========================================================= | \n");
-    printf("Informe o nome da lista: ");
+    printf("Informe o seu username: ");
     scanf(" %30[^\n]", procurado);
     getchar();
     mtlista = (MontarLista*) malloc(sizeof(MontarLista));
@@ -221,7 +233,18 @@ void buscaLista(void)
     }
     fclose(fp);
     if (achou) {
-        exibeListaCompras(mtlista);
+        system(" cls || clear");
+        printf(" | =================== Lista encontrada ==================== |\n");
+        printf(" |                                                           |\n");
+        printf(" | Nome da lista: %s\n", mtlista->nomeLista);    
+        printf(" | Nome do produto: %s\n", mtlista->nome);
+        printf(" | Quantidade do produto: %s\n", mtlista->quantidadeProduto);
+        printf(" | Status: %c\n", mtlista->status);
+        printf(" |                                                           | \n");
+        printf(" | ========================================================= | \n");
+        printf(" | Pressione qualquer tecla para sair.... ");
+        getchar();
+    
     } else {
         printf("Os dados da lista %s não foram encontrados\n", procurado);
     }
@@ -233,7 +256,9 @@ void buscaLista(void)
 
 void exibeListaCompras(MontarLista* mtlista) 
 {
-    printf(" | Nome da lista: %s\n", mtlista->nomeLista);    
+    system(" cls || clear");
+    printf(" | =================== Lista cadastrada ==================== |\n");
+    printf(" |                                                           | \n");
     printf(" | Nome do produto: %s\n", mtlista->nome);
     printf(" | Quantidade do produto: %s\n", mtlista->quantidadeProduto);
     printf(" | Status: %c\n", mtlista->status);
@@ -252,6 +277,7 @@ void excluirLista(void)
 {
     FILE* fp;
     MontarLista* mtlista;
+    Usuario* cliente;
     int achou;
     char resp;
     char procura[20];
@@ -267,7 +293,7 @@ void excluirLista(void)
     printf(" | -------------------------------------------------------------- | \n");
     printf(" | ------------------------ Excluir lista ----------------------- | \n");
     printf(" |                                                                | \n");
-    printf(" | Informe o nome da lista que você deseja excluir: ");
+    printf(" | Informe o seu username para procurar a lista que você deseja excluir: ");
     scanf("%s", procura);
     getchar();  
     achou = 0;
