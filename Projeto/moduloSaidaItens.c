@@ -52,7 +52,7 @@ char telaRegistrarSaida(void)
    
 }
 
-//Função para informar a saída de um item do estoque
+//função para informar a saída de um item do estoque
 void infoSaida(void)
 {
     Saida* said;
@@ -155,8 +155,6 @@ void buscainfoSaida(void)
     getchar();
     
 }
-
-
 
 //listar saídas
 void listarSaida(void) 

@@ -60,7 +60,7 @@ char telaMenuItens(void)
 
 }
 
-//Função para o cadastro dos itens
+//função para o cadastro dos itens
 void infoItem(void)
 {
     Item* it;
@@ -139,10 +139,6 @@ void infoItem(void)
         getchar();
 
     } while (!validarLetras(it->localArmazenamento, tamanhoString(it->localArmazenamento)));
-    
-
-    telaLocaldeArmazenamento();
-    getchar();
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");

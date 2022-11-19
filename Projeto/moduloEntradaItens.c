@@ -31,7 +31,6 @@ void menuEntradaItens(void)
 }
 
 
-
 char telaRegistrarEntrada(void)
 {
     char esc;
@@ -53,8 +52,6 @@ char telaRegistrarEntrada(void)
     return esc;    
 
 }
-
-
 
 //Função para cadastrar a entrada de um item ao estoque
 void infoEntrada(void)
@@ -106,8 +103,6 @@ void infoEntrada(void)
 
 }
 
-
-
 //Função para gravar no arquivo
 void gravaEntrada(Entrada* ent) 
 {
@@ -122,8 +117,6 @@ void gravaEntrada(Entrada* ent)
     fclose(fp);
     
 }
-
-
 
 //função de pesquisa a partir do código de barras
 void buscaInfoEntrada(void)
@@ -179,7 +172,6 @@ void buscaInfoEntrada(void)
     getchar();
     
 }
-
 
 
 //listar entradas
