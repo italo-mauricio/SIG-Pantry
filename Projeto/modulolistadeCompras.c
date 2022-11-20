@@ -161,7 +161,7 @@ void infoMontarLista(void)
         printf("Informe quantos itens você vai adicionar a lista: ");
         scanf("%d", &resp);
 
-        for (i = 0; i == resp; i++) {
+        for (i = 1; i <= resp; i++) {
             
             do
             {
