@@ -96,18 +96,18 @@ void infoEntrada(void)
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
     ent->status = '1'; //o 1 mostra que foi cadastrado
-    gravaEntrada(ent);
+    gravaItem(ent);
     free(ent);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
 
 }
 
-//Função para gravar no arquivo
+/*//Função para gravar no arquivo
 void gravaEntrada(Entrada* ent) 
 {
     FILE* fp;
-    fp = fopen("entrada.dat", "ab");
+    fp = fopen("itens.dat", "ab");
     if (fp == NULL) {
         printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
         exit(1);
@@ -116,7 +116,7 @@ void gravaEntrada(Entrada* ent)
     fwrite(ent, sizeof(Entrada), 1, fp);
     fclose(fp);
     
-}
+} */
 
 //função de pesquisa a partir do código de barras
 void buscaInfoEntrada(void)
@@ -125,7 +125,7 @@ void buscaInfoEntrada(void)
     Entrada* ent;
     int achou;
     char procurado[15];
-    fp = fopen("entrada.dat", "rb");
+    fp = fopen("itens.dat", "rb");
 
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
@@ -179,7 +179,7 @@ void listarEntrada(void)
 {
     FILE* fp;
     Entrada* ent;
-    fp = fopen("entrada.dat", "rb");
+    fp = fopen("itens.dat", "rb");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         exit(1);
