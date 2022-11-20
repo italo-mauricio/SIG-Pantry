@@ -12,6 +12,7 @@ struct item
     char estoqueMinimo[20];
     char categoria[10];
     char localArmazenamento[50];
+    char quantProduto[20];
   
 };
 

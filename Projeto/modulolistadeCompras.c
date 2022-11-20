@@ -14,9 +14,9 @@ void menulistadeCompras(void)
     do {
         escolha = telaListadeCompras();
         switch (escolha) {
-        case '1':
+        /*case '1':
             itensQuantMinima(); //listar estoque mínimo
-            break; 
+            break; */
         case '2':
             itensProxVencimento(); //listar itens próximos ao vencimento
             break; 
@@ -72,7 +72,7 @@ char telaListadeCompras(void)
 } 
 
 //função feita para informar a quantid. mínima de itens com base no que foi registrado 
-char itensQuantMinima(void)     
+/*char itensQuantMinima(void)     
 {
     FILE *fp;
     Item* it;
@@ -100,7 +100,7 @@ char itensQuantMinima(void)
     free(it);
 
 }
-
+*/
 
 //Aqui será um relatório/lista
 void itensProxVencimento(void)
@@ -123,8 +123,20 @@ void itensProxVencimento(void)
 //ver se procura pelo nome da lista ou pelo username do usuário
 void infoMontarLista(void)
 {
-    MontarLista* mtlista;
+    FILE* fp;
     Usuario* cliente;
+    MontarLista* mtlista;
+    int achou;
+    char procurado[15];
+    fp = fopen("usuario.dat", "rb");
+
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        exit(1);
+    }
+    cliente = (Usuario*) malloc(sizeof(Usuario));
+    mtlista = (MontarLista*)malloc(sizeof(MontarLista));
+
     int resp;
     int i;
     system ( " cls || clear " );
@@ -132,38 +144,46 @@ void infoMontarLista(void)
     printf("| ------------------------------------------------------------- | \n");
     printf("| ------------- | Montar a sua lista de compras | ------------- | \n");
     printf("|                                                               | \n");
-    mtlista = (MontarLista*)malloc(sizeof(MontarLista));
-    cliente = (Usuario*) malloc(sizeof(Usuario));
-
-    printf("Informe quantos itens você vai adicionar a lista: ");
-    scanf("%d", &resp);
-
-    for (i = 0; i == resp; i++) {
-        do
-        {
-            printf(" | Informe o seu username: "); 
-            scanf("%s", cliente->usernameUsuario);
-            getchar();
-        
-        } while (!lerUsernameSenha(cliente->usernameUsuario));
-    
-        do
-        {
-            printf(" | Informe o nome do produto: "); 
-            scanf("%s", mtlista->nome);
-            getchar();
-            
-        } while (!lerLetras(mtlista->nome), tamanhoString(mtlista->nome));
-
-        do 
-        {
-            printf(" | Informe a quantidade de produto: ");
-            scanf("%s", mtlista->quantidadeProduto);
-            getchar();
-        
-        } while (!lerQuantidade(mtlista->quantidadeProduto));
+   
+    printf("Informe o seu username: ");
+    scanf(" %30[^\n]", procurado);
+    getchar();
+    achou = 0;
+    while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
+        if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
+            achou = 1;
+        }
     }
+    fclose(fp);
+
+    if (achou){
+
+        printf("Informe quantos itens você vai adicionar a lista: ");
+        scanf("%d", &resp);
+
+        for (i = 0; i == resp; i++) {
+            
+            do
+            {
+                printf(" | Informe o nome do produto: "); 
+                scanf("%s", mtlista->nome);
+                getchar();
+                
+            } while (!validarLetras(mtlista->nome, tamanhoString(mtlista->nome)));
+
+            do 
+            {
+                printf(" | Informe a quantidade de produto: ");
+                scanf("%s", mtlista->quantidadeProduto);
+                getchar();
+            
+            } while (!lerQuantidade(mtlista->quantidadeProduto));
+        }
+        
     
+    } else {
+        printf("Os dados do usuário %s não foram encontrados\n", procurado);
+    }
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
     mtlista->status = '1';
@@ -173,7 +193,6 @@ void infoMontarLista(void)
     free(cliente);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
-
 }
 
 //função para gravar no arquivo

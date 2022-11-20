@@ -103,7 +103,7 @@ void InfoUsuario(void)
         scanf("%s", cliente->usernameUsuario);
         getchar();
 
-    } while(!lerUsernameSenha(cliente->usernameUsuario) || (!validaUsername(cliente)));
+    } while(!lerUsernameSenha(cliente->usernameUsuario)); //|| (!validaUsername(cliente)));
         
     do {
         printf(" | Informe sua senha: ");

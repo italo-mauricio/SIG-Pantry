@@ -164,7 +164,8 @@ void infoItem(void)
 void exibeItens(Item* it) {
     system(" cls || clear");
     printf(" | ===================== Item cadastrado =================== |\n");
-    printf(" |                                                           |\n");   
+    printf(" |                                                           |\n");
+    printf(" | Nome do produto: %s\n", it->nomeProduto);   
     printf(" | Nome da marca: %s\n", it->nomeMarca); 
     printf(" | Dia do vencimento: %d\n", it->dia); 
     printf(" | Mês do vencimento: %d\n", it->mes); 

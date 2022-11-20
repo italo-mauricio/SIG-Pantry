@@ -55,35 +55,35 @@ char telaRegistrarSaida(void)
 //função para informar a saída de um item do estoque
 void infoSaida(void)
 {
-    Saida* said;
+    Item* it;
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ---------------- Registrar saída de item ---------------- | \n");
     printf(" |                                                           | \n");    
-    said = (Saida*) malloc(sizeof(Saida));
+    it = (Item*) malloc(sizeof(Item));
     do
     {
         printf(" | Informe o código de barras: ");
-        scanf("%s", said->codigodeBarras);
+        scanf("%s", it->codigoBarras);
         getchar();
         
-    } while (!lerQuantidade(said->codigodeBarras));
+    } while (!lerQuantidade(it->codigoBarras));
 
     do
     {
         printf(" | Informe a quantidade de produto: ");
-        scanf("%s", said->QuantProduto);
+        scanf("%s", it->quantProduto);  // acidionar o cálculo de saída
         getchar();
         
-    } while (!lerQuantidade(said->QuantProduto));
+    } while (!lerQuantidade(it->quantProduto));
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
-    said->status = '1';
-    gravaItem(said);
-    free(said);
+    it->status = '1';
+    gravaItem(it);
+    free(it);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
 
@@ -108,7 +108,7 @@ void gravaSaida(Saida* said)
 void buscainfoSaida(void)
 {
     FILE* fp;
-    Saida* said;
+    Item* it;
     int achou;
     char procurado[15];
     fp = fopen("itens.dat", "rb");
@@ -126,11 +126,11 @@ void buscainfoSaida(void)
     printf("Informe o código de barras: ");
     scanf(" %30[^\n]", procurado);
     getchar();
-    said = (Saida*) malloc(sizeof(Saida));
+    it = (Item*) malloc(sizeof(Item));
     achou = 0;
-    while((!achou) && (fread(said, sizeof(Saida), 1, fp))) {
-        printf("Código de barras |%s|\n", said->codigodeBarras);
-        if ((strcmp(said->codigodeBarras, procurado) == 0) && (said->status == '1')) {
+    while((!achou) && (fread(it, sizeof(Item*), 1, fp))) {
+        printf("Código de barras |%s|\n", it->codigoBarras);
+        if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')) {
             achou = 1;
         }
     }
@@ -139,9 +139,9 @@ void buscainfoSaida(void)
         system(" cls || clear ");
         printf(" | =================== Saída encontrada ==================== |\n");
         printf(" |                                                           |\n");    
-        printf(" | Código de barras: %s\n", said->codigodeBarras);    
-        printf(" | Quantidade de produto: %s\n", said->QuantProduto);
-        printf(" | Status: %c\n", said->status);
+        printf(" | Código de barras: %s\n", it->codigoBarras);    
+        printf(" | Quantidade de produto: %s\n", it->quantProduto);
+        printf(" | Status: %c\n", it->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
         printf(" | Pressione qualquer tecla para sair.... ");
@@ -150,7 +150,7 @@ void buscainfoSaida(void)
     } else {
         printf("Os dados da saída %s não foram encontrados\n", procurado);
     }
-    free(said);
+    free(it);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
     
@@ -160,27 +160,27 @@ void buscainfoSaida(void)
 void listarSaida(void) 
 {
     FILE* fp;
-    Saida* said;
+    Item* it;
     fp = fopen("itens.dat", "rb");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         exit(1);
     }
                                                      
-    said = (Saida*)malloc(sizeof(Saida));
-    while(fread(said, sizeof(Saida), 1, fp)) {
+    it = (Item*)malloc(sizeof(Item));
+    while(fread(it, sizeof(Item), 1, fp)) {
         system(" cls || clear ");
         printf(" | ==================== Lista de Saídas ==================== |\n");
         printf(" |                                                           |\n");    
-        printf(" | Código de barras: %s\n", said->codigodeBarras);    
-        printf(" | Quantidade de produto: %s\n", said->QuantProduto);
-        printf(" | Status: %c\n", said->status);
+        printf(" | Código de barras: %s\n", it->codigoBarras);    
+        printf(" | Quantidade de produto: %s\n", it->quantProduto);
+        printf(" | Status: %c\n", it->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
         printf(" | Pressione qualquer tecla para sair.... ");
         getchar();
     }
     fclose(fp);
-    free(said);
+    free(it);
 
 }
