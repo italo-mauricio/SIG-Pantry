@@ -23,3 +23,4 @@ void exibeInfoUsuario(Usuario* cliente);
 void buscaInfoUsuario(void);
 void infoExcluirUs(void);
 int validaUsername(Usuario* cliente);
+char escAtualizarUsuario(void);

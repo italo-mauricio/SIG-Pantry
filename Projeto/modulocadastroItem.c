@@ -60,7 +60,7 @@ char telaMenuItens(void)
 
 }
 
-//Função para o cadastro dos itens
+//função para o cadastro dos itens
 void infoItem(void)
 {
     Item* it;
@@ -72,7 +72,7 @@ void infoItem(void)
     it = (Item*) malloc(sizeof(Item));
     do
     {
-        printf(" | Informe o nome do produto: ");
+        printf(" | Informe o nome do produto (sem acentuação): ");
         scanf("%s", it->nomeProduto);
         getchar();
         
@@ -85,13 +85,21 @@ void infoItem(void)
         getchar();
         
     } while (!lerLetras(it->nomeMarca));
-    do
+
+    do //por enquanto será assim
     {
-        printf(" | Informe o número corespondente a categoria do produto: \n1- Higiente pessoal; \n2- Limpeza; \n3- Alimento): \n");
-        scanf("%s", it->categoria);
+        printf(" | ================= Categoria do produto ================= |\n");
+        printf(" |                                                          |\n");
+        printf(" |                      Higiene pessoal                     |\n");
+        printf(" |                      Limpeza                             |\n");
+        printf(" |                      Alimento                            |\n");
+        printf(" |                                                          |\n");
+        printf(" | ======================================================== |\n");
+        printf(" | Digite a sua opção: ");
+        scanf("%[A-Z a-z]", it->categoria);
         getchar();
 
-    } while (!lerQuantidade(it->categoria)); 
+    } while (!validarLetras(it->categoria, tamanhoString(it->categoria)));
 
     do
     {
@@ -122,27 +130,22 @@ void infoItem(void)
         
     } while (!lerQuantidade(it->estoqueMinimo));
 
-    do
+    do //por enquanto será assim
     {
-        printf(" | =============== Local de Armazenamento ================= |\n");
+        printf(" | ================ Local de Armazenamento ================ |\n");
         printf(" |                                                          |\n");
-        printf(" | Por favor, digite uma destas opções abaixo!              |\n");
+        printf(" |                   Geladeira                              |\n");
+        printf(" |                   Armário da cozinha                     |\n");
+        printf(" |                   Área de serviço                        |\n");
+        printf(" |                   Banheiro                               |\n");
+        printf(" |                   Guarda-roupa                           |\n");
         printf(" |                                                          |\n");
-        printf(" |                    Geladeira                             |\n");
-        printf(" |                    Armário de cozinha                    |\n");
-        printf(" |                    Área de serviço                       |\n");
-        printf(" |                    Banheiro                              |\n");
-        printf(" |                    Guarda-roupa                          |\n");
-        printf(" |                                                          |\n");
-        printf(" | Digite a sua opção: (sem acento) ");
+        printf(" | ======================================================== | \n");
+        printf(" | Digite a sua opção (sem acentuação): ");
         scanf("%[A-Z a-z]", it->localArmazenamento);
         getchar();
 
     } while (!validarLetras(it->localArmazenamento, tamanhoString(it->localArmazenamento)));
-    
-
-    telaLocaldeArmazenamento();
-    getchar();
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -154,7 +157,7 @@ void infoItem(void)
 
 }
 
-char telaLocaldeArmazenamento(void) 
+/*char telaLocaldeArmazenamento(void) 
 {
     Item* it;
     char opcao;
@@ -179,7 +182,7 @@ char telaLocaldeArmazenamento(void)
     free(it);
     getchar();
 
-}
+} */
 
 //exibe produtos cadastrados
 void exibeItens(Item* it) {
@@ -278,179 +281,260 @@ void buscarItem(void)
 void telaAtualizarItem(void)  
 {
     FILE *fp;
-    Item* it;
+    Item* it;;
     char resp;
-    char escolha;
-    it = (Item*) malloc(sizeof(Item));
+    int achou;
+    char procurado[20];
+
+    fp = fopen("itens.dat", "r+b");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        exit(1);
+    }
     system(" cls || clear");
-    printf(" | Digite o código de barras cadastrado: ");
-    scanf("%s", it->codigoBarras);
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | --------------------- Atualizar item -------------------- | \n");
+    printf("Informe o código de barras: ");
+    scanf(" %[0-9]", procurado);
     getchar();
-    if ((it == NULL) || (it->status == '0')) {
-        printf("\nItem não encontrado\n");
-        exit(1);
+
+    it = (Item*) malloc(sizeof(Item));
+    achou = 0;
+    while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
+        if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')) {
+            achou = 1;
     }
+    if (achou){
 
-    fp = fopen("item.dat", "r+t");
-    if (fp == NULL) {
-        printf("Ocorreu um erro na abertura do arquivo");
-        exit(1);
-    }
+        exibeItens(it);
+        resp = escAtualizarItem();
+        printf("\n");
 
-    exibeItens(it);
-    printf("\nEste é o item que você quer alterar os dados? S/N");
-    scanf("%c", &resp);
-    getchar();
-    system("cls || clear");
-    if (resp == 'S' || resp == 's'){
-        system(" cls || clear");
-        printf(" | ========================================================= | \n");
-        printf(" | --------------------------------------------------------- | \n");
-        printf(" | -------------------- Atualizar item --------------------- | \n");
-        printf(" |                                                           | \n");
-        printf(" |                 1- Editar nome                            | \n");
-        printf(" |                 2- Editar nome da marca                   | \n");
-        printf(" |                 3- Editar data de vencimento              | \n");                 
-        printf(" |                 4- Editar código de barras                | \n");
-        printf(" |                 5- Editar categoria do produto            | \n");                                                                    
-        printf(" |                 6- Editar estoque mínimo                  | \n");                                                                    
-        printf(" |                 7- Editar local de armazenamento          | \n");                                                                    
-        printf(" |                 0- Voltar à tela principal                | \n");    
-        printf(" |                                                           | \n");
-        printf(" | --------------------------------------------------------- | \n");
-        printf(" | Selecione uma opção: ");
-        scanf("%c", &escolha);
-        getchar();
-        while (escolha != '0')
-        {
-            switch (escolha){
-                case '1':
-                do
-                {
-                    printf(" | Informe o novo nome: ");
-                    scanf("%[A-Z a-z 0-9 ]", it->nomeProduto);
-                    getchar();
-            
-                } while (!validarLetras(it->nomeProduto, tamanhoString(it->nomeProduto)));
-                printf("\nItem editado com sucesso!\n");
-                break;
-
-                case '2':
-                do 
-                {
-                    printf(" | Informe o novo nome da marca: ");   
-                    scanf("%s", it->nomeMarca);
-                    getchar();
-
-                } while (!validarLetras(it->nomeMarca, tamanhoString(it->nomeMarca)));
-                printf("\nItem editado com sucesso!\n");
-                break;
-
-                case '3':
-                do 
-                {        
-                    printf(" | Informe o novo dia de vencimento: ");
-                    scanf("%d", &it->dia);
-                    getchar();
-                    printf(" | Informe o novo mês de vencimento: ");
-                    scanf("%d", &it->mes);
-                    getchar();
-                    printf(" | Informe o novo ano de vencimento: ");
-                    scanf("%d", &it->ano);
-                    getchar();
-            
-                } while(!valida_data(it->dia, it->mes, it->ano));  
-                printf("\nItem editado com sucesso!\n");
-                break;
-
-                case '4':
-                do
-                {
-                    printf(" | Informe o novo código de barras: ");
-                    scanf("%s", it->codigoBarras);
-                    getchar();
-        
-                } while (!lerQuantidade(it->codigoBarras));
-                printf("\nItem editado com sucesso!\n");
-                break;
-
-                case '5':
-                do
-                {
-                    printf(" | Informe o número corespondente a nova categoria do produto: \n1- Higiente pessoal; \n2- Limpeza; \n3- Alimento): \n");
-                    scanf("%s", it->categoria);
-                    getchar();
-
-                } while (!lerQuantidade(it->categoria)); 
-                printf("\nItem editado com sucesso!\n");
-                break;
-
-                case '6':
-                do
-                {
-                    printf(" | Informe o novo estoque mínimo do item: ");
-                    scanf("%s", it->estoqueMinimo);
-                    getchar();
-        
-                } while (!lerQuantidade(it->estoqueMinimo));
-                printf("\nItem editado com sucesso!\n");
-                break;
-
-                case '7':
-                telaAtualizarLocaldeArmazenamento();
+        if (resp == '1'){
+            do
+            {
+                printf("Informe o novo nome: ");
+                scanf(" %49[^\n]", it->nomeProduto);
                 getchar();
-                printf("\nItem editado com sucesso!\n");
-                break;
-                                
-                default:
-                    printf("\nPor favor, insira uma opção válida.\n");
-                    break;
-                }
 
-                escolha = '0';
-            }
-            fseek(fp, (-1) * sizeof(Item), SEEK_CUR);
-            fwrite(it, sizeof(Item), 1, fp);
+            } while(!validarLetras(it->nomeProduto, tamanhoString(it->nomeProduto)));
+
+            do
+            {
+                printf("Informe o novo nome da marca: ");
+                scanf(" %49[^\n]", it->nomeMarca);
+                getchar();
+
+            } while(!validarLetras(it->nomeMarca, tamanhoString(it->nomeMarca)));
+
+            do
+            {
+                printf("Informe o novo código de barras: ");
+                scanf(" %49[^\n]", it->codigoBarras);
+                getchar();
+
+            } while(!lerQuantidade(it->codigoBarras));
+
+            do
+            {
+                printf("Informe o novo estoque mínimo: ");
+                scanf("%s", it->estoqueMinimo);
+                getchar();
+
+            } while(!lerQuantidade(it->estoqueMinimo));
+
+            do
+            {        
+                printf(" | Informe o novo dia de vencimento: ");
+                scanf("%d", &it->dia);
+                getchar();
+                printf(" | Informe o novo mês de vencimento: ");
+                scanf("%d", &it->mes);
+                getchar();
+                printf(" | Informe o novo ano de vencimento: ");
+                scanf("%d", &it->ano);
+                getchar();
+        
+            } while(!valida_data(it->dia, it->mes, it->ano));  
+
+            do //por enquanto será assim
+            {
+                printf(" | ================== Categoria do produto ================ |\n");
+                printf(" |                                                          |\n");
+                printf(" |                      Higiene pessoal                     |\n");
+                printf(" |                      Limpeza                             |\n");
+                printf(" |                      Alimento                            |\n");
+                printf(" |                                                          |\n");
+                printf(" | ======================================================== |\n");
+                printf(" | Digite a nova categoria do produto: ");
+                scanf("%[A-Z a-z]", it->categoria);
+                getchar();
+
+            } while (!validarLetras(it->categoria, tamanhoString(it->categoria)));
+
+            do //por enquanto será assim
+            {
+                printf(" | ================ Local de Armazenamento ================ |\n");
+                printf(" |                                                          |\n");
+                printf(" |                   Geladeira                              |\n");
+                printf(" |                   Armário da cozinha                     |\n");
+                printf(" |                   Área de serviço                        |\n");
+                printf(" |                   Banheiro                               |\n");
+                printf(" |                   Guarda-roupa                           |\n");
+                printf(" |                                                          |\n");
+                printf(" | ======================================================== |\n");
+                printf(" | Digite o novo local de armazenamento (sem acentuação): ");
+                scanf("%[A-Z a-z]", it->localArmazenamento);
+                getchar();
+
+            } while (!validarLetras(it->localArmazenamento, tamanhoString(it->localArmazenamento)));
+
         }
 
-    else {
-        printf("\nOk, os dados não foram alterados!\n");
+        else if (resp == '2'){
+            do
+            {
+                printf("Informe o novo nome: ");
+                scanf(" %49[^\n]", it->nomeProduto);
+                getchar();
+
+            } while(!validarLetras(it->nomeProduto, tamanhoString(it->nomeProduto)));
+        }
+
+        else if (resp == '3'){
+            do
+            {
+                printf("Informe o novo nome da marca: ");
+                scanf(" %49[^\n]", it->nomeMarca);
+                getchar();
+
+            } while(!validarLetras(it->nomeMarca, tamanhoString(it->nomeMarca)));
+
+        }
+
+        else if (resp == '4'){
+            do
+            {
+                printf("Informe o novo código de barras: ");
+                scanf(" %49[^\n]", it->codigoBarras);
+                getchar();
+
+            } while(!lerQuantidade(it->codigoBarras));
+        }
+        
+        else if (resp == '5'){
+            do
+            {
+                printf("Informe o novo estoque mínimo: ");
+                scanf(" %s", it->estoqueMinimo);
+                getchar();
+
+            } while(!lerQuantidade(it->estoqueMinimo));
+        }
+
+        else if (resp == '6'){
+            do
+            {        
+                printf(" | Informe o novo dia de vencimento: ");
+                scanf("%d", &it->dia);
+                getchar();
+                printf(" | Informe o novo mês de vencimento: ");
+                scanf("%d", &it->mes);
+                getchar();
+                printf(" | Informe o novo ano de vencimento: ");
+                scanf("%d", &it->ano);
+                getchar();
+        
+            } while(!valida_data(it->dia, it->mes, it->ano));
+        }  
+
+        else if (resp == '7'){
+            do 
+            {
+                printf(" | ================= Categoria do produto ================= |\n");
+                printf(" |                                                          |\n");
+                printf(" |                      Higiene pessoal                     |\n");
+                printf(" |                      Limpeza                             |\n");
+                printf(" |                      Alimento                            |\n");
+                printf(" |                                                          |\n");
+                printf(" | ======================================================== |\n");
+                printf(" | Digite a nova categoria do produto: ");
+                scanf("%[A-Z a-z]", it->categoria);
+                getchar();
+
+            } while (!validarLetras(it->categoria, tamanhoString(it->categoria)));
+        }
+        
+        else if (resp == '8') {
+            do //por enquanto será assim
+            {
+                printf(" | ================ Local de Armazenamento ================ |\n");
+                printf(" |                                                          |\n");
+                printf(" |                   Geladeira                              |\n");
+                printf(" |                   Armário da cozinha                     |\n");
+                printf(" |                   Área de serviço                        |\n");
+                printf(" |                   Banheiro                               |\n");
+                printf(" |                   Guarda-roupa                           |\n");
+                printf(" |                                                          |\n");
+                printf(" | ======================================================== |\n");
+                printf(" | Digite o novo local de armazenamento (sem acentuação): ");
+                scanf("%[A-Z a-z]", it->localArmazenamento);
+                getchar();
+
+            } while (!validarLetras(it->localArmazenamento, tamanhoString(it->localArmazenamento)));
+        }
+
+        it->status = '1';      
+        fseek(fp, (-1)*sizeof(Item), SEEK_CUR);
+        fwrite(it, sizeof(Item), 1, fp);        
+        printf(" |                                                           | \n");
+        printf(" | --------------------------------------------------------- | \n");
+        printf("Dados editados com sucesso");
     }
-    fclose(fp);
-    free(it);
+    
+    else 
+    {
+        printf("O item de código de barras %s não foi encontrado\n", procurado);
+    }
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
-
-}
-
-
-char telaAtualizarLocaldeArmazenamento(void) 
-{
-    Item* it;
-    char opcao;
-    system( " clear || cls");
-    printf(" | ============================================================== | \n");
-    printf(" | -------------------------------------------------------------- | \n");
-    printf(" | ----------------- Exibir local de armazenamento -------------- | \n");
-    printf(" |                                                                | \n");    
-    printf(" |                   1- Geladeira                                 | \n");
-    printf(" |                   2- Armário da cozinha                        | \n");
-    printf(" |                   3- Armário da área de serviço                | \n");  
-    printf(" |                   4- Armário do banheiro                       | \n"); 
-    printf(" |                   5- Guarda-roupa                              | \n");       
-    printf(" |                   0- Voltar à tela menu itens                  | \n");
-    printf(" |                                                                | \n");
-    printf(" | ============================================================== | \n");
-    it = (Item*) malloc(sizeof(Item));
-    printf(" | Escolha uma opção: ");
-    scanf("%c", &opcao);
-    getchar();
-    gravaItem(it);
     free(it);
-    return opcao;
+    fclose(fp);      
+
+    } 
+}
+
+//função para selecionar o que quer atualizar
+char escAtualizarItem(void)
+{    
+    char esc;
+    system(" cls || clear");
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | --------------------- Atualizar item -------------------- | \n");
+    printf(" |                                                           | \n");
+    printf(" |                1- Editar tudo                             | \n");
+    printf(" |                2- Editar nome do item                     | \n");
+    printf(" |                2- Editar nome da marca                    | \n");
+    printf(" |                3- Editar código de barras                 | \n");
+    printf(" |                4- Editar estoque mínimo                   | \n");
+    printf(" |                5- Editar data de vencimento               | \n");                 
+    printf(" |                6- Editar categoria                        | \n");
+    printf(" |                7- Editar local de armazenamento           | \n");                                                                    
+    printf(" |                0- Voltar à tela principal                 | \n");    
+    printf(" |                                                           | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | Selecione uma opção do que você deseja editar: ");
+    scanf("%c", &esc);
+    getchar();
+
+    return esc;
 
 }
 
+//função para exclusão lógica
 void infoExcluir(void)
 {
     FILE* fp;
