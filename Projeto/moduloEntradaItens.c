@@ -6,6 +6,7 @@
 #include "modulocadastroUsuario.h"
 #include "modulocadastroItem.h"
 
+
 void menuEntradaItens(void)
 {
     char escolha;
@@ -56,73 +57,57 @@ char telaRegistrarEntrada(void)
 //Função para cadastrar a entrada de um item ao estoque
 void infoEntrada(void)
 {
-    Entrada* ent;
+    Item* it;
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------------- Registrar entrada de item ---------------- | \n");
     printf(" |                                                           | \n");    
-    ent = (Entrada*)malloc(sizeof(Entrada));
+    it = (Item*)malloc(sizeof(Item));
     do
     {
         printf(" | Informe o código de barras do produto: ");
-        scanf("%s", ent->codigodeBarras);
+        scanf("%s", it->codigoBarras);
         getchar();
         
-    } while(!lerQuantidade(ent->codigodeBarras));
+    } while(!lerQuantidade(it->codigoBarras));
 
     do {        
         printf(" | Informe o dia de vencimento: ");
-        scanf("%d", &ent->dia);
+        scanf("%d", &it->dia);
         getchar();
         printf(" | Informe o mês: ");
-        scanf("%d", &ent->mes);
+        scanf("%d", &it->mes);
         getchar();
         printf(" | Informe o ano: ");
-        scanf("%d", &ent->ano);
+        scanf("%d", &it->ano);
         getchar();
         
-     } while(!valida_data(ent->dia, ent->mes, ent->ano)); 
+     } while(!valida_data(it->dia, it->mes, it->ano)); 
 
     do
     {
         printf(" | Informe a quantidade de produto: ");
-        scanf("%s", ent->quantProduto);
+        scanf("%s", it->quantProduto);    // adicionar o cálculo de entrada
         getchar();
         
-    } while(!lerQuantidade(ent->quantProduto));
+    } while(!lerQuantidade(it->quantProduto));
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Press ENTER for exit... ");
-    ent->status = '1'; //o 1 mostra que foi cadastrado
-    gravaItem(ent);
-    free(ent);
+    it->status = '1'; //o 1 mostra que foi cadastrado
+    gravaItem(it);
+    free(it);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
 
 }
 
-/*//Função para gravar no arquivo
-void gravaEntrada(Entrada* ent) 
-{
-    FILE* fp;
-    fp = fopen("itens.dat", "ab");
-    if (fp == NULL) {
-        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-        exit(1);
-    }
-    
-    fwrite(ent, sizeof(Entrada), 1, fp);
-    fclose(fp);
-    
-} */
-
 //função de pesquisa a partir do código de barras
 void buscaInfoEntrada(void)
 {
     FILE* fp;
-    Entrada* ent;
+    Item* it;
     int achou;
     char procurado[15];
     fp = fopen("itens.dat", "rb");
@@ -140,11 +125,11 @@ void buscaInfoEntrada(void)
     printf("Informe o código de barras: ");
     scanf(" %30[^\n]", procurado);
     getchar();
-    ent = (Entrada*) malloc(sizeof(Entrada));
+    it = (Item*) malloc(sizeof(Item));
     achou = 0;
-    while((!achou) && (fread(ent, sizeof(Entrada), 1, fp))) {
-        printf("Código de barras |%s|\n", ent->codigodeBarras);
-        if ((strcmp(ent->codigodeBarras, procurado) == 0) && (ent->status == '1')) {
+    while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
+        printf("Código de barras |%s|\n", it->codigoBarras);
+        if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')) {
             achou = 1;
         }
     }
@@ -153,21 +138,19 @@ void buscaInfoEntrada(void)
         system(" cls || clear ");
         printf(" | ================== Entrada encontrada =================== |\n");
         printf(" |                                                           |\n");         
-        printf(" | Código de barras: %s\n", ent->codigodeBarras);    
-        printf(" | Quantidade do produto: %s\n", ent->quantProduto);
-        printf(" | Dia do vencimento: %d\n", ent->dia); 
-        printf(" | Mês do vencimento: %d\n", ent->mes); 
-        printf(" | Ano do vencimento: %d\n", ent->ano); 
-        printf(" | Status: %c\n", ent->status);
+        printf(" | Código de barras: %s\n", it->codigoBarras);    
+        printf(" | Quantidade do produto: %s\n", it->quantProduto);
+        printf(" | Dia do vencimento: %d\n", it->dia); 
+        printf(" | Mês do vencimento: %d\n", it->mes); 
+        printf(" | Ano do vencimento: %d\n", it->ano); 
+        printf(" | Status: %c\n", it->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
-        printf(" | Pressione qualquer tecla para sair.... ");
-        getchar();
 
     } else {
         printf("Os dados da entrada %s não foram encontrados\n", procurado);
     }
-    free(ent);
+    free(it);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
     
@@ -178,30 +161,30 @@ void buscaInfoEntrada(void)
 void listarEntrada(void) 
 {
     FILE* fp;
-    Entrada* ent;
+    Item* it;
     fp = fopen("itens.dat", "rb");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         exit(1);
     }
 
-    ent = (Entrada*)malloc(sizeof(Entrada));
-    while(fread(ent, sizeof(Entrada), 1, fp)) {
+    it = (Item*)malloc(sizeof(Item));
+    while(fread(it, sizeof(Item), 1, fp)) {
         system(" cls || clear");
         printf(" | =================== Lista de Entradas =================== |\n");
         printf(" |                                                           |\n");       
-        printf(" | Código de barras: %s\n", ent->codigodeBarras);    
-        printf(" | Quantidade de produto: %s\n", ent->quantProduto);
-        printf(" | Dia do vencimento: %d\n", ent->dia); 
-        printf(" | Mês do vencimento: %d\n", ent->mes); 
-        printf(" | Ano do vencimento: %d\n", ent->ano); 
-        printf(" | Status: %c\n", ent->status);
+        printf(" | Código de barras: %s\n", it->codigoBarras);    
+        printf(" | Quantidade de produto: %s\n", it->quantProduto);
+        printf(" | Dia do vencimento: %d\n", it->dia); 
+        printf(" | Mês do vencimento: %d\n", it->mes); 
+        printf(" | Ano do vencimento: %d\n", it->ano); 
+        printf(" | Status: %c\n", it->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
         printf(" | Pressione qualquer tecla para sair.... ");
         getchar();
         }
     fclose(fp);
-    free(ent);
+    free(it);
 
 }
