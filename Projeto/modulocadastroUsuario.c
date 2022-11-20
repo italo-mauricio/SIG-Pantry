@@ -103,7 +103,7 @@ void InfoUsuario(void)
         scanf("%s", cliente->usernameUsuario);
         getchar();
 
-    } while(!lerUsernameSenha(cliente->usernameUsuario)|| (!validaUsername(cliente)));
+    } while(!lerUsernameSenha(cliente->usernameUsuario) || (!validaUsername(cliente)));
         
     do {
         printf(" | Informe sua senha: ");
@@ -182,7 +182,7 @@ void buscaInfoUsuario(void)
 //função para editar dados do usuário
 void atualizarUsuario(void) //adaptada by @IsaKaillany
 {
-    FILE *fp;
+    FILE* fp;
     Usuario* cliente;
     char resp;
     int achou;
@@ -194,15 +194,14 @@ void atualizarUsuario(void) //adaptada by @IsaKaillany
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         exit(1);
     }
-    system(" cls || clear");
+    cliente = (Usuario*) malloc(sizeof(Usuario));
+    system(" cls || clear ");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ------------------- Atualizar usuário ------------------- | \n");
     printf("Informe o seu username: ");
-    scanf(" %[0-9]", procurado);
+    scanf(" %s", procurado);
     getchar();
-
-    cliente = (Usuario*) malloc(sizeof(Usuario));
     achou = 0;
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
@@ -328,7 +327,8 @@ void atualizarUsuario(void) //adaptada by @IsaKaillany
     }
     
     else 
-    {
+    {   
+        
         printf("O usuário de username %s não foi encontrado\n", procurado);
     }
     printf(" | Pressione qualquer tecla para sair.... ");
