@@ -2,7 +2,6 @@ typedef struct montarLista MontarLista;
 struct montarLista
 {
     char nome[20];
-    char nomeLista[20];
     char categoriaProduto[10];
     char quantidadeProduto[15];
     char status;
@@ -17,7 +16,8 @@ void infoMontarLista(void);
 void exibeListaCompras(MontarLista* mtlista);
 void listaComprasPronta(void); //relatório
 void gravaLista(MontarLista*);
-void buscaLista(void);
+void buscarLista(void);
 void pesquisarLista(void);
-void editarLista(void);
+void atualizarLista(void);
 void excluirLista(void);
+char escAtualizarLista(void);

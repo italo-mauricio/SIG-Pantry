@@ -4,6 +4,9 @@
 #include "validacoes.h"
 #include "modulocadastroItem.h"
 #include "modulocadastroUsuario.h"
+#include "moduloEntradaItens.h"
+#include "moduloSaidaItens.h"
+
 
 void modulocadastroItem(void) 
 {
@@ -156,33 +159,6 @@ void infoItem(void)
     getchar();
 
 }
-
-/*char telaLocaldeArmazenamento(void) 
-{
-    Item* it;
-    char opcao;
-    system ( " clear||cls " );
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" | ----------------- Local de armazenamento ---------------- | \n");
-    printf(" |                                                           | \n");
-    printf(" |                1- Geladeira                               | \n");
-    printf(" |                2- Armário da cozinha                      | \n");
-    printf(" |                3- Armário da área de serviço              | \n");  
-    printf(" |                4- Armário do banheiro                     | \n"); 
-    printf(" |                5- Guarda-roupa                            | \n");       
-    printf(" |                0- Voltar à tela menu itens                | \n");
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
-    it = (Item*) malloc(sizeof(Item));
-    printf(" | Escolha uma opção: ");
-    scanf("%c", &opcao);  
-    return opcao;
-    gravaItem(it);
-    free(it);
-    getchar();
-
-} */
 
 //exibe produtos cadastrados
 void exibeItens(Item* it) {

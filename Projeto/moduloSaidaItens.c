@@ -82,14 +82,14 @@ void infoSaida(void)
     printf(" | ========================================================= | \n");
     printf(" | Press ENTER for exit... ");
     said->status = '1';
-    gravaSaida(said);
+    gravaItem(said);
     free(said);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
 
 }
 
-//função para gravar no arquivo:
+/*//função para gravar no arquivo:
 void gravaSaida(Saida* said) 
 {
     FILE* fp;
@@ -102,7 +102,7 @@ void gravaSaida(Saida* said)
     fwrite(said, sizeof(Saida), 1, fp);
     fclose(fp);
     
-}
+} */
 
 //função de pesquisa a partir do código de barras
 void buscainfoSaida(void)
@@ -111,7 +111,7 @@ void buscainfoSaida(void)
     Saida* said;
     int achou;
     char procurado[15];
-    fp = fopen("saida.dat", "rb");
+    fp = fopen("itens.dat", "rb");
 
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
@@ -161,7 +161,7 @@ void listarSaida(void)
 {
     FILE* fp;
     Saida* said;
-    fp = fopen("saida.dat", "rb");
+    fp = fopen("itens.dat", "rb");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         exit(1);
