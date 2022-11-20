@@ -326,6 +326,7 @@ void atualizarUsuario(void) //adaptada by @IsaKaillany
         printf(" | --------------------------------------------------------- | \n");
         printf("Dados editados com sucesso");
     }
+    
     else 
     {
         printf("O usuário de username %s não foi encontrado\n", procurado);

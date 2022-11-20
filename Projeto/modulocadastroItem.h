@@ -19,8 +19,6 @@ struct item
 void modulocadastroItem(void);
 char telaMenuItens(void);
 void infoItem(void);
-
-
 void listarItens(void);
 void infoExcluir(void);
 void suitefuncao(char);
@@ -28,6 +26,6 @@ void gravaItem(Item*);
 void telaAtualizarItem(void);
 void buscarItem(void);
 char telaLocaldeArmazenamento(void);
-char telaAtualizarLocaldeArmazenamento(void);
+char escAtualizarItem(void);
 
 
