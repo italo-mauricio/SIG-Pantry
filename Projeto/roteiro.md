@@ -3,8 +3,8 @@
 ### Pedimos para carinhosamente quem for ler este texto siga o passo a passo para o entendimento do projeto.
 
 ### Passo 1:
-    O nosso programa é um sistema de controle de despensa doméstica, o qual é indicado que o cadastro seja feito apenas de uma pessoa da casa, daquela que realmente toma conta da organização e controle da despensa.
-    Inicialmente, ela faz o seu cadastro no sistema e o seu ID é o username que ela irá escolher (elaboramos uma função que não poderá ser cadastrado usernames iguais). 
+        O nosso programa é um sistema de controle de despensa doméstica, o qual é indicado que o cadastro seja feito apenas de uma pessoa da casa, daquela que realmente toma conta da organização e controle da despensa.
+        Inicialmente, ela faz o seu cadastro no sistema e o seu ID é o username que ela irá escolher (elaboramos uma função que não poderá ser cadastrado usernames iguais). 
 ### Passo 2:
     Após fazer o cadastro de usuários, ela cadastra os itens, em que o ID deste módulo é o próprio código de barras. 
 
