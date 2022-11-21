@@ -114,7 +114,7 @@ void gravaSaida(Saida* said)
 } */
 
 //função de pesquisa a partir do código de barras
-void buscainfoSaida(void)
+int buscainfoSaida(void)
 {
     FILE* fp;
     Item* it;
@@ -124,7 +124,7 @@ void buscainfoSaida(void)
 
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
+        return 0;
     }
     printf("\n\n");
     system ( " cls || clear " );
@@ -162,18 +162,19 @@ void buscainfoSaida(void)
     free(it);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+    return 0;
     
 }
 
 //listar saídas
-void listarSaida(void) 
+int listarSaida(void) 
 {
     FILE* fp;
     Item* it;
     fp = fopen("itens.dat", "rb");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
+        return 0;
     }
                                                      
     it = (Item*)malloc(sizeof(Item));
@@ -191,5 +192,6 @@ void listarSaida(void)
     }
     fclose(fp);
     free(it);
+    return 0;
 
 }

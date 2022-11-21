@@ -183,22 +183,23 @@ void exibeItens(Item* it) {
 }
 
 //função para gravar no arquivo
-void gravaItem(Item* it) 
+int gravaItem(Item* it) 
 {
     FILE* fp;
     fp = fopen("itens.dat", "ab");
     if (fp == NULL) {
         printf("Ops! Não é possível continuar o programa...\n");
-        exit(1);
+        return 0;
     }
     
     fwrite(it, sizeof(Item), 1, fp);
     fclose(fp);
+    return 0;
 
 }
 
 //a partir do código de barras a função abaixo fará a pesquisa
-void buscarItem(void)
+int buscarItem(void)
 {
     FILE* fp;
     Item* it;
@@ -208,7 +209,7 @@ void buscarItem(void)
 
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
+        return 0;
     }
     printf("\n\n");
     system ( " cls || clear " );
@@ -251,11 +252,12 @@ void buscarItem(void)
     free(it);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+    return 0;
     
 }
 
 //função para editar algum item
-void telaAtualizarItem(void)  
+int telaAtualizarItem(void)  
 {
     FILE *fp;
     Item* it;;
@@ -267,7 +269,7 @@ void telaAtualizarItem(void)
     if (fp == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
-        exit(1);
+        return 0;
     }
     system(" cls || clear");
     printf(" | ========================================================= | \n");
@@ -480,7 +482,8 @@ void telaAtualizarItem(void)
     free(it);
     fclose(fp);      
 
-    } 
+    }
+    return 0; 
 }
 
 //função para selecionar o que quer atualizar
@@ -512,7 +515,7 @@ char escAtualizarItem(void)
 }
 
 //função para exclusão lógica
-void infoExcluir(void)
+int infoExcluir(void)
 {
     FILE* fp;
     Item* it;
@@ -523,7 +526,7 @@ void infoExcluir(void)
 
     if (fp == NULL){
         printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
+        return 0;
     }
     it = (Item*) malloc(sizeof(Item));
     system( " clear || cls ");
@@ -561,18 +564,19 @@ void infoExcluir(void)
     fclose(fp);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+    return 0;
     
 }
 
 //listar itens (relatório)
-void listarItens(void)
+int listarItens(void)
 {
     FILE* fp;
     Item* it;
     fp = fopen("itens.dat", "rb");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
+        return 0;
     }
     it = (Item*)malloc(sizeof(Item));
     while(fread(it, sizeof(Item), 1, fp)) {
@@ -583,5 +587,6 @@ void listarItens(void)
     }
     fclose(fp);
     free(it);
+    return 0;
 
 }

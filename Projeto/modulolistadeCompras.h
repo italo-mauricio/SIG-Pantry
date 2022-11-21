@@ -12,12 +12,12 @@ void menulistadeCompras(void);
 char telaListadeCompras(void);
 //char itensQuantMinima(void);
 //void itensProxVencimento(void);
-void infoMontarLista(void);
+int infoMontarLista(void);
 void exibeListaCompras(MontarLista* mtlista);
-void listaComprasPronta(void); //relatório
-void gravaLista(MontarLista*);
-void buscarLista(void);
+int listaComprasPronta(void); //relatório
+int gravaLista(MontarLista*);
+int buscarLista(void);
 void pesquisarLista(void);
-void atualizarLista(void);
-void excluirLista(void);
+int atualizarLista(void);
+int excluirLista(void);
 char escAtualizarLista(void);

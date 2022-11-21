@@ -20,13 +20,13 @@ struct item
 void modulocadastroItem(void);
 char telaMenuItens(void);
 void infoItem(void);
-void listarItens(void);
-void infoExcluir(void);
+int listarItens(void);
+int infoExcluir(void);
 void suitefuncao(char);
-void gravaItem(Item*);
-void telaAtualizarItem(void);
-void buscarItem(void);
+int telaAtualizarItem(void);
+int buscarItem(void);
 char telaLocaldeArmazenamento(void);
 char escAtualizarItem(void);
+int gravaItem(Item* it);
 
 
