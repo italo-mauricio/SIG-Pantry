@@ -58,40 +58,48 @@ char telaRegistrarEntrada(void)
 void infoEntrada(void)
 {
     Item* it;
+    int resp;
+    int i;
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------------- Registrar entrada de item ---------------- | \n");
     printf(" |                                                           | \n");    
     it = (Item*)malloc(sizeof(Item));
-    do
-    {
-        printf(" | Informe o código de barras do produto: ");
-        scanf("%s", it->codigoBarras);
-        getchar();
-        
-    } while(!lerQuantidade(it->codigoBarras));
 
-    do {        
-        printf(" | Informe o dia de vencimento: ");
-        scanf("%d", &it->dia);
-        getchar();
-        printf(" | Informe o mês: ");
-        scanf("%d", &it->mes);
-        getchar();
-        printf(" | Informe o ano: ");
-        scanf("%d", &it->ano);
-        getchar();
-        
-     } while(!valida_data(it->dia, it->mes, it->ano)); 
+    printf("Informe quantos itens vão ser adicionados à despensa: ");
+    scanf("%d", &resp);
 
-    do
-    {
-        printf(" | Informe a quantidade de produto: ");
-        scanf("%s", it->quantProduto);    // adicionar o cálculo de entrada
-        getchar();
-        
-    } while(!lerQuantidade(it->quantProduto));
+        for (i = 1; i <= resp; i++) {
+            do
+            {
+                printf(" | Informe o código de barras do produto: ");
+                scanf("%s", it->codigoBarras);
+                getchar();
+                
+            } while(!lerQuantidade(it->codigoBarras));
+
+            do {        
+                printf(" | Informe o dia de vencimento: ");
+                scanf("%d", &it->dia);
+                getchar();
+                printf(" | Informe o mês: ");
+                scanf("%d", &it->mes);
+                getchar();
+                printf(" | Informe o ano: ");
+                scanf("%d", &it->ano);
+                getchar();
+                
+            } while(!valida_data(it->dia, it->mes, it->ano)); 
+
+            do
+            {
+                printf(" | Informe a quantidade de produto: ");
+                scanf("%s", it->quantProduto);    // adicionar o cálculo de entrada
+                getchar();
+                
+            } while(!lerQuantidade(it->quantProduto));
+        }
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");

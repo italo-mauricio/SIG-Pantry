@@ -17,22 +17,22 @@ void menulistadeCompras(void)
         /*case '1':
             itensQuantMinima(); //listar estoque mínimo
             break; */
-        case '2':
+        /*case '2':
             itensProxVencimento(); //listar itens próximos ao vencimento
-            break; 
-        case '3':
+            break; */
+        case '1':
             infoMontarLista(); //preencher a lista
             break;
-        case '4':
+        case '2':
             buscarLista(); //pesquisa
             break; 
-        case '5':
+        case '3':
             atualizarLista(); //edição
             break;  
-        case '6':
+        case '4':
             excluirLista(); //exclusão
             break;
-        case '7':
+        case '5':
             listaComprasPronta(); //exibição da lista pronta (relatório)
             break;
         default:
@@ -53,13 +53,13 @@ char telaListadeCompras(void)
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | -------------------| SIG-Pantry - LISTA DE COMPRAS |---------------- | \n");
     printf(" |                                                                      | \n");
-    printf(" |             1- Visualizar itens no estoque com quantidade mínima     | \n");
-    printf(" |             2- Visualizar itens próximos ao vencimento               | \n");
-    printf(" |             3- Montar sua lista de compras                           | \n");
-    printf(" |             4- Pesquisar lista de compras                            | \n");      
-    printf(" |             5- Editar lista de compras                               | \n");      
-    printf(" |             6- Excluir lista de compras                              | \n");      
-    printf(" |             7- Visualizar itens cadastrados na lista                 | \n");       
+    //printf(" |             1- Visualizar itens no estoque com quantidade mínima     | \n");
+    //printf(" |             2- Visualizar itens próximos ao vencimento               | \n");
+    printf(" |             1- Montar sua lista de compras                           | \n");
+    printf(" |             2- Pesquisar lista de compras                            | \n");      
+    printf(" |             3- Editar lista de compras                               | \n");      
+    printf(" |             4- Excluir lista de compras                              | \n");      
+    printf(" |             5- Visualizar itens cadastrados na lista                 | \n");       
     printf(" |             0- Voltar à tela principal                               | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
@@ -103,7 +103,7 @@ char telaListadeCompras(void)
 */
 
 //Aqui será um relatório/lista
-void itensProxVencimento(void)
+/*void itensProxVencimento(void)
 {
     //criar um ponteiro que puxe a informação com base na data de validade do cadastro de itens
     system ( " clear||cls " );
@@ -118,7 +118,7 @@ void itensProxVencimento(void)
     printf(" | Pressione qualquer tecla para sair... ");
     getchar();
 
-}
+} */
 
 //ver se procura pelo nome da lista ou pelo username do usuário
 void infoMontarLista(void)

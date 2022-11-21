@@ -56,27 +56,36 @@ char telaRegistrarSaida(void)
 void infoSaida(void)
 {
     Item* it;
+    int resp;
+    int i;
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ---------------- Registrar saída de item ---------------- | \n");
     printf(" |                                                           | \n");    
     it = (Item*) malloc(sizeof(Item));
-    do
-    {
-        printf(" | Informe o código de barras: ");
-        scanf("%s", it->codigoBarras);
-        getchar();
-        
-    } while (!lerQuantidade(it->codigoBarras));
+    
+    printf("Informe quantos itens vão sair da despensa: ");
+    scanf("%d", &resp);
 
-    do
-    {
-        printf(" | Informe a quantidade de produto: ");
-        scanf("%s", it->quantProduto);  // acidionar o cálculo de saída
-        getchar();
-        
-    } while (!lerQuantidade(it->quantProduto));
+        for (i = 1; i <= resp; i++) {
+            do 
+            {
+                printf(" | Informe o código de barras: ");
+                scanf("%s", it->codigoBarras);
+                getchar();
+            
+            } while (!lerQuantidade(it->codigoBarras));
+
+            do
+            {
+                printf(" | Informe a quantidade de produto: ");
+                scanf("%s", it->quantProduto);  // acidionar o cálculo de saída
+                getchar();
+            
+            } while (!lerQuantidade(it->quantProduto));
+            
+        }   
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
