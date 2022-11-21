@@ -11,7 +11,7 @@
 * **Developers:** Manuelly Rodrigues Victor e Italo Mauricio de Medeiros Santos
 * Data de início: 22/08/2022
 * [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-* Mapa do projeto: [<img src = "https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white">](https://github.com/italo-mauricio/SIG-Pantry/blob/main/Projeto/roteiro.md)
+* Roteiro do Projeto: [<img src = "https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white">](https://github.com/italo-mauricio/SIG-Pantry/blob/main/Projeto/roteiro.md)
 
 ## Features:
 
