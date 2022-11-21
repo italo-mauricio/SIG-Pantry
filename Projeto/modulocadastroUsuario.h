@@ -14,13 +14,13 @@ struct usuario {
 //cabeçalho das funções usadas no arquivo .c
 void modulocadastroUsuario(void);
 char telaMenuUsuario(void);
-void atualizarUsuario(void);
+int atualizarUsuario(void);
 void escolhafuncao(char);
 void InfoUsuario(void);
-void gravaUsuario(Usuario*);
-void listaInfoUsuario(void);
+int gravaUsuario(Usuario*);
+int listaInfoUsuario(void);
 void exibeInfoUsuario(Usuario* cliente);
-void buscaInfoUsuario(void);
-void infoExcluirUs(void);
+int buscaInfoUsuario(void);
+int infoExcluirUs(void);
 int validaUsername(Usuario* cliente);
 char escAtualizarUsuario(void);

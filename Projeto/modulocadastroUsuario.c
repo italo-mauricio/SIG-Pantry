@@ -125,7 +125,7 @@ void InfoUsuario(void)
 }  
 
 //A partir do username, visto que cada usuário tem o seu
-void buscaInfoUsuario(void)
+int buscaInfoUsuario(void)
 {
     FILE* fp;
     Usuario* cliente;
@@ -135,7 +135,7 @@ void buscaInfoUsuario(void)
 
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
+        return 0;
     }
     printf("\n\n");
     system(" cls || clear ");
@@ -167,8 +167,6 @@ void buscaInfoUsuario(void)
         printf(" | Status: %c\n", cliente->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
-        printf(" | Pressione qualquer tecla para sair.... ");
-        getchar();
     
     } else {
         printf("Os dados do usuário %s não foram encontrados\n", procurado);
@@ -176,11 +174,12 @@ void buscaInfoUsuario(void)
     free(cliente);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+    return 0;
     
 }
 
 //função para editar dados do usuário
-void atualizarUsuario(void) //adaptada by @IsaKaillany
+int atualizarUsuario(void) //adaptada by @IsaKaillany
 {
     FILE* fp;
     Usuario* cliente;
@@ -192,7 +191,7 @@ void atualizarUsuario(void) //adaptada by @IsaKaillany
     if (fp == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
-        exit(1);
+        return 0;
     }
     cliente = (Usuario*) malloc(sizeof(Usuario));
     system(" cls || clear ");
@@ -337,6 +336,7 @@ void atualizarUsuario(void) //adaptada by @IsaKaillany
     fclose(fp);      
 
     } 
+    return 0;
 }
 
 //função para selecionar o que quer atualizar
@@ -366,22 +366,23 @@ char escAtualizarUsuario(void)
 }
 
 //função para gravar no arquivo
-void gravaUsuario(Usuario* cliente) 
+int gravaUsuario(Usuario* cliente) 
 {
     FILE* fp;
     fp = fopen("usuario.dat", "ab");
     if (fp == NULL) {
         printf("Ops! Não é possível continuar o programa...\n");
-        exit(1);
+        return 0;
     }
     
     fwrite(cliente, sizeof(Usuario), 1, fp);
     fclose(fp);
+    return 0;
 
 }
 
 //função para remover o cadastro
-void infoExcluirUs(void)
+int infoExcluirUs(void)
 {
     FILE* fp;
     Usuario* cliente;
@@ -392,7 +393,7 @@ void infoExcluirUs(void)
 
     if (fp == NULL){
         printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
+        return 0;
     }
     cliente = (Usuario*) malloc(sizeof(Usuario));
     system( " clear || cls ");
@@ -432,19 +433,20 @@ void infoExcluirUs(void)
     fclose(fp);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+    return 0;
     
 }
 
 
 //função para listar os dados do usuário 
-void listaInfoUsuario(void) 
+int listaInfoUsuario(void) 
 {
     FILE* fp;
     Usuario* cliente;
     fp = fopen("usuario.dat", "rb");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
+        return 0;
     }
 
     cliente = (Usuario*)malloc(sizeof(Usuario));
@@ -456,6 +458,7 @@ void listaInfoUsuario(void)
     }
     fclose(fp);
     free(cliente);
+    return 0;
 
 }
 
@@ -488,7 +491,7 @@ int validaUsername(Usuario* cliente)
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo");
-        exit(1);
+        return 0;;
     }
 
     while (!feof(fp))
@@ -500,5 +503,5 @@ int validaUsername(Usuario* cliente)
         }
     }
 
-    return 1;
+    return 0;
 }

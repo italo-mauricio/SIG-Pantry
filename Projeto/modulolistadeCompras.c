@@ -121,7 +121,7 @@ char telaListadeCompras(void)
 } */
 
 //ver se procura pelo nome da lista ou pelo username do usuário
-void infoMontarLista(void)
+int infoMontarLista(void)
 {
     FILE* fp;
     Usuario* cliente;
@@ -132,7 +132,7 @@ void infoMontarLista(void)
 
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
+        return 0;
     }
     cliente = (Usuario*) malloc(sizeof(Usuario));
     mtlista = (MontarLista*)malloc(sizeof(MontarLista));
@@ -193,25 +193,27 @@ void infoMontarLista(void)
     free(cliente);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+    return 0;
 }
 
 //função para gravar no arquivo
-void gravaLista(MontarLista* mtlista) 
+int gravaLista(MontarLista* mtlista) 
 {
     FILE* fp;
     fp = fopen("lista.dat", "ab");
     if (fp == NULL) {
         printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-        exit(1);
+        return 0;
     }
     
     fwrite(mtlista, sizeof(MontarLista), 1, fp);
     fclose(fp);
+    return 0;
     
 }
 
 //função de pesquisa a partir do username (id do usuário)
-void buscarLista(void)
+int buscarLista(void)
 {
     FILE* fp;
     MontarLista* mtlista;
@@ -222,7 +224,7 @@ void buscarLista(void)
 
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
+        return 0;
     }
     printf("\n\n");
     system ( " cls  || clear " );
@@ -261,6 +263,7 @@ void buscarLista(void)
     free(cliente);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+    return 0;
     
 }
 
@@ -280,7 +283,7 @@ void exibeListaCompras(MontarLista* mtlista)
 }
 
 //função para edição
-void atualizarLista(void) 
+int atualizarLista(void) 
 {
     FILE* fp;
     Usuario* cliente;
@@ -293,14 +296,14 @@ void atualizarLista(void)
     if (fp == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
-        exit(1);
+        return 0;
     }
 
     fp = fopen("lista.dat", "r+b");
     if (fp == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
-        exit(1);
+        return 0;
     }
     
     cliente = (Usuario*) malloc(sizeof(Usuario));
@@ -380,9 +383,11 @@ void atualizarLista(void)
     getchar();
     free(mtlista);
     free(cliente);
-    fclose(fp);      
+    fclose(fp); 
+        
 
     } 
+    return 0;
 }
 
 char escAtualizarLista(void) 
@@ -408,7 +413,7 @@ char escAtualizarLista(void)
 }
 
 //Função para exclusão lógica
-void excluirLista(void)
+int excluirLista(void)
 {
     FILE* fp;
     MontarLista* mtlista;
@@ -420,14 +425,14 @@ void excluirLista(void)
 
     if (fp == NULL){
         printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
+        return 0;
     }
 
     fp = fopen("usuario.dat", "r+b");
 
     if (fp == NULL){
         printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
+        return 0;
     }
     
     mtlista = (MontarLista*) malloc(sizeof(MontarLista));
@@ -472,18 +477,19 @@ void excluirLista(void)
     fclose(fp);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+    return 0;
     
 }
 
 //listar a lista pronta
-void listaComprasPronta(void) 
+int listaComprasPronta(void) 
 {
     FILE* fp;
     MontarLista* mtlista;
     fp = fopen("lista.dat", "rb");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
+        return 0;
     }
     printf("\n\n");
     printf(" | ===================== Exibe lista ======================= | \n");
@@ -495,5 +501,5 @@ void listaComprasPronta(void)
     }
     fclose(fp);
     free(mtlista);
-
+    return 0;
 }

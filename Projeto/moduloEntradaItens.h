@@ -2,5 +2,5 @@
 void menuEntradaItens(void);
 char telaRegistrarEntrada(void);
 void infoEntrada(void);
-void listarEntrada(void);
-void buscaInfoEntrada(void);
+int listarEntrada(void);
+int buscaInfoEntrada(void);
