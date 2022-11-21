@@ -8,6 +8,8 @@
 
 typedef struct item Item;
 
+// consertar a parte de salvamento ou busca
+
 void menulistadeCompras(void)
 {
     char escolha;
