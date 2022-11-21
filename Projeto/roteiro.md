@@ -19,7 +19,6 @@ O último módulo, que possui arquivo próprio, mas que está vinculado ao ID do
       
 <p align="center">
   <br />
-  Italo-Mauricio and Manuelly Rodrigues
-            Since 2022
+  Italo Mauricio and Manuelly Rodrigues
   <br />
 </p> 
