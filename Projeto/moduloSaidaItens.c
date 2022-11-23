@@ -98,21 +98,6 @@ void infoSaida(void)
 
 }
 
-/*//função para gravar no arquivo:
-void gravaSaida(Saida* said) 
-{
-    FILE* fp;
-    fp = fopen("saida.dat", "ab");
-    if (fp == NULL) {
-        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-        exit(1);
-    }
-    
-    fwrite(said, sizeof(Saida), 1, fp);
-    fclose(fp);
-    
-} */
-
 //função de pesquisa a partir do código de barras
 int buscainfoSaida(void)
 {

@@ -144,7 +144,7 @@ void infoItem(void)
         printf(" |                   Guarda-roupa                           |\n");
         printf(" |                                                          |\n");
         printf(" | ======================================================== | \n");
-        printf(" | Digite a sua opção (sem acentuação): ");
+        printf(" | Digite a sua opção: ");
         scanf("%[A-Z a-z]", it->localArmazenamento);
         getchar();
 

@@ -72,7 +72,7 @@ void InfoUsuario(void)
     do
     {
         printf(" | Informe o seu nome: ");
-        scanf("%[A-Z a-z 0-9 ]", cliente->nomeUsuario);
+        scanf("%[A-Z a-z]", cliente->nomeUsuario);
         getchar();
         
     } while (!validarLetras(cliente->nomeUsuario, tamanhoString(cliente->nomeUsuario)));
@@ -84,7 +84,7 @@ void InfoUsuario(void)
 
     } while (!lerEmail(cliente->emailUsuario));
     
-    do {        
+    do {       
         printf(" | Informe o dia de nascimento: ");
         scanf("%d",&cliente->dia);
         getchar();
@@ -103,15 +103,8 @@ void InfoUsuario(void)
         scanf("%s", cliente->usernameUsuario);
         getchar();
 
-    } while(!lerUsernameSenha(cliente->usernameUsuario) || (!validaUsername(cliente)));
+    } while(!lerUsername(cliente->usernameUsuario) || (!validaUsername(cliente)));
         
-    do {
-        printf(" | Informe sua senha: ");
-        scanf("%s", cliente->senhaUsuario);
-        getchar();
-        
-
-    } while(!lerUsernameSenha(cliente->senhaUsuario));
     
     printf(" | Usuário cadastrado com sucesso!                           | \n");
     printf(" | ========================================================= | \n");
@@ -216,7 +209,7 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
             do
             {
                 printf("Informe o novo nome: ");
-                scanf(" %49[^\n]", cliente->nomeUsuario);
+                scanf("%[A-Z a-z]", cliente->nomeUsuario);
                 getchar();
 
             } while(!validarLetras(cliente->nomeUsuario, tamanhoString(cliente->nomeUsuario)));
@@ -249,15 +242,7 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
                 scanf("%s", cliente->usernameUsuario);
                 getchar();
 
-            } while(!lerUsernameSenha(cliente->usernameUsuario)|| (!validaUsername(cliente)));
-           
-            do
-            {
-                printf(" | Informe uma nova senha: "); 
-                scanf("%s", cliente->senhaUsuario);
-                getchar();
-
-            } while(!lerUsernameSenha(cliente->senhaUsuario));
+            } while(!lerUsername(cliente->usernameUsuario)|| (!validaUsername(cliente)));
 
         }
 
@@ -265,7 +250,7 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
             do
             {
                 printf("Informe o novo nome: ");
-                scanf(" %49[^\n]", cliente->nomeUsuario);
+                scanf("%[A-Z a-z]", cliente->nomeUsuario);
                 getchar();
 
             } while(!validarLetras(cliente->nomeUsuario, tamanhoString(cliente->nomeUsuario)));  
@@ -304,17 +289,7 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
                 scanf("%s", cliente->usernameUsuario);
                 getchar();
 
-            } while(!lerUsernameSenha(cliente->usernameUsuario)|| (!validaUsername(cliente)));            
-        }
-
-        else if (resp == '6') {
-            do
-            {
-                printf(" | Informe uma nova senha: "); 
-                scanf("%s", cliente->senhaUsuario);
-                getchar();
-
-            } while(!lerUsernameSenha(cliente->senhaUsuario));
+            } while(!lerUsername(cliente->usernameUsuario)|| (!validaUsername(cliente)));            
         }
 
         cliente->status = '1';      
@@ -353,7 +328,6 @@ char escAtualizarUsuario(void)
     printf(" |                 3- Editar e-mail                          | \n");
     printf(" |                 4- Editar data de nascimento              | \n");                 
     printf(" |                 5- Editar username                        | \n");
-    printf(" |                 6- Editar senha                           | \n");                                                                    
     printf(" |                 0- Voltar à tela principal                | \n");    
     printf(" |                                                           | \n");
     printf(" | --------------------------------------------------------- | \n");

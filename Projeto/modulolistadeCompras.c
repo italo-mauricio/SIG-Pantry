@@ -82,7 +82,7 @@ char telaListadeCompras(void)
     char resp;
     char procurado[20];
     
-    fp = fopen("itens.dat", "rt");
+    fp = fopen("itens.dat", "rt"); //só precisa abrir o de itens, pois irá resgatar informações desse arq
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo");
@@ -104,7 +104,6 @@ char telaListadeCompras(void)
 }
 */
 
-//Aqui será um relatório/lista
 /*void itensProxVencimento(void)
 {
     //criar um ponteiro que puxe a informação com base na data de validade do cadastro de itens
@@ -130,6 +129,7 @@ int infoMontarLista(void)
     MontarLista* mtlista;
     int achou;
     char procurado[15];
+
     fp = fopen("usuario.dat", "rb");
 
     if (fp == NULL) {
@@ -150,6 +150,7 @@ int infoMontarLista(void)
     printf("Informe o seu username: ");
     scanf(" %30[^\n]", procurado);
     getchar();
+
     achou = 0;
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
@@ -196,6 +197,7 @@ int infoMontarLista(void)
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
     return 0;
+
 }
 
 //função para gravar no arquivo
