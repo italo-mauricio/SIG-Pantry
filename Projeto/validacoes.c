@@ -4,7 +4,6 @@
 #include "validacoes.h"
 
 
-
 //------------------------------------------------------------------//
 //                       Validação de Email                         //
 //                                                                  //
@@ -53,33 +52,31 @@ int lerEmail(char email[])
 
 
 
-
-
 // --------------------------------------- |
 //        Validação de Username            |
 // --------------------------------------  |
 
 
-int lerUsernameSenha(char usernameSenha[]) 
+int lerUsername(char username[]) 
 {
-  int tamanho = strlen(usernameSenha);   
+  int tamanho = strlen(username);   
   if (tamanho < 4) { //para não ter usuários com só: @ ou a@ ou 12... 
     return 0;
   } else {
     for (int i = 0; i < tamanho; i++) { 
-      if ((usernameSenha[i] == 'a') && (usernameSenha[i] <= 'z')) { 
+      if ((username[i] == 'a') && (username[i] <= 'z')) { 
         return 0;
       }
-      else if ((usernameSenha[i] == 'A') && (usernameSenha[i] <= 'Z')) {
+      else if ((username[i] == 'A') && (username[i] <= 'Z')) {
         return 0;
       }
-      else if ((usernameSenha[i] == '_') || (usernameSenha[i] == '-')) {
+      else if ((username[i] == '_') || (username[i] == '-')) {
         return 0;
       }
-      else if ((usernameSenha[i] == '@') || (usernameSenha[i] == '.')) {
+      else if ((username[i] == '@') || (username[i] == '.')) {
         return 0;
       }
-      else if ((usernameSenha[i] == '0') && (usernameSenha[i] <= 9)) {
+      else if ((username[i] == '0') && (username[i] <= 9)) {
         return 0;
       }   
       else {
@@ -91,11 +88,6 @@ int lerUsernameSenha(char usernameSenha[])
     return 1; 
     
 }
-
-
-
-
-
 
 
 // --------------------------------------- |
@@ -122,6 +114,7 @@ int validarLetras(char letra[], int tamanho){
         return 1;
     }
 }
+
 int tamanhoString(char a[]){
     int cont;
 
@@ -159,11 +152,6 @@ int lerLetras(char nome[])
 
 int meses[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 char decimais[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-
-
-
-
-
 
 
 
