@@ -9,11 +9,12 @@ struct item
     int ano;
     char codigoBarras[20];
     char status;
-    char estoqueMinimo[20];
+    char estoqueMinimo[20];  // PASSAR PARA INT
     char categoria[10];
     char localArmazenamento[50];
-    char quantProduto[20];
-  
+    char quantProduto[20];  // PASSAR PARA INT ALTERAR A CADA ENTRADA E SAIDA
+
+   
 };
 
 //cabeçalho das funções usadas no arquivo .c
