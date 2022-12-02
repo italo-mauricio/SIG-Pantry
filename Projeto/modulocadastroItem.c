@@ -260,7 +260,7 @@ int buscarItem(void)
 int telaAtualizarItem(void)  
 {
     FILE *fp;
-    Item* it;;
+    Item* it;
     char resp;
     int achou;
     char procurado[20];

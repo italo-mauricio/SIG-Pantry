@@ -29,5 +29,5 @@ int buscarItem(void);
 char telaLocaldeArmazenamento(void);
 char escAtualizarItem(void);
 int gravaItem(Item* it);
-
+void exibeItens(Item* it);
 
