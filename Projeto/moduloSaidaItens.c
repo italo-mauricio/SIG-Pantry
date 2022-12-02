@@ -13,13 +13,19 @@ void menuSaidaItens(void)
         escolha = telaRegistrarSaida();
         switch(escolha) {
         case '1':
-            infoSaida(); //informações do item
+            infoSaida(); //informações da saída
             break;
         case '2':
             buscainfoSaida(); //pesquisa
             break;
         case '3':
-            listarSaida(); //relatório
+            telaAtualizarSaida(); //edição
+            break;
+        case '4':
+            excluirSaida(); //exclusão
+            break;
+        case '5':
+            listarSaidas(); //relatório
             break;     
         default:
             printf("Opção inválida\n");
@@ -40,7 +46,9 @@ char telaRegistrarSaida(void)
     printf(" |                                                           | \n");
     printf(" |                 1- Informar saída                         | \n");
     printf(" |                 2- Pesquisar saída                        | \n");                
-    printf(" |                 3- Listar saída                           | \n");                                                                    
+    printf(" |                 3- Atualizar saída                        | \n");                
+    printf(" |                 4- Excluir saída                          | \n");                
+    printf(" |                 5- Listar saída                           | \n");                                                                    
     printf(" |                 0- Voltar à tela principal                | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -111,6 +119,7 @@ int buscainfoSaida(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
+
     printf("\n\n");
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
@@ -151,8 +160,183 @@ int buscainfoSaida(void)
     
 }
 
-//listar saídas
-int listarSaida(void) 
+//função para editar algum item
+int telaAtualizarSaida(void)  
+{
+    FILE *fp;
+    Item* it;
+    char resp;
+    int achou;
+    char procurado[20];
+
+    fp = fopen("itens.dat", "r+b");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        return 0;
+    }
+    system(" cls || clear");
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | -------------------- Atualizar saída -------------------- | \n");
+    printf("Informe o código de barras cadastrado: ");
+    scanf(" %[0-9]", procurado);
+    getchar();
+
+    it = (Item*) malloc(sizeof(Item));
+    achou = 0;
+    while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
+        if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')) {
+            achou = 1;
+    }
+    if (achou){
+
+        listarSaidas();
+        resp = escAtualizarSaida();
+        printf("\n");
+
+        if (resp == '1'){
+            do
+            {
+                printf("Informe o novo código de barras: ");
+                scanf(" %49[^\n]", it->codigoBarras);
+                getchar();
+
+            } while(!lerQuantidade(it->codigoBarras));
+
+            do
+            {
+                printf("Informe a nova quantidade de produto: ");
+                scanf("%s", it->quantProduto);
+                getchar();
+
+            } while(!lerQuantidade(it->quantProduto));
+
+        }
+
+        else if (resp == '2'){
+            do
+            {
+                printf("Informe o novo código de barras: ");
+                scanf(" %49[^\n]", it->codigoBarras);
+                getchar();
+
+            } while(!lerQuantidade(it->codigoBarras));
+
+        }
+
+        else if (resp == '3'){
+            do
+            {
+                printf("Informe a nova quantidade de produto: ");
+                scanf("%s", it->quantProduto);
+                getchar();
+
+            } while(!lerQuantidade(it->quantProduto));
+
+        }
+        
+        it->status = '1';      
+        fseek(fp, (-1)*sizeof(Item), SEEK_CUR);
+        fwrite(it, sizeof(Item), 1, fp);        
+        printf(" |                                                           | \n");
+        printf(" | --------------------------------------------------------- | \n");
+        printf("Dados editados com sucesso");
+    }
+    
+    else 
+    {
+        printf("A saída de código de barras %s não foi encontrada\n", procurado);
+    }
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
+    free(it);
+    fclose(fp);      
+    }
+
+    return 0; 
+
+}
+
+//função para selecionar o que quer atualizar
+char escAtualizarSaida(void)
+{    
+    char esc;
+    system(" cls || clear");
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | -------------------- Atualizar saída -------------------- | \n");
+    printf(" |                                                           | \n");
+    printf(" |                1- Editar tudo                             | \n");
+    printf(" |                2- Editar código de barras                 | \n");
+    printf(" |                3- Editar quantidade do produto            | \n");
+    printf(" |                0- Voltar à tela principal                 | \n");    
+    printf(" |                                                           | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | Selecione uma opção do que você deseja editar: ");
+    scanf("%c", &esc);
+    getchar();
+
+    return esc;
+
+}
+
+//função para exclusão lógica
+int excluirSaida(void)
+{
+    FILE* fp;
+    Item* it;
+    int achou;
+    char resp;
+    char procurado[20];
+    fp = fopen("itens.dat", "r+b");
+
+    if (fp == NULL){
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    it = (Item*) malloc(sizeof(Item));
+    system( " clear || cls ");
+    printf(" | ============================================================== | \n");
+    printf(" | -------------------------------------------------------------- | \n");
+    printf(" | ----------------------- Excluir saída ------------------------ | \n");
+    printf(" |                                                                | \n");
+    printf(" | Informe o código de barras da saída que você deseja excluir: ");
+    scanf(" %30[^\n]", procurado);
+    getchar();  
+    achou = 0;
+    while ((!achou) && (fread(it, sizeof(Item), 1, fp))){
+        if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')){
+            achou = 1;
+        }
+    }
+
+   if (achou){
+        listarSaidas();
+        printf("Deseja realmente excluir os dados desta saída? (s/n)");
+        scanf("%c", &resp);
+        if (resp == 's' || resp == 'S'){
+            it->status = '0';
+            fseek(fp, (-1)*sizeof(Item), SEEK_CUR);
+            fwrite(it, sizeof(Item), 1, fp);
+            printf("\nDados da saída excluídos com sucesso!");
+            gravaItem(it);
+        }else{
+            printf("\nTudo bem, os dados não foram alterados!");
+        }
+    }else{
+        printf("A saída não foi encontrada!");
+    }
+    free(it);
+    fclose(fp);
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
+    return 0;
+    
+}
+
+//listar saídas - relatório
+int listarSaidas(void) 
 {
     FILE* fp;
     Item* it;
