@@ -2,13 +2,13 @@
 #include<stdlib.h>
 #include <string.h>
 #include "validacoes.h"
-#include "modulocadastroItem.h"
+#include "modulomenuItem.h"
 #include "modulocadastroUsuario.h"
 #include "moduloEntradaItens.h"
 #include "moduloSaidaItens.h"
 
 
-void modulocadastroItem(void) 
+void modulomenuItem(void) 
 {
     char escolha;
     do {
