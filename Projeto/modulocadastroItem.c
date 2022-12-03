@@ -14,19 +14,16 @@ void modulocadastroItem(void)
     do {
         escolha = telaMenuItens();
         switch(escolha) {
-            case '1':
-                infoItem(); //cadastro do item
-                break;
-            case '2': 
+            case '1': 
                 buscarItem(); //pesquisa
                 break;
-            case '3':
+            case '2':
                 telaAtualizarItem(); //edição 
                 break;
-            case '4':
+            case '3':
                 infoExcluir(); //exclusão
                 break;
-            case '5':
+            case '4':
                 listarItens(); //relatório
                 break;
             default:
@@ -47,11 +44,10 @@ char telaMenuItens(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ----------------- SIG-Pantry - MENU ITENS --------------- | \n");
     printf(" |                                                           | \n");
-    printf(" |                1- Cadastrar item                          | \n"); 
-    printf(" |                2- Pesquisar item                          | \n");
-    printf(" |                3- Atualizar cadastro                      | \n");
-    printf(" |                4- Excluir itens                           | \n");                 
-    printf(" |                5- Listar itens                            | \n");
+    printf(" |                1- Pesquisar item                          | \n");
+    printf(" |                2- Atualizar cadastro                      | \n");
+    printf(" |                3- Excluir itens                           | \n");                 
+    printf(" |                4- Listar itens                            | \n");
     printf(" |                0- Voltar à tela principal                 | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -63,102 +59,6 @@ char telaMenuItens(void)
 
 }
 
-//função para o cadastro dos itens
-void infoItem(void)
-{
-    Item* it;
-    system ( " cls || clear" );
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" | -------------- SIG-Pantry - Cadastrar itens ------------- | \n");
-    printf(" |                                                           | \n");
-    it = (Item*) malloc(sizeof(Item));
-    do
-    {
-        printf(" | Informe o nome do produto (sem acentuação): ");
-        scanf("%s", it->nomeProduto);
-        getchar();
-        
-    } while (!lerLetras(it->nomeProduto));
-
-    do
-    {
-        printf(" | Informe o nome da marca: ");
-        scanf("%s", it->nomeMarca);
-        getchar();
-        
-    } while (!lerLetras(it->nomeMarca));
-
-    do //por enquanto será assim
-    {
-        printf(" | ================= Categoria do produto ================= |\n");
-        printf(" |                                                          |\n");
-        printf(" |                      Higiene pessoal                     |\n");
-        printf(" |                      Limpeza                             |\n");
-        printf(" |                      Alimento                            |\n");
-        printf(" |                                                          |\n");
-        printf(" | ======================================================== |\n");
-        printf(" | Digite a sua opção: ");
-        scanf("%[A-Z a-z]", it->categoria);
-        getchar();
-
-    } while (!validarLetras(it->categoria, tamanhoString(it->categoria)));
-
-    do
-    {
-        printf(" | Informe o código de barras: ");
-        scanf("%s", it->codigoBarras);
-        getchar();
-        
-    } while (!lerQuantidade(it->codigoBarras));
-    
-    do {
-        printf(" | Informe o dia de vencimento do produto: ");
-        scanf("%d", &it->dia);
-        getchar();
-        printf(" | Informe o mês de vencimento do produto: ");
-        scanf("%d", &it->mes);
-        getchar();
-        printf(" | Informe o ano de vencimento do produto: ");
-        scanf("%d", &it->ano);
-        getchar();
-        
-    } while(!valida_data(it->dia, it->mes, it->ano));  
-
-    do
-    {
-        printf(" | Informe o estoque mínimo do item: ");
-        scanf("%s", it->estoqueMinimo);
-        getchar();
-        
-    } while (!lerQuantidade(it->estoqueMinimo));
-
-    do //por enquanto será assim
-    {
-        printf(" | ================ Local de Armazenamento ================ |\n");
-        printf(" |                                                          |\n");
-        printf(" |                   Geladeira                              |\n");
-        printf(" |                   Armário da cozinha                     |\n");
-        printf(" |                   Área de serviço                        |\n");
-        printf(" |                   Banheiro                               |\n");
-        printf(" |                   Guarda-roupa                           |\n");
-        printf(" |                                                          |\n");
-        printf(" | ======================================================== | \n");
-        printf(" | Digite a sua opção: ");
-        scanf("%[A-Z a-z]", it->localArmazenamento);
-        getchar();
-
-    } while (!validarLetras(it->localArmazenamento, tamanhoString(it->localArmazenamento)));
-
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
-    it->status = '1'; //o 1 mostra que foi cadastrado
-    gravaItem(it);
-    free(it);
-    printf(" | Pressione qualquer tecla para sair.... ");
-    getchar();
-
-}
 
 //exibe produtos cadastrados
 void exibeItens(Item* it) {
