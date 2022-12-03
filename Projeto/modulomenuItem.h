@@ -18,7 +18,7 @@ struct item
 };
 
 //cabeçalho das funções usadas no arquivo .c
-void modulocadastroItem(void);
+void modulomenuItem(void);
 char telaMenuItens(void);
 void infoItem(void);
 int listarItens(void);

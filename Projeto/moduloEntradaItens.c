@@ -4,7 +4,7 @@
 #include "moduloEntradaItens.h"
 #include "validacoes.h"
 #include "modulocadastroUsuario.h"
-#include "modulocadastroItem.h"
+#include "modulomenuItem.h"
 
 
 void menuEntradaItens(void)
@@ -79,9 +79,54 @@ void infoEntrada(void)
     scanf("%d", &resp);
 
         for (i = 1; i <= resp; i++) {
+             do
+            {
+        printf(" | Informe o nome do produto (sem acentuação): ");
+        scanf("%s", it->nomeProduto);
+        getchar();
+        
+            } while (!lerLetras(it->nomeProduto));
             do
             {
-                printf(" | Informe o código de barras do produto: ");
+        printf(" | Informe o nome da marca: ");
+        scanf("%s", it->nomeMarca);
+        getchar();
+        
+            } while (!lerLetras(it->nomeMarca));
+         do //por enquanto será assim
+        {
+        printf(" | ================= Categoria do produto ================= |\n");
+        printf(" |                                                          |\n");
+        printf(" |                      Higiene pessoal                     |\n");
+        printf(" |                      Limpeza                             |\n");
+        printf(" |                      Alimento                            |\n");
+        printf(" |                                                          |\n");
+        printf(" | ======================================================== |\n");
+        printf(" | Digite a sua opção: ");
+        scanf("%[A-Z a-z]", it->categoria);
+        getchar();
+
+        } while (!validarLetras(it->categoria, tamanhoString(it->categoria)));
+
+        do 
+         {
+        printf(" | ================ Local de Armazenamento ================ |\n");
+        printf(" |                                                          |\n");
+        printf(" |                   Geladeira                              |\n");
+        printf(" |                   Armário da cozinha                     |\n");
+        printf(" |                   Área de serviço                        |\n");
+        printf(" |                   Banheiro                               |\n");
+        printf(" |                   Guarda-roupa                           |\n");
+        printf(" |                                                          |\n");
+        printf(" | ======================================================== | \n");
+        printf(" | Digite a sua opção: ");
+        scanf("%[A-Z a-z]", it->localArmazenamento);
+        getchar();
+
+         } while (!validarLetras(it->localArmazenamento, tamanhoString(it->localArmazenamento)));
+        do
+        {
+       printf(" | Informe o código de barras do produto: ");
                 scanf("%s", it->codigoBarras);
                 getchar();
                 

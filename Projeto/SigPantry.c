@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "modulocadastroUsuario.h"
-#include "modulocadastroItem.h"
+#include "modulomenuItem.h"
 #include "modulolistadeCompras.h"
 #include "moduloRelatorio.h"
 #include "moduloSobre.h"
@@ -21,7 +21,7 @@ int main (void)
             modulocadastroUsuario();
             break;
         case '2':
-            modulocadastroItem();
+            modulomenuItem();
             break; 
         case '3':
             menulistadeCompras();
