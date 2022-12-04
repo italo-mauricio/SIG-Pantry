@@ -95,6 +95,7 @@ void infoEntrada(void)
             } while (!lerLetras(it->nomeMarca));
          do //por enquanto será assim
         {
+        system("cls || clear");
         printf(" | ================= Categoria do produto ================= |\n");
         printf(" |                                                          |\n");
         printf(" |                      Higiene pessoal                     |\n");
@@ -110,6 +111,7 @@ void infoEntrada(void)
 
         do 
          {
+        system("cls || clear");
         printf(" | ================ Local de Armazenamento ================ |\n");
         printf(" |                                                          |\n");
         printf(" |                   Geladeira                              |\n");
@@ -339,7 +341,8 @@ int telaAtualizarEntrada(void)
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
     free(it);
-    fclose(fp);      
+    fclose(fp);
+    gravaItem(it);      
     }
 
     return 0; 
