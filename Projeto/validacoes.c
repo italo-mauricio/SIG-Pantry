@@ -155,15 +155,14 @@ char decimais[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
 
 
-//------------------------------------------------------------------//
-//                       Validação de Email                         //
-//                                                                  //
-// Código by: https://www.vivaolinux.com.br/script/Funcao-para-validacao-de-datas //
-//------------------------------------------------------------------//
+//----------------------------------------------------------------------------------//
+//                                  Validação de data                              //
+//                                                                                 //
+//  Código by: https://www.vivaolinux.com.br/script/Funcao-para-validacao-de-datas //
+//---------------------------------------------------------------------------------//
 
 
-
-int valida_data(int dia, int mes, int ano) //by https://www.vivaolinux.com.br/script/Funcao-para-validacao-de-datas
+int valida_data(int dia, int mes, int ano) 
     {
     if ((dia >= 1 && dia <= 31) && (mes >= 1 && mes <= 12) && (ano >= 1900 && ano <= 2100)) //verifica se os numeros sao validos
         {
@@ -199,7 +198,7 @@ int valida_data(int dia, int mes, int ano) //by https://www.vivaolinux.com.br/sc
 
 
 // ---------------------------------------- |
-//        Validação de numeros              |
+//        Validação de números              |
 // ---------------------------------------  |
 
   

@@ -19,13 +19,7 @@ void menuSaidaItens(void)
         case '2':
             buscainfoSaida(); //pesquisa
             break;
-       // case '3':
-         //   telaAtualizarSaida(); //edição
-           // break;
-        //case '4':
-           // excluirSaida(); //exclusão
-            //break;
-        case '5':
+        case '3':
             listarSaidas(); //relatório
             break;     
         default:
@@ -46,10 +40,8 @@ char telaRegistrarSaida(void)
     printf(" | ---------- REGISTRAR SAÍDA DE ITENS DA DESPENSA --------- | \n");
     printf(" |                                                           | \n");
     printf(" |                 1- Informar saída                         | \n");
-    printf(" |                 2- Pesquisar saída                        | \n");                
-    printf(" |                 3- Atualizar saída                        | \n");                
-    printf(" |                 4- Excluir saída                          | \n");                
-    printf(" |                 5- Listar saída                           | \n");                                                                    
+    printf(" |                 2- Pesquisar saída                        | \n");                               
+    printf(" |                 3- Listar saída                           | \n");                                                                    
     printf(" |                 0- Voltar à tela principal                | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -72,6 +64,7 @@ int infoSaida(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
+
     Item* it;
     int resp;
     int i;
@@ -83,24 +76,27 @@ int infoSaida(void)
     printf(" | ---------------- Registrar saída de item ---------------- | \n");
     printf(" |                                                           | \n");   
     it = (Item*) malloc(sizeof(Item)); 
-    printf(" | Por favor, Informe o código de barras: ");
+    printf(" | Por favor, Informe o código de barras cadastrado: ");
     scanf("%30[^\n]", cod);
     getchar();
+
     achou = 0;
+
     while((!achou) && (fread(it, sizeof(it), 1, fp))) {
         if ((strcmp(it->codigoBarras, cod) == 0) && (it->status == '1')) {
             achou = 1;
         }
     }
+
     fclose(fp);
     if (achou){
         printf("Informe quantos itens vão sair da despensa: ");
         scanf("%d", &resp);
 
             for (i = 1; i <= resp; i++) {
-                 do
+                do
                 {
-                    printf(" | Informe a quantidade de produto: ");
+                    printf(" | Informe a quantidade desse item que deixará a despensa: ");
                     scanf("%s", it->quantProduto);  // acidionar o cálculo de saída
                     getchar();
                 
@@ -108,9 +104,13 @@ int infoSaida(void)
 
                   
             }
-     }else {
-                printf("Item não encontrado");
-            }
+
+    }else {
+        printf("Item não encontrado");
+            
+    }
+    //colocar uma condicional aqui para perguntar se a pessoa realmente tem certeza dessa saída
+    //se ela não tiver, fecha o arquivo e não salva
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -122,9 +122,8 @@ int infoSaida(void)
     getchar();
     return 0;
 
-    }
+}
    
-
 
 //função de pesquisa a partir do código de barras
 int buscainfoSaida(void)
@@ -150,13 +149,16 @@ int buscainfoSaida(void)
     scanf(" %30[^\n]", procurado);
     getchar();
     it = (Item*) malloc(sizeof(Item));
+
     achou = 0;
+
     while((!achou) && (fread(it, sizeof(Item*), 1, fp))) {
         printf("Código de barras |%s|\n", it->codigoBarras);
         if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')) {
             achou = 1;
         }
     }
+
     fclose(fp);
     if (achou) {
         system(" cls || clear ");
@@ -173,6 +175,7 @@ int buscainfoSaida(void)
     } else {
         printf("Os dados da saída %s não foram encontrados\n", procurado);
     }
+
     free(it);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
@@ -205,6 +208,7 @@ int listarSaidas(void)
         printf(" | Pressione qualquer tecla para sair.... ");
         getchar();
     }
+
     fclose(fp);
     free(it);
     return 0;
