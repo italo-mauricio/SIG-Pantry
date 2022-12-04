@@ -57,37 +57,32 @@ char telaRegistrarSaida(void)
 int infoSaida(void)
 {
     FILE* fp;
-    
-    fp = fopen("itens.dat", "rb");
+    Item* it;
+    int resp;
+    int i;
+    int achou;
+    char cod [15]; 
+    fp = fopen("itens.dat", "r+b");
 
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
-
-    Item* it;
-    int resp;
-    int i;
-    int achou;
-    char cod [20];
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ---------------- Registrar saída de item ---------------- | \n");
     printf(" |                                                           | \n");   
-    it = (Item*) malloc(sizeof(Item)); 
     printf(" | Por favor, Informe o código de barras cadastrado: ");
-    scanf("%30[^\n]", cod);
+    scanf("%s", cod);
     getchar();
-
+    it = (Item*) malloc(sizeof(Item));
     achou = 0;
-
-    while((!achou) && (fread(it, sizeof(it), 1, fp))) {
+    while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
         if ((strcmp(it->codigoBarras, cod) == 0) && (it->status == '1')) {
             achou = 1;
         }
     }
-
     fclose(fp);
     if (achou){
         printf("Informe quantos itens vão sair da despensa: ");
@@ -114,7 +109,6 @@ int infoSaida(void)
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Press ENTER for exit... ");
     it->status = '1';
     gravaItem(it);
     free(it);
@@ -138,7 +132,6 @@ int buscainfoSaida(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
-
     printf("\n\n");
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
@@ -149,16 +142,12 @@ int buscainfoSaida(void)
     scanf(" %30[^\n]", procurado);
     getchar();
     it = (Item*) malloc(sizeof(Item));
-
     achou = 0;
-
     while((!achou) && (fread(it, sizeof(Item*), 1, fp))) {
-        printf("Código de barras |%s|\n", it->codigoBarras);
         if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')) {
             achou = 1;
         }
     }
-
     fclose(fp);
     if (achou) {
         system(" cls || clear ");
