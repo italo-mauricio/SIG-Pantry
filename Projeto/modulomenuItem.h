@@ -9,11 +9,10 @@ struct item
     int ano;
     char codigoBarras[20];
     char status;
-    char estoqueMinimo[20];  // PASSAR PARA INT
+    char estoqueMinimo[20]; //transformar para int
     char categoria[10];
     char localArmazenamento[50];
-    char quantProduto[20];  // PASSAR PARA INT ALTERAR A CADA ENTRADA E SAIDA
-
+    char quantProduto[20];  //transformar para int
    
 };
 
