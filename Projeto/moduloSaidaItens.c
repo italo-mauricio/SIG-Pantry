@@ -59,6 +59,8 @@ int infoSaida(void)
     Item* it;
     int resp;
     int i;
+    //int estoque;
+    //int novovalor;
     int achou;
     
     char cod [15]; 
@@ -92,10 +94,24 @@ int infoSaida(void)
                 do
                 {
                     printf(" | Informe a quantidade desse item que deixará a despensa: ");
-                    scanf("%s", it->quantProduto - 1);  // acidionar o cálculo de saída
+                    scanf("%s", it->quantProduto);  // acidionar o cálculo de saída
                     getchar();
                 
                 } while (!lerQuantidade(it->quantProduto));
+
+                
+
+                fseek(fp, -1*sizeof(Item), SEEK_CUR);
+                fwrite(it, sizeof(Item), 1, fp);
+
+                printf("Retirado com sucesso!");
+
+
+
+                // o campo de quantidade de produtos já foi acessado, agora precisamos resgatar
+                // a informação que está no módulo de entrada, e subtrair com o que está saindo
+
+
 
                 
          
