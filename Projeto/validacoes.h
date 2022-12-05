@@ -6,3 +6,5 @@ void deixarTelaLimpa(void);
 int valida_data(int dia, int mes, int ano);
 int lerEmail(char email[]);
 int tamanhoString(char a[]);
+int charParaInt(char *num);
+int poten(int num, int pot);

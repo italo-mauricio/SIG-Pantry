@@ -232,3 +232,46 @@ void deixarTelaLimpa(void) //adaptado by @flgorgonio
   }
   
 }
+
+
+ int charParaInt(char *num) {
+    int soma = 0;
+    int tam = strlen(num);
+    int aux = tam - 1; 
+
+    if (tam == 1) {
+        return num[0] - '0';
+
+    }
+
+    for (int i = 0; i <= tam - 1; i++) {
+        
+        soma = soma + ((num[i] - '0') * poten(10, aux));
+
+        aux = aux - 1;
+
+    }
+
+    return soma;
+
+}
+
+int poten(int num, int pot) {
+    int soma = num;
+
+    if (pot == 0) {
+        return 1;
+    }
+
+    else if (pot == 1) {
+        return num;
+    }
+
+    for (int i = 2; i <= pot; i++ ) {
+        soma = soma * num;
+        
+    }
+
+    return soma;
+
+}
