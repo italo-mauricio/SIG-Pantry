@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "modulocadastroUsuario.h"
-#include "modulomenuItem.h"
 #include "modulolistadeCompras.h"
 #include "moduloRelatorio.h"
 #include "moduloSobre.h"
@@ -21,21 +20,18 @@ int main (void)
             modulocadastroUsuario();
             break;
         case '2':
-            modulomenuItem();
-            break; 
-        case '3':
-            menulistadeCompras();
-            break;
-        case '4':
             menuEntradaItens();
             break; 
-        case '5':    
+        case '3':    
             menuSaidaItens();
             break;
-        case '6':
+        case '4':
+            menulistadeCompras();
+            break;
+        case '5':
             moduloRelatorio();
             break; 
-        case '7':
+        case '6':
             telaSobre();
             break;
         case '0':
@@ -62,12 +58,11 @@ char telaPrincipal (void)
     printf (" | ------------------------------------------------------------------- | \n");
     printf (" |                                                                     | \n");
     printf (" |                        1 - Menu usuário                             | \n");
-    printf (" |                        2 - Menu itens                               | \n");
-    printf (" |                        3 - Lista de compras                         | \n");
-    printf (" |                        4 - Entrada de itens                         | \n");
-    printf (" |                        5 - Saída de itens                           | \n");
-    printf (" |                        6 - Relatório                                | \n");
-    printf (" |                        7 - Informações                              | \n");
+    printf (" |                        2 - Entrada de itens                         | \n");
+    printf (" |                        3 - Saída de itens                           | \n");
+    printf (" |                        4 - Lista de compras                         | \n");
+    printf (" |                        5 - Relatório                                | \n");
+    printf (" |                        6 - Informações                              | \n");
     printf (" |                        0 - Sair                                     | \n");
     printf (" |                                                                     | \n");                                                                      
     printf (" | ------------------------------------------------------------------- | \n");
