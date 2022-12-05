@@ -4,7 +4,6 @@
 #include "moduloSaidaItens.h"
 #include "validacoes.h"
 #include "modulocadastroUsuario.h"
-#include "modulomenuItem.h"
 #include "moduloEntradaItens.h"
 
 void menuSaidaItens(void)
