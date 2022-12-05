@@ -13,11 +13,12 @@ void telaSobre(void)
     printf ( " |                                                                    | \n " );                                       
     printf ( " |            Disciplina: DCT1106 - PROGRAMAÇÃO - 2022.2              | \n " );
     printf ( " |         Projeto: Sistema de Controle de Despensa Doméstica         | \n " );
-    printf ( " |                    Docente: Dr Flavius Gorgonio                    | \n " );
+    printf ( " |                    Docente: Dr Flavius Gorgônio                    | \n " );
     printf ( " |                                                                    | \n " );
     printf ( " |  Este programa consiste no controle das atividades de uma despensa | \n " );
     printf ( " |   doméstica, sendo dividida em categorias no intuito de ajudar na  | \n " );
     printf ( " |               organização das atividades cotidianas.               | \n " );
+    printf ( " |                                                                    | \n " );
     printf ( " |          Developers: Manuelly Rodrigues e Italo Maurício           | \n " );
     printf ( " |                                                                    | \n " );
     printf ( " | ------------------------------------------------------------------ | \n " );
