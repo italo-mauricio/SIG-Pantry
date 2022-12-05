@@ -61,6 +61,7 @@ int infoSaida(void)
     int resp;
     int i;
     int achou;
+    
     char cod [15]; 
     fp = fopen("itens.dat", "r+b");
 
@@ -92,17 +93,19 @@ int infoSaida(void)
                 do
                 {
                     printf(" | Informe a quantidade desse item que deixará a despensa: ");
-                    scanf("%s", it->quantProduto);  // acidionar o cálculo de saída
+                    scanf("%s", it->quantProduto - 1);  // acidionar o cálculo de saída
                     getchar();
                 
                 } while (!lerQuantidade(it->quantProduto));
 
-                  
+                
+         
             }
+            
+          
 
     }else {
-        printf("Item não encontrado");
-            
+        printf("Produto não encontrado!");
     }
     //colocar uma condicional aqui para perguntar se a pessoa realmente tem certeza dessa saída
     //se ela não tiver, fecha o arquivo e não salva
