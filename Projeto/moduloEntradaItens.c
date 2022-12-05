@@ -166,6 +166,19 @@ void infoEntrada(void)
                 getchar();
                 
             } while(!lerQuantidade(it->quantProduto));
+
+            do {       
+                printf(" | Informe o dia da entrada: ");
+                scanf("%d",&it->diaEnt);
+                getchar();
+                printf(" | Informe o mês da entrada: ");
+                scanf("%d",&it->mesEnt);
+                getchar();
+                printf(" | Informe o ano da entrada: ");
+                scanf("%d",&it->anoEnt);
+                getchar();
+                
+            } while(!valida_data(it->dia, it->mes, it->ano));  
         }
 
     printf(" |                                                           | \n");
@@ -238,6 +251,9 @@ int buscaInfoEntrada(void)
         printf(" | Mês do vencimento: %d\n", it->mes);         
         printf(" | Ano do vencimento: %d\n", it->ano); 
         printf(" | Quantidade do produto: %s\n", it->quantProduto);
+        printf(" | Dia da entrada: %d\n", it->diaEnt);
+        printf(" | Mês da entrada: %d\n", it->mesEnt);
+        printf(" | Ano da entrada: %d\n", it->anoEnt);
         printf(" | Status: %c\n", it->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
@@ -488,6 +504,18 @@ int telaAtualizarEntrada(void)
             } while(!lerQuantidade(it->quantProduto));
 
         }
+        do {       
+        printf(" | Informe o dia da entrada: ");
+        scanf("%d",&it->diaEnt);
+        getchar();
+        printf(" | Informe o mês da entrada: ");
+        scanf("%d",&it->mesEnt);
+        getchar();
+        printf(" | Informe o ano da entrada: ");
+        scanf("%d",&it->anoEnt);
+        getchar();
+        
+     } while(!valida_data(it->dia, it->mes, it->ano));  
         
         it->status = '1';      
         fseek(fp, (-1)*sizeof(Item), SEEK_CUR);
@@ -627,6 +655,9 @@ int listarEntradas(void)
         printf(" | Mês do vencimento: %d\n", it->mes);         
         printf(" | Ano do vencimento: %d\n", it->ano); 
         printf(" | Quantidade do produto: %s\n", it->quantProduto);
+        printf(" | Dia da entrada: %d\n", it->diaEnt);
+        printf(" | Mês da entrada: %d\n", it->mesEnt);
+        printf(" | Ano da entrada: %d\n", it->anoEnt);
         printf(" | Status: %c\n", it->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
