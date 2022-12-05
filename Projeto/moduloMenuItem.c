@@ -4,7 +4,7 @@
 #include "moduloMenuItem.h"
 #include "validacoes.h"
 #include "modulocadastroUsuario.h"
-#include "moduloSaidaItens.h"
+
 
 void moduloMenuItem(void)
 {
@@ -714,6 +714,7 @@ int listarItens(void)
 //função para adição de produtos à despensa
 int entradaItem(void) 
 {
+    FILE* fp;
     Item* it;
     Mov* mv;
     int resp;
@@ -803,6 +804,7 @@ int entradaItem(void)
 //função para retirada de produto da despensa
 int saidaItem(void) 
 {
+    FILE* fp;
     Item* it;
     Mov* mv;
     int resp;
