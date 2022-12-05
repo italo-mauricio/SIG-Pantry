@@ -4,7 +4,7 @@
 #include "moduloSaidaItens.h"
 #include "validacoes.h"
 #include "modulocadastroUsuario.h"
-#include "moduloEntradaItens.h"
+#include "moduloMenuItem.h"
 
 void menuSaidaItens(void)
 {
@@ -59,7 +59,10 @@ int infoSaida(void)
     Item* it;
     int resp;
     int i;
+    //int estoque;
+    //int novovalor;
     int achou;
+    
     char cod [15]; 
     fp = fopen("itens.dat", "r+b");
 
@@ -96,12 +99,28 @@ int infoSaida(void)
                 
                 } while (!lerQuantidade(it->quantProduto));
 
-                  
+                
+
+                fseek(fp, -1*sizeof(Item), SEEK_CUR);
+                fwrite(it, sizeof(Item), 1, fp);
+
+                printf("Retirado com sucesso!");
+
+
+
+                // o campo de quantidade de produtos já foi acessado, agora precisamos resgatar
+                // a informação que está no módulo de entrada, e subtrair com o que está saindo
+
+
+
+                
+         
             }
+            
+          
 
     }else {
-        printf("Item não encontrado");
-            
+        printf("Produto não encontrado!");
     }
     //colocar uma condicional aqui para perguntar se a pessoa realmente tem certeza dessa saída
     //se ela não tiver, fecha o arquivo e não salva
