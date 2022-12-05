@@ -5,7 +5,7 @@
 #include "modulolistadeCompras.h"
 #include "moduloRelatorio.h"
 #include "moduloSobre.h"
-#include "moduloEntradaItens.h"
+#include "moduloMenuItem.h"
 #include "moduloSaidaItens.h"
 
 char telaPrincipal(void);
@@ -20,7 +20,7 @@ int main (void)
             modulocadastroUsuario();
             break;
         case '2':
-            menuEntradaItens();
+            moduloMenuItem();
             break; 
         case '3':    
             menuSaidaItens();
