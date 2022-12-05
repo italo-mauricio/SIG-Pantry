@@ -51,7 +51,6 @@ int lerEmail(char email[])
 }
 
 
-
 // --------------------------------------- |
 //        Validação de Username            |
 // --------------------------------------  |
@@ -194,9 +193,6 @@ int valida_data(int dia, int mes, int ano)
 }
 
 
-
-
-
 // ---------------------------------------- |
 //        Validação de números              |
 // ---------------------------------------  |
@@ -222,8 +218,6 @@ int lerQuantidade(char numero[])
 
       return 1;
 }
-
-
 
 
 void deixarTelaLimpa(void) //adaptado by @flgorgonio

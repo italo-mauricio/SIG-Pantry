@@ -10,6 +10,9 @@ struct item
     int diaEnt;
     int mesEnt;
     int anoEnt;
+    int diaSaida;
+    int mesSaida;
+    int anoSaida;
     char codigoBarras[20];
     char status;
     int estoqueMinimo; //transformar para int
@@ -29,19 +32,22 @@ struct mov
     int anoEnt;
     int quantMovimento;
     char tipo;
+    int diaSaida;
+    int mesSaida;
+    int anoSaida;
     
-
-
 };
 
 //assinatura das funções do arquivo .c
 void moduloMenuItem(void);
 char telaRegistrarItem(void);
 void infoItem(void);
-int listarEntradas(void);
+int listarItens(void);
 int buscaInfoItem(void);
-int telaAtualizarEntrada(void);
-char escAtualizarEntrada(void);
-int excluirEntrada(void);
+int telaAtualizarItem(void);
+char escAtualizarItem(void);
+int excluirItem(void);
 int gravaItem(Item* it);
 int gravaMov(Mov* mv);
+int entradaItem(void);
+int saidaItem(void);

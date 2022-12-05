@@ -4,6 +4,7 @@
 #include "modulolistadeCompras.h"
 #include "validacoes.h"
 #include "modulocadastroUsuario.h"
+#include "moduloMenuItem.h"
 
 typedef struct item Item;
 

@@ -2,11 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include "modulocadastroUsuario.h"
+#include "moduloMenuItem.h"
 #include "modulolistadeCompras.h"
 #include "moduloRelatorio.h"
 #include "moduloSobre.h"
-#include "moduloMenuItem.h"
-#include "moduloSaidaItens.h"
 
 char telaPrincipal(void);
 
@@ -23,15 +22,12 @@ int main (void)
             moduloMenuItem();
             break; 
         case '3':    
-            menuSaidaItens();
-            break;
-        case '4':
             menulistadeCompras();
             break;
-        case '5':
+        case '4':
             moduloRelatorio();
             break; 
-        case '6':
+        case '5':
             telaSobre();
             break;
         case '0':
@@ -48,7 +44,7 @@ int main (void)
 
 }
 
-char telaPrincipal (void)
+char telaPrincipal(void)
 {
     char opcao;
     system ( " clear||cls " );
@@ -58,11 +54,10 @@ char telaPrincipal (void)
     printf (" | ------------------------------------------------------------------- | \n");
     printf (" |                                                                     | \n");
     printf (" |                        1 - Menu usuário                             | \n");
-    printf (" |                        2 - Entrada de itens                         | \n");
-    printf (" |                        3 - Saída de itens                           | \n");
-    printf (" |                        4 - Lista de compras                         | \n");
-    printf (" |                        5 - Relatório                                | \n");
-    printf (" |                        6 - Informações                              | \n");
+    printf (" |                        2 - Menu item                                | \n");
+    printf (" |                        3 - Lista de compras                         | \n");
+    printf (" |                        4 - Relatório                                | \n");
+    printf (" |                        5 - Informações                              | \n");
     printf (" |                        0 - Sair                                     | \n");
     printf (" |                                                                     | \n");                                                                      
     printf (" | ------------------------------------------------------------------- | \n");
