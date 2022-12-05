@@ -4,7 +4,6 @@
 #include "modulolistadeCompras.h"
 #include "validacoes.h"
 #include "modulocadastroUsuario.h"
-#include "modulomenuItem.h"
 
 typedef struct item Item;
 
@@ -73,7 +72,7 @@ char telaListadeCompras(void)
 
 } 
 
-//função feita para informar a quantid. mínima de itens com base no que foi registrado 
+//fazer uma condicional de se estoque mínimo >= quantProduto = relatar
 /*char itensQuantMinima(void)     
 {
     FILE *fp;
