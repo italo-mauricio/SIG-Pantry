@@ -4,7 +4,6 @@
 #include "moduloEntradaItens.h"
 #include "validacoes.h"
 #include "modulocadastroUsuario.h"
-#include "modulomenuItem.h"
 #include "moduloSaidaItens.h"
 
 
@@ -176,6 +175,22 @@ void infoEntrada(void)
     free(it);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+
+}
+
+//função para gravar no arquivo
+int gravaItem(Item* it) 
+{
+    FILE* fp;
+    fp = fopen("itens.dat", "ab");
+    if (fp == NULL) {
+        printf("Ops! Não é possível continuar o programa...\n");
+        return 0;
+    }
+    
+    fwrite(it, sizeof(Item), 1, fp);
+    fclose(fp);
+    return 0;
 
 }
 
