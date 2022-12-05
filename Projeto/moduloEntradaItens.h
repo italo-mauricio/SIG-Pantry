@@ -7,6 +7,9 @@ struct item
     int dia;
     int mes;
     int ano;
+    int diaEnt;
+    int mesEnt;
+    int anoEnt;
     char codigoBarras[20];
     char status;
     char estoqueMinimo[20]; //transformar para int
