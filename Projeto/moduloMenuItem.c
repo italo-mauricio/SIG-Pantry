@@ -717,10 +717,12 @@ int entradaItem(void)
     FILE* fp;
     Item* it;
     Mov* mv;
+    int achou;
     int resp;
     int i;
     int estoque;
     char quantidade[20];
+    char procura[20];
     
     fp = fopen("itens.dat", "rb");
 
@@ -741,13 +743,23 @@ int entradaItem(void)
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                     Entrada Item                          | \n");
-    printf(" |                                                           | \n");    
+    printf(" |                                                           | \n"); 
+    printf("Informe o código de barras: ");
+    scanf(" %30[^\n]", procura);
+    getchar();
+    achou = 0;
+    while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
+        if ((strcmp(it->codigoBarras, procura) == 0) && (it->status == '1')) {
+            achou = 1;
+        }  
     it = (Item*)malloc(sizeof(Item));
     mv = (Mov*)malloc(sizeof(Mov));
 
-    printf("Informe quantos itens vão entrar: ");
-    scanf("%d", &resp);
-
+    
+    }
+    if (achou){
+         printf("Informe quantos itens vão entrar: ");
+         scanf("%d", &resp);
         for (i = 1; i <= resp; i++) {
             do
             {
@@ -790,7 +802,9 @@ int entradaItem(void)
             mv->anoEnt = it->anoEnt;
             mv->tipo = 'E'; //E indica entrada
 //tem que perguntar se tem certeza que deseja fazer a entrada, uma vez que n faremos o atualizar entrada
-
+        }
+        }else{
+            printf("Produto não encontrado!");
         }
 
     fclose(fp);
@@ -811,6 +825,8 @@ int saidaItem(void)
     int i;
     int estoque;
     char quantidade[20];
+    char procura[20];
+    int achou;
     
     fp = fopen("itens.dat", "rb");
 
@@ -826,19 +842,30 @@ int saidaItem(void)
         return 0;
     }
 
-
+    it = (Item*)malloc(sizeof(Item));
+    mv = (Mov*)malloc(sizeof(Mov));
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                      Saída Item                           | \n");
     printf(" |                                                           | \n");    
-    it = (Item*)malloc(sizeof(Item));
-    mv = (Mov*)malloc(sizeof(Mov));
+    printf("Informe o código de barras: ");
+    scanf(" %30[^\n]", procura);
+    getchar();
+    achou = 0;
+    while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
+        if ((strcmp(it->codigoBarras, procura) == 0) && (it->status == '1')) {
+            achou = 1;
+        }  
 
-    printf("Informe quantos itens vão ser retirados: ");
-    scanf("%d", &resp);
+    
+    }
+    if (achou){
+    
+       for (i = 1; i <= resp; i++) {
+            printf("Informe quantos itens vão entrar: ");
+            scanf("%d", &resp);
 
-        for (i = 1; i <= resp; i++) {
             do
             {
                 printf(" | Informe o código de barras do produto: ");
@@ -882,6 +909,9 @@ int saidaItem(void)
 //tem que perguntar se tem certeza que deseja fazer a saída, uma vez que n faremos o atualizar 
 
         }
+    }else{
+        printf("Produto não encontrado!");
+    }
 
     fclose(fp);
     free(it);
