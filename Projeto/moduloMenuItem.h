@@ -4,7 +4,7 @@ struct item
 {
     char nomeProduto[20];
     char nomeMarca[20];
-    int dia;
+    int dia; //vencimento
     int mes;
     int ano;
     int diaEnt;
@@ -15,10 +15,10 @@ struct item
     int anoSaida;
     char codigoBarras[20];
     char status;
-    int estoqueMinimo; //transformar para int
+    int estoqueMinimo; 
     char categoria[10];
     char localArmazenamento[50];
-    int quantProduto;  //transformar para int
+    int quantProduto;  
    
 };
 

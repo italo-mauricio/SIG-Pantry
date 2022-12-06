@@ -1,3 +1,4 @@
+//struct para a montagem da lista
 typedef struct montarLista MontarLista;
 struct montarLista
 {
@@ -5,6 +6,8 @@ struct montarLista
     char categoriaProduto[10];
     char quantidadeProduto[15];
     char status;
+    char usernameUsuario[20];
+
 };
 
 //cabeçalho das funções usadas no arquivo.c

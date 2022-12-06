@@ -109,7 +109,8 @@ int itensQuantMinima(void)
 //função para exibição de itens próx ao vencimento
 int itensProxVencimento(void)
 {
-    //criar um ponteiro que puxe a informação com base na data de validade e de entrada do cadastro de itens
+//tem que recuperar a data de acesso no sistema e avisar quando tiver faltando 5 dias para o venc
+//usar o comparador de Day
     FILE *fp;
     Item* it;
     
@@ -170,6 +171,7 @@ int infoMontarLista(void)
 
     int resp;
     int i;
+    
     system ( " cls || clear " );
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");

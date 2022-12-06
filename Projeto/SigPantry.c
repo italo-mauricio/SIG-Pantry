@@ -56,7 +56,7 @@ char telaPrincipal(void)
     printf (" |                        1 - Menu usuário                             | \n");
     printf (" |                        2 - Menu item                                | \n");
     printf (" |                        3 - Lista de compras                         | \n");
-    printf (" |                        4 - Relatório                                | \n");
+    printf (" |                        4 - Relatórios                               | \n");
     printf (" |                        5 - Informações                              | \n");
     printf (" |                        0 - Sair                                     | \n");
     printf (" |                                                                     | \n");                                                                      
