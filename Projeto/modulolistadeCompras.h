@@ -10,11 +10,11 @@ struct montarLista
 //cabeçalho das funções usadas no arquivo.c
 void menulistadeCompras(void);
 char telaListadeCompras(void);
-//char itensQuantMinima(void);
-//void itensProxVencimento(void);
+int itensQuantMinima(void);
+int itensProxVencimento(void);
 int infoMontarLista(void);
 void exibeListaCompras(MontarLista* mtlista);
-int listaComprasPronta(void); //relatório
+int listaComprasPronta(void); 
 int gravaLista(MontarLista*);
 int buscarLista(void);
 void pesquisarLista(void);

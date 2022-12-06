@@ -5,7 +5,6 @@
 #include "validacoes.h"
 #include "modulocadastroUsuario.h"
 
-
 void moduloMenuItem(void)
 {
     char escolha;
@@ -28,7 +27,7 @@ void moduloMenuItem(void)
             entradaItem(); //adição de item
             break;
         case '6':
-            saidaItem();
+            saidaItem(); //retirada de item
         case '7':
             listarItens(); //relatório
             break;     
@@ -68,7 +67,7 @@ char telaRegistrarItem(void)
 
 }
 
-//Função para cadastrar um item ao estoque
+//Função para cadastrar um novo item ao estoque
 void infoItem(void)
 {
     Item* it;
@@ -102,7 +101,7 @@ void infoItem(void)
 
             do
             {
-                printf(" | Informe o nome da marca: ");
+                printf(" | Informe o nome da marca (sem acentuação): ");
                 scanf("%s", it->nomeMarca);
                 getchar();
         
@@ -152,7 +151,7 @@ void infoItem(void)
                 printf(" |                      Alimento                            |\n");
                 printf(" |                                                          |\n");
                 printf(" | ======================================================== |\n");
-                printf(" | Digite a sua opção: ");
+                printf(" | Digite a sua opção (sem acentuação): ");
                 scanf("%[A-Z a-z]", it->categoria);
                 getchar();
 
@@ -170,7 +169,7 @@ void infoItem(void)
                 printf(" |                   Guarda-roupa                           |\n");
                 printf(" |                                                          |\n");
                 printf(" | ======================================================== | \n");
-                printf(" | Digite a sua opção: ");
+                printf(" | Digite a sua opção (sem acentuação): ");
                 scanf("%[A-Z a-z]", it->localArmazenamento);
                 getchar();
 
@@ -362,7 +361,7 @@ int telaAtualizarItem(void)
         if (resp == '1'){
             do
             {
-                printf("Informe o novo nome do produto: ");
+                printf("Informe o novo nome do produto (sem acentuação): ");
                 scanf("%s", it->nomeProduto);
                 getchar();
 
@@ -370,7 +369,7 @@ int telaAtualizarItem(void)
 
             do
             {
-                printf(" | Informe o novo nome da marca: ");
+                printf(" | Informe o novo nome da marca (sem acentuação): ");
                 scanf("%s", it->nomeMarca);
                 getchar();
         
@@ -411,7 +410,7 @@ int telaAtualizarItem(void)
                 printf(" |                      Alimento                            |\n");
                 printf(" |                                                          |\n");
                 printf(" | ======================================================== |\n");
-                printf(" | Digite a sua opção: ");
+                printf(" | Digite a sua opção (sem acentuação): ");
                 scanf("%[A-Z a-z]", it->categoria);
                 getchar();
 
@@ -429,7 +428,7 @@ int telaAtualizarItem(void)
                 printf(" |                   Guarda-roupa                           |\n");
                 printf(" |                                                          |\n");
                 printf(" | ======================================================== | \n");
-                printf(" | Digite a sua opção: ");
+                printf(" | Digite a sua opção (sem acentuação): ");
                 scanf("%[A-Z a-z]", it->localArmazenamento);
                 getchar();
 
@@ -452,7 +451,7 @@ int telaAtualizarItem(void)
         else if (resp == '2') {
             do
             {
-                printf("Informe o novo nome do produto: ");
+                printf("Informe o novo nome do produto (sem acentuação): ");
                 scanf("%s", it->nomeProduto);
                 getchar();
 
@@ -463,7 +462,7 @@ int telaAtualizarItem(void)
         else if (resp == '3') {            
             do
             {
-                printf(" | Informe o novo nome da marca: ");
+                printf(" | Informe o novo nome da marca (sem acentuação): ");
                 scanf("%s", it->nomeMarca);
                 getchar();
         
@@ -512,7 +511,7 @@ int telaAtualizarItem(void)
                 printf(" |                      Alimento                            |\n");
                 printf(" |                                                          |\n");
                 printf(" | ======================================================== |\n");
-                printf(" | Digite a nova categoria: ");
+                printf(" | Digite a nova categoria (sem acentuação): ");
                 scanf("%[A-Z a-z]", it->categoria);
                 getchar();
 
@@ -533,7 +532,7 @@ int telaAtualizarItem(void)
                 printf(" |                   Guarda-roupa                           |\n");
                 printf(" |                                                          |\n");
                 printf(" | ======================================================== | \n");
-                printf(" | Digite a sua nova opção: ");
+                printf(" | Digite a sua nova opção (sem acentuação): ");
                 scanf("%[A-Z a-z]", it->localArmazenamento);
                 getchar();
 
@@ -718,8 +717,7 @@ int entradaItem(void)
     Item* it;
     Mov* mv;
     int achou;
-    int resp;
-    int i;
+    char resp;
     int estoque;
     char quantidade[20];
     char procura[20];
@@ -745,7 +743,7 @@ int entradaItem(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                     Entrada Item                          | \n");
     printf(" |                                                           | \n"); 
-    printf("Informe o código de barras: ");
+    printf("Informe o código de barras do produto que deseja adicionar: ");
     scanf(" %30[^\n]", procura);
     getchar();
     achou = 0;
@@ -756,61 +754,84 @@ int entradaItem(void)
 
     }
     if (achou){
-         printf("Informe quantos itens vão entrar: ");
-         scanf("%d", &resp);
-       
-            do
-           {
-                printf(" | Informe o código de barras do produto: ");
-                scanf("%s", it->codigoBarras);
-                getchar();
-                
-            } while(!lerQuantidade(it->codigoBarras));
-
-            do
-            {
-                
-                printf(" | Informe a quantidade de produto: ");
-                scanf("%s", quantidade);             
-                getchar();
+        do
+        {
+            printf(" | Informe a quantidade de produto: ");
+            scanf("%s", quantidade);             
+            getchar();
                
-            } while(!lerQuantidade(quantidade));
+        } while(!lerQuantidade(quantidade));
 
-      
-            estoque = charParaInt(quantidade);
-            it->quantProduto =+ estoque;
-            mv->quantMovimento = estoque;
-            strcpy(mv->codigoBarras, it->codigoBarras);
+        estoque = charParaInt(quantidade);
+        it->quantProduto =+ estoque;
+        mv->quantMovimento = estoque;
+        strcpy(mv->codigoBarras, it->codigoBarras);
         
-            
-            do {       
-                printf(" | Informe o dia da entrada: ");
-                scanf("%d",&it->diaEnt);
-                getchar();
-                printf(" | Informe o mês da entrada: ");
-                scanf("%d",&it->mesEnt);
-                getchar();
-                printf(" | Informe o ano da entrada: ");
-                scanf("%d",&it->anoEnt);
-                getchar();
+        do 
+        {        
+            printf(" | Informe o dia de vencimento do produto: ");
+            scanf("%d", &it->dia);
+            getchar();
+            printf(" | Informe o mês: ");
+            scanf("%d", &it->mes);
+            getchar();
+            printf(" | Informe o ano: ");
+            scanf("%d", &it->ano);
+            getchar();
                 
-            } while(!valida_data(it->dia, it->mes, it->ano));  
-            mv->diaEnt = it->diaEnt;
-            mv->mesEnt = it->mesEnt;
-            mv->anoEnt = it->anoEnt;
-            mv->tipo = 'E'; //E indica entrada
-//tem que perguntar se tem certeza que deseja fazer a entrada, uma vez que n faremos o atualizar entrada
-        }
-        }else{
-            printf("Produto não encontrado!");
-        }
+        } while(!valida_data(it->dia, it->mes, it->ano)); 
 
-    fclose(fp);
+        do {       
+            printf(" | Informe o dia da entrada: ");
+            scanf("%d",&it->diaEnt);
+            getchar();
+            printf(" | Informe o mês da entrada: ");
+            scanf("%d",&it->mesEnt);
+            getchar();
+            printf(" | Informe o ano da entrada: ");
+            scanf("%d",&it->anoEnt);
+            getchar();
+                
+        } while(!valida_data(it->dia, it->mes, it->ano));  
+            
+        mv->diaEnt = it->diaEnt;
+        mv->mesEnt = it->mesEnt;
+        mv->anoEnt = it->anoEnt;
+        mv->tipo = 'E'; //E indica entrada
+
+            printf("Tem certeza que deseja adicionar esse produto à despensa? s/n");
+            scanf("%c", &resp); 
+
+            if (resp == 's' || resp == 'S') {
+                
+                printf("Produto adicionado com sucesso!");
+                gravaItem(it);
+                gravaMov(mv);
+
+            }
+            
+            else {
+                
+                printf("Operação cancelada!");
+                telaRegistrarItem();
+            
+            }
+
+        gravaItem(it);
+        gravaMov(mv);
+
+        }else{
+            
+            printf("Produto não encontrado!");
+        
+        }
+    
     free(it);
     free(mv);
-
+    fclose(fp);
     return 0;
-    
+
+}    
 
 //função para retirada de produto da despensa
 int saidaItem(void) 
@@ -818,9 +839,8 @@ int saidaItem(void)
     FILE* fp;
     Item* it;
     Mov* mv;
-    int resp;
-    int i;
     int estoque;
+    char resp;
     char quantidade[20];
     char procura[20];
     int achou;
@@ -844,76 +864,82 @@ int saidaItem(void)
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" |                      Saída Item                           | \n");
+    printf(" |                       Saída Item                          | \n");
     printf(" |                                                           | \n");    
-    printf("Informe o código de barras: ");
+    printf("Informe o código de barras do produto que deseja retirar: ");
     scanf(" %30[^\n]", procura);
     getchar();
+    
     achou = 0;
+    
     while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
         if ((strcmp(it->codigoBarras, procura) == 0) && (it->status == '1')) {
             achou = 1;
         }  
-
-    
     }
-    if (achou){
-    
-   
-            printf("Informe quantos itens vão entrar: ");
-            scanf("%d", &resp);
 
-            do
-            {
-                printf(" | Informe o código de barras do produto: ");
-                scanf("%s", it->codigoBarras);
-                getchar();
-                
-            } while(!lerQuantidade(it->codigoBarras));
-
-            do
-            {
-                
-                printf(" | Informe a quantidade de produto: ");
-                scanf("%s", quantidade);             
-                getchar();
+    if (achou) {
+        do
+        {
+            printf(" | Informe a quantidade de produto que será retirado: ");
+            scanf("%s", quantidade);             
+            getchar();
                
-            } while(!lerQuantidade(quantidade));
+        } while(!lerQuantidade(quantidade));
 
-      
-            estoque = charParaInt(quantidade);
-            it->quantProduto =- estoque;
-            mv->quantMovimento = estoque;
-            strcpy(mv->codigoBarras, it->codigoBarras);
+        estoque = charParaInt(quantidade);
+        it->quantProduto =- estoque;
+        mv->quantMovimento = estoque;
+        strcpy(mv->codigoBarras, it->codigoBarras);
         
-            
-            do {       
-                printf(" | Informe o dia de retirada: ");
-                scanf("%d",&it->diaSaida);
-                getchar();
-                printf(" | Informe o mês de retirada: ");
-                scanf("%d",&it->mesSaida);
-                getchar();
-                printf(" | Informe o ano de retirada: ");
-                scanf("%d",&it->anoSaida);
-                getchar();
+        do 
+        {       
+            printf(" | Informe o dia de retirada: ");
+            scanf("%d", &it->diaSaida);
+            getchar();
+            printf(" | Informe o mês de retirada: ");
+            scanf("%d", &it->mesSaida);
+            getchar();
+            printf(" | Informe o ano de retirada: ");
+            scanf("%d", &it->anoSaida);
+            getchar();
                 
-            } while(!valida_data(it->dia, it->mes, it->ano));  
-            mv->diaSaida = it->diaSaida;
-            mv->mesSaida = it->mesSaida;
-            mv->anoSaida = it->anoSaida;
-            mv->tipo = 'S'; //S representa saída
-//tem que perguntar se tem certeza que deseja fazer a saída, uma vez que n faremos o atualizar 
-
+        } while(!valida_data(it->dia, it->mes, it->ano));  
         
+        mv->diaSaida = it->diaSaida;
+        mv->mesSaida = it->mesSaida;
+        mv->anoSaida = it->anoSaida;
+        mv->tipo = 'S'; //S representa saída
+            
+            printf("Tem certeza que deseja retirar esse produto da despensa? s/n");
+            scanf("%c", &resp); 
+
+            if (resp == 's' || resp == 'S') {
+                printf("Produto retirado com sucesso!");
+                gravaMov(mv);
+                gravaItem(it);
+
+            }
+            else {
+                
+                printf("Operação cancelada!");
+                telaRegistrarItem();
+            
+            }
+
+    gravaItem(it);
+    gravaMov(mv);
+
     }else{
+        
         printf("Produto não encontrado!");
+    
     }
 
-    fclose(fp);
     free(it);
     free(mv);
-
+    fclose(fp);
     return 0;
     
 }
+
