@@ -25,14 +25,13 @@ void moduloMenuItem(void)
             excluirItem(); //exclusão
             break;
         case '5':
-            listarItens(); //relatório
-            break;
-        case '6':
             entradaItem(); //adição de item
             break;
+        case '6':
+            saidaItem();
         case '7':
-            saidaItem(); //retirada de item
-            break;      
+            listarItens(); //relatório
+            break;     
         default:
             printf("Opção inválida\n");
             break;
@@ -56,7 +55,8 @@ char telaRegistrarItem(void)
     printf(" |                 3- Atualizar Item                         | \n");                
     printf(" |                 4- Excluir Item                           | \n");                
     printf(" |                 5- Adicionar Item                         | \n");
-    printf(" |                 6- Retirar Item                           | \n");                                                                    
+    printf(" |                 6- Retirar Item                           | \n"); 
+    printf(" |                 7- Listar Item                            | \n");                                                                   
     printf(" |                 0- Voltar à tela principal                | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -738,7 +738,8 @@ int entradaItem(void)
         return 0;
     }
 
-
+    it = (Item*)malloc(sizeof(Item));
+    mv = (Mov*)malloc(sizeof(Mov));
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -752,17 +753,14 @@ int entradaItem(void)
         if ((strcmp(it->codigoBarras, procura) == 0) && (it->status == '1')) {
             achou = 1;
         }  
-    it = (Item*)malloc(sizeof(Item));
-    mv = (Mov*)malloc(sizeof(Mov));
 
-    
     }
     if (achou){
          printf("Informe quantos itens vão entrar: ");
          scanf("%d", &resp);
-        for (i = 1; i <= resp; i++) {
+       
             do
-            {
+           {
                 printf(" | Informe o código de barras do produto: ");
                 scanf("%s", it->codigoBarras);
                 getchar();
@@ -813,7 +811,6 @@ int entradaItem(void)
 
     return 0;
     
-}
 
 //função para retirada de produto da despensa
 int saidaItem(void) 
@@ -862,7 +859,7 @@ int saidaItem(void)
     }
     if (achou){
     
-       for (i = 1; i <= resp; i++) {
+   
             printf("Informe quantos itens vão entrar: ");
             scanf("%d", &resp);
 
@@ -908,7 +905,7 @@ int saidaItem(void)
             mv->tipo = 'S'; //S representa saída
 //tem que perguntar se tem certeza que deseja fazer a saída, uma vez que n faremos o atualizar 
 
-        }
+        
     }else{
         printf("Produto não encontrado!");
     }
