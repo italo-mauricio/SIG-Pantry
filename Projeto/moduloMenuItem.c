@@ -809,6 +809,7 @@ int entradaItem(void)
                 gravaMov(mv);
 
             }
+            
             else {
                 
                 printf("Operação cancelada!");
