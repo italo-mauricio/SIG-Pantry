@@ -11,16 +11,16 @@ char moduloRelatorio (void)
         escolha = telaRelatorio();
         switch (escolha) {
         case '1':
-            estoquedeAlimento();
+            estoquedeCategoria(); //com base na categoria selecionada
             break;
         case '2':
-            estoquedeHigiene();
+            estoquedeLocalArmaz(); //com base no local selecionado para armazenar
             break; 
         case '3':
-            estoquedeLimpeza();
+            listasdeCompra(); //resgatar listas excluídas
             break;
         case '4':
-            listasdeCompra();
+            estoqueTipo(); //com base no E e S do menu itens
             break;
         default :
             printf ("Opção inválida!");
@@ -40,11 +40,11 @@ char telaRelatorio(void)
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | -------------------| SIG-Pantry - RELATÓRIO |----------------------- | \n");
     printf(" |                                                                      | \n");
-    printf(" |                    1- Estoque de alimento                            | \n");
-    printf(" |                    2- Estoque de higiene pessoal                     | \n");
-    printf(" |                    3- Estoque de limpeza                             | \n");
-    printf(" |                    4- Histórico de listas de compra                  | \n");
-    printf(" |                    0- Voltar à tela principal                        | \n");
+    printf(" |                 1- Estoque com base na categoria                     | \n");
+    printf(" |                 2- Estoque com base no local de armazenamento        | \n");
+    printf(" |                 3- Histórico de listas de compra                     | \n");
+    printf(" |                 4- Estoque com base no tipo                          | \n");
+    printf(" |                 0- Voltar à tela principal                           | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
     printf(" | Escolha uma opção: ");
@@ -57,77 +57,51 @@ char telaRelatorio(void)
 }
 
 
-char estoquedeAlimento(void)
+char estoquedeCategoria(void)
 {
     char esc;
     system (" Clear||cls ");
-    printf(" | ===================================================================== | \n");
-    printf(" | --------------------------------------------------------------------- | \n");
-    printf(" | --------------------------- | Estoque | ----------------------------- | \n");
-    printf(" |                                                                       | \n");
-    printf(" |                                                                       | \n");
-    printf(" |   Aqui ficará o estoque futuramente                                   | \n");
-    printf(" |                                                                       | \n");
-    printf(" |                                                                       | \n");
-    printf(" |                                                                       | \n");
-    printf(" |                                                                       | \n");
-    printf(" | ----------------------------------------------------------------------| \n");
-    printf(" | ======================== SIG - Pantry =============================== | \n");
-    printf(" Press ENTER for exit.....");
+    printf(" | ==================================================================== | \n");
+    printf(" | -------------------------------------------------------------------- | \n");
+    printf(" | -------------------- | Estoque da categoria | ---------------------- | \n");
+    printf(" |                                                                      | \n");
+    printf(" |                      1- Categoria de alimento                        | \n");
+    printf(" |                      2- Categoria de higiene pessoal                 | \n");
+    printf(" |                      3- Categoria de limpeza                         | \n");
+    printf(" |                      0- Voltar à tela principal                      | \n");
+    printf(" |                                                                      | \n");
+    printf(" | ==================================================================== | \n");
+    printf(" | Escolha uma opção: ");
     scanf("%c", &esc);
 
     return esc;
 
 }
 
-char estoquedeHigiene(void)
+char estoquedeLocalArmaz(void)
 {
     char esc;
     system (" Clear||cls ");
-    printf(" | ===================================================================== | \n");
-    printf(" | --------------------------------------------------------------------- | \n");
-    printf(" | -------------------------- | Estoque | ------------------------------ | \n");
-    printf(" |                                                                       | \n");
-    printf(" |                                                                       | \n");
-    printf(" |   Aqui ficará o estoque de higiene                                    | \n");
-    printf(" |                                                                       | \n");
-    printf(" |                                                                       | \n");
-    printf(" |                                                                       | \n");
-    printf(" |                                                                       | \n");
-    printf(" | ----------------------------------------------------------------------| \n");
-    printf(" | ======================== SIG - Pantry =============================== | \n");
-    printf(" Press ENTER for exit.....");
+    printf(" | ==================================================================== | \n");
+    printf(" | -------------------------------------------------------------------- | \n");
+    printf(" | --------------- | Estoque de local de armazenamento | -------------- | \n");
+    printf(" |                                                                      | \n");
+    printf(" |                   1- Geladeira                                       | \n");
+    printf(" |                   2- Armário da cozinha                              | \n");
+    printf(" |                   3- Área de serviço                                 | \n");
+    printf(" |                   4- Guarda-roupa                                    | \n");
+    printf(" |                   5- Banheiro                                        | \n");
+    printf(" |                   0- Voltar à tela principal                         | \n");
+    printf(" |                                                                      | \n");
+    printf(" | ==================================================================== | \n");
+    printf(" | Escolha uma opção: ");
     scanf("%c", &esc);
-    getchar();
 
     return esc;
 
-}
-
-
-char estoquedeLimpeza(void)
-{
-    char esc;
-    system (" Clear||cls ");
-    printf(" | ===================================================================== | \n");
-    printf(" | --------------------------------------------------------------------- | \n");
-    printf(" | -------------------------- | Estoque | ------------------------------ | \n");
-    printf(" |                                                                       | \n");
-    printf(" |                                                                       | \n");
-    printf(" |   Aqui ficará o estoque de limpeza                                    | \n");
-    printf(" |                                                                       | \n");
-    printf(" |                                                                       | \n");
-    printf(" |                                                                       | \n");
-    printf(" |                                                                       | \n");
-    printf(" | ----------------------------------------------------------------------| \n");
-    printf(" | ======================== SIG - Pantry =============================== | \n");
-    printf(" Press ENTER for exit.....");
-    scanf("%c", &esc);
-    getchar();
-
-    return esc;
 
 }
+
 
 char listasdeCompra(void)
 {
@@ -146,6 +120,26 @@ char listasdeCompra(void)
     printf(" Press ENTER for exit.....");
     scanf("%c", &esc);
     getchar();
+
+    return esc;
+
+}
+
+char estoqueTipo(void)
+{
+    char esc;
+    system (" Clear||cls ");
+    printf(" | ==================================================================== | \n");
+    printf(" | -------------------------------------------------------------------- | \n");
+    printf(" | ------------------- | Estoque com base no tipo | ------------------- | \n");
+    printf(" |                                                                      | \n");
+    printf(" |                      1- Itens que entraram (E)                       | \n");
+    printf(" |                      2- Itens retirados (S)                          | \n");
+    printf(" |                      0- Voltar à tela principal                      | \n");
+    printf(" |                                                                      | \n");
+    printf(" | ==================================================================== | \n");
+    printf(" | Escolha uma opção: ");
+    scanf("%c", &esc);
 
     return esc;
 

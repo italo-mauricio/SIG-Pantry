@@ -56,7 +56,7 @@ char telaRegistrarItem(void)
     printf(" |                 4- Excluir item                           | \n");                
     printf(" |                 5- Adicionar item                         | \n");
     printf(" |                 6- Retirar item                           | \n"); 
-    printf(" |                 7- Listar item                            | \n");                                                                   
+    printf(" |                 7- Listar itens                           | \n");                                                                   
     printf(" |                 0- Voltar à tela principal                | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -861,12 +861,8 @@ int entradaItem(void)
             else {
                 
                 printf("Operação cancelada!");
-                telaRegistrarItem();
             
             }
-
-        gravaItem(it);
-        gravaMov(mv);
 
         }else{
             
@@ -974,12 +970,9 @@ int saidaItem(void)
             else {
                 
                 printf("Operação cancelada!");
-                telaRegistrarItem();
             
             }
 
-    gravaItem(it);
-    gravaMov(mv);
 
     }else{
         
