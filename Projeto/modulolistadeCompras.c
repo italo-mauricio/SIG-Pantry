@@ -76,9 +76,6 @@ int itensQuantMinima(void)
 {
     FILE *fp;
     Item* it;
-    int achou;
-    char resp;
-    char procurado[20];
     
     fp = fopen("itens.dat", "rt"); //só precisa abrir o de itens, pois irá resgatar informações desse arq
     if (fp == NULL)
@@ -115,9 +112,6 @@ int itensProxVencimento(void)
     //criar um ponteiro que puxe a informação com base na data de validade e de entrada do cadastro de itens
     FILE *fp;
     Item* it;
-    int achou;
-    char resp;
-    char procurado[20];
     
     fp = fopen("itens.dat", "rt"); 
     
