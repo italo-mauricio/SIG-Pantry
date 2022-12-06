@@ -8,39 +8,37 @@
 
 typedef struct item Item;
 
-// consertar a parte de salvamento ou busca
-
 void menulistadeCompras(void)
 {
     char escolha;
     do {
         escolha = telaListadeCompras();
         switch (escolha) {
-        /*case '1':
-            itensQuantMinima(); //listar estoque mínimo
-            break; */
-        /*case '2':
-            itensProxVencimento(); //listar itens próximos ao vencimento
-            break; */
         case '1':
-            infoMontarLista(); //preencher a lista
-            break;
+            itensQuantMinima(); //lista itens que estão acabando no estoque 
+            break; 
         case '2':
-            buscarLista(); //pesquisa
+            itensProxVencimento(); //lista itens próximos ao vencimento
             break; 
         case '3':
+            infoMontarLista(); //preencher a lista
+            break;
+        case '4':
+            buscarLista(); //pesquisa
+            break; 
+        case '5':
             atualizarLista(); //edição
             break;  
-        case '4':
+        case '6':
             excluirLista(); //exclusão
             break;
-        case '5':
+        case '7':
             listaComprasPronta(); //exibição da lista pronta (relatório)
             break;
         default:
-            printf("Opção in válida\n");
+            printf("Opção inválida\n");
             break;
-    }
+        }
 
     } while(escolha != '0');
         printf("Obrigado! Volte sempre!");
@@ -55,13 +53,13 @@ char telaListadeCompras(void)
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | -------------------| SIG-Pantry - LISTA DE COMPRAS |---------------- | \n");
     printf(" |                                                                      | \n");
-    //printf(" |             1- Visualizar itens no estoque com quantidade mínima     | \n");
-    //printf(" |             2- Visualizar itens próximos ao vencimento               | \n");
-    printf(" |             1- Montar sua lista de compras                           | \n");
-    printf(" |             2- Pesquisar lista de compras                            | \n");      
-    printf(" |             3- Editar lista de compras                               | \n");      
-    printf(" |             4- Excluir lista de compras                              | \n");      
-    printf(" |             5- Visualizar itens cadastrados na lista                 | \n");       
+    printf(" |             1- Visualizar itens no estoque com quantidade mínima     | \n");
+    printf(" |             2- Visualizar itens próximos ao vencimento               | \n");
+    printf(" |             3- Montar sua lista de compras                           | \n");
+    printf(" |             4- Pesquisar lista de compras                            | \n");      
+    printf(" |             5- Editar lista de compras                               | \n");      
+    printf(" |             6- Excluir lista de compras                              | \n");      
+    printf(" |             7- Visualizar itens cadastrados na lista                 | \n");       
     printf(" |             0- Voltar à tela principal                               | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
@@ -73,8 +71,8 @@ char telaListadeCompras(void)
 
 } 
 
-//fazer uma condicional de se estoque mínimo >= quantProduto = relatar
-/*char itensQuantMinima(void)     
+//função que lista os itens que estão acabando no estoque
+int itensQuantMinima(void)     
 {
     FILE *fp;
     Item* it;
@@ -86,40 +84,69 @@ char telaListadeCompras(void)
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo");
-        exit(1);
+        return 0;
     }
+
     it = (Item*)malloc(sizeof(Item));
 
-    while(fread(it, sizeof(Item), 1, fp)) { //fazer como o lista usuário, mas dentro do while colocar if cliente...
-    system( " clear || cls ");
-    printf(" | ============================================================== | \n");
-    printf(" | -------------------------------------------------------------- | \n");
-    printf(" | --------- Itens com quantidade mínima na despensa ------------ | \n");
-    printf(" |              ");
+    while(fread(it, sizeof(Item), 1, fp)) 
+    {
+        if (it->quantProduto <= it->estoqueMinimo) {
+            system( " clear || cls ");
+            printf(" | ============================================================== | \n");
+            printf(" | -------------------------------------------------------------- | \n");
+            printf(" | --------- Itens com quantidade mínima na despensa ------------ | \n");
+            printf(" |                                                                | \n");
+            listarItens();
 
+        }
     }
+
     fclose(fp);
     free(it);
 
+    return 0;
+
 }
-*/
 
-/*void itensProxVencimento(void)
+//função para exibição de itens próx ao vencimento
+int itensProxVencimento(void)
 {
-    //criar um ponteiro que puxe a informação com base na data de validade do cadastro de itens
-    system ( " clear||cls " );
-    printf(" | ==================================================================== | \n");
-    printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | ----------------- | Itens próximos ao vencimento | ----------------- | \n");
-    printf(" |                                                                      | \n");
-    printf(" |  Itens próximos ao vencimento: ");
-    getchar();
-    printf(" |                                                                      | \n");
-    printf(" | ==================================================================== | \n");
-    printf(" | Pressione qualquer tecla para sair... ");
-    getchar();
+    //criar um ponteiro que puxe a informação com base na data de validade e de entrada do cadastro de itens
+    FILE *fp;
+    Item* it;
+    int achou;
+    char resp;
+    char procurado[20];
+    
+    fp = fopen("itens.dat", "rt"); 
+    
+    if (fp == NULL)
+    {
+        printf("Ocorreu um erro na abertura do arquivo");
+        return 0;
+    }
 
-} */
+    it = (Item*)malloc(sizeof(Item));
+
+    while(fread(it, sizeof(Item), 1, fp)) 
+    {
+        if (it->diaEnt >= it->dia && it->mesEnt >= it->mes && it->anoEnt >= it->ano) {
+            system( " clear || cls ");
+            printf(" | ============================================================== | \n");
+            printf(" | -------------------------------------------------------------- | \n");
+            printf(" | ---------------- Itens próximos ao vencimento ---------------- | \n");
+            printf(" |                                                                | \n");
+            listarItens();
+
+        }
+    }
+
+    fclose(fp);
+    free(it);
+    return 0;
+
+} 
 
 //ver se procura pelo nome da lista ou pelo username do usuário
 int infoMontarLista(void)
@@ -136,6 +163,14 @@ int infoMontarLista(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
+
+    fp = fopen("lista.dat", "rb");
+
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+
     cliente = (Usuario*) malloc(sizeof(Usuario));
     mtlista = (MontarLista*)malloc(sizeof(MontarLista));
 
@@ -152,16 +187,18 @@ int infoMontarLista(void)
     getchar();
 
     achou = 0;
+
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
         }
     }
+
     fclose(fp);
 
     if (achou){
 
-        printf("Informe quantos itens você vai adicionar a lista: ");
+        printf("Informe quantos itens vão ser adicionados à lista: ");
         scanf("%d", &resp);
 
         for (i = 1; i <= resp; i++) {
@@ -185,8 +222,11 @@ int infoMontarLista(void)
         
     
     } else {
+        
         printf("Os dados do usuário %s não foram encontrados\n", procurado);
+    
     }
+    
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
     mtlista->status = '1';
@@ -194,8 +234,10 @@ int infoMontarLista(void)
     free(mtlista);
     gravaUsuario(cliente);
     free(cliente);
+    
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+    
     return 0;
 
 }
@@ -205,9 +247,11 @@ int gravaLista(MontarLista* mtlista)
 {
     FILE* fp;
     fp = fopen("lista.dat", "ab");
+    
     if (fp == NULL) {
         printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
         return 0;
+    
     }
     
     fwrite(mtlista, sizeof(MontarLista), 1, fp);
@@ -224,12 +268,15 @@ int buscarLista(void)
     Usuario* cliente;
     int achou;
     char procurado[15];
+    
     fp = fopen("lista.dat", "rb");
 
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
+    
     }
+    
     printf("\n\n");
     system ( " cls  || clear " );
     printf(" | ========================================================= | \n");
@@ -239,15 +286,20 @@ int buscarLista(void)
     printf("Informe o seu username: ");
     scanf(" %30[^\n]", procurado);
     getchar();
+    
     mtlista = (MontarLista*) malloc(sizeof(MontarLista));
     cliente = (Usuario*) malloc(sizeof(Usuario));
+    
     achou = 0;
+    
     while((!achou) && (fread(mtlista, sizeof(MontarLista), 1, fp))) {
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
         }
     }
+    
     fclose(fp);
+    
     if (achou) {
         system(" cls || clear");
         printf(" | =================== Lista encontrada ==================== |\n");
@@ -261,12 +313,17 @@ int buscarLista(void)
         getchar();
     
     } else {
+        
         printf("Os dados da lista %s não foram encontrados\n", procurado);
+    
     }
+    
     free(mtlista);
     free(cliente);
+    
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+    
     return 0;
     
 }
@@ -297,6 +354,7 @@ int atualizarLista(void)
     char procurado[20];
 
     fp = fopen("usuario.dat", "r+b");
+    
     if (fp == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
@@ -304,6 +362,7 @@ int atualizarLista(void)
     }
 
     fp = fopen("lista.dat", "r+b");
+    
     if (fp == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
@@ -320,11 +379,14 @@ int atualizarLista(void)
     printf("Informe o seu username: ");
     scanf(" %s", procurado);
     getchar();
+    
     achou = 0;
+    
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
     }
+
     if (achou){
 
         exibeListaCompras(mtlista);
@@ -334,7 +396,7 @@ int atualizarLista(void)
         if (resp == '1'){
             do
             {
-                printf("Informe o novo nome do produto: ");
+                printf("Informe o novo nome do produto (sem acentuação): ");
                 scanf("%49[^\n]", mtlista->nome);
                 getchar();
 
@@ -353,7 +415,7 @@ int atualizarLista(void)
         else if (resp == '2'){
             do
             {
-                printf("Informe o novo nome do produto: ");
+                printf("Informe o novo nome do produto (sem acentuação): ");
                 scanf("%49[^\n]", mtlista->nome);
                 getchar();
 
@@ -368,6 +430,7 @@ int atualizarLista(void)
                 getchar();
 
             } while(!lerQuantidade(mtlista->quantidadeProduto));
+        
         }
 
         mtlista->status = '1';      
@@ -376,22 +439,23 @@ int atualizarLista(void)
         printf(" |                                                           | \n");
         printf(" | --------------------------------------------------------- | \n");
         printf("Dados editados com sucesso");
-    }
     
-    else 
-    {   
+    }else {   
         
         printf("A lista do usuário de username %s não foi encontrada\n", procurado);
+    
     }
+    
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
     free(mtlista);
     free(cliente);
     fclose(fp); 
         
-
     } 
+
     return 0;
+
 }
 
 char escAtualizarLista(void) 
@@ -441,6 +505,7 @@ int excluirLista(void)
     
     mtlista = (MontarLista*) malloc(sizeof(MontarLista));
     cliente = (Usuario*) malloc(sizeof(Usuario));
+    
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
@@ -449,7 +514,9 @@ int excluirLista(void)
     printf(" | Informe o seu username para procurar a lista que você deseja excluir: ");
     scanf("%s", procura);
     getchar();  
+    
     achou = 0;
+    
     while ((!achou) && (fread(mtlista, sizeof(MontarLista), 1, fp))){
         if ((strcmp(cliente->usernameUsuario, procura) == 0) && (cliente->status == '1')){
             achou = 1;
@@ -457,11 +524,14 @@ int excluirLista(void)
     }
 
    if (achou){
+        
         exibeListaCompras(mtlista);
         getchar();
         printf("Deseja realmente excluir os dados desta lista? (s/n)");
         scanf("%c", &resp);
+        
         if (resp == 's' || resp == 'S'){
+            
             mtlista->status = '0';
             fseek(fp, (-1)*sizeof(MontarLista), SEEK_CUR);
             fwrite(mtlista, sizeof(mtlista), 1, fp);
@@ -470,15 +540,23 @@ int excluirLista(void)
             gravaUsuario(cliente);
             printf(" Pressione qualquer tecla para sair... ");
             getchar();
+        
         }else{
+        
             printf("\nTudo bem, a lista não foi alterada!");
+        
         }
+    
     }else{
+    
         printf("A lista não foi encontrada!");
+    
     }
+    
     free(mtlista);
     free(cliente);
     fclose(fp);
+    
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
     return 0;
@@ -495,15 +573,19 @@ int listaComprasPronta(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
+    
     printf("\n\n");
     printf(" | ===================== Exibe lista ======================= | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     mtlista = (MontarLista*)malloc(sizeof(MontarLista));
+    
     while(fread(mtlista, sizeof(MontarLista), 1, fp)) {
         exibeListaCompras(mtlista);
     }
+    
     fclose(fp);
     free(mtlista);
     return 0;
+
 }
