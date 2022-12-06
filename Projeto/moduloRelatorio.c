@@ -10,22 +10,22 @@ char moduloRelatorio (void)
     do {
         escolha = telaRelatorio();
         switch (escolha) {
-        case '1':
-            estoquedeCategoria(); //com base na categoria selecionada
-            break;
-        case '2':
-            estoquedeLocalArmaz(); //com base no local selecionado para armazenar
-            break; 
-        case '3':
-            listasdeCompra(); //resgatar listas excluídas
-            break;
-        case '4':
-            estoqueTipo(); //com base no E e S do menu itens
-            break;
-        default :
-            printf ("Opção inválida!");
-            break;
-    }
+            case '1':
+                estoquedeCategoria(); //com base na categoria selecionada
+                break;
+            case '2':
+                estoquedeLocalArmaz(); //com base no local selecionado para armazenar
+                break; 
+            case '3':
+                listasdeCompra(); //resgatar listas excluídas
+                break;
+            case '4':
+                estoqueTipo(); //com base no E e S do menu itens
+                break;
+            default :
+                printf ("Opção inválida!");
+                break;
+        }
 
     } while(escolha != '0');
 
