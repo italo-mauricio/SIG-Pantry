@@ -2,7 +2,7 @@
 
 char telaRelatorio(void);
 char moduloRelatorio (void);
-char estoquedeAlimento(void);
-char estoquedeHigiene(void);
-char estoquedeLimpeza(void);
+char estoquedeCategoria(void);
+char estoquedeLocalArmaz(void);
 char listasdeCompra(void);
+char estoqueTipo(void);

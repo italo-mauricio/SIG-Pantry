@@ -12,7 +12,7 @@ void moduloMenuItem(void)
         escolha = telaRegistrarItem();
         switch(escolha) {
         case '1':
-            infoItem(); //informações da entrada
+            infoItem(); //informações do cad de um item novo
             break;
         case '2':
             buscaInfoItem(); //pesquisa
@@ -28,6 +28,7 @@ void moduloMenuItem(void)
             break;
         case '6':
             saidaItem(); //retirada de item
+            break;
         case '7':
             listarItens(); //relatório
             break;     
@@ -49,13 +50,13 @@ char telaRegistrarItem(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" | --------------------- MENU ITENS ------------------------ | \n");
     printf(" |                                                           | \n");
-    printf(" |                 1- Cadastrar Item                         | \n");
-    printf(" |                 2- Pesquisar Item                         | \n");                
-    printf(" |                 3- Atualizar Item                         | \n");                
-    printf(" |                 4- Excluir Item                           | \n");                
-    printf(" |                 5- Adicionar Item                         | \n");
-    printf(" |                 6- Retirar Item                           | \n"); 
-    printf(" |                 7- Listar Item                            | \n");                                                                   
+    printf(" |                 1- Cadastrar um novo item                 | \n");
+    printf(" |                 2- Pesquisar item                         | \n");                
+    printf(" |                 3- Atualizar item                         | \n");                
+    printf(" |                 4- Excluir item                           | \n");                
+    printf(" |                 5- Adicionar item                         | \n");
+    printf(" |                 6- Retirar item                           | \n"); 
+    printf(" |                 7- Listar itens                           | \n");                                                                   
     printf(" |                 0- Voltar à tela principal                | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -183,7 +184,6 @@ void infoItem(void)
                 getchar();
                
             } while(!lerQuantidade(quantidade));
-
       
             estoque = charParaInt(quantidade);
             it->quantProduto = estoque;
@@ -203,10 +203,12 @@ void infoItem(void)
                 getchar();
                 
             } while(!valida_data(it->dia, it->mes, it->ano));  
+            
             mv->diaEnt = it->diaEnt;
             mv->mesEnt = it->mesEnt;
             mv->anoEnt = it->anoEnt;
             mv->tipo = 'E';
+        
         }
 
     printf(" |                                                           | \n");
@@ -216,6 +218,7 @@ void infoItem(void)
     gravaMov(mv);
     free(it);
     free(mv);
+    
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
 
@@ -225,7 +228,9 @@ void infoItem(void)
 int gravaItem(Item* it) 
 {
     FILE* fp;
+    
     fp = fopen("itens.dat", "ab");
+    
     if (fp == NULL) {
         printf("Ops! Não é possível continuar o programa...\n");
         return 0;
@@ -233,6 +238,7 @@ int gravaItem(Item* it)
     
     fwrite(it, sizeof(Item), 1, fp);
     fclose(fp);
+    
     return 0;
 
 }
@@ -240,7 +246,9 @@ int gravaItem(Item* it)
 int gravaMov(Mov* mv) 
 {
     FILE* fp;
+    
     fp = fopen("movimento.dat", "ab");
+    
     if (fp == NULL) {
         printf("Ops! Não é possível continuar o programa...\n");
         return 0;
@@ -248,7 +256,9 @@ int gravaMov(Mov* mv)
     
     fwrite(mv, sizeof(Mov), 1, fp);
     fclose(fp);
+    
     return 0;
+
 }
 
 
@@ -260,6 +270,7 @@ int buscaInfoItem(void)
     Item* it;
     int achou;
     char procurado[15];
+    
     fp = fopen("itens.dat", "rb");
 
     if (fp == NULL) {
@@ -276,16 +287,22 @@ int buscaInfoItem(void)
     printf("Informe o código de barras: ");
     scanf(" %30[^\n]", procurado);
     getchar();
+    
     it = (Item*) malloc(sizeof(Item));
 
     achou = 0;
+    
     while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
         printf("Código de barras |%s|\n", it->codigoBarras);
+        
         if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')) {
             achou = 1;
         }
+    
     }
+    
     fclose(fp);
+    
     if (achou) {
         system(" cls || clear ");
         printf(" | ====================== Buscar Item ====================== |\n");
@@ -306,11 +323,16 @@ int buscaInfoItem(void)
         printf(" | ========================================================= | \n");
 
     } else {
+    
         printf("Os dados do cadastro %s não foram encontrados\n", procurado);
+    
     }
+    
     free(it);
+    
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+    
     return 0;
     
 }
@@ -330,11 +352,13 @@ int telaAtualizarItem(void)
     char estoqueMin[20];
 
     fp = fopen("itens.dat", "r+b");
+    
     if (fp == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
     }
+
     system(" cls || clear");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -345,7 +369,9 @@ int telaAtualizarItem(void)
 
     it = (Item*) malloc(sizeof(Item));
     mv = (Mov*) malloc(sizeof(Mov));
+    
     achou = 0;
+    
     while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
         if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')) {
             achou = 1;
@@ -446,6 +472,7 @@ int telaAtualizarItem(void)
             it->quantProduto = estoque;
             mv->quantMovimento = estoque;
             strcpy(mv->codigoBarras, it->codigoBarras);
+        
         }
 
         else if (resp == '2') {
@@ -478,6 +505,7 @@ int telaAtualizarItem(void)
                 getchar();
                 
             } while(!lerQuantidade(estoqueMin));
+            
             estoqueM = charParaInt(estoqueMin);
             it->estoqueMinimo = estoqueM;
 
@@ -564,15 +592,18 @@ int telaAtualizarItem(void)
         printf("Dados editados com sucesso");
     
     }else {
+        
         printf("O item de código de barras %s não foi encontrado\n", procurado);
+    
     }
 
-    printf(" | Pressione qualquer tecla para sair.... ");
-    getchar();
     free(it);
     free(mv);
     fclose(fp);
     gravaItem(it);      
+    
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();    
     
     return 0; 
 
@@ -615,13 +646,16 @@ int excluirItem(void)
     int achou;
     char resp;
     char procurado[20];
+    
     fp = fopen("itens.dat", "r+b");
 
     if (fp == NULL){
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
+
     it = (Item*) malloc(sizeof(Item));
+    
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
@@ -646,6 +680,7 @@ int excluirItem(void)
         scanf("%c", &resp);
 
         if (resp == 's' || resp == 'S'){
+            
             it->status = '0';
             fseek(fp, (-1)*sizeof(Item), SEEK_CUR);
             fwrite(it, sizeof(Item), 1, fp);
@@ -653,17 +688,23 @@ int excluirItem(void)
             gravaItem(it);
             
         }else{
+            
             printf("\nTudo bem, os dados não foram alterados!");
+        
         }
 
     }else{
+        
         printf("O item não foi encontrado!");
+    
     }
 
     free(it);
     fclose(fp);
+    
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+    
     return 0;
     
 }
@@ -673,13 +714,16 @@ int listarItens(void)
 {
     FILE* fp;
     Item* it;
+    
     fp = fopen("itens.dat", "rb");
+    
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
 
     it = (Item*)malloc(sizeof(Item));
+    
     while(fread(it, sizeof(Item), 1, fp)) 
     {
         system(" cls || clear");
@@ -738,6 +782,7 @@ int entradaItem(void)
 
     it = (Item*)malloc(sizeof(Item));
     mv = (Mov*)malloc(sizeof(Mov));
+    
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -746,13 +791,16 @@ int entradaItem(void)
     printf("Informe o código de barras do produto que deseja adicionar: ");
     scanf(" %30[^\n]", procura);
     getchar();
+    
     achou = 0;
+    
     while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
         if ((strcmp(it->codigoBarras, procura) == 0) && (it->status == '1')) {
             achou = 1;
         }  
 
     }
+    
     if (achou){
         do
         {
@@ -813,12 +861,8 @@ int entradaItem(void)
             else {
                 
                 printf("Operação cancelada!");
-                telaRegistrarItem();
             
             }
-
-        gravaItem(it);
-        gravaMov(mv);
 
         }else{
             
@@ -829,6 +873,7 @@ int entradaItem(void)
     free(it);
     free(mv);
     fclose(fp);
+    
     return 0;
 
 }    
@@ -861,6 +906,7 @@ int saidaItem(void)
 
     it = (Item*)malloc(sizeof(Item));
     mv = (Mov*)malloc(sizeof(Mov));
+    
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -879,6 +925,7 @@ int saidaItem(void)
     }
 
     if (achou) {
+        
         do
         {
             printf(" | Informe a quantidade de produto que será retirado: ");
@@ -923,12 +970,9 @@ int saidaItem(void)
             else {
                 
                 printf("Operação cancelada!");
-                telaRegistrarItem();
             
             }
 
-    gravaItem(it);
-    gravaMov(mv);
 
     }else{
         
@@ -939,6 +983,7 @@ int saidaItem(void)
     free(it);
     free(mv);
     fclose(fp);
+    
     return 0;
     
 }
