@@ -9,6 +9,7 @@ struct usuario {
     char usernameUsuario[20];
     char senhaUsuario[20];
     char status;
+    char cpfUsuario[30];
     
 };
 
@@ -23,5 +24,5 @@ int listaInfoUsuario(void);
 void exibeInfoUsuario(Usuario* cliente);
 int buscaInfoUsuario(void);
 int infoExcluirUs(void);
-int validaUsername(Usuario* cliente);
+int validaCPF(Usuario* cliente);
 char escAtualizarUsuario(void);
