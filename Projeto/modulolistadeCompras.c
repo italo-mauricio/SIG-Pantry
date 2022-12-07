@@ -144,7 +144,7 @@ int itensProxVencimento(void)
 
 } 
 
-//ver se procura pelo nome da lista ou pelo cpf do usuário
+//ver se procura pelo nome da lista ou pelo username do usuário
 int infoMontarLista(void)
 {
     FILE* fp;
@@ -179,14 +179,14 @@ int infoMontarLista(void)
     printf("| ------------- | Montar a sua lista de compras | ------------- | \n");
     printf("|                                                               | \n");
    
-    printf("Informe o seu CPF: ");
+    printf("Informe o seu username: ");
     scanf(" %30[^\n]", procurado);
     getchar();
 
     achou = 0;
 
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
-        if ((strcmp(cliente->cpfUsuario, procurado) == 0) && (cliente->status == '1')) {
+        if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
         }
     }
@@ -257,7 +257,7 @@ int gravaLista(MontarLista* mtlista)
     
 }
 
-//função de pesquisa a partir do cpf (id do usuário)
+//função de pesquisa a partir do username (id do usuário)
 int buscarLista(void)
 {
     FILE* fp;
@@ -280,7 +280,7 @@ int buscarLista(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                   Buscar dados da lista                   | \n");
     printf(" | ========================================================= | \n");
-    printf("Informe o seu CPF: ");
+    printf("Informe o seu username: ");
     scanf(" %30[^\n]", procurado);
     getchar();
     
@@ -290,7 +290,7 @@ int buscarLista(void)
     achou = 0;
     
     while((!achou) && (fread(mtlista, sizeof(MontarLista), 1, fp))) {
-        if ((strcmp(cliente->cpfUsuario, procurado) == 0) && (cliente->status == '1')) {
+        if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
         }
     }
@@ -373,14 +373,14 @@ int atualizarLista(void)
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------------------- Atualizar lista -------------------- | \n");
-    printf("Informe o seu CPF: ");
+    printf("Informe o seu username: ");
     scanf(" %s", procurado);
     getchar();
     
     achou = 0;
     
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
-        if ((strcmp(cliente->cpfUsuario, procurado) == 0) && (cliente->status == '1')) {
+        if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
     }
 
@@ -439,7 +439,7 @@ int atualizarLista(void)
     
     }else {   
         
-        printf("A lista do usuário de CPF %s não foi encontrada\n", procurado);
+        printf("A lista do usuário de username %s não foi encontrada\n", procurado);
     
     }
     
@@ -508,14 +508,14 @@ int excluirLista(void)
     printf(" | -------------------------------------------------------------- | \n");
     printf(" | ------------------------ Excluir lista ----------------------- | \n");
     printf(" |                                                                | \n");
-    printf(" | Informe o seu CPF para procurar a lista que você deseja excluir: ");
+    printf(" | Informe o seu username para procurar a lista que você deseja excluir: ");
     scanf("%s", procura);
     getchar();  
     
     achou = 0;
     
     while ((!achou) && (fread(mtlista, sizeof(MontarLista), 1, fp))){
-        if ((strcmp(cliente->cpfUsuario, procura) == 0) && (cliente->status == '1')){
+        if ((strcmp(cliente->usernameUsuario, procura) == 0) && (cliente->status == '1')){
             achou = 1;
         }
     }

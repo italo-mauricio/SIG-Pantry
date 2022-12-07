@@ -106,7 +106,7 @@ char relatorioCategoria(void)
 }
 
 //função para retornar o relatório dos itens de higiente
-int exibirItensHigiene(void)
+/*int exibirItensHigiene(void)
 {
     FILE* fp;
     Item* it;
@@ -153,7 +153,7 @@ int exibirItensHigiene(void)
 
 
 //navegação da escolha do local
-/*void escRelatoriosLocal(void)
+void escRelatoriosLocal(void)
 {
     char opcao;
     do
