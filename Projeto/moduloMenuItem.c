@@ -5,36 +5,37 @@
 #include "validacoes.h"
 #include "modulocadastroUsuario.h"
 
+
 void moduloMenuItem(void)
 {
     char escolha;
     do {
         escolha = telaRegistrarItem();
         switch(escolha) {
-        case '1':
-            infoItem(); //informações do cad de um item novo
-            break;
-        case '2':
-            buscaInfoItem(); //pesquisa
-            break;
-        case '3':
-            telaAtualizarItem(); //edição
-            break;
-        case '4':
-            excluirItem(); //exclusão
-            break;
-        case '5':
-            entradaItem(); //adição de item
-            break;
-        case '6':
-            saidaItem(); //retirada de item
-            break;
-        case '7':
-            listarItens(); //relatório
-            break;     
-        default:
-            printf("Opção inválida\n");
-            break;
+            case '1':
+                infoItem(); //informações do cad de um item novo
+                break;
+            case '2':
+                buscaInfoItem(); //pesquisa
+                break;
+            case '3':
+                telaAtualizarItem(); //edição
+                break;
+            case '4':
+                excluirItem(); //exclusão
+                break;
+            case '5':
+                entradaItem(); //adição de item
+                break;
+            case '6':
+                saidaItem(); //retirada de item
+                break;
+            case '7':
+                listarItens(); //relatório sem filtro
+                break;     
+            default:
+                printf("Opção inválida\n");
+                break;
         }
      
     } while (escolha != '0');
@@ -69,9 +70,8 @@ char telaRegistrarItem(void)
 }
 
 //Função para cadastrar um novo item ao estoque
-int infoItem(void)
+void infoItem(void)
 {
-    FILE* fp;
     Item* it;
     Mov* mv;
     int resp;
@@ -80,42 +80,22 @@ int infoItem(void)
     int estoqueM;
     char quantidade[20];
     char estoqueMin[20];
-    char procura[20];
-    int achou;
-    Usuario* cliente;
-    fp = fopen("usuario.dat", "rb");
-
-    if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
-        return 0;
-    }
-    
 
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                    Cadastrar Item                         | \n");
     printf(" |                                                           | \n");    
+    
     it = (Item*)malloc(sizeof(Item));
     mv = (Mov*)malloc(sizeof(Mov));
-    cliente = (Usuario*)malloc(sizeof(Usuario));
-    printf("Digite o username já cadastrado: ");
-    scanf(" %30[^\n]", procura);
-    getchar();
-    
-    achou = 0;
-    
-    while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
-        if ((strcmp(cliente->usernameUsuario, procura) == 0) && (cliente->status == '1')) {
-            achou = 1;
-        }  
 
-    }
-    if(achou){
+    //perguntar antes o id e associar isso ao id do usuário
     printf("Informe quantos itens vão ser cadastrados: ");
     scanf("%d", &resp);
 
         for (i = 1; i <= resp; i++) {
+            
             do
             {
                 printf(" | Informe o nome do produto (sem acentuação): ");
@@ -148,10 +128,10 @@ int infoItem(void)
                 getchar();
                 
             } while(!lerQuantidade(estoqueMin));
+
             estoqueM = charParaInt(estoqueMin);
             it->estoqueMinimo = estoqueM;
             
-
             do 
             {        
                 printf(" | Informe o dia de vencimento: ");
@@ -166,39 +146,9 @@ int infoItem(void)
                 
             } while(!valida_data(it->dia, it->mes, it->ano)); 
             
-            do //por enquanto será assim
-            {
-                system("cls || clear");
-                printf(" | ================= Categoria do produto ================= |\n");
-                printf(" |                                                          |\n");
-                printf(" |                      Higiene pessoal                     |\n");
-                printf(" |                      Limpeza                             |\n");
-                printf(" |                      Alimento                            |\n");
-                printf(" |                                                          |\n");
-                printf(" | ======================================================== |\n");
-                printf(" | Digite a sua opção (sem acentuação): ");
-                scanf("%[A-Z a-z]", it->categoria);
-                getchar();
+            it->categoria = telaEscCategoria();
 
-            } while (!validarLetras(it->categoria, tamanhoString(it->categoria)));
-
-            do 
-            {
-                system("cls || clear");
-                printf(" | ================ Local de Armazenamento ================ |\n");
-                printf(" |                                                          |\n");
-                printf(" |                   Geladeira                              |\n");
-                printf(" |                   Armário da cozinha                     |\n");
-                printf(" |                   Área de serviço                        |\n");
-                printf(" |                   Banheiro                               |\n");
-                printf(" |                   Guarda-roupa                           |\n");
-                printf(" |                                                          |\n");
-                printf(" | ======================================================== | \n");
-                printf(" | Digite a sua opção (sem acentuação): ");
-                scanf("%[A-Z a-z]", it->localArmazenamento);
-                getchar();
-
-            } while (!validarLetras(it->localArmazenamento, tamanhoString(it->localArmazenamento)));
+            it->localArmazenamento = telaEscLocalArmaz();
 
             do
             {
@@ -235,7 +185,6 @@ int infoItem(void)
         
         }
 
-
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     it->status = '1'; //o 1 mostra que foi cadastrado
@@ -246,11 +195,49 @@ int infoItem(void)
     
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
-    }
-    else{
-        printf("Username não encontrado");
-    }
-    return 0;
+
+}
+
+//função para escolha da categoria
+char telaEscCategoria(void)
+{
+    char esc;
+    system("cls || clear");
+    printf(" | ================= Categoria do produto ================= |\n");
+    printf(" |                                                          |\n");
+    printf(" |                    1- Higiene pessoal                    |\n");
+    printf(" |                    2- Limpeza                            |\n");
+    printf(" |                    3- Alimento                           |\n");
+    printf(" |                                                          |\n");
+    printf(" | ======================================================== |\n");
+    printf(" | Digite uma opção: ");
+    scanf("%c", &esc);
+    getchar();
+
+    return esc;
+
+}
+
+//função para escolha do local
+char telaEscLocalArmaz(void)
+{
+    char esc;
+    system("cls || clear");
+    printf(" | ================ Local de Armazenamento ================ |\n");
+    printf(" |                                                          |\n");
+    printf(" |                   1- Geladeira                           |\n");
+    printf(" |                   2- Armário da cozinha                  |\n");
+    printf(" |                   3- Área de serviço                     |\n");
+    printf(" |                   4- Banheiro                            |\n");
+    printf(" |                   5- Guarda-roupa                        |\n");
+    printf(" |                                                          |\n");
+    printf(" | ======================================================== |\n");
+    printf(" | Digite a sua opção: ");
+    scanf("%c", &esc);
+    getchar();
+
+    return esc;
+
 }
 
 //função para gravar no arquivo
@@ -291,7 +278,6 @@ int gravaMov(Mov* mv)
 }
 
 
-
 //função de pesquisa a partir do código de barras
 int buscaInfoItem(void)
 {
@@ -299,7 +285,6 @@ int buscaInfoItem(void)
     Item* it;
     int achou;
     char procurado[15];
-    Usuario* cliente;
     
     fp = fopen("itens.dat", "rb");
 
@@ -307,7 +292,7 @@ int buscaInfoItem(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
-      
+
     printf("\n\n");
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
@@ -317,12 +302,12 @@ int buscaInfoItem(void)
     printf("Informe o código de barras: ");
     scanf(" %30[^\n]", procurado);
     getchar();
-    cliente = (Usuario*)malloc(sizeof(Usuario));
+    
     it = (Item*) malloc(sizeof(Item));
 
     achou = 0;
     
-    while((!achou) && (fread(it, sizeof(Item), 1, fp)))  {
+    while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
         printf("Código de barras |%s|\n", it->codigoBarras);
         
         if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')) {
@@ -330,15 +315,13 @@ int buscaInfoItem(void)
         }
     
     }
-   
+    
     fclose(fp);
-
     
     if (achou) {
         system(" cls || clear ");
         printf(" | ====================== Buscar Item ====================== |\n");
-        printf(" |                                                           |\n");
-        printf(" | Nome do usuario: %s\n", cliente->usernameUsuario);         
+        printf(" |                                                           |\n");         
         printf(" | Nome do produto: %s\n", it->nomeProduto);    
         printf(" | Nome da marca: %s\n", it->nomeMarca);    
         printf(" | Código de barras: %s\n", it->codigoBarras);    
@@ -361,7 +344,6 @@ int buscaInfoItem(void)
     }
     
     free(it);
-    free(cliente);
     
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
@@ -418,6 +400,7 @@ int telaAtualizarItem(void)
         printf("\n");
 
         if (resp == '1'){
+            
             do
             {
                 printf("Informe o novo nome do produto (sem acentuação): ");
@@ -441,9 +424,9 @@ int telaAtualizarItem(void)
                 getchar();
                 
             } while(!lerQuantidade(estoqueMin));
+            
             estoqueM = charParaInt(estoqueMin);
             it->estoqueMinimo = estoqueM;
-
 
             do 
             {        
@@ -459,39 +442,9 @@ int telaAtualizarItem(void)
                 
             } while(!valida_data(it->dia, it->mes, it->ano)); 
             
-            do //por enquanto será assim
-            {
-                system("cls || clear");
-                printf(" | ================= Categoria do produto ================= |\n");
-                printf(" |                                                          |\n");
-                printf(" |                      Higiene pessoal                     |\n");
-                printf(" |                      Limpeza                             |\n");
-                printf(" |                      Alimento                            |\n");
-                printf(" |                                                          |\n");
-                printf(" | ======================================================== |\n");
-                printf(" | Digite a sua opção (sem acentuação): ");
-                scanf("%[A-Z a-z]", it->categoria);
-                getchar();
+            it->categoria = telaEscCategoria();
 
-            } while (!validarLetras(it->categoria, tamanhoString(it->categoria)));
-
-            do 
-            {
-                system("cls || clear");
-                printf(" | ================ Local de Armazenamento ================ |\n");
-                printf(" |                                                          |\n");
-                printf(" |                   Geladeira                              |\n");
-                printf(" |                   Armário da cozinha                     |\n");
-                printf(" |                   Área de serviço                        |\n");
-                printf(" |                   Banheiro                               |\n");
-                printf(" |                   Guarda-roupa                           |\n");
-                printf(" |                                                          |\n");
-                printf(" | ======================================================== | \n");
-                printf(" | Digite a sua opção (sem acentuação): ");
-                scanf("%[A-Z a-z]", it->localArmazenamento);
-                getchar();
-
-            } while (!validarLetras(it->localArmazenamento, tamanhoString(it->localArmazenamento)));
+            it->localArmazenamento = telaEscLocalArmaz();
 
             do
             {
@@ -509,6 +462,7 @@ int telaAtualizarItem(void)
         }
 
         else if (resp == '2') {
+            
             do
             {
                 printf("Informe o novo nome do produto (sem acentuação): ");
@@ -520,6 +474,7 @@ int telaAtualizarItem(void)
         }
 
         else if (resp == '3') {            
+            
             do
             {
                 printf(" | Informe o novo nome da marca (sem acentuação): ");
@@ -531,6 +486,7 @@ int telaAtualizarItem(void)
         }
 
         else if (resp == '4'){
+            
             do
             {
                 printf(" | Informe o estoque mínimo desse produto: ");
@@ -562,45 +518,19 @@ int telaAtualizarItem(void)
         }
 
         else if (resp == '6') {
-            do //por enquanto será assim
-            {
-                system("cls || clear");
-                printf(" | ================= Categoria do produto ================= |\n");
-                printf(" |                                                          |\n");
-                printf(" |                      Higiene pessoal                     |\n");
-                printf(" |                      Limpeza                             |\n");
-                printf(" |                      Alimento                            |\n");
-                printf(" |                                                          |\n");
-                printf(" | ======================================================== |\n");
-                printf(" | Digite a nova categoria (sem acentuação): ");
-                scanf("%[A-Z a-z]", it->categoria);
-                getchar();
-
-            } while (!validarLetras(it->categoria, tamanhoString(it->categoria)));
+            
+            it->categoria = telaEscCategoria();
 
         }
 
         else if (resp == '7') {
-            do 
-            {
-                system("cls || clear");
-                printf(" | ================ Local de Armazenamento ================ |\n");
-                printf(" |                                                          |\n");
-                printf(" |                   Geladeira                              |\n");
-                printf(" |                   Armário da cozinha                     |\n");
-                printf(" |                   Área de serviço                        |\n");
-                printf(" |                   Banheiro                               |\n");
-                printf(" |                   Guarda-roupa                           |\n");
-                printf(" |                                                          |\n");
-                printf(" | ======================================================== | \n");
-                printf(" | Digite a sua nova opção (sem acentuação): ");
-                scanf("%[A-Z a-z]", it->localArmazenamento);
-                getchar();
+            
+            it->localArmazenamento = telaEscLocalArmaz();
 
-            } while (!validarLetras(it->localArmazenamento, tamanhoString(it->localArmazenamento)));
         }
 
         else if (resp == '8'){
+            
             do
             {
                 
@@ -769,6 +699,8 @@ int listarItens(void)
         printf(" | Dia do vencimento: %d\n", it->dia); 
         printf(" | Mês do vencimento: %d\n", it->mes);         
         printf(" | Ano do vencimento: %d\n", it->ano); 
+        printf(" | Categoria do produto: %d\n", it->categoria);
+        printf(" | Local de armazenamento: %d\n", it->localArmazenamento);
         printf(" | Quantidade do produto: %d\n", it->quantProduto);
         printf(" | Dia da entrada: %d\n", it->diaEnt);
         printf(" | Mês da entrada: %d\n", it->mesEnt);
@@ -824,7 +756,7 @@ int entradaItem(void)
     printf("Informe o código de barras do produto que deseja adicionar: ");
     scanf(" %30[^\n]", procura);
     getchar();
-    
+    //perguntar antes o id do usuário
     achou = 0;
     
     while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
@@ -1020,4 +952,3 @@ int saidaItem(void)
     return 0;
     
 }
-

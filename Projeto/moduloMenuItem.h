@@ -5,8 +5,8 @@ struct item
     char nomeProduto[20];
     char nomeMarca[20];
     int dia; //vencimento
-    int mes;
-    int ano;
+    int mes; //vencimento
+    int ano; //vencimento
     int diaEnt;
     int mesEnt;
     int anoEnt;
@@ -16,8 +16,8 @@ struct item
     char codigoBarras[20];
     char status;
     int estoqueMinimo; 
-    char categoria[10];
-    char localArmazenamento[50];
+    char categoria;
+    char localArmazenamento;
     int quantProduto;  
    
 };
@@ -41,7 +41,7 @@ struct mov
 //assinatura das funções do arquivo .c
 void moduloMenuItem(void);
 char telaRegistrarItem(void);
-int infoItem(void);
+void infoItem(void);
 int listarItens(void);
 int buscaInfoItem(void);
 int telaAtualizarItem(void);
@@ -51,3 +51,5 @@ int gravaItem(Item* it);
 int gravaMov(Mov* mv);
 int entradaItem(void);
 int saidaItem(void);
+char telaEscCategoria(void);
+char telaEscLocalArmaz(void);

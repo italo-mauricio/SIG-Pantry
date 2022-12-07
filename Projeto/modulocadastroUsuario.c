@@ -4,6 +4,7 @@
 #include "modulocadastroUsuario.h"
 #include "validacoes.h"
 
+
 void modulocadastroUsuario(void)
 {    
     char op;
@@ -61,15 +62,17 @@ char telaMenuUsuario(void)
 //função para cadastro do usuário no programa 
 void InfoUsuario(void) 
 {
-
     Usuario* cliente;
+    
     system(" cls || clear");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                   Cadastro SIG-Pantry                     | \n");
     printf(" | ========================================================= | \n");
     printf(" |                                                           | \n");
+    
     cliente = (Usuario*) malloc(sizeof(Usuario));
+    
     do
     {
         printf(" | Informe o seu nome: ");
@@ -101,12 +104,12 @@ void InfoUsuario(void)
     
     do {
 
-        printf(" | Informe o CPF: "); 
-        scanf("%30[^\n]",cliente->usernameUsuario);
+        printf(" | Informe o seu CPF (99999999999): "); 
+        scanf("%s",cliente->cpfUsuario);
         getchar();
     
 
-    } while(!lerUsername(cliente->usernameUsuario) || (validaUsername(cliente)));
+    } while(!valida_cpf(cliente->cpfUsuario) || (validaCPF(cliente)));
     
         
     printf(" | Usuário cadastrado com sucesso!                           | \n");
@@ -118,40 +121,46 @@ void InfoUsuario(void)
     getchar();
    
     
-    
 }
 
 
-//A partir do username, visto que cada usuário tem o seu
+//A partir do cpf, visto que cada usuário tem o seu
 int buscaInfoUsuario(void)
 {
     FILE* fp;
     Usuario* cliente;
     int achou;
     char procurado[15];
+    
     fp = fopen("usuario.dat", "rb");
 
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
+    
     printf("\n\n");
     system(" cls || clear ");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                   Buscar dados do usuário                 | \n");
     printf(" | ========================================================= | \n");
-    printf("Informe o seu username: ");
+    printf("Informe o seu CPF: ");
     scanf(" %30[^\n]", procurado);
     getchar();
+    
     cliente = (Usuario*) malloc(sizeof(Usuario));
+    
     achou = 0;
+    
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
-        if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
+        if ((strcmp(cliente->cpfUsuario, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
         }
     }
+    
     fclose(fp);
+    
     if (achou) {
         system(" cls || clear" );
         printf(" | ================== Usuário encontrado =================== |\n");
@@ -161,7 +170,6 @@ int buscaInfoUsuario(void)
         printf(" | Dia do nascimento: %d\n", cliente->dia); 
         printf(" | Mês do nascimento: %d\n", cliente->mes); 
         printf(" | Ano do nascimento: %d\n", cliente->ano); 
-        printf(" | Username: %s\n", cliente->usernameUsuario);
         printf(" | Status: %c\n", cliente->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
@@ -169,9 +177,12 @@ int buscaInfoUsuario(void)
     } else {
         printf("Os dados do usuário %s não foram encontrados\n", procurado);
     }
+
     free(cliente);
+
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+
     return 0;
     
 }
@@ -186,24 +197,30 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
     char procurado[20];
 
     fp = fopen("usuario.dat", "r+b");
+    
     if (fp == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
     }
+    
     cliente = (Usuario*) malloc(sizeof(Usuario));
+    
     system(" cls || clear ");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ------------------- Atualizar usuário ------------------- | \n");
-    printf("Informe o seu username: ");
+    printf("Informe o seu CPF: ");
     scanf(" %s", procurado);
     getchar();
+    
     achou = 0;
+    
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
-        if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
+        if ((strcmp(cliente->cpfUsuario, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
     }
+
     if (achou){
 
         exibeInfoUsuario(cliente);
@@ -240,14 +257,6 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
                 getchar();
         
             } while(!valida_data(cliente->dia, cliente->mes, cliente->ano));  
-
-            do
-            {
-                printf(" | Informe o novo username: "); 
-                scanf("%s", cliente->usernameUsuario);
-                getchar();
-
-            } while(!lerUsername(cliente->usernameUsuario)|| (!validaUsername(cliente)));
 
         }
 
@@ -287,15 +296,6 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
             } while(!valida_data(cliente->dia, cliente->mes, cliente->ano)); 
         }
 
-        else if (resp == '5') {
-            do
-            {
-                printf(" | Informe o novo username: "); 
-                scanf("%s", cliente->usernameUsuario);
-                getchar();
-
-            } while(!lerUsername(cliente->usernameUsuario)|| (!validaUsername(cliente)));            
-        }
 
         cliente->status = '1';      
         fseek(fp, (-1)*sizeof(Usuario), SEEK_CUR);
@@ -308,7 +308,7 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
     else 
     {   
         
-        printf("O usuário de username %s não foi encontrado\n", procurado);
+        printf("O usuário de CPF %s não foi encontrado\n", procurado);
     }
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
@@ -316,7 +316,9 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
     fclose(fp);      
 
     } 
+
     return 0;
+
 }
 
 //função para selecionar o que quer atualizar
@@ -332,7 +334,6 @@ char escAtualizarUsuario(void)
     printf(" |                 2- Editar nome                            | \n");
     printf(" |                 3- Editar e-mail                          | \n");
     printf(" |                 4- Editar data de nascimento              | \n");                 
-    printf(" |                 5- Editar username                        | \n");
     printf(" |                 0- Voltar à tela principal                | \n");    
     printf(" |                                                           | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -368,24 +369,29 @@ int infoExcluirUs(void)
     int achou;
     char resp;
     char procurado[20];
+    
     fp = fopen("usuario.dat", "r+b");
 
     if (fp == NULL){
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
+    
     cliente = (Usuario*) malloc(sizeof(Usuario));
+    
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
     printf(" | ---------------------- Excluir usuário ----------------------- | \n");
     printf(" |                                                                | \n");
-    printf(" | Informe o username do usuário que você quer excluir: ");
+    printf(" | Informe o CPF do usuário que você quer excluir: ");
     scanf(" %30[^\n]", procurado);
     getchar();  
+    
     achou = 0;
+    
     while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))){
-        if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')){
+        if ((strcmp(cliente->cpfUsuario, procurado) == 0) && (cliente->status == '1')){
             achou = 1;
         }
     }
@@ -394,6 +400,7 @@ int infoExcluirUs(void)
         exibeInfoUsuario(cliente);
         printf("Deseja realmente excluir os dados deste usuário? (s/n)");
         scanf("%c", &resp);
+        
         if (resp == 's' || resp == 'S'){
             cliente->status = '0';
             fseek(fp, (-1)*sizeof(Usuario), SEEK_CUR);
@@ -402,16 +409,25 @@ int infoExcluirUs(void)
             gravaUsuario(cliente);
             printf("| Pressione qualquer tecla para sair... ");
             getchar();
+        
         }else{
+        
             printf("\nTudo bem, os dados não foram alterados!");
+        
         }
+    
     }else{
+    
         printf("O usuário não foi encontrado!");
+    
     }
+    
     free(cliente);
     fclose(fp);
+    
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+    
     return 0;
     
 }
@@ -422,19 +438,23 @@ int listaInfoUsuario(void)
 {
     FILE* fp;
     Usuario* cliente;
+    
     fp = fopen("usuario.dat", "rb");
+    
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
 
     cliente = (Usuario*)malloc(sizeof(Usuario));
+    
     while(fread(cliente, sizeof(Usuario), 1, fp)) {
         system(" cls || clear");
         printf(" | ==================== Lista usuário ====================== | \n");
         printf(" |                                                           | \n");
         exibeInfoUsuario(cliente);
     }
+    
     fclose(fp);
     free(cliente);
     return 0;
@@ -445,12 +465,12 @@ void exibeInfoUsuario(Usuario* cliente) {
     system(" cls || clear");
     printf(" | =================== Usuário cadastrado ================== |\n");
     printf(" |                                                           |\n");
-    printf(" | Nome: %s\n", cliente->nomeUsuario);    
+    printf(" | Nome: %s\n", cliente->nomeUsuario); 
+    printf(" | CPF: %s\n", cliente->cpfUsuario);   
     printf(" | E-mail: %s\n", cliente->emailUsuario);
     printf(" | Dia do nascimento: %d\n", cliente->dia); 
     printf(" | Mês do nascimento: %d\n", cliente->mes); 
     printf(" | Ano do nascimento: %d\n", cliente->ano); 
-    printf(" | Username: %s\n", cliente->usernameUsuario);
     printf(" | Status: %c\n", cliente->status);
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -459,20 +479,23 @@ void exibeInfoUsuario(Usuario* cliente) {
     
 }
 
-//função para verificar se já tem o username no arquivo
-int validaUsername(Usuario* cliente)
+//função para verificar se já tem o CPF no arquivo
+int validaCPF(Usuario* cliente)
 {
     FILE *fp;
     Usuario *usuarioArq;
 
     usuarioArq = (Usuario*)malloc(sizeof(Usuario));
+    
     fp = fopen("usuario.dat", "rt");
+    
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo");
         return 0;
     }
-    if (cliente->usernameUsuario == usuarioArq->usernameUsuario){
+    
+    if (cliente->cpfUsuario == usuarioArq->cpfUsuario){
         printf("Usuario ja cadastrado");
         return 0;
     }
@@ -480,11 +503,12 @@ int validaUsername(Usuario* cliente)
     while (!feof(fp))
     {
         fread(usuarioArq, sizeof(Usuario), 1, fp);
-        if (strcmp(cliente->usernameUsuario, usuarioArq->usernameUsuario) == 0 && (usuarioArq->status != '0'))
+        if (strcmp(cliente->cpfUsuario, usuarioArq->cpfUsuario) == 0 && (usuarioArq->status != '0'))
         {
             return 0;
         }
     }
 
     return 0;
+
 }
