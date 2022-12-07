@@ -18,7 +18,8 @@ struct item
     int estoqueMinimo; 
     char categoria;
     char localArmazenamento;
-    int quantProduto;  
+    int quantProduto;
+    char usernameUsuario[20];  
    
 };
 
@@ -35,13 +36,14 @@ struct mov
     int diaSaida;
     int mesSaida;
     int anoSaida;
+    char usernameUsuario[20];
     
 };
 
 //assinatura das funções do arquivo .c
 void moduloMenuItem(void);
 char telaRegistrarItem(void);
-void infoItem(void);
+int infoItem(void);
 int listarItens(void);
 int buscaInfoItem(void);
 int telaAtualizarItem(void);
