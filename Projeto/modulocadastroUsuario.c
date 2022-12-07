@@ -104,12 +104,12 @@ void InfoUsuario(void)
     
     do {
 
-        printf(" | Informe o seu CPF (99999999999): "); 
-        scanf("%s",cliente->cpfUsuario);
+        printf(" | Informe o seu username: "); 
+        scanf("%s",cliente->usernameUsuario);
         getchar();
     
 
-    } while(!((valida_cpf(cliente->cpfUsuario)) && (validaCPF(cliente->cpfUsuario))));
+    } while(!((lerUsername(cliente->usernameUsuario)) && (validaUser(cliente->usernameUsuario))));
     
         
     printf(" | Usuário cadastrado com sucesso!                           | \n");
@@ -145,7 +145,7 @@ int buscaInfoUsuario(void)
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                   Buscar dados do usuário                 | \n");
     printf(" | ========================================================= | \n");
-    printf("Informe o seu CPF: ");
+    printf("Informe o seu Username: ");
     scanf(" %30[^\n]", procurado);
     getchar();
     
@@ -154,7 +154,7 @@ int buscaInfoUsuario(void)
     achou = 0;
     
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
-        if ((strcmp(cliente->cpfUsuario, procurado) == 0) && (cliente->status == '1')) {
+        if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
         }
     }
@@ -210,14 +210,14 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ------------------- Atualizar usuário ------------------- | \n");
-    printf("Informe o seu CPF: ");
+    printf("Informe o seu username: ");
     scanf(" %s", procurado);
     getchar();
     
     achou = 0;
     
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
-        if ((strcmp(cliente->cpfUsuario, procurado) == 0) && (cliente->status == '1')) {
+        if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
     }
 
@@ -308,7 +308,7 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
     else 
     {   
         
-        printf("O usuário de CPF %s não foi encontrado\n", procurado);
+        printf("O username %s não foi encontrado\n", procurado);
     }
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
@@ -384,14 +384,14 @@ int infoExcluirUs(void)
     printf(" | -------------------------------------------------------------- | \n");
     printf(" | ---------------------- Excluir usuário ----------------------- | \n");
     printf(" |                                                                | \n");
-    printf(" | Informe o CPF do usuário que você quer excluir: ");
+    printf(" | Informe o username do usuário que você quer excluir: ");
     scanf(" %30[^\n]", procurado);
     getchar();  
     
     achou = 0;
     
     while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))){
-        if ((strcmp(cliente->cpfUsuario, procurado) == 0) && (cliente->status == '1')){
+        if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')){
             achou = 1;
         }
     }
@@ -466,7 +466,7 @@ void exibeInfoUsuario(Usuario* cliente) {
     printf(" | =================== Usuário cadastrado ================== |\n");
     printf(" |                                                           |\n");
     printf(" | Nome: %s\n", cliente->nomeUsuario); 
-    printf(" | CPF: %s\n", cliente->cpfUsuario);   
+    printf(" | Username: %s\n", cliente->usernameUsuario);   
     printf(" | E-mail: %s\n", cliente->emailUsuario);
     printf(" | Dia do nascimento: %d\n", cliente->dia); 
     printf(" | Mês do nascimento: %d\n", cliente->mes); 
@@ -480,7 +480,7 @@ void exibeInfoUsuario(Usuario* cliente) {
 }
 
 //função para verificar se já tem o CPF no arquivo
-int validaCPF(char* cpf)
+int validaUser(char* user)
 {
     FILE *fp;
     Usuario *usuarioArq;
@@ -500,7 +500,7 @@ int validaCPF(char* cpf)
     while (!feof(fp))
     {
         fread(usuarioArq, sizeof(Usuario), 1, fp);
-        if (strcmp(cpf, usuarioArq->cpfUsuario) == 0 && (usuarioArq->status != '0'))
+        if (strcmp(user, usuarioArq->usernameUsuario == 0) && (usuarioArq->status != '0'))
         {
             fclose(fp);
             return 0;

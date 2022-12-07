@@ -8,4 +8,4 @@ int lerEmail(char email[]);
 int tamanhoString(char a[]);
 int charParaInt(char *num);
 int poten(int num, int pot);
-int valida_cpf(char *cpf);
+int lerUsername(char username[]); 
