@@ -88,6 +88,7 @@ int infoItem(void)
 
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
+        getchar();
         return 0;
     }
 
@@ -109,10 +110,17 @@ int infoItem(void)
             achou = 1;
         }
     }
-    fclose(fp);
     
     if (achou){
-    //perguntar antes o id e associar isso ao id do usuário
+        FILE* fp1;
+        fp1 = fopen("itens.dat", "ab");
+
+        if (fp1 == NULL) {
+            printf("Ops! Erro na abertura do arquivo!\n");
+            getchar();
+            return 0;
+        }
+   
             printf("Informe quantos itens vão ser cadastrados: ");
             scanf("%d", &resp);
 
@@ -204,6 +212,13 @@ int infoItem(void)
                     mv->mesEnt = it->mesEnt;
                     mv->anoEnt = it->anoEnt;
                     mv->tipo = 'E';
+
+            it->status = '1'; //o 1 mostra que foi cadastrado              
+            gravaItem(it);
+            gravaMov(mv);
+            free(it);
+            free(mv);
+            fclose(fp1);
                 
                 }
     } else {
@@ -212,13 +227,10 @@ int infoItem(void)
 
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    it->status = '1'; //o 1 mostra que foi cadastrado
-    gravaItem(it);
-    gravaMov(mv);
-    gravaUsuario(cliente);
-    free(it);
-    free(mv);
+
     free(cliente);
+    fclose(fp);
+
     
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
@@ -575,7 +587,7 @@ int telaAtualizarItem(void)
             strcpy(mv->codigoBarras, it->codigoBarras);
 
         }
-    
+
         it->status = '1';      
         fseek(fp, (-1)*sizeof(Item), SEEK_CUR);
         fwrite(it, sizeof(Item), 1, fp);        
@@ -706,7 +718,9 @@ int listarItens(void)
 {
     FILE* fp;
     Item* it;
-    
+    char aux[20];
+    char aux2[20];
+
     fp = fopen("itens.dat", "rb");
     
     if (fp == NULL) {
@@ -718,6 +732,32 @@ int listarItens(void)
     
     while(fread(it, sizeof(Item), 1, fp)) 
     {
+        if (it->categoria == '1'){
+            strcpy(aux, "Higiene pessoal");
+        
+        }else if(it->categoria == '2'){
+            strcpy(aux, "Limpeza");
+        
+        }else{
+            strcpy(aux, "Alimento");
+        }
+
+        if (it->localArmazenamento == '1'){
+            strcpy(aux2, "Geladeira");
+        
+        }else if(it->localArmazenamento == '2'){
+            strcpy(aux2, "Armário de cozinha");
+        
+        }else if(it->localArmazenamento == '3'){
+            strcpy(aux2, "Área de serviço");        
+        
+        }else if(it->localArmazenamento == '4'){
+            strcpy(aux2, "Banheiro");          
+        
+        }else{
+            strcpy(aux2, "Guarda-roupa");
+        }
+        
         system(" cls || clear");
         printf(" | ===================== Lista de Itens ==================== |\n");
         printf(" |                                                           |\n");       
@@ -728,8 +768,8 @@ int listarItens(void)
         printf(" | Dia do vencimento: %d\n", it->dia); 
         printf(" | Mês do vencimento: %d\n", it->mes);         
         printf(" | Ano do vencimento: %d\n", it->ano); 
-        printf(" | Categoria do produto: %d\n", it->categoria);
-        printf(" | Local de armazenamento: %d\n", it->localArmazenamento);
+        printf(" | Categoria do produto: %s\n", aux);
+        printf(" | Local de armazenamento: %s\n", aux2);
         printf(" | Quantidade do produto: %d\n", it->quantProduto);
         printf(" | Dia da entrada: %d\n", it->diaEnt);
         printf(" | Mês da entrada: %d\n", it->mesEnt);
@@ -741,6 +781,8 @@ int listarItens(void)
         getchar();
         
     }
+
+
 
     fclose(fp);
     free(it);
