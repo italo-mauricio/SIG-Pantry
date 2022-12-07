@@ -109,7 +109,7 @@ void InfoUsuario(void)
         getchar();
     
 
-    } while(!valida_cpf(cliente->cpfUsuario) || (validaCPF(cliente)));
+    } while(!((valida_cpf(cliente->cpfUsuario)) && (validaCPF(cliente->cpfUsuario))));
     
         
     printf(" | Usuário cadastrado com sucesso!                           | \n");
@@ -480,7 +480,7 @@ void exibeInfoUsuario(Usuario* cliente) {
 }
 
 //função para verificar se já tem o CPF no arquivo
-int validaCPF(Usuario* cliente)
+int validaCPF(char* cpf)
 {
     FILE *fp;
     Usuario *usuarioArq;
@@ -492,23 +492,22 @@ int validaCPF(Usuario* cliente)
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo");
-        return 0;
+        fclose(fp);
+        return 1;
     }
     
-    if (cliente->cpfUsuario == usuarioArq->cpfUsuario){
-        printf("Usuario ja cadastrado");
-        return 0;
-    }
 
     while (!feof(fp))
     {
         fread(usuarioArq, sizeof(Usuario), 1, fp);
-        if (strcmp(cliente->cpfUsuario, usuarioArq->cpfUsuario) == 0 && (usuarioArq->status != '0'))
+        if (strcmp(cpf, usuarioArq->cpfUsuario) == 0 && (usuarioArq->status != '0'))
         {
+            fclose(fp);
             return 0;
         }
     }
 
-    return 0;
+    fclose(fp);
+    return 1;
 
 }
