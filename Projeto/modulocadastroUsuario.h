@@ -24,5 +24,5 @@ int listaInfoUsuario(void);
 void exibeInfoUsuario(Usuario* cliente);
 int buscaInfoUsuario(void);
 int infoExcluirUs(void);
-int validaCPF(char* cpf);
+int validaUser(char* user);
 char escAtualizarUsuario(void);

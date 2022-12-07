@@ -165,7 +165,8 @@ int buscaInfoUsuario(void)
         system(" cls || clear" );
         printf(" | ================== Usuário encontrado =================== |\n");
         printf(" |                                                           |\n");
-        printf(" | Nome: %s\n", cliente->nomeUsuario);    
+        printf(" | Nome: %s\n", cliente->nomeUsuario);
+        printf(" | Username: %s", cliente->usernameUsuario);    
         printf(" | E-mail: %s\n", cliente->emailUsuario);
         printf(" | Dia do nascimento: %d\n", cliente->dia); 
         printf(" | Mês do nascimento: %d\n", cliente->mes); 
@@ -407,7 +408,6 @@ int infoExcluirUs(void)
             fwrite(cliente, sizeof(Usuario), 1, fp);
             printf("\nUsuário excluído com sucesso!");
             gravaUsuario(cliente);
-            printf("| Pressione qualquer tecla para sair... ");
             getchar();
         
         }else{
@@ -491,7 +491,7 @@ int validaUser(char* user)
     
     if (fp == NULL)
     {
-        printf("Ocorreu um erro na abertura do arquivo");
+        printf("Gerando arquivo...");
         fclose(fp);
         return 1;
     }
@@ -500,7 +500,7 @@ int validaUser(char* user)
     while (!feof(fp))
     {
         fread(usuarioArq, sizeof(Usuario), 1, fp);
-        if (strcmp(user, usuarioArq->usernameUsuario == 0) && (usuarioArq->status != '0'))
+        if (strcmp(user, usuarioArq->usernameUsuario) == 0 && (usuarioArq->status != '0'))
         {
             fclose(fp);
             return 0;
