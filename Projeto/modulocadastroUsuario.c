@@ -61,6 +61,7 @@ char telaMenuUsuario(void)
 //função para cadastro do usuário no programa 
 void InfoUsuario(void) 
 {
+
     Usuario* cliente;
     system(" cls || clear");
     printf(" | ========================================================= | \n");
@@ -97,15 +98,17 @@ void InfoUsuario(void)
         
      } while(!valida_data(cliente->dia, cliente->mes, cliente->ano));  
 
+    
     do {
 
-        printf(" | Informe um username: "); 
-        scanf("%s", cliente->usernameUsuario);
+        printf(" | Informe o CPF: "); 
+        scanf("%30[^\n]",cliente->usernameUsuario);
         getchar();
-
-    } while(!lerUsername(cliente->usernameUsuario) || (!validaUsername(cliente)));
-        
     
+
+    } while(!lerUsername(cliente->usernameUsuario) || (validaUsername(cliente)));
+    
+        
     printf(" | Usuário cadastrado com sucesso!                           | \n");
     printf(" | ========================================================= | \n");
     cliente->status = '1'; //o 1 mostra que foi cadastrado
@@ -113,9 +116,11 @@ void InfoUsuario(void)
     free(cliente);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+   
     
     
-}  
+}
+
 
 //A partir do username, visto que cada usuário tem o seu
 int buscaInfoUsuario(void)
@@ -458,14 +463,18 @@ void exibeInfoUsuario(Usuario* cliente) {
 int validaUsername(Usuario* cliente)
 {
     FILE *fp;
-    Usuario *usuarioArq;;
+    Usuario *usuarioArq;
 
     usuarioArq = (Usuario*)malloc(sizeof(Usuario));
     fp = fopen("usuario.dat", "rt");
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo");
-        return 0;;
+        return 0;
+    }
+    if (cliente->usernameUsuario == usuarioArq->usernameUsuario){
+        printf("Usuario ja cadastrado");
+        return 0;
     }
 
     while (!feof(fp))

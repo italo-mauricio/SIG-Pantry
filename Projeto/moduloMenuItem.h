@@ -41,7 +41,7 @@ struct mov
 //assinatura das funções do arquivo .c
 void moduloMenuItem(void);
 char telaRegistrarItem(void);
-void infoItem(void);
+int infoItem(void);
 int listarItens(void);
 int buscaInfoItem(void);
 int telaAtualizarItem(void);
