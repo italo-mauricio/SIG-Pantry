@@ -7,6 +7,9 @@
 #include "modulolistadeCompras.h"
 #include "modulocadastroUsuario.h"
 
+
+//desenvolver listas dinâmicas de ordem alfabética dos itens; por ordem de chegada...
+
 char moduloRelatorio(void)
 {
     char escolha;
@@ -20,9 +23,6 @@ char moduloRelatorio(void)
                 relatorioLocalArmaz(); //com base no local selecionado para armazenar
                 break; 
             case '3':
-                relatorioListasdeCompra(); //resgatar listas excluídas
-                break;
-            case '4':
                 relatoriopeloTipo(); //com base no E e S do menu itens
                 break;
             default :
@@ -46,7 +46,6 @@ char telaRelatorio(void)
     printf(" |                                                                      | \n");
     printf(" |                 1- Estoque com base na categoria                     | \n");
     printf(" |                 2- Estoque com base no local de armazenamento        | \n");
-    printf(" |                 3- Histórico de listas de compra                     | \n");
     printf(" |                 4- Estoque com base no tipo                          | \n");
     printf(" |                 0- Voltar à tela principal                           | \n");
     printf(" |                                                                      | \n");
@@ -70,7 +69,13 @@ char telaRelatorio(void)
         {
             case '1':
                 exibirItensHigiene();
-                break; //fazer case 2 para colocar a de limpeza... 
+                break; 
+            case '2':
+                exibirItensLimpeza();
+                break;
+            case '3':
+                exibirItensAlimento();
+                break;
         }
 
     } while (opcao != '0');
@@ -101,13 +106,14 @@ char relatorioCategoria(void)
 }
 
 //função para retornar o relatório dos itens de higiente
-/*int exibirItensHigiene(void)
+int exibirItensHigiene(void)
 {
     FILE* fp;
     Item* it;
 
     int listaCategoria;
     int achou;
+    char resp;
 
     fp = fopen("itens.dat", "rb");
 
@@ -122,17 +128,20 @@ char relatorioCategoria(void)
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | ------------| Relatório dos itens de higiene pessoal |-------------- | \n");
-
-// pedir o CPF aqui e procurar
+    printf(" |                                                                      | \n");
+    printf("Informe o seu CPF: ");
+    scanf("%s", &resp);
 
     it = (Item*) malloc(sizeof(Item));
     
     achou = 0;
     
     while((fread(it, sizeof(Item), 1, fp))){        
-        if (((it->categoria == listcargo)) && (it->status == '1')){
-            
-
+        if (((it->categoria == resp)) && (it->status == '1')){
+     
+        }        
+    
+    }
     
     free(it);   
     fclose(fp);
@@ -140,7 +149,38 @@ char relatorioCategoria(void)
     return 0;
 
 
-}*/
+}
+
+
+//navegação da escolha do local
+/*void escRelatoriosLocal(void)
+{
+    char opcao;
+    do
+    {
+        opcao = relatorioLocalArmaz();
+        switch (opcao)
+        {
+            case '1':
+                exibirGeladeira();
+                break; 
+            case '2':
+                exibirArmarioCozinha();
+                break;
+            case '3':
+                exibirAreaServ();
+                break;
+            case '4':
+                exibirGuardaRoupa();
+                break;  
+            case '5':
+                exibirBanheiro();
+                break;      
+        }
+
+    } while (opcao != '0');
+
+} */
 
 //criar uma função que irá listar um por um, filtrando 
 char relatorioLocalArmaz(void)
@@ -166,28 +206,28 @@ char relatorioLocalArmaz(void)
 
 }
 
-//função para exibir as listas de compras - procura pelas excluídas
-char relatorioListasdeCompra(void)
+
+//navegação da escolha do tipo
+/*void escRelatoriosLocal(void)
 {
-    char esc;
-    system (" Clear||cls ");
-    printf(" | ===================================================================== | \n");
-    printf(" | --------------------------------------------------------------------- | \n");
-    printf(" | ---------- | Relatório do histórico das listas de compra | ---------- | \n");
-    printf(" |                                                                       | \n");
-    printf(" |                                                                       | \n");                         
-    printf(" |                                                                       | \n");
-    printf(" |                                                                       | \n");
-    printf(" |                                                                       | \n");
-    printf(" | ----------------------------------------------------------------------| \n");
-    printf(" | ========================== SIG - Pantry ============================= | \n");
-    printf(" Press ENTER for exit.....");
-    scanf("%c", &esc);
-    getchar();
+    char opcao;
+    do
+    {
+        opcao = relatoriopeloTipo();
+        switch (opcao)
+        {
+            case '1':
+                exibirEntrada();
+                break; 
+            case '2':
+                exibirSaida();
+                break;    
+        }
 
-    return esc;
+    } while (opcao != '0');
 
-}
+} */
+
 
 //função para exibir os itens que entraram/saíram
 char relatoriopeloTipo(void)
