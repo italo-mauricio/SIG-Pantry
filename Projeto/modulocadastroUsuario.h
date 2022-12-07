@@ -9,6 +9,7 @@ struct usuario {
     char usernameUsuario[20];
     char senhaUsuario[20];
     char status;
+    
 };
 
 //cabeçalho das funções usadas no arquivo .c

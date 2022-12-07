@@ -69,8 +69,9 @@ char telaRegistrarItem(void)
 }
 
 //Função para cadastrar um novo item ao estoque
-void infoItem(void)
+int infoItem(void)
 {
+    FILE* fp;
     Item* it;
     Mov* mv;
     int resp;
@@ -79,6 +80,16 @@ void infoItem(void)
     int estoqueM;
     char quantidade[20];
     char estoqueMin[20];
+    char procura[20];
+    int achou;
+    Usuario* cliente;
+    fp = fopen("usuario.dat", "rb");
+
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    
 
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
@@ -87,7 +98,20 @@ void infoItem(void)
     printf(" |                                                           | \n");    
     it = (Item*)malloc(sizeof(Item));
     mv = (Mov*)malloc(sizeof(Mov));
+    cliente = (Usuario*)malloc(sizeof(Usuario));
+    printf("Digite o username já cadastrado: ");
+    scanf(" %30[^\n]", procura);
+    getchar();
+    
+    achou = 0;
+    
+    while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
+        if ((strcmp(cliente->usernameUsuario, procura) == 0) && (cliente->status == '1')) {
+            achou = 1;
+        }  
 
+    }
+    if(achou){
     printf("Informe quantos itens vão ser cadastrados: ");
     scanf("%d", &resp);
 
@@ -211,6 +235,7 @@ void infoItem(void)
         
         }
 
+
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     it->status = '1'; //o 1 mostra que foi cadastrado
@@ -221,7 +246,11 @@ void infoItem(void)
     
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
-
+    }
+    else{
+        printf("Username não encontrado");
+    }
+    return 0;
 }
 
 //função para gravar no arquivo
@@ -270,6 +299,7 @@ int buscaInfoItem(void)
     Item* it;
     int achou;
     char procurado[15];
+    Usuario* cliente;
     
     fp = fopen("itens.dat", "rb");
 
@@ -277,7 +307,7 @@ int buscaInfoItem(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
-
+      
     printf("\n\n");
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
@@ -287,12 +317,12 @@ int buscaInfoItem(void)
     printf("Informe o código de barras: ");
     scanf(" %30[^\n]", procurado);
     getchar();
-    
+    cliente = (Usuario*)malloc(sizeof(Usuario));
     it = (Item*) malloc(sizeof(Item));
 
     achou = 0;
     
-    while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
+    while((!achou) && (fread(it, sizeof(Item), 1, fp)))  {
         printf("Código de barras |%s|\n", it->codigoBarras);
         
         if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')) {
@@ -300,13 +330,15 @@ int buscaInfoItem(void)
         }
     
     }
-    
+   
     fclose(fp);
+
     
     if (achou) {
         system(" cls || clear ");
         printf(" | ====================== Buscar Item ====================== |\n");
-        printf(" |                                                           |\n");         
+        printf(" |                                                           |\n");
+        printf(" | Nome do usuario: %s\n", cliente->usernameUsuario);         
         printf(" | Nome do produto: %s\n", it->nomeProduto);    
         printf(" | Nome da marca: %s\n", it->nomeMarca);    
         printf(" | Código de barras: %s\n", it->codigoBarras);    
@@ -329,6 +361,7 @@ int buscaInfoItem(void)
     }
     
     free(it);
+    free(cliente);
     
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
