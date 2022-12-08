@@ -529,7 +529,7 @@ int exibirGuardaRoupa(void)
 }
 
 //função para retornar o relatório dos itens do banheiro
-int exibirexibirGuardaRoupa(void)
+int exibirBanheiro(void)
 {
     FILE* fp;
     Item* it;
@@ -545,10 +545,10 @@ int exibirexibirGuardaRoupa(void)
     }
 
     system ( " clear||cls " );
-    printf(" | ==================================================================== | \n");
-    printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | ----------------| Relatório dos itens do banheiro |----------------- | \n");
-    printf(" |                                                                      | \n");
+    printf(" | ========================================================================= | \n");
+    printf(" | ------------------------------------------------------------------------- | \n");
+    printf(" | ----------------| Relatório dos itens do banheiro |---------------------- | \n");
+    printf(" |                                                                           | \n");
 
     it = (Item*) malloc(sizeof(Item));
 
