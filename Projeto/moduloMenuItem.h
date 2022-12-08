@@ -56,3 +56,4 @@ int saidaItem(void);
 char telaEscCategoria(void);
 char telaEscLocalArmaz(void);
 int validaCod(char* item);
+void exibeInfoItem(Item* it);

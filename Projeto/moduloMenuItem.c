@@ -419,6 +419,7 @@ int telaAtualizarItem(void)
     char procurado[20];
     char estoqueMin[20];
     char procura[20];
+    
     fp2 = fopen("usuario.dat", "r+b");
     
     if (fp2 == NULL) 
@@ -429,6 +430,7 @@ int telaAtualizarItem(void)
     cliente = (Usuario*)malloc(sizeof(Usuario));
 
     mv = (Mov*)malloc(sizeof(Mov));
+    
     system(" cls || clear");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -726,79 +728,85 @@ int excluirItem(void)
 }
 
 
-//listar itens
+//listar itens - relatório sem filtro
 int listarItens(void) 
 {
     FILE* fp;
     Item* it;
-    char aux[20];
-    char aux2[20];
-
+    
     fp = fopen("itens.dat", "rb");
     
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
-    it = (Item*)malloc(sizeof(Item)); 
-    while(fread(it, sizeof(Item), 1, fp)) 
-    {
-        if (it->categoria == '1'){
-            strcpy(aux, "Higiene pessoal");
-        
-        }else if(it->categoria == '2'){
-            strcpy(aux, "Limpeza");
-        
-        }else{
-            strcpy(aux, "Alimento");
-        }
 
-        if (it->localArmazenamento == '1'){
-            strcpy(aux2, "Geladeira");
-        
-        }else if(it->localArmazenamento == '2'){
-            strcpy(aux2, "Armário de cozinha");
-        
-        }else if(it->localArmazenamento == '3'){
-            strcpy(aux2, "Área de serviço");        
-        
-        }else if(it->localArmazenamento == '4'){
-            strcpy(aux2, "Banheiro");          
-        
-        }else{
-            strcpy(aux2, "Guarda-roupa");
-        }
-        
+    it = (Item*)malloc(sizeof(Item)); 
+
+    while(fread(it, sizeof(Item), 1, fp)) {
         system(" cls || clear");
-        printf(" | ===================== Lista de Itens ==================== |\n");
-        printf(" |                                                           |\n");       
-        printf(" | Nome do produto: %s\n", it->nomeProduto);    
-        printf(" | Nome da marca: %s\n", it->nomeMarca);    
-        printf(" | Código de barras: %s\n", it->codigoBarras);    
-        printf(" | Estoque mínimo do produto: %d\n", it->estoqueMinimo);
-        printf(" | Dia do vencimento: %d\n", it->dia); 
-        printf(" | Mês do vencimento: %d\n", it->mes);         
-        printf(" | Ano do vencimento: %d\n", it->ano); 
-        printf(" | Categoria do produto: %s\n", aux);
-        printf(" | Local de armazenamento: %s\n", aux2);
-        printf(" | Quantidade do produto: %d\n", it->quantProduto);
-        printf(" | Dia da entrada: %d\n", it->diaEnt);
-        printf(" | Mês da entrada: %d\n", it->mesEnt);
-        printf(" | Ano da entrada: %d\n", it->anoEnt);
-        printf(" | Status: %c\n", it->status);
+        printf(" | ===================== Lista itens ======================= | \n");
         printf(" |                                                           | \n");
-        printf(" | ========================================================= | \n");
-        printf(" | Pressione qualquer tecla para sair.... ");
-        getchar();
-        
-    }
+        exibeInfoItem(it);
+    } 
     fclose(fp);
     free(it);
+    
     return 0;
 
 }
 
+//função para a exibição das informações dos itens
+void exibeInfoItem(Item* it) {
+    char aux[20];
+    char aux2[20];
+    if (it->categoria == '1'){
+        strcpy(aux, "Higiene pessoal");
+    
+    }else if(it->categoria == '2'){
+        strcpy(aux, "Limpeza");
+    
+    }else{
+        strcpy(aux, "Alimento");
+    }
 
+    if (it->localArmazenamento == '1'){
+        strcpy(aux2, "Geladeira");
+    
+    }else if(it->localArmazenamento == '2'){
+        strcpy(aux2, "Armário de cozinha");
+    
+    }else if(it->localArmazenamento == '3'){
+        strcpy(aux2, "Área de serviço");        
+    
+    }else if(it->localArmazenamento == '4'){
+        strcpy(aux2, "Banheiro");          
+    
+    }else{
+        strcpy(aux2, "Guarda-roupa");
+    }
+    system(" cls || clear");
+    printf(" | ===================== Lista de Itens ==================== |\n");
+    printf(" |                                                           |\n");       
+    printf(" | Nome do produto: %s\n", it->nomeProduto);    
+    printf(" | Nome da marca: %s\n", it->nomeMarca);    
+    printf(" | Código de barras: %s\n", it->codigoBarras);    
+    printf(" | Estoque mínimo do produto: %d\n", it->estoqueMinimo);
+    printf(" | Dia do vencimento: %d\n", it->dia); 
+    printf(" | Mês do vencimento: %d\n", it->mes);         
+    printf(" | Ano do vencimento: %d\n", it->ano); 
+    printf(" | Categoria do produto: %s\n", aux);
+    printf(" | Local de armazenamento: %s\n", aux2);
+    printf(" | Quantidade do produto: %d\n", it->quantProduto);
+    printf(" | Dia da entrada: %d\n", it->diaEnt);
+    printf(" | Mês da entrada: %d\n", it->mesEnt);
+    printf(" | Ano da entrada: %d\n", it->anoEnt);
+    printf(" | Status: %c\n", it->status);
+    printf(" |                                                           | \n");
+    printf(" | ========================================================= | \n");
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
+}
 
 //função para adição de produtos à despensa
 int entradaItem(void) 
