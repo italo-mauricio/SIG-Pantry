@@ -151,7 +151,7 @@ int infoItem(void)
                         scanf("%s", it->codigoBarras);
                         getchar();
                         
-                    } while(!lerQuantidade(it->codigoBarras));
+                    }while(!((lerQuantidade(it->codigoBarras)) && (validaCod(it->codigoBarras))));
 
 
                     do
@@ -329,6 +329,8 @@ int buscaInfoItem(void)
     Item* it;
     int achou;
     char procurado[15];
+    char aux[20];
+    char aux2[20];
     
     fp = fopen("itens.dat", "rb");
 
@@ -363,9 +365,35 @@ int buscaInfoItem(void)
     fclose(fp);
     
     if (achou) {
-        system(" cls || clear ");
-        printf(" | ====================== Buscar Item ====================== |\n");
-        printf(" |                                                           |\n");         
+
+        if (it->categoria == '1'){
+            strcpy(aux, "Higiene pessoal");
+        
+        }else if(it->categoria == '2'){
+            strcpy(aux, "Limpeza");
+        
+        }else{
+            strcpy(aux, "Alimento");
+        }
+
+        if (it->localArmazenamento == '1'){
+            strcpy(aux2, "Geladeira");
+        
+        }else if(it->localArmazenamento == '2'){
+            strcpy(aux2, "Armário de cozinha");
+        
+        }else if(it->localArmazenamento == '3'){
+            strcpy(aux2, "Área de serviço");        
+        
+        }else if(it->localArmazenamento == '4'){
+            strcpy(aux2, "Banheiro");          
+        
+        }else{
+            strcpy(aux2, "Guarda-roupa");
+        }
+        system(" cls || clear");
+        printf(" | ===================== Lista de Itens ==================== |\n");
+        printf(" |                                                           |\n");       
         printf(" | Nome do produto: %s\n", it->nomeProduto);    
         printf(" | Nome da marca: %s\n", it->nomeMarca);    
         printf(" | Código de barras: %s\n", it->codigoBarras);    
@@ -373,14 +401,17 @@ int buscaInfoItem(void)
         printf(" | Dia do vencimento: %d\n", it->dia); 
         printf(" | Mês do vencimento: %d\n", it->mes);         
         printf(" | Ano do vencimento: %d\n", it->ano); 
+        printf(" | Categoria do produto: %s\n", aux);
+        printf(" | Local de armazenamento: %s\n", aux2);
         printf(" | Quantidade do produto: %d\n", it->quantProduto);
-        printf(" | Dia do cadastro: %d\n", it->diaEnt);
-        printf(" | Mês do cadastro: %d\n", it->mesEnt);
-        printf(" | Ano do cadastro: %d\n", it->anoEnt);
+        printf(" | Dia da entrada: %d\n", it->diaEnt);
+        printf(" | Mês da entrada: %d\n", it->mesEnt);
+        printf(" | Ano da entrada: %d\n", it->anoEnt);
         printf(" | Status: %c\n", it->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
-
+        getchar();
+        
     } else {
     
         printf("Os dados do cadastro %s não foram encontrados\n", procurado);
@@ -399,9 +430,9 @@ int buscaInfoItem(void)
 //função para editar algum item
 int telaAtualizarItem(void)  
 {
-    FILE *fp;
+  
     FILE* fp2;
-    Item* it;
+
     Mov* mv;
     Usuario* cliente;
     char resp;
@@ -421,7 +452,9 @@ int telaAtualizarItem(void)
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
     }
+    cliente = (Usuario*)malloc(sizeof(Usuario));
 
+    mv = (Mov*)malloc(sizeof(Mov));
     system(" cls || clear");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -430,16 +463,16 @@ int telaAtualizarItem(void)
     printf(" | Informe o seu username: ");
     scanf(" %30[^\n]", procurado);
     getchar();   
-    
     achou = 0;  
-    
-    while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))){
+    while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp2))){
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')){
             achou = 1;
         }
-    }
-    
+    }  
     if (achou){
+        FILE *fp;
+        Item* it;
+        it = (Item*)malloc(sizeof(Item));
         fp = fopen("itens.dat", "r+b");
         
         if (fp == NULL) 
@@ -455,14 +488,14 @@ int telaAtualizarItem(void)
         encontrou = 0;
         
         while((!encontrou) && (fread(it, sizeof(Item), 1, fp))) {
-            if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')) {
+            if ((strcmp(it->codigoBarras, procura) == 0) && (it->status == '1')) {
                 encontrou = 1;
             }
         }
 
         if (encontrou){
 
-            listarItens();
+            buscaInfoItem();
             resp = escAtualizarItem();
             printf("\n");
 
@@ -620,6 +653,9 @@ int telaAtualizarItem(void)
             printf(" |                                                           | \n");
             printf(" | --------------------------------------------------------- | \n");
             printf("Dados editados com sucesso");
+            gravaItem(it);
+            free(it);
+            fclose(fp);
         
         }else {
             
@@ -632,10 +668,10 @@ int telaAtualizarItem(void)
         printf("O usuário não foi encontrado");
     }
 
-    gravaItem(it);      
-    free(it);
+      
+
     free(cliente);
-    fclose(fp);
+ 
     fclose(fp2);
     
     printf(" | Pressione qualquer tecla para sair.... ");
@@ -1123,4 +1159,39 @@ int saidaItem(void)
     
     return 0;
     
+}
+
+
+
+
+int validaCod(char* item)
+{
+    FILE *fp;
+    Item *usuarioItem;
+
+    usuarioItem = (Item*)malloc(sizeof(Item));
+    
+    fp = fopen("itens.dat", "rt");
+    
+    if (fp == NULL)
+    {
+        printf("Gerando arquivo...");
+        fclose(fp);
+        return 1;
+    }
+    
+
+    while (!feof(fp))
+    {
+        fread(usuarioItem, sizeof(Item), 1, fp);
+        if (strcmp(item, usuarioItem->codigoBarras) == 0 && (usuarioItem->status != '0'))
+        {
+            fclose(fp);
+            return 0;
+        }
+    }
+
+    fclose(fp);
+    return 1;
+
 }
