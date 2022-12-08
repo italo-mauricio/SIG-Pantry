@@ -7,16 +7,15 @@
 
 
 /*
-                Bem vindos ao módulo de cadastro de Itens
+                Bem-vindo(a) ao módulo de cadastro de Itens
 
-            Neste módulo faremos o cadastro de itens no sistema
+            Neste módulo será realizado o cadastro de itens no sistema
 
 
 */
 
 
-
-// menu de navegação principal do módulo
+//menu de navegação principal do módulo
 void moduloMenuItem(void)
 {
     char escolha;
@@ -54,7 +53,7 @@ void moduloMenuItem(void)
 }
 
 
-// função que chama a tela para o menu itens
+//função que chama a tela para o menu itens -> a partir da escolha do usuário
 char telaRegistrarItem(void)
 {
     char esc;
@@ -81,7 +80,7 @@ char telaRegistrarItem(void)
 
 
 
-//Função para cadastrar um novo item ao estoque
+//função para cadastrar um novo item ao estoque
 int infoItem(void)
 {
     FILE* fp;
@@ -207,6 +206,7 @@ int infoItem(void)
                     mv->mesEnt = it->mesEnt;
                     mv->anoEnt = it->anoEnt;
                     mv->tipo = 'E';
+            
             it->status = '1'; //o 1 mostra que foi cadastrado              
             gravaItem(it);
             gravaMov(mv);
@@ -250,7 +250,7 @@ char telaEscCategoria(void)
 
 
 
-//função para escolha do local
+//função para escolha do local de armazenamento
 char telaEscLocalArmaz(void)
 {
     char esc;
@@ -271,9 +271,7 @@ char telaEscLocalArmaz(void)
 }
 
 
-
-
-//função para gravar no arquivo
+//função para gravar no arquivo de item
 int gravaItem(Item* it) 
 {
     FILE* fp;
@@ -292,7 +290,7 @@ int gravaItem(Item* it)
 }
 
 
-// função para gravar no arquivo
+// função para gravar no arquivo de movimento
 int gravaMov(Mov* mv) 
 {
     FILE* fp;
@@ -310,7 +308,7 @@ int gravaMov(Mov* mv)
 }
 
 
-//função de pesquisa a partir do código de barras
+//função de pesquisa a partir do código de barras (id do item)
 int buscaInfoItem(void)
 {
     FILE* fp;
@@ -395,7 +393,7 @@ int buscaInfoItem(void)
         
     } else {
     
-        printf("Os dados do cadastro %s não foram encontrados\n", procurado);
+        printf("Os dados do item cadastrado %s não foram encontrados\n", procurado);
     
     } 
     free(it);
@@ -405,7 +403,6 @@ int buscaInfoItem(void)
     return 0;
     
 }
-
 
 
 //função para editar algum item
@@ -1080,8 +1077,7 @@ int saidaItem(void)
 
 
 
-// função para não permitir código de barras iguais
-
+//função para não permitir código de barras iguais
 int validaCod(char* item)
 {
     FILE *fp;
