@@ -6,8 +6,20 @@
 #include "modulocadastroUsuario.h"
 #include "moduloMenuItem.h"
 
+
+/*
+              Bem vindos ao módulo de lista de compras!
+        
+             Neste módulo será feita a lista de compras
+
+*/
+
+
+
 typedef struct item Item;
 
+
+// Função de navegação principal do módulo
 void menulistadeCompras(void)
 {
     char escolha;
@@ -46,6 +58,8 @@ void menulistadeCompras(void)
 } 
 
 
+
+// tela principal
 char telaListadeCompras(void)
 {
     char opcao;
@@ -72,6 +86,8 @@ char telaListadeCompras(void)
 
 } 
 
+
+
 //função que lista os itens que estão acabando no estoque
 int itensQuantMinima(void)     
 {
@@ -86,7 +102,6 @@ int itensQuantMinima(void)
     }
 
     it = (Item*)malloc(sizeof(Item));
-
     while(fread(it, sizeof(Item), 1, fp)) 
     {
         if (it->quantProduto <= it->estoqueMinimo) {
@@ -99,13 +114,12 @@ int itensQuantMinima(void)
 
         }
     }
-
     fclose(fp);
     free(it);
-
     return 0;
-
 }
+
+
 
 //função para exibição de itens próx ao vencimento
 int itensProxVencimento(void)
@@ -122,9 +136,7 @@ int itensProxVencimento(void)
         printf("Ocorreu um erro na abertura do arquivo");
         return 0;
     }
-
     it = (Item*)malloc(sizeof(Item));
-
     while(fread(it, sizeof(Item), 1, fp)) 
     {
         if (it->diaEnt >= it->dia && it->mesEnt >= it->mes && it->anoEnt >= it->ano) {
@@ -137,12 +149,12 @@ int itensProxVencimento(void)
 
         }
     }
-
     fclose(fp);
     free(it);
     return 0;
 
 } 
+
 
 //ver se procura pelo nome da lista ou pelo username do usuário
 int infoMontarLista(void)
@@ -169,20 +181,16 @@ int infoMontarLista(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
-
     cliente = (Usuario*) malloc(sizeof(Usuario));
-    mtlista = (MontarLista*)malloc(sizeof(MontarLista));
-    
+    mtlista = (MontarLista*)malloc(sizeof(MontarLista));   
     system ( " cls || clear " );
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
     printf("| ------------- | Montar a sua lista de compras | ------------- | \n");
-    printf("|                                                               | \n");
-   
+    printf("|                                                               | \n");  
     printf("Informe o seu username: ");
     scanf(" %30[^\n]", procurado);
     getchar();
-
     achou = 0;
 
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
@@ -190,7 +198,6 @@ int infoMontarLista(void)
             achou = 1;
         }
     }
-
     if (achou){
 
         printf("Informe quantos itens vão ser adicionados à lista: ");
@@ -213,31 +220,27 @@ int infoMontarLista(void)
                 getchar();
             
             } while (!lerQuantidade(mtlista->quantidadeProduto));
-        }
-    
+        }  
         mtlista->status = '1';
         gravaLista(mtlista);
-        free(mtlista);
-    
+        free(mtlista);  
     } else {
         
         printf("Os dados do usuário %s não foram encontrados\n", procurado);
     
-    }
-    
+    }  
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
-
     free(cliente);
     fclose(fp);
     fclose(fp1);
-
     printf(" | Pressione qualquer tecla para sair.... ");
-    getchar();
-    
+    getchar();   
     return 0;
 
 }
+
+
 
 //função para gravar no arquivo
 int gravaLista(MontarLista* mtlista) 
@@ -249,13 +252,13 @@ int gravaLista(MontarLista* mtlista)
         printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
         return 0;
     
-    }
-    
+    }    
     fwrite(mtlista, sizeof(MontarLista), 1, fp);
     fclose(fp);
-    return 0;
-    
+    return 0;    
 }
+
+
 
 //função de pesquisa a partir do username (id do usuário)
 int buscarLista(void)
@@ -272,8 +275,7 @@ int buscarLista(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     
-    }
-    
+    }   
     printf("\n\n");
     system ( " cls  || clear " );
     printf(" | ========================================================= | \n");
@@ -282,21 +284,17 @@ int buscarLista(void)
     printf(" | ========================================================= | \n");
     printf("Informe o seu username: ");
     scanf(" %30[^\n]", procurado);
-    getchar();
-    
+    getchar(); 
     mtlista = (MontarLista*) malloc(sizeof(MontarLista));
-    cliente = (Usuario*) malloc(sizeof(Usuario));
-    
+    cliente = (Usuario*) malloc(sizeof(Usuario)); 
     achou = 0;
     
+
     while((!achou) && (fread(mtlista, sizeof(MontarLista), 1, fp))) {
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
         }
-    }
-    
-    fclose(fp);
-    
+    }   
     if (achou) {
         system(" cls || clear");
         printf(" | =================== Lista encontrada ==================== |\n");
@@ -313,17 +311,18 @@ int buscarLista(void)
         
         printf("Os dados da lista %s não foram encontrados\n", procurado);
     
-    }
-    
+    }  
     free(mtlista);
     free(cliente);
-    
+    fclose(fp);  
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
-    
     return 0;
     
 }
+
+
+
 
 void exibeListaCompras(MontarLista* mtlista) 
 {
@@ -336,9 +335,10 @@ void exibeListaCompras(MontarLista* mtlista)
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Pressione qualquer tecla para sair.... ");
-    getchar();
-    
+    getchar();    
 }
+
+
 
 //função para edição
 int atualizarLista(void) 
@@ -364,28 +364,24 @@ int atualizarLista(void)
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
-    }
-    
+    } 
     cliente = (Usuario*) malloc(sizeof(Usuario));
     mtlista = (MontarLista*) malloc(sizeof(MontarLista));
-
     system(" cls || clear ");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------------------- Atualizar lista -------------------- | \n");
     printf("Informe o seu username: ");
     scanf(" %s", procurado);
-    getchar();
-    
+    getchar(); 
     achou = 0;
-    
+
+
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
     }
-
     if (achou){
-
         exibeListaCompras(mtlista);
         resp = escAtualizarLista();
         printf("\n");
@@ -408,7 +404,6 @@ int atualizarLista(void)
             } while(!lerQuantidade(mtlista->quantidadeProduto));
 
         }
-
         else if (resp == '2'){
             do
             {
@@ -418,7 +413,6 @@ int atualizarLista(void)
 
             } while(!validarLetras(mtlista->nome, tamanhoString(mtlista->nome)));  
         }
-
         else if (resp == '3'){
             do
             {
@@ -426,8 +420,7 @@ int atualizarLista(void)
                 scanf("%s", mtlista->quantidadeProduto);
                 getchar();
 
-            } while(!lerQuantidade(mtlista->quantidadeProduto));
-        
+            } while(!lerQuantidade(mtlista->quantidadeProduto));      
         }
 
         mtlista->status = '1';      
@@ -435,26 +428,24 @@ int atualizarLista(void)
         fwrite(mtlista, sizeof(MontarLista), 1, fp);        
         printf(" |                                                           | \n");
         printf(" | --------------------------------------------------------- | \n");
-        printf("Dados editados com sucesso");
-    
+        printf("Dados editados com sucesso");  
     }else {   
         
         printf("A lista do usuário de username %s não foi encontrada\n", procurado);
     
-    }
-    
+    }   
     printf(" | Pressione qualquer tecla para sair.... ");
-    getchar();
-        
-    } 
-    
+    getchar();       
+    }   
     free(mtlista);
     free(cliente);
     fclose(fp); 
-
     return 0;
 
 }
+
+
+
 
 char escAtualizarLista(void) 
 {
@@ -477,6 +468,8 @@ char escAtualizarLista(void)
     return esc;
 
 }
+
+
 
 //Função para exclusão lógica
 int excluirLista(void)
@@ -501,11 +494,9 @@ int excluirLista(void)
     if (fp1 == NULL){
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
-    }
-    
+    }  
     mtlista = (MontarLista*) malloc(sizeof(MontarLista));
-    cliente = (Usuario*) malloc(sizeof(Usuario));
-    
+    cliente = (Usuario*) malloc(sizeof(Usuario)); 
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
@@ -513,16 +504,15 @@ int excluirLista(void)
     printf(" |                                                                | \n");
     printf(" | Informe o seu username para procurar a lista que você deseja excluir: ");
     scanf("%s", procura);
-    getchar();  
-    
+    getchar();    
     achou = 0;
     
+
     while ((!achou) && (fread(mtlista, sizeof(MontarLista), 1, fp))){
         if ((strcmp(cliente->usernameUsuario, procura) == 0) && (cliente->status == '1')){
             achou = 1;
         }
     }
-
    if (achou){
         
         exibeListaCompras(mtlista);
@@ -551,18 +541,18 @@ int excluirLista(void)
     
         printf("A lista não foi encontrada!");
     
-    }
-    
+    }  
     free(mtlista);
     free(cliente);
     fclose(fp);
-    fclose(fp1);
-    
+    fclose(fp1);  
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
     return 0;
     
 }
+
+
 
 //listar a lista pronta
 int listaComprasPronta(void) 
@@ -586,8 +576,7 @@ int listaComprasPronta(void)
     
     while(fread(mtlista, sizeof(MontarLista), 1, fp)) {
         exibeListaCompras(mtlista);
-    }
-    
+    } 
     fclose(fp);
     free(mtlista);
     return 0;
