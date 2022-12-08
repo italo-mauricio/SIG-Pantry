@@ -430,9 +430,9 @@ int buscaInfoItem(void)
 //função para editar algum item
 int telaAtualizarItem(void)  
 {
-    FILE *fp;
+  
     FILE* fp2;
-    Item* it;
+
     Mov* mv;
     Usuario* cliente;
     char resp;
@@ -453,7 +453,7 @@ int telaAtualizarItem(void)
         return 0;
     }
     cliente = (Usuario*)malloc(sizeof(Usuario));
-    it = (Item*)malloc(sizeof(Item));
+
     mv = (Mov*)malloc(sizeof(Mov));
     system(" cls || clear");
     printf(" | ========================================================= | \n");
@@ -463,17 +463,16 @@ int telaAtualizarItem(void)
     printf(" | Informe o seu username: ");
     scanf(" %30[^\n]", procurado);
     getchar();   
-    
     achou = 0;  
-    
     while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp2))){
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')){
             achou = 1;
         }
-    }
-    
+    }  
     if (achou){
-      
+        FILE *fp;
+        Item* it;
+        it = (Item*)malloc(sizeof(Item));
         fp = fopen("itens.dat", "r+b");
         
         if (fp == NULL) 
@@ -489,14 +488,14 @@ int telaAtualizarItem(void)
         encontrou = 0;
         
         while((!encontrou) && (fread(it, sizeof(Item), 1, fp))) {
-            if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')) {
+            if ((strcmp(it->codigoBarras, procura) == 0) && (it->status == '1')) {
                 encontrou = 1;
             }
         }
 
         if (encontrou){
 
-            listarItens();
+            buscaInfoItem();
             resp = escAtualizarItem();
             printf("\n");
 
@@ -654,6 +653,9 @@ int telaAtualizarItem(void)
             printf(" |                                                           | \n");
             printf(" | --------------------------------------------------------- | \n");
             printf("Dados editados com sucesso");
+            gravaItem(it);
+            free(it);
+            fclose(fp);
         
         }else {
             
@@ -666,10 +668,10 @@ int telaAtualizarItem(void)
         printf("O usuário não foi encontrado");
     }
 
-    gravaItem(it);      
-    free(it);
+      
+
     free(cliente);
-    fclose(fp);
+ 
     fclose(fp2);
     
     printf(" | Pressione qualquer tecla para sair.... ");
