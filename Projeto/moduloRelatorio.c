@@ -9,7 +9,7 @@
 
 
 /*
-              Bem vindos aos relatórios!
+              Bem-vindo(a) aos relatórios!
         
         Neste módulo serão mostrados os relatórios do projeto!
 
@@ -17,8 +17,7 @@
 */
 
 
-
-// função principal de navegação
+//função principal de navegação
 char moduloRelatorio(void)
 {
     char escolha;
