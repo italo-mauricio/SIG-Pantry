@@ -14,7 +14,6 @@
 
 
 
-
 // Este é o menu principal deste módulo
 void modulocadastroUsuario(void)
 {    
