@@ -4,7 +4,19 @@
 #include "modulocadastroUsuario.h"
 #include "validacoes.h"
 
+/*
+              Bem vindos ao módulo de cadastro de usuários!
+        
+        Neste módulo serão cadastrados os usuários do nosso programa
 
+
+
+*/
+
+
+
+
+// Este é o menu principal deste módulo
 void modulocadastroUsuario(void)
 {    
     char op;
@@ -35,6 +47,9 @@ void modulocadastroUsuario(void)
       
 }
 
+
+
+// tela que será usada para a navegação entre as opções
 char telaMenuUsuario(void) 
 {
     char opcao;
@@ -59,6 +74,8 @@ char telaMenuUsuario(void)
 
 }
 
+
+
 //função para cadastro do usuário no programa 
 void InfoUsuario(void) 
 {
@@ -70,9 +87,7 @@ void InfoUsuario(void)
     printf(" |                   Cadastro SIG-Pantry                     | \n");
     printf(" | ========================================================= | \n");
     printf(" |                                                           | \n");
-    
     cliente = (Usuario*) malloc(sizeof(Usuario));
-    
     do
     {
         printf(" | Informe o seu nome: ");
@@ -100,45 +115,39 @@ void InfoUsuario(void)
         getchar();
         
      } while(!valida_data(cliente->dia, cliente->mes, cliente->ano));  
-
-    
+  
     do {
 
         printf(" | Informe o seu username: "); 
         scanf("%s",cliente->usernameUsuario);
         getchar();
     
-
     } while(!((lerUsername(cliente->usernameUsuario)) && (validaUser(cliente->usernameUsuario))));
-    
-        
+          
     printf(" | Usuário cadastrado com sucesso!                           | \n");
     printf(" | ========================================================= | \n");
     cliente->status = '1'; //o 1 mostra que foi cadastrado
     gravaUsuario(cliente);
     free(cliente);
     printf(" | Pressione qualquer tecla para sair.... ");
-    getchar();
-   
-    
+    getchar();      
 }
 
 
-//A partir do cpf, visto que cada usuário tem o seu
+
+//A partir do username, visto que cada usuário tem o seu, iremos fazer a busca
 int buscaInfoUsuario(void)
 {
     FILE* fp;
     Usuario* cliente;
     int achou;
-    char procurado[15];
-    
+    char procurado[15]; 
     fp = fopen("usuario.dat", "rb");
 
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
-    }
-    
+    }   
     printf("\n\n");
     system(" cls || clear ");
     printf(" | ========================================================= | \n");
@@ -147,20 +156,14 @@ int buscaInfoUsuario(void)
     printf(" | ========================================================= | \n");
     printf("Informe o seu Username: ");
     scanf(" %30[^\n]", procurado);
-    getchar();
-    
-    cliente = (Usuario*) malloc(sizeof(Usuario));
-    
-    achou = 0;
-    
+    getchar();   
+    cliente = (Usuario*) malloc(sizeof(Usuario));  
+    achou = 0;  
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
         }
     }
-    
-    fclose(fp);
-    
     if (achou) {
         system(" cls || clear" );
         printf(" | ================== Usuário encontrado =================== |\n");
@@ -178,15 +181,14 @@ int buscaInfoUsuario(void)
     } else {
         printf("Os dados do usuário %s não foram encontrados\n", procurado);
     }
-
     free(cliente);
-
+    fclose(fp); 
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
-
-    return 0;
-    
+    return 0; 
 }
+
+
 
 //função para editar dados do usuário
 int atualizarUsuario(void) //adaptada by @IsaKaillany
@@ -196,32 +198,28 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
     char resp;
     int achou;
     char procurado[20];
-
     fp = fopen("usuario.dat", "r+b");
     
     if (fp == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
-    }
-    
-    cliente = (Usuario*) malloc(sizeof(Usuario));
-    
+    }  
+    cliente = (Usuario*) malloc(sizeof(Usuario));  
     system(" cls || clear ");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ------------------- Atualizar usuário ------------------- | \n");
     printf("Informe o seu username: ");
     scanf(" %s", procurado);
-    getchar();
-    
+    getchar(); 
     achou = 0;
-    
+
+
     while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
     }
-
     if (achou){
 
         exibeInfoUsuario(cliente);
@@ -260,7 +258,6 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
             } while(!valida_data(cliente->dia, cliente->mes, cliente->ano));  
 
         }
-
         else if (resp == '2'){
             do
             {
@@ -270,7 +267,6 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
 
             } while(!validarLetras(cliente->nomeUsuario, tamanhoString(cliente->nomeUsuario)));  
         }
-
         else if (resp == '3'){
             do
             {
@@ -280,7 +276,6 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
 
             } while(!lerEmail(cliente->emailUsuario));
         }
-
         else if (resp == '4'){
             do
             {        
@@ -296,16 +291,13 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
         
             } while(!valida_data(cliente->dia, cliente->mes, cliente->ano)); 
         }
-
-
         cliente->status = '1';      
         fseek(fp, (-1)*sizeof(Usuario), SEEK_CUR);
         fwrite(cliente, sizeof(Usuario), 1, fp);        
         printf(" |                                                           | \n");
         printf(" | --------------------------------------------------------- | \n");
         printf("Dados editados com sucesso");
-    }
-    
+    }   
     else 
     {   
         
@@ -315,12 +307,10 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
     getchar();
     free(cliente);
     fclose(fp);      
-
     } 
-
     return 0;
-
 }
+
 
 //função para selecionar o que quer atualizar
 char escAtualizarUsuario(void)
@@ -341,10 +331,10 @@ char escAtualizarUsuario(void)
     printf(" | Selecione uma opção do que você deseja editar: ");
     scanf("%c", &esc);
     getchar();
-
     return esc;
-
 }
+
+
 
 //função para gravar no arquivo
 int gravaUsuario(Usuario* cliente) 
@@ -362,6 +352,8 @@ int gravaUsuario(Usuario* cliente)
 
 }
 
+
+
 //função para remover o cadastro
 int infoExcluirUs(void)
 {
@@ -377,9 +369,7 @@ int infoExcluirUs(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
-    
     cliente = (Usuario*) malloc(sizeof(Usuario));
-    
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
@@ -388,7 +378,6 @@ int infoExcluirUs(void)
     printf(" | Informe o username do usuário que você quer excluir: ");
     scanf(" %30[^\n]", procurado);
     getchar();  
-    
     achou = 0;
     
     while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))){
@@ -396,7 +385,6 @@ int infoExcluirUs(void)
             achou = 1;
         }
     }
-
    if (achou){
         exibeInfoUsuario(cliente);
         printf("Deseja realmente excluir os dados deste usuário? (s/n)");
@@ -408,26 +396,21 @@ int infoExcluirUs(void)
             fwrite(cliente, sizeof(Usuario), 1, fp);
             printf("\nUsuário excluído com sucesso!");
             gravaUsuario(cliente);
-            getchar();
-        
+            getchar();   
         }else{
         
             printf("\nTudo bem, os dados não foram alterados!");
         
         }
-    
     }else{
     
         printf("O usuário não foi encontrado!");
     
-    }
-    
+    }  
     free(cliente);
-    fclose(fp);
-    
+    fclose(fp);   
     printf(" | Pressione qualquer tecla para sair.... ");
-    getchar();
-    
+    getchar();  
     return 0;
     
 }
@@ -445,22 +428,21 @@ int listaInfoUsuario(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
-
-    cliente = (Usuario*)malloc(sizeof(Usuario));
-    
+    cliente = (Usuario*)malloc(sizeof(Usuario)); 
     while(fread(cliente, sizeof(Usuario), 1, fp)) {
         system(" cls || clear");
         printf(" | ==================== Lista usuário ====================== | \n");
         printf(" |                                                           | \n");
         exibeInfoUsuario(cliente);
-    }
-    
+    } 
     fclose(fp);
     free(cliente);
     return 0;
 
 }
 
+
+// função para exibir as informações do usuario
 void exibeInfoUsuario(Usuario* cliente) {
     system(" cls || clear");
     printf(" | =================== Usuário cadastrado ================== |\n");
@@ -475,11 +457,13 @@ void exibeInfoUsuario(Usuario* cliente) {
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Pressione qualquer tecla para sair.... ");
-    getchar();
-    
+    getchar();   
 }
 
-//função para verificar se já tem o CPF no arquivo
+
+
+
+//função para verificar se já tem um username cadastrado no arquivo
 int validaUser(char* user)
 {
     FILE *fp;
@@ -506,7 +490,6 @@ int validaUser(char* user)
             return 0;
         }
     }
-
     fclose(fp);
     return 1;
 
