@@ -52,6 +52,7 @@ void menulistadeCompras(void)
         }
 
     } while(escolha != '0');
+        
         printf("Obrigado! Volte sempre!");
 
 } 
@@ -94,6 +95,7 @@ int itensQuantMinima(void)
     Item* it;
     
     fp = fopen("itens.dat", "rt"); //só precisa abrir o de itens, pois irá resgatar informações desse arq
+    
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo");
@@ -109,15 +111,15 @@ int itensQuantMinima(void)
             printf(" | -------------------------------------------------------------- | \n");
             printf(" | --------- Itens com quantidade mínima na despensa ------------ | \n");
             printf(" |                                                                | \n");
-            listarItens();
+            exibeInfoItem(it);
 
         }
     }
     fclose(fp);
     free(it);
     return 0;
-}
 
+}
 
 
 //função para exibição de itens próx ao vencimento
@@ -144,7 +146,7 @@ int itensProxVencimento(void)
             printf(" | -------------------------------------------------------------- | \n");
             printf(" | ---------------- Itens próximos ao vencimento ---------------- | \n");
             printf(" |                                                                | \n");
-            listarItens();
+            exibeInfoItem(it);
 
         }
     }
@@ -180,8 +182,10 @@ int infoMontarLista(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
+    
     cliente = (Usuario*) malloc(sizeof(Usuario));
-    mtlista = (MontarLista*)malloc(sizeof(MontarLista));   
+    mtlista = (MontarLista*)malloc(sizeof(MontarLista)); 
+
     system ( " cls || clear " );
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
