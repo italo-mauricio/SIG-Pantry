@@ -20,6 +20,7 @@ struct item
     char localArmazenamento;
     int quantProduto;
     char usernameUsuario[20];  
+    char dataAtual[40];
    
 };
 
@@ -28,9 +29,7 @@ struct mov
 {
 
     char codigoBarras[20];
-    int diaEnt;
-    int mesEnt;
-    int anoEnt;
+    char dataAtual[40];
     int quantMovimento;
     char tipo;
     int diaSaida;
@@ -57,3 +56,4 @@ char telaEscCategoria(void);
 char telaEscLocalArmaz(void);
 int validaCod(char* item);
 void exibeInfoItem(Item* it);
+char* verDiaMesAno(void);

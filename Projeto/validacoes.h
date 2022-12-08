@@ -8,3 +8,4 @@ int tamanhoString(char a[]);
 int charParaInt(char *num);
 int poten(int num, int pot);
 int lerUsername(char username[]); 
+char* verDiaMesAno(void);

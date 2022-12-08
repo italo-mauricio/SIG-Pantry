@@ -160,7 +160,7 @@ int infoItem(void)
             } while(!lerQuantidade(estoqueMin));
             estoqueM = charParaInt(estoqueMin);
             it->estoqueMinimo = estoqueM;    
-             
+
             do 
             {        
                 printf(" | Informe o dia de vencimento: ");
@@ -189,21 +189,9 @@ int infoItem(void)
             it->quantProduto = estoque;
             mv->quantMovimento = estoque;
             strcpy(mv->codigoBarras, it->codigoBarras);              
-            do {       
-                printf(" | Informe o dia do cadastro: ");
-                scanf("%d",&it->diaEnt);
-                getchar();
-                printf(" | Informe o mês do cadastro: ");
-                scanf("%d",&it->mesEnt);
-                getchar();
-                printf(" | Informe o ano do cadastro: ");
-                scanf("%d",&it->anoEnt);
-                getchar();
-                
-            } while(!valida_data(it->dia, it->mes, it->ano));                   
-            mv->diaEnt = it->diaEnt;
-            mv->mesEnt = it->mesEnt;
-            mv->anoEnt = it->anoEnt;
+            char* data;                  
+            strcpy(mv->dataAtual, it->dataAtual);
+            printf("Cadastro realizado na data: %s", data);  
             mv->tipo = 'E';
             
             it->status = '1'; //o 1 mostra que foi cadastrado              
@@ -211,6 +199,7 @@ int infoItem(void)
             gravaMov(mv);
             free(it);
             free(mv);
+            free(data);
             fclose(fp1);
                 
    
