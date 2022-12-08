@@ -564,7 +564,7 @@ int exibirBanheiro(void)
 
 
 
-//navegação da escolha do tipo
+//navegação da escolha do tipo -> VER SE TIPO TEM QUE FICAR NO STRUCT DE ITEM TBM
 void escRelatoriosTipo(void)
 {
     char opcao;

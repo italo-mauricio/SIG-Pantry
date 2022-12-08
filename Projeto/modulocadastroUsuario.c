@@ -5,13 +5,11 @@
 #include "validacoes.h"
 
 /*
-              Bem vindos ao módulo de cadastro de usuários!
+              Bem-vindo(a) ao módulo de cadastro de usuários!
         
         Neste módulo serão cadastrados os usuários do nosso programa
 
-
 */
-
 
 
 // Este é o menu principal deste módulo
@@ -46,8 +44,7 @@ void modulocadastroUsuario(void)
 }
 
 
-
-// tela que será usada para a navegação entre as opções
+// tela que será usada para a escolha da navegação 
 char telaMenuUsuario(void) 
 {
     char opcao;
@@ -133,7 +130,7 @@ void InfoUsuario(void)
 
 
 
-//A partir do username, visto que cada usuário tem o seu, iremos fazer a busca
+//busca a partir do username (id), visto que cada usuário tem o seu, iremos fazer a busca
 int buscaInfoUsuario(void)
 {
     FILE* fp;
@@ -440,7 +437,7 @@ int listaInfoUsuario(void)
 }
 
 
-// função para exibir as informações do usuario
+// função para exibir as informações do usuário
 void exibeInfoUsuario(Usuario* cliente) {
     system(" cls || clear");
     printf(" | =================== Usuário cadastrado ================== |\n");
@@ -457,7 +454,6 @@ void exibeInfoUsuario(Usuario* cliente) {
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();   
 }
-
 
 
 

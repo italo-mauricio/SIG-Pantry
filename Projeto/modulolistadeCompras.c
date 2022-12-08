@@ -8,18 +8,17 @@
 
 
 /*
-              Bem vindos ao módulo de lista de compras!
+              Bem-vindo(a) ao módulo de lista de compras!
         
-             Neste módulo será feita a lista de compras
+             Neste módulo será feita a lista de compras 
 
 */
-
 
 
 typedef struct item Item;
 
 
-// Função de navegação principal do módulo
+//função de navegação principal do módulo
 void menulistadeCompras(void)
 {
     char escolha;
@@ -33,7 +32,7 @@ void menulistadeCompras(void)
             itensProxVencimento(); //lista itens próximos ao vencimento
             break; 
         case '3':
-            infoMontarLista(); //preencher a lista
+            infoMontarLista(); //preenche lista
             break;
         case '4':
             buscarLista(); //pesquisa
@@ -59,7 +58,7 @@ void menulistadeCompras(void)
 
 
 
-// tela principal
+//tela principal de escolha
 char telaListadeCompras(void)
 {
     char opcao;
@@ -156,7 +155,7 @@ int itensProxVencimento(void)
 } 
 
 
-//ver se procura pelo nome da lista ou pelo username do usuário
+//função para a montagem da lista vinculada ao id do usuário
 int infoMontarLista(void)
 {
     FILE* fp;
@@ -322,8 +321,7 @@ int buscarLista(void)
 }
 
 
-
-
+//função para exibição do que contém na lista
 void exibeListaCompras(MontarLista* mtlista) 
 {
     system(" cls || clear");
@@ -337,7 +335,6 @@ void exibeListaCompras(MontarLista* mtlista)
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();    
 }
-
 
 
 //função para edição
@@ -445,8 +442,7 @@ int atualizarLista(void)
 }
 
 
-
-
+//função para escolha do que deseja editar
 char escAtualizarLista(void) 
 {
     char esc;
@@ -468,7 +464,6 @@ char escAtualizarLista(void)
     return esc;
 
 }
-
 
 
 //Função para exclusão lógica
@@ -553,8 +548,7 @@ int excluirLista(void)
 }
 
 
-
-//listar a lista pronta
+//relatório da lista pronta
 int listaComprasPronta(void) 
 {
     FILE* fp;
