@@ -8,8 +8,6 @@
 #include "modulocadastroUsuario.h"
 
 
-//desenvolver listas dinâmicas de ordem alfabética dos itens; por ordem de chegada...
-
 char moduloRelatorio(void)
 {
     char escolha;
@@ -17,14 +15,17 @@ char moduloRelatorio(void)
         escolha = telaRelatorio();
         switch (escolha) {
             case '1':
-                relatorioCategoria(); //com base na categoria selecionada
+                escRelatoriosCategoria(); //com base na categoria selecionada
                 break;
             case '2':
-                relatorioLocalArmaz(); //com base no local selecionado para armazenar
+                escRelatoriosLocal(); //com base no local selecionado para armazenar
                 break; 
             case '3':
-                relatoriopeloTipo(); //com base no E e S do menu itens
+                escRelatoriosTipo(); //com base no E e S do menu itens
                 break;
+           /* case '4':
+                itensOrdemAlfabetica();
+                break; */
             default :
                 printf ("Opção inválida!");
                 break;
@@ -46,7 +47,8 @@ char telaRelatorio(void)
     printf(" |                                                                      | \n");
     printf(" |                 1- Estoque com base na categoria                     | \n");
     printf(" |                 2- Estoque com base no local de armazenamento        | \n");
-    printf(" |                 4- Estoque com base no tipo                          | \n");
+    printf(" |                 3- Estoque com base no tipo                          | \n");
+   // printf(" |                 4- Itens em ordem alfabética                          | \n");
     printf(" |                 0- Voltar à tela principal                           | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
@@ -59,7 +61,7 @@ char telaRelatorio(void)
 }
 
 //navegação da escolha da categoria
-/*void escRelatoriosCategoria(void)
+void escRelatoriosCategoria(void)
 {
     char opcao;
     do
@@ -80,7 +82,7 @@ char telaRelatorio(void)
 
     } while (opcao != '0');
 
-} */
+} 
 
 //função para selecionar uma das categorias
 char relatorioCategoria(void)
@@ -106,21 +108,18 @@ char relatorioCategoria(void)
 }
 
 //função para retornar o relatório dos itens de higiente
-/*int exibirItensHigiene(void)
+int exibirItensHigiene(void)
 {
     FILE* fp;
     Item* it;
 
-    int listaCategoria;
     int achou;
-    char resp;
 
     fp = fopen("itens.dat", "rb");
 
     if (fp == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
-
         return 0;
     }
 
@@ -129,28 +128,140 @@ char relatorioCategoria(void)
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | ------------| Relatório dos itens de higiene pessoal |-------------- | \n");
     printf(" |                                                                      | \n");
-    printf("Informe o seu CPF: ");
-    scanf("%s", &resp);
 
     it = (Item*) malloc(sizeof(Item));
-    
+
     achou = 0;
-    
-    while((fread(it, sizeof(Item), 1, fp))){        
-        if (((it->categoria == resp)) && (it->status == '1')){
-     
-        }        
-    
+
+    while((fread(it, sizeof(Item), 1, fp))){
+        if (((it->categoria == '1')) && (it->status == '1')){
+            listarItens();
+            achou = 1;
+        }
+
     }
     
-    free(it);   
+    if (achou){
+        
+        return 0;
+    
+    } else {
+        
+        printf("ERRO");
+        getchar();
+    
+    }
+
+    free(it);
     fclose(fp);
 
     return 0;
 
+} 
 
-}
+//função para retornar o relatório dos itens de limpeza
+int exibirItensLimpeza(void)
+{
+    FILE* fp;
+    Item* it;
 
+    int achou;
+
+    fp = fopen("itens.dat", "rb");
+
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        return 0;
+    }
+
+    system ( " clear||cls " );
+    printf(" | ==================================================================== | \n");
+    printf(" | -------------------------------------------------------------------- | \n");
+    printf(" | -----------------| Relatório dos itens de limpeza |----------------- | \n");
+    printf(" |                                                                      | \n");
+
+    it = (Item*) malloc(sizeof(Item));
+
+    achou = 0;
+
+    while((fread(it, sizeof(Item), 1, fp))){
+        if (((it->categoria == '2')) && (it->status == '1')){
+            listarItens();
+            achou = 1;
+        }
+
+    }
+    
+    if (achou){
+        
+        return 0;
+    
+    } else {
+        
+        printf("ERRO");
+        getchar();
+    
+    }
+
+    free(it);
+    fclose(fp);
+
+    return 0;
+    
+} 
+
+//função para retornar o relatório dos itens de alimento
+int exibirItensAlimento(void)
+{
+    FILE* fp;
+    Item* it;
+
+    int achou;
+
+    fp = fopen("itens.dat", "rb");
+
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        return 0;
+    }
+
+    system ( " clear||cls " );
+    printf(" | ==================================================================== | \n");
+    printf(" | -------------------------------------------------------------------- | \n");
+    printf(" | ----------------| Relatório dos itens de alimento |----------------- | \n");
+    printf(" |                                                                      | \n");
+
+    it = (Item*) malloc(sizeof(Item));
+
+    achou = 0;
+
+    while((fread(it, sizeof(Item), 1, fp))){
+        if (((it->categoria == '3')) && (it->status == '1')){
+            listarItens();
+            achou = 1;
+        }
+
+    }
+    
+    if (achou){
+        
+        return 0;
+    
+    } else {
+        
+        printf("ERRO");
+        getchar();
+    
+    }
+
+    free(it);
+    fclose(fp);
+
+    return 0;
+    
+} 
 
 //navegação da escolha do local
 void escRelatoriosLocal(void)
@@ -179,8 +290,7 @@ void escRelatoriosLocal(void)
         }
 
     } while (opcao != '0');
-
-} */
+} 
 
 //criar uma função que irá listar um por um, filtrando 
 char relatorioLocalArmaz(void)
@@ -206,9 +316,273 @@ char relatorioLocalArmaz(void)
 
 }
 
+//função para retornar o relatório dos itens da geladeira
+int exibirGeladeira(void)
+{
+    FILE* fp;
+    Item* it;
+
+    int achou;
+
+    fp = fopen("itens.dat", "rb");
+
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        return 0;
+    }
+
+    system ( " clear||cls " );
+    printf(" | ==================================================================== | \n");
+    printf(" | -------------------------------------------------------------------- | \n");
+    printf(" | ----------------| Relatório dos itens da geladeira |---------------- | \n");
+    printf(" |                                                                      | \n");
+
+    it = (Item*) malloc(sizeof(Item));
+
+    achou = 0;
+
+    while((fread(it, sizeof(Item), 1, fp))){
+        if (((it->localArmazenamento == '1')) && (it->status == '1')){
+            listarItens();
+            achou = 1;
+
+        }
+
+    }
+    
+    if (achou){
+        
+        return 0;
+    
+    } else {
+        
+        printf("ERRO");
+        getchar();
+    
+    }
+
+    free(it);
+    fclose(fp);
+
+    return 0;
+    
+} 
+
+//função para retornar o relatório dos itens do armário da cozinha
+int exibirArmarioCozinha(void)
+{
+    FILE* fp;
+    Item* it;
+
+    int achou;
+
+    fp = fopen("itens.dat", "rb");
+
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        return 0;
+    }
+
+    system ( " clear||cls " );
+    printf(" | ==================================================================== | \n");
+    printf(" | -------------------------------------------------------------------- | \n");
+    printf(" | ----------| Relatório dos itens do armário da cozinha |------------- | \n");
+    printf(" |                                                                      | \n");
+
+    it = (Item*) malloc(sizeof(Item));
+
+    achou = 0;
+
+    while((fread(it, sizeof(Item), 1, fp))){
+        if (((it->localArmazenamento == '2')) && (it->status == '1')){
+            listarItens();
+            achou = 1;
+            
+        }
+
+    }
+    
+    if (achou){
+        
+        return 0;
+    
+    } else {
+        
+        printf("ERRO");
+        getchar();
+    
+    }
+
+    free(it);
+    fclose(fp);
+
+    return 0;
+    
+}
+
+//função para retornar o relatório dos itens da área de serviço
+int exibirAreaServ(void)
+{
+    FILE* fp;
+    Item* it;
+
+    int achou;
+
+    fp = fopen("itens.dat", "rb");
+
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        return 0;
+    }
+
+    system ( " clear||cls " );
+    printf(" | ==================================================================== | \n");
+    printf(" | -------------------------------------------------------------------- | \n");
+    printf(" | ------------| Relatório dos itens do área de serviço |-------------- | \n");
+    printf(" |                                                                      | \n");
+
+    it = (Item*) malloc(sizeof(Item));
+
+    achou = 0;
+
+    while((fread(it, sizeof(Item), 1, fp))){
+        if (((it->localArmazenamento == '3')) && (it->status == '1')){
+            listarItens();
+            achou = 1;
+            
+        }
+
+    }
+    
+    if (achou){
+        
+        return 0;
+    
+    } else {
+        
+        printf("ERRO");
+        getchar();
+    
+    }
+
+    free(it);
+    fclose(fp);
+
+    return 0;
+    
+}
+
+//função para retornar o relatório dos itens do guarda-roupa
+int exibirGuardaRoupa(void)
+{
+    FILE* fp;
+    Item* it;
+
+    int achou;
+
+    fp = fopen("itens.dat", "rb");
+
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        return 0;
+    }
+
+    system ( " clear||cls " );
+    printf(" | ==================================================================== | \n");
+    printf(" | -------------------------------------------------------------------- | \n");
+    printf(" | --------------| Relatório dos itens do guarda-roupa |--------------- | \n");
+    printf(" |                                                                      | \n");
+
+    it = (Item*) malloc(sizeof(Item));
+
+    achou = 0;
+
+    while((fread(it, sizeof(Item), 1, fp))){
+        if (((it->localArmazenamento == '4')) && (it->status == '1')){
+            listarItens();
+            achou = 1;
+            
+        }
+
+    }
+    
+    if (achou){
+        
+        return 0;
+    
+    } else {
+        
+        printf("ERRO");
+        getchar();
+    
+    }
+
+    free(it);
+    fclose(fp);
+
+    return 0;
+    
+}
+
+//função para retornar o relatório dos itens do banheiro
+int exibirexibirGuardaRoupa(void)
+{
+    FILE* fp;
+    Item* it;
+
+    int achou;
+
+    fp = fopen("itens.dat", "rb");
+
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        return 0;
+    }
+
+    system ( " clear||cls " );
+    printf(" | ==================================================================== | \n");
+    printf(" | -------------------------------------------------------------------- | \n");
+    printf(" | ----------------| Relatório dos itens do banheiro |----------------- | \n");
+    printf(" |                                                                      | \n");
+
+    it = (Item*) malloc(sizeof(Item));
+
+    achou = 0;
+
+    while((fread(it, sizeof(Item), 1, fp))){
+        if (((it->localArmazenamento == '5')) && (it->status == '1')){
+            listarItens();
+            achou = 1;
+            
+        }
+
+    }
+    
+    if (achou){
+        
+        return 0;
+    
+    } else {
+        
+        printf("ERRO");
+        getchar();
+    
+    }
+
+    free(it);
+    fclose(fp);
+
+    return 0;
+    
+}
 
 //navegação da escolha do tipo
-/*void escRelatoriosLocal(void)
+void escRelatoriosTipo(void)
 {
     char opcao;
     do
@@ -226,7 +600,7 @@ char relatorioLocalArmaz(void)
 
     } while (opcao != '0');
 
-} */
+} 
 
 
 //função para exibir os itens que entraram/saíram
@@ -248,4 +622,110 @@ char relatoriopeloTipo(void)
 
     return esc;
 
+}
+
+//função para retornar o relatório dos itens que entraram
+int exibirEntrada(void)
+{
+    FILE* fp;
+    Mov* mv;
+
+    int achou;
+
+    fp = fopen("movimento.dat", "rb");
+
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        return 0;
+    }
+
+    system ( " clear||cls " );
+    printf(" | ==================================================================== | \n");
+    printf(" | -------------------------------------------------------------------- | \n");
+    printf(" | ----------| Relatório dos itens que entraram na despensa |---------- | \n");
+    printf(" |                                                                      | \n");
+
+    mv = (Mov*) malloc(sizeof(Mov));
+
+    achou = 0;
+
+    while((fread(mv, sizeof(Item), 1, fp))){
+        if (((mv->tipo == '1'))) {
+            listarItens();
+            achou = 1;
+            
+        }
+
+    }
+    
+    if (achou){
+        
+        return 0;
+    
+    } else {
+        
+        printf("ERRO");
+        getchar();
+    
+    }
+
+    free(mv);
+    fclose(fp);
+
+    return 0;
+    
+}
+
+//função para retornar o relatório dos itens que saíram
+int exibirSaida(void)
+{
+    FILE* fp;
+    Mov* mv;
+
+    int achou;
+
+    fp = fopen("movimento.dat", "rb");
+
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        return 0;
+    }
+
+    system ( " clear||cls " );
+    printf(" | ==================================================================== | \n");
+    printf(" | -------------------------------------------------------------------- | \n");
+    printf(" | -----------| Relatório dos itens que saíram da despensa |----------- | \n");
+    printf(" |                                                                      | \n");
+
+    mv = (Mov*) malloc(sizeof(Mov));
+
+    achou = 0;
+
+    while((fread(mv, sizeof(Item), 1, fp))){
+        if (((mv->tipo == '2'))) {
+            listarItens();
+            achou = 1;
+            
+        }
+
+    }
+    
+    if (achou){
+        
+        return 0;
+    
+    } else {
+        
+        printf("ERRO");
+        getchar();
+    
+    }
+
+    free(mv);
+    fclose(fp);
+
+    return 0;
+    
 }
