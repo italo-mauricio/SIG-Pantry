@@ -97,7 +97,6 @@ void escRelatoriosCategoria(void)
 
 
 
-
 //função para selecionar uma das categorias
 char relatorioCategoria(void)
 {
@@ -157,11 +156,12 @@ int exibirItensHigiene(void)
     } else {
         
         printf("ERRO");
-        getchar();
     
     }
     free(it);
     fclose(fp);
+    getchar();
+
     return 0;
 
 } 
@@ -205,11 +205,11 @@ int exibirItensLimpeza(void)
     } else {
         
         printf("ERRO");
-        getchar();
     
     }
     free(it);
     fclose(fp);
+    getchar();
 
     return 0;
     
@@ -254,11 +254,12 @@ int exibirItensAlimento(void)
     } else {
         
         printf("ERRO");
-        getchar();
     
     }
     free(it);
     fclose(fp);
+    getchar();
+
     return 0;
     
 } 
@@ -317,6 +318,7 @@ char relatorioLocalArmaz(void)
     printf(" | ==================================================================== | \n");
     printf(" | Escolha uma opção: ");
     scanf("%c", &esc);
+    getchar();
     return esc;
 
 }
@@ -362,11 +364,12 @@ int exibirGeladeira(void)
     } else {
         
         printf("ERRO");
-        getchar();
+  
     
     }
     free(it);
     fclose(fp);
+    getchar();
     return 0;
     
 } 
@@ -409,11 +412,12 @@ int exibirArmarioCozinha(void)
     } else {
         
         printf("ERRO");
-        getchar();
+
     
     }
     free(it);
     fclose(fp);
+    getchar();
     return 0;
     
 }
@@ -457,11 +461,12 @@ int exibirAreaServ(void)
     } else {
         
         printf("ERRO");
-        getchar();
     
     }
     free(it);
     fclose(fp);
+    getchar();
+
     return 0;
     
 }
@@ -505,11 +510,12 @@ int exibirGuardaRoupa(void)
     } else {
         
         printf("ERRO");
-        getchar();
+
     
     }
     free(it);
     fclose(fp);
+    getchar();
     return 0;
     
 }
@@ -552,11 +558,11 @@ int exibirBanheiro(void)
     } else {
         
         printf("ERRO");
-        getchar();
     
     }
     free(it);
     fclose(fp);
+    getchar();
     return 0;
     
 }
@@ -645,12 +651,12 @@ int exibirEntrada(void)
     } else {
         
         printf("ERRO");
-        getchar();
     
     }
 
     free(mv);
     fclose(fp);
+    getchar();
     return 0;
     
 }
@@ -691,11 +697,11 @@ int exibirSaida(void)
     } else {
         
         printf("ERRO");
-        getchar();
     
     }
     free(mv);
     fclose(fp);
+    getchar();
     return 0;
     
 }
