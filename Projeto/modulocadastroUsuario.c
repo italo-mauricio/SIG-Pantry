@@ -119,15 +119,15 @@ void InfoUsuario(void)
     
     } while(!((lerUsername(cliente->usernameUsuario)) && (validaUser(cliente->usernameUsuario))));
           
-    printf(" | Usuário cadastrado com sucesso!                           | \n");
+    printf(" | \nUsuário cadastrado com sucesso!                           | \n");
     printf(" | ========================================================= | \n");
     cliente->status = '1'; //o 1 mostra que foi cadastrado
     gravaUsuario(cliente);
     free(cliente);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();      
-}
 
+}
 
 
 //busca a partir do username (id), visto que cada usuário tem o seu, iremos fazer a busca
@@ -182,7 +182,6 @@ int buscaInfoUsuario(void)
     getchar();
     return 0; 
 }
-
 
 
 //função para editar dados do usuário
