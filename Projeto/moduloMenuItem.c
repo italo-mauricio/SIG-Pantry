@@ -87,20 +87,21 @@ int infoItem(void)
     Item* it;
     Mov* mv;
     Usuario* cliente;
-    int resp;
-    int i;
     int estoque;
     int estoqueM;
     int achou;
     char quantidade[20];
     char estoqueMin[20];
     char procurado[20]; 
+    
     fp = fopen("usuario.dat", "rb");
+    
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         getchar();
         return 0;
     }
+
     it = (Item*)malloc(sizeof(Item));
     mv = (Mov*)malloc(sizeof(Mov));
     cliente = (Usuario*)malloc(sizeof(Usuario));
@@ -128,84 +129,82 @@ int infoItem(void)
             getchar();
             return 0;
         }
-            printf("Informe quantos itens vão ser cadastrados: ");
-            scanf("%d", &resp);
-                for (i = 1; i <= resp; i++) {
-                    
-                    do
-                    {
-                        printf(" | Informe o nome do produto (sem acentuação): ");
-                        scanf("%s", it->nomeProduto);
-                        getchar();
+            
+            do
+            {
+                printf(" | Informe o nome do produto (sem acentuação): ");
+                scanf("%s", it->nomeProduto);
+                getchar();
+        
+            } while (!lerLetras(it->nomeProduto));
+            do
+            {
+                printf(" | Informe o nome da marca (sem acentuação): ");
+                scanf("%s", it->nomeMarca);
+                getchar();
+        
+            } while (!lerLetras(it->nomeMarca));
+            do
+            {
+                printf(" | Informe o código de barras do produto: ");
+                scanf("%s", it->codigoBarras);
+                getchar();
                 
-                    } while (!lerLetras(it->nomeProduto));
-                    do
-                    {
-                        printf(" | Informe o nome da marca (sem acentuação): ");
-                        scanf("%s", it->nomeMarca);
-                        getchar();
+            }while(!((lerQuantidade(it->codigoBarras)) && (validaCod(it->codigoBarras))));
+            do
+            {
+                printf(" | Informe o estoque mínimo desse produto: ");
+                scanf("%s", estoqueMin);
+                getchar();
                 
-                    } while (!lerLetras(it->nomeMarca));
-                    do
-                    {
-                        printf(" | Informe o código de barras do produto: ");
-                        scanf("%s", it->codigoBarras);
-                        getchar();
-                        
-                    }while(!((lerQuantidade(it->codigoBarras)) && (validaCod(it->codigoBarras))));
-                    do
-                    {
-                        printf(" | Informe o estoque mínimo desse produto: ");
-                        scanf("%s", estoqueMin);
-                        getchar();
-                        
-                    } while(!lerQuantidade(estoqueMin));
-                    estoqueM = charParaInt(estoqueMin);
-                    it->estoqueMinimo = estoqueM;     
-                    do 
-                    {        
-                        printf(" | Informe o dia de vencimento: ");
-                        scanf("%d", &it->dia);
-                        getchar();
-                        printf(" | Informe o mês: ");
-                        scanf("%d", &it->mes);
-                        getchar();
-                        printf(" | Informe o ano: ");
-                        scanf("%d", &it->ano);
-                        getchar();              
-                    } while(!valida_data(it->dia, it->mes, it->ano)); 
-                    
-                    it->categoria = telaEscCategoria();
-                    it->localArmazenamento = telaEscLocalArmaz();
+            } while(!lerQuantidade(estoqueMin));
+            estoqueM = charParaInt(estoqueMin);
+            it->estoqueMinimo = estoqueM;    
+             
+            do 
+            {        
+                printf(" | Informe o dia de vencimento: ");
+                scanf("%d", &it->dia);
+                getchar();
+                printf(" | Informe o mês: ");
+                scanf("%d", &it->mes);
+                getchar();
+                printf(" | Informe o ano: ");
+                scanf("%d", &it->ano);
+                getchar();              
+            } while(!valida_data(it->dia, it->mes, it->ano)); 
+            
+            it->categoria = telaEscCategoria();
+            it->localArmazenamento = telaEscLocalArmaz();
 
-                    do
-                    {
-                        
-                        printf(" | Informe a quantidade de produtos: ");
-                        scanf("%s", quantidade);            
-                        getchar();
-                    
-                    } while(!lerQuantidade(quantidade));    
-                    estoque = charParaInt(quantidade);
-                    it->quantProduto = estoque;
-                    mv->quantMovimento = estoque;
-                    strcpy(mv->codigoBarras, it->codigoBarras);              
-                    do {       
-                        printf(" | Informe o dia do cadastro: ");
-                        scanf("%d",&it->diaEnt);
-                        getchar();
-                        printf(" | Informe o mês do cadastro: ");
-                        scanf("%d",&it->mesEnt);
-                        getchar();
-                        printf(" | Informe o ano do cadastro: ");
-                        scanf("%d",&it->anoEnt);
-                        getchar();
-                        
-                    } while(!valida_data(it->dia, it->mes, it->ano));                   
-                    mv->diaEnt = it->diaEnt;
-                    mv->mesEnt = it->mesEnt;
-                    mv->anoEnt = it->anoEnt;
-                    mv->tipo = 'E';
+            do
+            {
+                
+                printf(" | Informe a quantidade de produtos: ");
+                scanf("%s", quantidade);            
+                getchar();
+            
+            } while(!lerQuantidade(quantidade));    
+            estoque = charParaInt(quantidade);
+            it->quantProduto = estoque;
+            mv->quantMovimento = estoque;
+            strcpy(mv->codigoBarras, it->codigoBarras);              
+            do {       
+                printf(" | Informe o dia do cadastro: ");
+                scanf("%d",&it->diaEnt);
+                getchar();
+                printf(" | Informe o mês do cadastro: ");
+                scanf("%d",&it->mesEnt);
+                getchar();
+                printf(" | Informe o ano do cadastro: ");
+                scanf("%d",&it->anoEnt);
+                getchar();
+                
+            } while(!valida_data(it->dia, it->mes, it->ano));                   
+            mv->diaEnt = it->diaEnt;
+            mv->mesEnt = it->mesEnt;
+            mv->anoEnt = it->anoEnt;
+            mv->tipo = 'E';
             
             it->status = '1'; //o 1 mostra que foi cadastrado              
             gravaItem(it);
@@ -214,7 +213,7 @@ int infoItem(void)
             free(mv);
             fclose(fp1);
                 
-       }
+   
 
     } else {
         printf("Usuário não encontrado");
