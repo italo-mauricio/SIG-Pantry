@@ -945,7 +945,6 @@ int entradaItem(void)
 }    
 
 
-
 //função para retirada de produto da despensa
 int saidaItem(void) 
 {
@@ -959,8 +958,7 @@ int saidaItem(void)
     char procurado[20];
     int estoque;
     char quantidade[20];
-    char procura[20];
-    
+    char procura[20];  
     fp = fopen("usuario.dat", "rb");
 
     if (fp == NULL) {
@@ -972,7 +970,6 @@ int saidaItem(void)
     it = (Item*)malloc(sizeof(Item));
     mv = (Mov*)malloc(sizeof(Mov));
     cliente = (Usuario*)malloc(sizeof(Usuario));
-
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -980,21 +977,17 @@ int saidaItem(void)
     printf(" |                                                           | \n"); 
     printf(" | Informe o seu username: ");
     scanf(" %30[^\n]", procurado);
-    getchar();   
-    
+    getchar();     
     achou = 0;
 
     while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))){
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')){
             achou = 1;
         }
-    }
-    
-    if (achou){
+    }if (achou){
 
         FILE* fp1;
         FILE* fp2;
-
         fp1 = fopen("itens.dat", "ab");
 
         if (fp1 == NULL) {
@@ -1002,7 +995,6 @@ int saidaItem(void)
             getchar();
             return 0;
         }
-   
         fp2 = fopen("movimento.dat", "ab");
 
         if (fp2 == NULL) {
@@ -1013,8 +1005,7 @@ int saidaItem(void)
             
         printf("Informe o código de barras do produto que deseja retirar: ");
         scanf(" %30[^\n]", procura);
-        getchar();
-        
+        getchar();     
         encontrou = 0;
     
         while((!encontrou) && (fread(it, sizeof(Item), 1, fp))) {
@@ -1022,9 +1013,8 @@ int saidaItem(void)
             encontrou = 1;
             }  
 
-        }
-        
-        if (encontrou){
+        }if (encontrou){
+
             do
             {
                 printf(" | Informe a quantidade de produto: ");
@@ -1051,13 +1041,13 @@ int saidaItem(void)
                     
             } while(!valida_data(it->dia, it->mes, it->ano));  
                 
-            mv->diaSaida = it->diaSaida;
-            mv->mesSaida = it->mesSaida;
-            mv->anoSaida = it->anoSaida;
-            mv->tipo = 'S'; //S indica saída
+                mv->diaSaida = it->diaSaida;
+                mv->mesSaida = it->mesSaida;
+                mv->anoSaida = it->anoSaida;
+                mv->tipo = 'S'; //S indica saída
 
-                printf("Tem certeza que deseja remover este produto da despensa? s/n");
-                scanf("%c", &resp); 
+            printf("Tem certeza que deseja remover este produto da despensa? s/n");
+            scanf("%c", &resp); 
 
                 if (resp == 's' || resp == 'S') {
                     
@@ -1069,30 +1059,28 @@ int saidaItem(void)
                     fclose(fp1);
                     fclose(fp2);
 
-                }
-                
+                }        
                 else {
                     
                     printf("Operação cancelada!");
                 
                 }
-    }
+             }
 
         }else{
             
             printf("Produto não encontrado!");
         
-        }
-    
+        }  
     free(cliente);
-    fclose(fp);
-    
+    fclose(fp);   
     return 0;
     
 }
 
 
 
+// função para não permitir código de barras iguais
 
 int validaCod(char* item)
 {
@@ -1109,8 +1097,6 @@ int validaCod(char* item)
         fclose(fp);
         return 1;
     }
-    
-
     while (!feof(fp))
     {
         fread(usuarioItem, sizeof(Item), 1, fp);
@@ -1120,7 +1106,6 @@ int validaCod(char* item)
             return 0;
         }
     }
-
     fclose(fp);
     return 1;
 
