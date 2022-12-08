@@ -151,7 +151,7 @@ int infoItem(void)
                         scanf("%s", it->codigoBarras);
                         getchar();
                         
-                    } while(!lerQuantidade(it->codigoBarras));
+                    }while(!((lerQuantidade(it->codigoBarras)) && (validaCod(it->codigoBarras))));
 
 
                     do
@@ -1159,4 +1159,39 @@ int saidaItem(void)
     
     return 0;
     
+}
+
+
+
+
+int validaCod(char* item)
+{
+    FILE *fp;
+    Item *usuarioItem;
+
+    usuarioItem = (Item*)malloc(sizeof(Item));
+    
+    fp = fopen("itens.dat", "rt");
+    
+    if (fp == NULL)
+    {
+        printf("Gerando arquivo...");
+        fclose(fp);
+        return 1;
+    }
+    
+
+    while (!feof(fp))
+    {
+        fread(usuarioItem, sizeof(Item), 1, fp);
+        if (strcmp(item, usuarioItem->codigoBarras) == 0 && (usuarioItem->status != '0'))
+        {
+            fclose(fp);
+            return 0;
+        }
+    }
+
+    fclose(fp);
+    return 1;
+
 }
