@@ -21,6 +21,7 @@
 char moduloRelatorio(void)
 {
     char escolha;
+    NoItem* lista;
     do {
         escolha = telaRelatorio();
         switch (escolha) {
@@ -33,9 +34,10 @@ char moduloRelatorio(void)
             case '3':
                 escRelatoriosTipo(); //com base no E e S do menu itens
                 break;
-           /* case '4':
-                itensOrdemAlfabetica();
-                break; */
+            case '4':
+                lista = listaOrdenadaItens(); //itens em ordem alfabética
+                exibeOrdemItem(lista);
+                break; 
             default :
                 printf ("Opção inválida!");
                 break;
@@ -44,7 +46,6 @@ char moduloRelatorio(void)
     } while(escolha != '0');
     return escolha;
 }
-
 
 // tela principal
 char telaRelatorio(void)
@@ -58,7 +59,7 @@ char telaRelatorio(void)
     printf(" |                 1- Estoque com base na categoria                     | \n");
     printf(" |                 2- Estoque com base no local de armazenamento        | \n");
     printf(" |                 3- Estoque com base no tipo                          | \n");
-   // printf(" |                 4- Itens em ordem alfabética                          | \n");
+    printf(" |                 4- Itens em ordem alfabética                          | \n");
     printf(" |                 0- Voltar à tela principal                           | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
@@ -246,6 +247,7 @@ int exibirItensAlimento(void)
         }
 
     }    
+    
     if (achou){
         
         return 0;
@@ -324,7 +326,6 @@ int exibirGeladeira(void)
 {
     FILE* fp;
     Item* it;
-
     int achou;
 
     fp = fopen("itens.dat", "rb");
@@ -351,6 +352,7 @@ int exibirGeladeira(void)
         }
 
     } 
+    
     if (achou){
         
         return 0;
@@ -400,6 +402,7 @@ int exibirArmarioCozinha(void)
         }
 
     }  
+    
     if (achou){
         
         return 0;
@@ -451,6 +454,7 @@ int exibirAreaServ(void)
         }
 
     }   
+    
     if (achou){
         
         return 0;
@@ -502,6 +506,7 @@ int exibirGuardaRoupa(void)
         }
 
     }  
+    
     if (achou){
         
         return 0;
@@ -552,6 +557,7 @@ int exibirBanheiro(void)
         }
 
     }    
+    
     if (achou){
         
         return 0;
@@ -571,7 +577,7 @@ int exibirBanheiro(void)
 
 
 //navegação da escolha do tipo -> VER SE TIPO TEM QUE FICAR NO STRUCT DE ITEM TBM
-void escRelatoriosTipo(void)
+/*void escRelatoriosTipo(void)
 {
     char opcao;
     do
@@ -612,7 +618,7 @@ char relatoriopeloTipo(void)
     return esc;
 
 }
-
+/*
 
 /*
 //função para retornar o relatório dos itens que entraram
@@ -664,8 +670,9 @@ int exibirEntrada(void)
     
 }
 */
-/*//função para retornar o relatório dos itens que saíram
-int exibirSaida(void)
+
+//função para retornar o relatório dos itens que saíram
+/*int exibirSaida(void)
 {
     FILE* fp;
     Mov* mv;
@@ -710,3 +717,127 @@ int exibirSaida(void)
     return 0;
     
 }*/
+
+//função para ordenar os itens em ordem alfabética
+NoItem* listaOrdenadaItens(void) //adaptada by @flgorgonio
+{
+    FILE* fp;
+    Item* it;
+    NoItem* novoItem;
+    NoItem* lista;
+
+    lista = NULL;
+    
+    fp = fopen("itens.dat", "rb");
+    
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        return 0;
+    }
+
+    it = (Item*) malloc(sizeof(Item));
+    
+    while(fread(it, sizeof(Item), 1, fp)) 
+    {        
+        if (it->status == '1') {
+            novoItem = (NoItem*) malloc(sizeof(NoItem));
+            strcpy(novoItem->nomeProduto, it->nomeProduto);
+            strcpy(novoItem->nomeMarca, it->nomeMarca);
+            strcpy(novoItem->codigoBarras, it->codigoBarras);
+            strcpy(novoItem->dia, it->dia);
+            strcpy(novoItem->mes, it->mes);
+            strcpy(novoItem->ano, it->ano);
+            strcpy(novoItem->estoqueMinimo, it->estoqueMinimo);
+            novoItem->categoria = it->categoria;
+            novoItem->localArmazenamento = it->localArmazenamento;
+            novoItem->status = it->status;
+            strcpy(novoItem->quantProduto, it->quantProduto);
+
+            if (lista == NULL){
+                lista = novoItem
+                novoItem->prox = NULL;
+            }
+            
+            else if (strcmp(novoItem>nomeProduto, lista->nomeProduto) < 0){
+                novoItem->prox = lista;
+                lista = novoItem;
+            }
+            
+            else
+            {
+                NoItem* anter = lista;
+                NoItem* atual = lista->prox;
+                
+                while ((atual != NULL) && strcmp(atual->nomeProduto, novoItem->nomeProduto < 0)){
+                    anter = atual;
+                    atual = atual->prox;
+                }
+
+                anter->prox = novoItem;
+                novoItem->prox = atual;
+            }           
+        }
+    }
+    
+    fclose(fp);
+    free(it);
+    
+    return lista;
+
+}
+
+void exibeOrdemItem(NoItem* lista)
+{
+    while (lista != NULL){    
+        
+        char aux[20];
+        char aux2[20];
+        if (it->categoria == '1'){
+            strcpy(aux, "Higiene pessoal");
+        
+        }else if(it->categoria == '2'){
+            strcpy(aux, "Limpeza");
+        
+        }else{
+            strcpy(aux, "Alimento");
+        }
+
+        if (it->localArmazenamento == '1'){
+            strcpy(aux2, "Geladeira");
+        
+        }else if(it->localArmazenamento == '2'){
+            strcpy(aux2, "Armário de cozinha");
+        
+        }else if(it->localArmazenamento == '3'){
+            strcpy(aux2, "Área de serviço");        
+        
+        }else if(it->localArmazenamento == '4'){
+            strcpy(aux2, "Banheiro");          
+        
+        }else{
+            strcpy(aux2, "Guarda-roupa");
+        }
+
+        printf(" | ========================================================= | \n");
+        printf(" |                                                           | \n");
+        printf(" | Nome do produto: %s\n", lista->nomeProduto);    
+        printf(" | Nome da marca: %s\n", lista->nomeMarca);    
+        printf(" | Código de barras: %s\n", lista->codigoBarras);    
+        printf(" | Estoque mínimo do produto: %d\n", lista->estoqueMinimo);
+        printf(" | Data de vencimento: %d/%d/%d\n", lista->dia, lista->mes, lista->ano); 
+        printf(" | Categoria do produto: %s\n", aux);
+        printf(" | Local de armazenamento: %s\n", aux2);
+        printf(" | Quantidade do produto: %d\n", lista->quantProduto);
+        printf(" | Status: %c\n", lista->status);
+        printf(" |                                                           | \n");
+        printf(" | ========================================================= | \n");
+        printf(" | Pressione qualquer tecla para sair.... ");
+        getchar();
+
+            
+        lista = lista->prox;
+        
+    }
+
+}
