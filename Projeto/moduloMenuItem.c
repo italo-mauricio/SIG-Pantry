@@ -76,8 +76,8 @@ char telaRegistrarItem(void)
     scanf("%c", &esc);
     getchar();
     return esc;    
-}
 
+}
 
 
 //função para cadastrar um novo item ao estoque
@@ -158,6 +158,7 @@ int infoItem(void)
                 getchar();
                 
             } while(!lerQuantidade(estoqueMin));
+            
             estoqueM = charParaInt(estoqueMin);
             it->estoqueMinimo = estoqueM;    
 
@@ -185,6 +186,7 @@ int infoItem(void)
                 getchar();
             
             } while(!lerQuantidade(quantidade));    
+            
             estoque = charParaInt(quantidade);
             it->quantProduto = estoque;
             mv->quantMovimento = estoque;
@@ -365,15 +367,10 @@ int buscaInfoItem(void)
         printf(" | Nome da marca: %s\n", it->nomeMarca);    
         printf(" | Código de barras: %s\n", it->codigoBarras);    
         printf(" | Estoque mínimo do produto: %d\n", it->estoqueMinimo);
-        printf(" | Dia do vencimento: %d\n", it->dia); 
-        printf(" | Mês do vencimento: %d\n", it->mes);         
-        printf(" | Ano do vencimento: %d\n", it->ano); 
+        printf(" | Data de vencimento: %d/%d/%d\n", it->dia, it->mes, it->ano); 
         printf(" | Categoria do produto: %s\n", aux);
         printf(" | Local de armazenamento: %s\n", aux2);
         printf(" | Quantidade do produto: %d\n", it->quantProduto);
-        printf(" | Dia da entrada: %d\n", it->diaEnt);
-        printf(" | Mês da entrada: %d\n", it->mesEnt);
-        printf(" | Ano da entrada: %d\n", it->anoEnt);
         printf(" | Status: %c\n", it->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
@@ -746,7 +743,8 @@ int listarItens(void)
 }
 
 //função para a exibição das informações dos itens
-void exibeInfoItem(Item* it) {
+void exibeInfoItem(Item* it) 
+{
     char aux[20];
     char aux2[20];
     if (it->categoria == '1'){
@@ -774,6 +772,7 @@ void exibeInfoItem(Item* it) {
     }else{
         strcpy(aux2, "Guarda-roupa");
     }
+
     system(" cls || clear");
     printf(" | ===================== Lista de Itens ==================== |\n");
     printf(" |                                                           |\n");       
@@ -781,20 +780,16 @@ void exibeInfoItem(Item* it) {
     printf(" | Nome da marca: %s\n", it->nomeMarca);    
     printf(" | Código de barras: %s\n", it->codigoBarras);    
     printf(" | Estoque mínimo do produto: %d\n", it->estoqueMinimo);
-    printf(" | Dia do vencimento: %d\n", it->dia); 
-    printf(" | Mês do vencimento: %d\n", it->mes);         
-    printf(" | Ano do vencimento: %d\n", it->ano); 
+    printf(" | Data de vencimento: %d/%d/%d\n", it->dia, it->mes, it->ano); 
     printf(" | Categoria do produto: %s\n", aux);
     printf(" | Local de armazenamento: %s\n", aux2);
     printf(" | Quantidade do produto: %d\n", it->quantProduto);
-    printf(" | Dia da entrada: %d\n", it->diaEnt);
-    printf(" | Mês da entrada: %d\n", it->mesEnt);
-    printf(" | Ano da entrada: %d\n", it->anoEnt);
     printf(" | Status: %c\n", it->status);
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+
 }
 
 //função para adição de produtos à despensa
@@ -888,23 +883,6 @@ int entradaItem(void)
                 getchar();
                     
             } while(!valida_data(it->dia, it->mes, it->ano)); 
-
-            do {       
-                printf(" | Informe o dia da entrada: ");
-                scanf("%d",&it->diaEnt);
-                getchar();
-                printf(" | Informe o mês da entrada: ");
-                scanf("%d",&it->mesEnt);
-                getchar();
-                printf(" | Informe o ano da entrada: ");
-                scanf("%d",&it->anoEnt);
-                getchar();
-                    
-            } while(!valida_data(it->dia, it->mes, it->ano));           
-                mv->diaEnt = it->diaEnt;
-                mv->mesEnt = it->mesEnt;
-                mv->anoEnt = it->anoEnt;
-                mv->tipo = 'E'; //E indica entrada
 
             printf("Tem certeza que deseja adicionar este produto à despensa? s/n");
             scanf("%c", &resp); 

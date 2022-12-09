@@ -221,7 +221,7 @@ int lerQuantidade(char numero[])
 }
 
 
-void deixarTelaLimpa(void) //adaptado by @flgorgonio
+void deixarTelaLimpa(void) //adaptada by @flgorgonio
 {
   if(system("clear") || system("cls")) {
   }
