@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "validacoes.h"
+#include <time.h>
 
 
 //------------------------------------------------------------------//
@@ -267,5 +268,26 @@ int poten(int num, int pot) {
     }
 
     return soma;
+
+}
+
+
+// Função inspirado no de Dayane
+
+
+char* verDiaMesAno(void) {
+
+ 
+    char* data = (char*) malloc(20 * sizeof(char));
+
+    time_t tempo = time(NULL);
+
+    struct tm* t = localtime(&tempo);
+
+    strftime(data, 50, "%d%m%y", t);
+
+    // dia, mes, ano
+
+    return data;
 
 }
