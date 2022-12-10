@@ -1,3 +1,33 @@
+
+typedef struct noItem NoItem;
+
+struct noItem 
+{
+    char nomeProduto[20];
+    char nomeMarca[20];
+    int dia; //vencimento
+    int mes; //vencimento
+    int ano; //vencimento
+    int diaEnt;
+    int mesEnt;
+    int anoEnt;
+    int diaSaida;
+    int mesSaida;
+    int anoSaida;
+    char codigoBarras[20];
+    char status;
+    int estoqueMinimo; 
+    char categoria;
+    char localArmazenamento;
+    int quantProduto;
+    char usernameUsuario[20];  
+    char dataAtual[40]; 
+    NoItem* prox;
+
+};
+
+
+
 //cabeçalho da função usada no arquivo.c
 char telaRelatorio(void);
 char moduloRelatorio (void);
