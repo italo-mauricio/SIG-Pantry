@@ -284,7 +284,7 @@ char* verDiaMesAno(void) {
 
     struct tm* t = localtime(&tempo);
 
-    strftime(data, 50, "%d%m%y", t);
+    strftime(data, 50, "%d/%m/%y", t);
 
     // dia, mes, ano
 
