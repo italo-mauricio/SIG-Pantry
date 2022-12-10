@@ -188,12 +188,15 @@ int infoItem(void)
             } while(!lerQuantidade(quantidade));    
             
             estoque = charParaInt(quantidade);
-            it->quantProduto = estoque;
+            it->quantProduto = estoque; 
             mv->quantMovimento = estoque;
             strcpy(mv->codigoBarras, it->codigoBarras);              
-            char* data;
+            char *data;
+
+            data = verDiaMesAno();
   
-            strcpy(mv->dataAtual, it->dataAtual);
+            strcpy(mv->dataAtual, data);
+            strcpy(it->dataAtual, data);
             printf("Cadastro realizado na data: %s", data);  
             mv->tipo = 'E';
             
@@ -367,7 +370,8 @@ int buscaInfoItem(void)
         printf(" | Nome da marca: %s\n", it->nomeMarca);    
         printf(" | Código de barras: %s\n", it->codigoBarras);    
         printf(" | Estoque mínimo do produto: %d\n", it->estoqueMinimo);
-        printf(" | Data de vencimento: %d/%d/%d\n", it->dia, it->mes, it->ano); 
+        printf(" | Data de vencimento: %d/%d/%d\n", it->dia, it->mes, it->ano);
+        printf(" | Dia da entrada: %s\n", it->dataAtual); 
         printf(" | Categoria do produto: %s\n", aux);
         printf(" | Local de armazenamento: %s\n", aux2);
         printf(" | Quantidade do produto: %d\n", it->quantProduto);
