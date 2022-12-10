@@ -191,7 +191,8 @@ int infoItem(void)
             it->quantProduto = estoque;
             mv->quantMovimento = estoque;
             strcpy(mv->codigoBarras, it->codigoBarras);              
-            char* data;                  
+            char* data;
+  
             strcpy(mv->dataAtual, it->dataAtual);
             printf("Cadastro realizado na data: %s", data);  
             mv->tipo = 'E';
@@ -201,7 +202,6 @@ int infoItem(void)
             gravaMov(mv);
             free(it);
             free(mv);
-            free(data);
             fclose(fp1);
                 
    

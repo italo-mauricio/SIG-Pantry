@@ -31,9 +31,9 @@ char moduloRelatorio(void)
             case '2':
                 escRelatoriosLocal(); //com base no local selecionado para armazenar
                 break; 
-            case '3':
-                escRelatoriosTipo(); //com base no E e S do menu itens
-                break;
+           // case '3':
+             //   escRelatoriosTipo(); //com base no E e S do menu itens
+               // break;
             case '4':
                 lista = listaOrdenadaItens(); //itens em ordem alfabética
                 exibeOrdemItem(lista);
@@ -618,9 +618,7 @@ char relatoriopeloTipo(void)
     return esc;
 
 }
-/*
 
-/*
 //função para retornar o relatório dos itens que entraram
 int exibirEntrada(void)
 {
@@ -745,21 +743,21 @@ NoItem* listaOrdenadaItens(void) //adaptada by @flgorgonio
             strcpy(novoItem->nomeProduto, it->nomeProduto);
             strcpy(novoItem->nomeMarca, it->nomeMarca);
             strcpy(novoItem->codigoBarras, it->codigoBarras);
-            strcpy(novoItem->dia, it->dia);
-            strcpy(novoItem->mes, it->mes);
-            strcpy(novoItem->ano, it->ano);
-            strcpy(novoItem->estoqueMinimo, it->estoqueMinimo);
+            novoItem->dia = it->dia;
+            novoItem->mes = it->mes;
+            novoItem->ano = it->ano;
+            novoItem->estoqueMinimo = it->estoqueMinimo;
             novoItem->categoria = it->categoria;
             novoItem->localArmazenamento = it->localArmazenamento;
             novoItem->status = it->status;
-            strcpy(novoItem->quantProduto, it->quantProduto);
+            novoItem->quantProduto = it->quantProduto;
 
             if (lista == NULL){
-                lista = novoItem
+                lista = novoItem;
                 novoItem->prox = NULL;
             }
             
-            else if (strcmp(novoItem>nomeProduto, lista->nomeProduto) < 0){
+            else if (strcmp(novoItem->nomeProduto, lista->nomeProduto) < 0){
                 novoItem->prox = lista;
                 lista = novoItem;
             }
@@ -769,7 +767,7 @@ NoItem* listaOrdenadaItens(void) //adaptada by @flgorgonio
                 NoItem* anter = lista;
                 NoItem* atual = lista->prox;
                 
-                while ((atual != NULL) && strcmp(atual->nomeProduto, novoItem->nomeProduto < 0)){
+                while ((atual != NULL) && strcmp(atual->nomeProduto, novoItem->nomeProduto) < 0 ){
                     anter = atual;
                     atual = atual->prox;
                 }
@@ -791,6 +789,9 @@ void exibeOrdemItem(NoItem* lista)
 {
     while (lista != NULL){    
         
+        Item* it;
+        it = (Item*) malloc(sizeof(Item));
+    
         char aux[20];
         char aux2[20];
         if (it->categoria == '1'){
