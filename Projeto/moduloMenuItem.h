@@ -2,8 +2,8 @@
 typedef struct item Item;
 struct item
 {
-    char nomeProduto[20];
-    char nomeMarca[20];
+    char nomeProduto[30];
+    char nomeMarca[30];
     int dia; //vencimento
     int mes; //vencimento
     int ano; //vencimento
@@ -19,7 +19,7 @@ struct item
     char categoria;
     char localArmazenamento;
     int quantProduto;
-    char usernameUsuario[20];  
+    char usernameUsuario[30];  
     char dataAtual[40];
 ;
 };

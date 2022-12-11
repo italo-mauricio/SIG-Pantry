@@ -9,6 +9,7 @@ struct usuario {
     char usernameUsuario[20];
     char senhaUsuario[20];
     char status;
+    char dataUsu[20];
 
     
 };

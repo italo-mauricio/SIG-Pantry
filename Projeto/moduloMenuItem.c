@@ -90,10 +90,13 @@ int infoItem(void)
     int estoque;
     int estoqueM;
     int achou;
+    int dataz;
+
+   
     char quantidade[20];
     char estoqueMin[20];
     char procurado[20]; 
-    
+
     fp = fopen("usuario.dat", "rb");
     
     if (fp == NULL) {
@@ -129,21 +132,14 @@ int infoItem(void)
             getchar();
             return 0;
         }
-            
-            do
-            {
-                printf(" | Informe o nome do produto (sem acentuação): ");
-                scanf("%s", it->nomeProduto);
-                getchar();
-        
-            } while (!lerLetras(it->nomeProduto));
-            do
-            {
-                printf(" | Informe o nome da marca (sem acentuação): ");
-                scanf("%s", it->nomeMarca);
-                getchar();
-        
-            } while (!lerLetras(it->nomeMarca));
+           printf(" | Informe o nome do produto: ");
+           scanf("%30[^\n]", it->nomeProduto);
+           getchar();      
+    
+           printf(" | Informe o nome da marca: ");
+           scanf("%30[^\n]", it->nomeMarca);
+           getchar();
+       
             do
             {
                 printf(" | Informe o código de barras do produto: ");
@@ -192,14 +188,20 @@ int infoItem(void)
             mv->quantMovimento = estoque;
             strcpy(mv->codigoBarras, it->codigoBarras);              
             char *data;
-
             data = verDiaMesAno();
-  
             strcpy(mv->dataAtual, data);
             strcpy(it->dataAtual, data);
-            printf("Cadastro realizado na data: %s", data);  
+            dataz = charParaInt(data);
+            printf(" | Cadastro realizado na data: %s\n", data);  
             mv->tipo = 'E';
-            
+
+            if (it->dia > dataz  && it->mes > dataz && it->ano > dataz){
+                printf("| O produto está vencido, por favor trocar");
+            }
+            else if (it->dia == dataz && it->mes == dataz && it->ano == dataz){
+                printf(" | O produto vence hoje, cuidado!");
+            }
+        
             it->status = '1'; //o 1 mostra que foi cadastrado              
             gravaItem(it);
             gravaMov(mv);
@@ -468,20 +470,14 @@ int telaAtualizarItem(void)
 
             if (resp == '1'){
                 
-                do
-                {
-                    printf("Informe o novo nome do produto (sem acentuação): ");
-                    scanf("%s", it->nomeProduto);
-                    getchar();
+                printf("Informe o novo nome do produto (sem acentuação): ");
+                scanf("%30[^\n]", it->nomeProduto);
+                getchar();
 
-                } while (!lerLetras(it->nomeProduto));
-                do
-                {
-                    printf(" | Informe o novo nome da marca (sem acentuação): ");
-                    scanf("%s", it->nomeMarca);
-                    getchar();
-            
-                } while (!lerLetras(it->nomeMarca));           
+                printf(" | Informe o novo nome da marca (sem acentuação): ");
+                scanf("%30[^\n]", it->nomeMarca);
+                getchar();
+                    
                 do
                 {
                     printf(" | Informe o estoque mínimo desse produto: ");
@@ -524,22 +520,22 @@ int telaAtualizarItem(void)
                 
                 do
                 {
-                    printf("Informe o novo nome do produto (sem acentuação): ");
-                    scanf("%s", it->nomeProduto);
+                    printf("Informe o novo nome do produto: ");
+                    scanf("%30[^\n]", it->nomeProduto);
                     getchar();
 
-                } while (!lerLetras(it->nomeProduto));
+                } while (!it->nomeProduto);
 
             }
             else if (resp == '3') {            
                 
                 do
                 {
-                    printf(" | Informe o novo nome da marca (sem acentuação): ");
-                    scanf("%s", it->nomeMarca);
+                    printf(" | Informe o novo nome da marca: ");
+                    scanf("%30[^\n]", it->nomeMarca);
                     getchar();
             
-                } while (!lerLetras(it->nomeMarca));
+                } while (!it->nomeMarca);
 
             }
             else if (resp == '4'){

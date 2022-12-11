@@ -83,14 +83,11 @@ void InfoUsuario(void)
     printf(" | ========================================================= | \n");
     printf(" |                                                           | \n");
     cliente = (Usuario*) malloc(sizeof(Usuario));
-    do
-    {
-        printf(" | Informe o seu nome: ");
-        scanf("%[A-Z a-z]", cliente->nomeUsuario);
-        getchar();
-        
-    } while (!validarLetras(cliente->nomeUsuario, tamanhoString(cliente->nomeUsuario)));
-    
+   
+    printf(" | Informe o seu nome: ");
+    scanf("%30[^\n]", cliente->nomeUsuario);
+    getchar();
+
     do {
         printf(" | Informe o seu E-mail: ");   
         scanf("%s", cliente->emailUsuario);
@@ -118,6 +115,11 @@ void InfoUsuario(void)
         getchar();
     
     } while(!((lerUsername(cliente->usernameUsuario)) && (validaUser(cliente->usernameUsuario))));
+        char *data;
+        data = verDiaMesAno();
+        strcpy(cliente->dataUsu, data);
+     
+        printf(" | Usuário cadastrado no dia: %s", data);
           
     printf(" | \nUsuário cadastrado com sucesso!                           | \n");
     printf(" | ========================================================= | \n");
@@ -169,6 +171,7 @@ int buscaInfoUsuario(void)
         printf(" | Dia do nascimento: %d\n", cliente->dia); 
         printf(" | Mês do nascimento: %d\n", cliente->mes); 
         printf(" | Ano do nascimento: %d\n", cliente->ano); 
+        printf(" | Data de registro: %s\n", cliente->dataUsu);
         printf(" | Status: %c\n", cliente->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
@@ -221,13 +224,10 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
         printf("\n");
 
         if (resp == '1'){
-            do
-            {
-                printf("Informe o novo nome: ");
-                scanf("%[A-Z a-z]", cliente->nomeUsuario);
-                getchar();
-
-            } while(!validarLetras(cliente->nomeUsuario, tamanhoString(cliente->nomeUsuario)));
+            
+            printf("Informe o novo nome: ");
+            scanf("%30[^\n]", cliente->nomeUsuario);
+            getchar();
 
             do
             {
@@ -253,13 +253,11 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
 
         }
         else if (resp == '2'){
-            do
-            {
-                printf("Informe o novo nome: ");
-                scanf("%[A-Z a-z]", cliente->nomeUsuario);
-                getchar();
+           
+            printf("Informe o novo nome: ");
+            scanf("%30[^\n]", cliente->nomeUsuario);
+            getchar();
 
-            } while(!validarLetras(cliente->nomeUsuario, tamanhoString(cliente->nomeUsuario)));  
         }
         else if (resp == '3'){
             do
@@ -447,6 +445,7 @@ void exibeInfoUsuario(Usuario* cliente) {
     printf(" | Dia do nascimento: %d\n", cliente->dia); 
     printf(" | Mês do nascimento: %d\n", cliente->mes); 
     printf(" | Ano do nascimento: %d\n", cliente->ano); 
+    printf(" | Data de registro: %s\n", cliente->dataUsu);
     printf(" | Status: %c\n", cliente->status);
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
