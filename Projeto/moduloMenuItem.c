@@ -87,12 +87,11 @@ int infoItem(void)
     Item* it;
     Mov* mv;
     Usuario* cliente;
+
     int estoque;
     int estoqueM;
     int achou;
     int dataz;
-
-   
     char quantidade[20];
     char estoqueMin[20];
     char procurado[20]; 
@@ -187,12 +186,14 @@ int infoItem(void)
             it->quantProduto = estoque; 
             mv->quantMovimento = estoque;
             strcpy(mv->codigoBarras, it->codigoBarras);              
+            
             char *data;
             data = verDiaMesAno();
             strcpy(mv->dataAtual, data);
             strcpy(it->dataAtual, data);
             dataz = charParaInt(data);
             printf(" | Cadastro realizado na data: %s\n", data);  
+            
             mv->tipo = 'E';
 
             if (it->dia > dataz  && it->mes > dataz && it->ano > dataz){

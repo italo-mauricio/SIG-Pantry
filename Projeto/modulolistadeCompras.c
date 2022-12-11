@@ -17,7 +17,6 @@
 
 typedef struct item Item;
 
-
 //função de navegação principal do módulo
 void menulistadeCompras(void)
 {
@@ -103,8 +102,8 @@ int itensQuantMinima(void)
     }
 
     it = (Item*)malloc(sizeof(Item));
-    while(fread(it, sizeof(Item), 1, fp)) 
-    {
+    
+    while(fread(it, sizeof(Item), 1, fp)) {
         if (it->quantProduto <= it->estoqueMinimo) {
             system( " clear || cls ");
             printf(" | ============================================================== | \n");
@@ -117,6 +116,7 @@ int itensQuantMinima(void)
     }
     fclose(fp);
     free(it);
+    
     return 0;
 
 }
@@ -125,8 +125,6 @@ int itensQuantMinima(void)
 //função para exibição de itens próx ao vencimento
 int itensProxVencimento(void)
 {
-//tem que recuperar a data de acesso no sistema e avisar quando tiver faltando 5 dias para o venc
-//usar o comparador de Day
     FILE *fp;
     Item* it;
     
@@ -137,9 +135,10 @@ int itensProxVencimento(void)
         printf("Ocorreu um erro na abertura do arquivo");
         return 0;
     }
+
     it = (Item*)malloc(sizeof(Item));
-    while(fread(it, sizeof(Item), 1, fp)) 
-    {
+    
+    while(fread(it, sizeof(Item), 1, fp)) {
         if (it->diaEnt >= it->dia && it->mesEnt >= it->mes && it->anoEnt >= it->ano) {
             system( " clear || cls ");
             printf(" | ============================================================== | \n");
