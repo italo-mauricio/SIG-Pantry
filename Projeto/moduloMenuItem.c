@@ -90,6 +90,7 @@ int infoItem(void)
     int estoque;
     int estoqueM;
     int achou;
+    int dataz;
 
    
     char quantidade[20];
@@ -197,9 +198,13 @@ int infoItem(void)
             data = verDiaMesAno();
             strcpy(mv->dataAtual, data);
             strcpy(it->dataAtual, data);
+            dataz = charParaInt(data);
             printf(" | Cadastro realizado na data: %s", data);  
             mv->tipo = 'E';
-        
+
+            if (it->dia || it->mes || it->ano >= dataz){
+                printf("venceu");
+            } 
         
             it->status = '1'; //o 1 mostra que foi cadastrado              
             gravaItem(it);
