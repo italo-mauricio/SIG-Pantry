@@ -118,6 +118,11 @@ void InfoUsuario(void)
         getchar();
     
     } while(!((lerUsername(cliente->usernameUsuario)) && (validaUser(cliente->usernameUsuario))));
+        char *data;
+        data = verDiaMesAno();
+        strcpy(cliente->dataUsu, data);
+     
+        printf(" | Usuário cadastrado no dia: %s", data);
           
     printf(" | \nUsuário cadastrado com sucesso!                           | \n");
     printf(" | ========================================================= | \n");
@@ -169,6 +174,7 @@ int buscaInfoUsuario(void)
         printf(" | Dia do nascimento: %d\n", cliente->dia); 
         printf(" | Mês do nascimento: %d\n", cliente->mes); 
         printf(" | Ano do nascimento: %d\n", cliente->ano); 
+        printf(" | Data de registro: %s\n", cliente->dataUsu);
         printf(" | Status: %c\n", cliente->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
@@ -447,6 +453,7 @@ void exibeInfoUsuario(Usuario* cliente) {
     printf(" | Dia do nascimento: %d\n", cliente->dia); 
     printf(" | Mês do nascimento: %d\n", cliente->mes); 
     printf(" | Ano do nascimento: %d\n", cliente->ano); 
+    printf(" | Data de registro: %s\n", cliente->dataUsu);
     printf(" | Status: %c\n", cliente->status);
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");

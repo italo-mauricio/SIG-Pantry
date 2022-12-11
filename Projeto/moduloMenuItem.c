@@ -90,10 +90,12 @@ int infoItem(void)
     int estoque;
     int estoqueM;
     int achou;
+
+   
     char quantidade[20];
     char estoqueMin[20];
     char procurado[20]; 
-    
+
     fp = fopen("usuario.dat", "rb");
     
     if (fp == NULL) {
@@ -192,14 +194,13 @@ int infoItem(void)
             mv->quantMovimento = estoque;
             strcpy(mv->codigoBarras, it->codigoBarras);              
             char *data;
-
             data = verDiaMesAno();
-  
             strcpy(mv->dataAtual, data);
             strcpy(it->dataAtual, data);
-            printf("Cadastro realizado na data: %s", data);  
+            printf(" | Cadastro realizado na data: %s", data);  
             mv->tipo = 'E';
-            
+        
+        
             it->status = '1'; //o 1 mostra que foi cadastrado              
             gravaItem(it);
             gravaMov(mv);
