@@ -83,14 +83,11 @@ void InfoUsuario(void)
     printf(" | ========================================================= | \n");
     printf(" |                                                           | \n");
     cliente = (Usuario*) malloc(sizeof(Usuario));
-    do
-    {
-        printf(" | Informe o seu nome: ");
-        scanf("%[A-Z a-z]", cliente->nomeUsuario);
-        getchar();
-        
-    } while (!validarLetras(cliente->nomeUsuario, tamanhoString(cliente->nomeUsuario)));
-    
+   
+    printf(" | Informe o seu nome: ");
+    scanf("%30[^\n]", cliente->nomeUsuario);
+    getchar();
+
     do {
         printf(" | Informe o seu E-mail: ");   
         scanf("%s", cliente->emailUsuario);
@@ -227,13 +224,10 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
         printf("\n");
 
         if (resp == '1'){
-            do
-            {
-                printf("Informe o novo nome: ");
-                scanf("%[A-Z a-z]", cliente->nomeUsuario);
-                getchar();
-
-            } while(!validarLetras(cliente->nomeUsuario, tamanhoString(cliente->nomeUsuario)));
+            
+            printf("Informe o novo nome: ");
+            scanf("%30[^\n]", cliente->nomeUsuario);
+            getchar();
 
             do
             {
@@ -259,13 +253,11 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
 
         }
         else if (resp == '2'){
-            do
-            {
-                printf("Informe o novo nome: ");
-                scanf("%[A-Z a-z]", cliente->nomeUsuario);
-                getchar();
+           
+            printf("Informe o novo nome: ");
+            scanf("%30[^\n]", cliente->nomeUsuario);
+            getchar();
 
-            } while(!validarLetras(cliente->nomeUsuario, tamanhoString(cliente->nomeUsuario)));  
         }
         else if (resp == '3'){
             do

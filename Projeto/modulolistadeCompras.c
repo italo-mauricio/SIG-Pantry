@@ -388,13 +388,10 @@ int atualizarLista(void)
         printf("\n");
 
         if (resp == '1'){
-            do
-            {
-                printf("Informe o novo nome do produto (sem acentuação): ");
-                scanf("%49[^\n]", mtlista->nome);
-                getchar();
-
-            } while(!validarLetras(mtlista->nome, tamanhoString(mtlista->nome)));
+       
+            printf("Informe o novo nome do produto: ");
+            scanf("%49[^\n]", mtlista->nome);
+            getchar();
 
             do
             {
@@ -406,13 +403,11 @@ int atualizarLista(void)
 
         }
         else if (resp == '2'){
-            do
-            {
-                printf("Informe o novo nome do produto (sem acentuação): ");
-                scanf("%49[^\n]", mtlista->nome);
-                getchar();
+            
+            printf("Informe o novo nome do produto (sem acentuação): ");
+            scanf("%49[^\n]", mtlista->nome);
+            getchar();
 
-            } while(!validarLetras(mtlista->nome, tamanhoString(mtlista->nome)));  
         }
         else if (resp == '3'){
             do
