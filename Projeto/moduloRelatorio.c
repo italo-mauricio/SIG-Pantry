@@ -31,9 +31,9 @@ char moduloRelatorio(void)
             case '2':
                 escRelatoriosLocal(); //com base no local selecionado para armazenar
                 break; 
-           // case '3':
-             //   escRelatoriosTipo(); //com base no E e S do menu itens
-               // break;
+            case '3':
+                escRelatoriosQuantidade(); //com base na quant que entrou e que saiu
+                break;
             case '4':
                 lista = listaOrdenadaItens(); //itens em ordem alfabética
                 exibeOrdemItem(lista);
@@ -44,8 +44,11 @@ char moduloRelatorio(void)
         }
 
     } while(escolha != '0');
+    
     return escolha;
+
 }
+
 
 // tela principal
 char telaRelatorio(void)
@@ -58,8 +61,8 @@ char telaRelatorio(void)
     printf(" |                                                                      | \n");
     printf(" |                 1- Estoque com base na categoria                     | \n");
     printf(" |                 2- Estoque com base no local de armazenamento        | \n");
-    printf(" |                 3- Estoque com base no tipo                          | \n");
-    printf(" |                 4- Itens em ordem alfabética                          | \n");
+    printf(" |                 3- Estoque com base na quantidade                    | \n");
+    printf(" |                 4- Itens em ordem alfabética                         | \n");
     printf(" |                 0- Voltar à tela principal                           | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
@@ -421,7 +424,6 @@ int exibirArmarioCozinha(void)
 }
 
 
-
 //função para retornar o relatório dos itens da área de serviço
 int exibirAreaServ(void)
 {
@@ -525,7 +527,6 @@ int exibirGuardaRoupa(void)
 }
 
 
-
 //função para retornar o relatório dos itens do banheiro
 int exibirBanheiro(void)
 {
@@ -575,21 +576,20 @@ int exibirBanheiro(void)
 }
 
 
-
-//navegação da escolha do tipo -> VER SE TIPO TEM QUE FICAR NO STRUCT DE ITEM TBM
-/*void escRelatoriosTipo(void)
+//navegação da escolha da quantidade
+void escRelatoriosQuantidade(void)
 {
     char opcao;
     do
     {
-        opcao = relatoriopeloTipo();
+        opcao = relatoriopelaQuantidade();
         switch (opcao)
         {
             case '1':
-                exibirEntrada();
+                exibirQuantidadeEntrada();
                 break; 
             case '2':
-                exibirSaida();
+                exibirQuantidadeSaida();
                 break;    
         }
 
@@ -599,17 +599,17 @@ int exibirBanheiro(void)
 
 
 
-//função para exibir os itens que entraram/saíram
-char relatoriopeloTipo(void)
+//função para exibir a quantidade de itens que entraram/saíram
+char relatoriopelaQuantidade(void)
 {
     char esc;
     system (" Clear||cls ");
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | -------------- | Relatório do estoque com base no tipo | ----------- | \n");
+    printf(" | --------- | Relatório do estoque com base na quantidade | ---------- | \n");
     printf(" |                                                                      | \n");
-    printf(" |                    1- Itens que entraram (E)                         | \n");
-    printf(" |                    2- Itens que saíram (S)                           | \n");
+    printf(" |                    1- Quantidade que entrou                          | \n");
+    printf(" |                    2- Quantidade que saiu                            | \n");
     printf(" |                    0- Voltar à tela principal                        | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
@@ -619,14 +619,16 @@ char relatoriopeloTipo(void)
 
 }
 
-//função para retornar o relatório dos itens que entraram
-int exibirEntrada(void)
+//função para retornar o relatório da quantidade de itens que entraram
+int exibirQuantidadeEntrada(void)
 {
     FILE* fp;
+    FILE* fp1;
+    Item* it;
     Mov* mv;
     int achou;
     
-    fp = fopen("movimento.dat", "rb");
+    fp = fopen("itens.dat", "rb");
 
     if (fp == NULL) 
     {
@@ -634,16 +636,25 @@ int exibirEntrada(void)
         return 0;
     }
     
+    fp1 = fopen("movimento.dat", "rb");
+
+    if (fp1 == NULL) 
+    {
+        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        return 0;
+    }
+
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | ----------| Relatório dos itens que entraram na despensa |---------- | \n");
+    printf(" | ----| Relatório da quantidade de itens que entraram na despensa |--- | \n");
     printf(" |                                                                      | \n");
+    it = (Item*) malloc(sizeof(Item));
     mv = (Mov*) malloc(sizeof(Mov));
     achou = 0;
 
-    while((fread(mv, sizeof(Item), 1, fp))){
-        if (((mv->tipo == '1'))) {
+    while((fread(it, sizeof(Item), 1, fp)) && (fread(mv, sizeof(Mov), 1, fp1))){
+        if (((it->quantProduto == '1')) && (it->status == '1') && (mv->tipo == 'E')){
             exibeInfoItem(it);
             achou = 1;
             
@@ -661,24 +672,37 @@ int exibirEntrada(void)
     
     }
 
+    free(it);
     free(mv);
     fclose(fp);
+    fclose(fp1);
     getchar();
+    
     return 0;
     
 }
-*/
 
-//função para retornar o relatório dos itens que saíram
-/*int exibirSaida(void)
+
+//função para retornar o relatório a quantidade de itens que saíram
+int exibirQuantidadeSaida(void)
 {
     FILE* fp;
+    FILE* fp1;
+    Item* it;
     Mov* mv;
     int achou;
     
-    fp = fopen("movimento.dat", "rb");
-    
+    fp = fopen("itens.dat", "rb");
+
     if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        return 0;
+    }
+    
+    fp1 = fopen("movimento.dat", "rb");
+
+    if (fp1 == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
@@ -689,17 +713,19 @@ int exibirEntrada(void)
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | -----------| Relatório dos itens que saíram da despensa |----------- | \n");
     printf(" |                                                                      | \n");
+    it = (Item*) malloc(sizeof(Item));
     mv = (Mov*) malloc(sizeof(Mov));
     achou = 0;
 
-    while((fread(mv, sizeof(Item), 1, fp))){
-        if (((mv->tipo == '2'))) {
+    while((fread(it, sizeof(Item), 1, fp)) && (fread(mv, sizeof(Mov), 1, fp1))){
+        if (((it->quantProduto == '2')) && (it->status == '1') && (mv->tipo == 'S')){
             exibeInfoItem(it);
             achou = 1;
             
         }
 
-    }  
+    }
+    
     if (achou){
         
         return 0;
@@ -709,12 +735,17 @@ int exibirEntrada(void)
         printf("ERRO");
     
     }
+
+    free(it);
     free(mv);
     fclose(fp);
+    fclose(fp1);
     getchar();
+    
     return 0;
     
-}*/
+}
+
 
 //função para ordenar os itens em ordem alfabética
 NoItem* listaOrdenadaItens(void) //adaptada by @flgorgonio
