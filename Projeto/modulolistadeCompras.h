@@ -3,8 +3,7 @@ typedef struct montarLista MontarLista;
 struct montarLista
 {
     char nome[20];
-    char categoriaProduto[10];
-    char quantidadeProduto[15];
+    int quantidadeProduto;
     char status;
     char usernameUsuario[20];
 
