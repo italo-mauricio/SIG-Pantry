@@ -123,13 +123,13 @@ char relatorioCategoria(void)
 //função para retornar o relatório dos itens de higiente
 int exibirItensHigiene(void)
 {
-    FILE* fp;
+    FILE* fp3;
     Item* it;
     int achou;
     
-    fp = fopen("itens.dat", "rb");
+    fp3 = fopen("itens.dat", "rb");
 
-    if (fp == NULL) 
+    if (fp3 == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
@@ -143,7 +143,7 @@ int exibirItensHigiene(void)
     it = (Item*) malloc(sizeof(Item));
     achou = 0;
 
-    while((fread(it, sizeof(Item), 1, fp))){
+    while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->categoria == '1')) && (it->status == '1')){
             exibeInfoItem(it);
             achou = 1;
@@ -161,7 +161,7 @@ int exibirItensHigiene(void)
     
     }
     free(it);
-    fclose(fp);
+    fclose(fp3);
     getchar();
 
     return 0;
@@ -172,13 +172,13 @@ int exibirItensHigiene(void)
 //função para retornar o relatório dos itens de limpeza
 int exibirItensLimpeza(void)
 {
-    FILE* fp;
+    FILE* fp3;
     Item* it;
     int achou;
     
-    fp = fopen("itens.dat", "rb");
+    fp3 = fopen("itens.dat", "rb");
 
-    if (fp == NULL) 
+    if (fp3 == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
@@ -193,7 +193,7 @@ int exibirItensLimpeza(void)
     achou = 0;
 
 
-    while((fread(it, sizeof(Item), 1, fp))){
+    while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->categoria == '2')) && (it->status == '1')){
             exibeInfoItem(it);
             achou = 1;
@@ -210,7 +210,7 @@ int exibirItensLimpeza(void)
     
     }
     free(it);
-    fclose(fp);
+    fclose(fp3);
     getchar();
 
     return 0;
@@ -222,14 +222,14 @@ int exibirItensLimpeza(void)
 //função para retornar o relatório dos itens de alimento
 int exibirItensAlimento(void)
 {
-    FILE* fp;
+    FILE* fp3;
     Item* it;
 
     int achou;
 
-    fp = fopen("itens.dat", "rb");
+    fp3 = fopen("itens.dat", "rb");
 
-    if (fp == NULL) 
+    if (fp3 == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
@@ -243,7 +243,7 @@ int exibirItensAlimento(void)
     it = (Item*) malloc(sizeof(Item));
     achou = 0;
 
-    while((fread(it, sizeof(Item), 1, fp))){
+    while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->categoria == '3')) && (it->status == '1')){
             exibeInfoItem(it);
             achou = 1;
@@ -261,7 +261,7 @@ int exibirItensAlimento(void)
     
     }
     free(it);
-    fclose(fp);
+    fclose(fp3);
     getchar();
 
     return 0;
@@ -327,13 +327,13 @@ char relatorioLocalArmaz(void)
 //função para retornar o relatório dos itens da geladeira
 int exibirGeladeira(void)
 {
-    FILE* fp;
+    FILE* fp3;
     Item* it;
     int achou;
 
-    fp = fopen("itens.dat", "rb");
+    fp3 = fopen("itens.dat", "rb");
 
-    if (fp == NULL) 
+    if (fp3 == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
@@ -347,7 +347,7 @@ int exibirGeladeira(void)
     it = (Item*) malloc(sizeof(Item));
     achou = 0;
 
-    while((fread(it, sizeof(Item), 1, fp))){
+    while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->localArmazenamento == '1')) && (it->status == '1')){
             exibeInfoItem(it);
             achou = 1;
@@ -367,7 +367,7 @@ int exibirGeladeira(void)
     
     }
     free(it);
-    fclose(fp);
+    fclose(fp3);
     getchar();
     return 0;
     
@@ -377,13 +377,13 @@ int exibirGeladeira(void)
 //função para retornar o relatório dos itens do armário da cozinha
 int exibirArmarioCozinha(void)
 {
-    FILE* fp;
+    FILE* fp3;
     Item* it;
     int achou;
     
-    fp = fopen("itens.dat", "rb");
+    fp3 = fopen("itens.dat", "rb");
 
-    if (fp == NULL) 
+    if (fp3 == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
@@ -397,7 +397,7 @@ int exibirArmarioCozinha(void)
     it = (Item*) malloc(sizeof(Item));
     achou = 0;
 
-    while((fread(it, sizeof(Item), 1, fp))){
+    while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->localArmazenamento == '2')) && (it->status == '1')){
             exibeInfoItem(it);
             achou = 1;
@@ -417,7 +417,7 @@ int exibirArmarioCozinha(void)
     
     }
     free(it);
-    fclose(fp);
+    fclose(fp3);
     getchar();
     return 0;
     
@@ -427,13 +427,13 @@ int exibirArmarioCozinha(void)
 //função para retornar o relatório dos itens da área de serviço
 int exibirAreaServ(void)
 {
-    FILE* fp;
+    FILE* fp3;
     Item* it;
     int achou;
     
-    fp = fopen("itens.dat", "rb");
+    fp3 = fopen("itens.dat", "rb");
 
-    if (fp == NULL) 
+    if (fp3 == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
@@ -448,7 +448,7 @@ int exibirAreaServ(void)
     achou = 0;
 
 
-    while((fread(it, sizeof(Item), 1, fp))){
+    while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->localArmazenamento == '3')) && (it->status == '1')){
             exibeInfoItem(it);
             achou = 1;
@@ -467,7 +467,7 @@ int exibirAreaServ(void)
     
     }
     free(it);
-    fclose(fp);
+    fclose(fp3);
     getchar();
 
     return 0;
@@ -479,13 +479,13 @@ int exibirAreaServ(void)
 //função para retornar o relatório dos itens do guarda-roupa
 int exibirGuardaRoupa(void)
 {
-    FILE* fp;
+    FILE* fp3;
     Item* it;
     int achou;
     
-    fp = fopen("itens.dat", "rb");
+    fp3 = fopen("itens.dat", "rb");
 
-    if (fp == NULL) 
+    if (fp3 == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
@@ -500,7 +500,7 @@ int exibirGuardaRoupa(void)
     achou = 0;
 
 
-    while((fread(it, sizeof(Item), 1, fp))){
+    while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->localArmazenamento == '5')) && (it->status == '1')){
             exibeInfoItem(it);
             achou = 1;
@@ -520,7 +520,7 @@ int exibirGuardaRoupa(void)
     
     }
     free(it);
-    fclose(fp);
+    fclose(fp3);
     getchar();
     return 0;
     
@@ -530,13 +530,13 @@ int exibirGuardaRoupa(void)
 //função para retornar o relatório dos itens do banheiro
 int exibirBanheiro(void)
 {
-    FILE* fp;
+    FILE* fp3;
     Item* it;
     int achou;
     
-    fp = fopen("itens.dat", "rb");
+    fp3 = fopen("itens.dat", "rb");
 
-    if (fp == NULL) 
+    if (fp3 == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
@@ -550,7 +550,7 @@ int exibirBanheiro(void)
     it = (Item*) malloc(sizeof(Item));
     achou = 0;
 
-    while((fread(it, sizeof(Item), 1, fp))){
+    while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->localArmazenamento == '4')) && (it->status == '1')){
             exibeInfoItem(it);
             achou = 1;
@@ -569,7 +569,7 @@ int exibirBanheiro(void)
     
     }
     free(it);
-    fclose(fp);
+    fclose(fp3);
     getchar();
     return 0;
     
@@ -622,23 +622,23 @@ char relatoriopelaQuantidade(void)
 //função para retornar o relatório da quantidade de itens que entraram
 int exibirQuantidadeEntrada(void)
 {
-    FILE* fp;
-    FILE* fp1;
+    FILE* fp3;
+    FILE* fp4;
     Item* it;
     Mov* mv;
     int achou;
     
-    fp = fopen("itens.dat", "rb");
+    fp3 = fopen("itens.dat", "rb");
 
-    if (fp == NULL) 
+    if (fp3 == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
     }
     
-    fp1 = fopen("movimento.dat", "rb");
+    fp4 = fopen("movimento.dat", "rb");
 
-    if (fp1 == NULL) 
+    if (fp4 == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
@@ -653,7 +653,7 @@ int exibirQuantidadeEntrada(void)
     mv = (Mov*) malloc(sizeof(Mov));
     achou = 0;
 
-    while((fread(it, sizeof(Item), 1, fp)) && (fread(mv, sizeof(Mov), 1, fp1))){
+    while((fread(it, sizeof(Item), 1, fp3)) && (fread(mv, sizeof(Mov), 1, fp4))){
         if (((it->quantProduto == '1')) && (it->status == '1') && (mv->tipo == 'E')){
             exibeInfoItem(it);
             achou = 1;
@@ -674,8 +674,8 @@ int exibirQuantidadeEntrada(void)
 
     free(it);
     free(mv);
-    fclose(fp);
-    fclose(fp1);
+    fclose(fp3);
+    fclose(fp4);
     getchar();
     
     return 0;
@@ -686,23 +686,23 @@ int exibirQuantidadeEntrada(void)
 //função para retornar o relatório a quantidade de itens que saíram
 int exibirQuantidadeSaida(void)
 {
-    FILE* fp;
-    FILE* fp1;
+    FILE* fp3;
+    FILE* fp4;
     Item* it;
     Mov* mv;
     int achou;
     
-    fp = fopen("itens.dat", "rb");
+    fp3 = fopen("itens.dat", "rb");
 
-    if (fp == NULL) 
+    if (fp3 == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
     }
     
-    fp1 = fopen("movimento.dat", "rb");
+    fp4 = fopen("movimento.dat", "rb");
 
-    if (fp1 == NULL) 
+    if (fp4 == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
@@ -717,7 +717,7 @@ int exibirQuantidadeSaida(void)
     mv = (Mov*) malloc(sizeof(Mov));
     achou = 0;
 
-    while((fread(it, sizeof(Item), 1, fp)) && (fread(mv, sizeof(Mov), 1, fp1))){
+    while((fread(it, sizeof(Item), 1, fp3)) && (fread(mv, sizeof(Mov), 1, fp4))){
         if (((it->quantProduto == '2')) && (it->status == '1') && (mv->tipo == 'S')){
             exibeInfoItem(it);
             achou = 1;
@@ -739,8 +739,8 @@ int exibirQuantidadeSaida(void)
 
     free(it);
     free(mv);
-    fclose(fp);
-    fclose(fp1);
+    fclose(fp3);
+    fclose(fp4);
     getchar();
     
     return 0;
@@ -751,16 +751,16 @@ int exibirQuantidadeSaida(void)
 //função para ordenar os itens em ordem alfabética
 NoItem* listaOrdenadaItens(void) //adaptada by @flgorgonio
 {
-    FILE* fp;
+    FILE* fp3;
     Item* it;
     NoItem* novoItem;
     NoItem* lista;
 
     lista = NULL;
     
-    fp = fopen("itens.dat", "rb");
+    fp3 = fopen("itens.dat", "rb");
     
-    if (fp == NULL) 
+    if (fp3 == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
@@ -768,7 +768,7 @@ NoItem* listaOrdenadaItens(void) //adaptada by @flgorgonio
 
     it = (Item*) malloc(sizeof(Item));
     
-    while(fread(it, sizeof(Item), 1, fp)) 
+    while(fread(it, sizeof(Item), 1, fp3)) 
     {        
         if (it->status == '1') {
             novoItem = (NoItem*) malloc(sizeof(NoItem));
@@ -810,7 +810,7 @@ NoItem* listaOrdenadaItens(void) //adaptada by @flgorgonio
         }
     }
     
-    fclose(fp);
+    fclose(fp3);
     free(it);
     
     return lista;

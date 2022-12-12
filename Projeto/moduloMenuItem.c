@@ -130,9 +130,9 @@ int infoItem(void)
         }
     }
     if (achou){
-        FILE* fp1;
-        fp1 = fopen("itens.dat", "ab");
-        if (fp1 == NULL) {
+        FILE* fp3;
+        fp3 = fopen("itens.dat", "ab");
+        if (fp3 == NULL) {
             printf("Ops! Erro na abertura do arquivo!\n");
             getchar();
             return 0;
@@ -224,7 +224,7 @@ int infoItem(void)
             free(datadia);
             free(datames);
             free(dataano);
-            fclose(fp1);
+            fclose(fp3);
                 
    
 
@@ -286,16 +286,16 @@ char telaEscLocalArmaz(void)
 //função para gravar no arquivo de item
 int gravaItem(Item* it) 
 {
-    FILE* fp;
+    FILE* fp3;
     
-    fp = fopen("itens.dat", "ab");
+    fp3 = fopen("itens.dat", "ab");
     
-    if (fp == NULL) {
+    if (fp3 == NULL) {
         printf("Ops! Não é possível continuar o programa...\n");
         return 0;
     }  
-    fwrite(it, sizeof(Item), 1, fp);
-    fclose(fp);
+    fwrite(it, sizeof(Item), 1, fp3);
+    fclose(fp3);
     
     return 0;
 
@@ -305,16 +305,16 @@ int gravaItem(Item* it)
 // função para gravar no arquivo de movimento
 int gravaMov(Mov* mv) 
 {
-    FILE* fp;
+    FILE* fp4;
     
-    fp = fopen("movimento.dat", "ab");
+    fp4 = fopen("movimento.dat", "ab");
     
-    if (fp == NULL) {
+    if (fp4 == NULL) {
         printf("Ops! Não é possível continuar o programa...\n");
         return 0;
     }   
-    fwrite(mv, sizeof(Mov), 1, fp);
-    fclose(fp);
+    fwrite(mv, sizeof(Mov), 1, fp4);
+    fclose(fp4);
     return 0;
 
 }
@@ -323,14 +323,14 @@ int gravaMov(Mov* mv)
 //função de pesquisa a partir do código de barras (id do item)
 int buscaInfoItem(void)
 {
-    FILE* fp;
+    FILE* fp3;
     Item* it;
     int achou;
     char procurado[15];
     char aux[20];
     char aux2[20]; 
-    fp = fopen("itens.dat", "rb");
-    if (fp == NULL) {
+    fp3 = fopen("itens.dat", "rb");
+    if (fp3 == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
@@ -347,8 +347,9 @@ int buscaInfoItem(void)
     achou = 0;
 
 
-    while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
+    while((!achou) && (fread(it, sizeof(Item), 1, fp3))) {
         printf("Código de barras |%s|\n", it->codigoBarras);
+
         
         if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')) {
             achou = 1;
@@ -405,7 +406,7 @@ int buscaInfoItem(void)
     
     } 
     free(it);
-    fclose(fp);
+    fclose(fp3);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
     return 0;
@@ -416,7 +417,7 @@ int buscaInfoItem(void)
 //função para editar algum item
 int telaAtualizarItem(void)  
 {
-    FILE* fp2;
+    FILE* fp;
     Mov* mv;
     Usuario* cliente;
     char resp;
@@ -429,9 +430,9 @@ int telaAtualizarItem(void)
     char estoqueMin[20];
     char procura[20];
     
-    fp2 = fopen("usuario.dat", "r+b");
+    fp = fopen("usuario.dat", "r+b");
     
-    if (fp2 == NULL) 
+    if (fp == NULL) 
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
@@ -451,18 +452,18 @@ int telaAtualizarItem(void)
     achou = 0;
 
 
-    while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp2))){
+    while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))){
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')){
             achou = 1;
         }
     }if (achou){
 
-        FILE *fp;
+        FILE* fp3;
         Item* it;
         it = (Item*)malloc(sizeof(Item));
-        fp = fopen("itens.dat", "r+b");
+        fp3 = fopen("itens.dat", "r+b");
         
-        if (fp == NULL) 
+        if (fp3 == NULL) 
         {
             printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
             return 0;
@@ -474,7 +475,7 @@ int telaAtualizarItem(void)
         encontrou = 0;
 
 
-        while((!encontrou) && (fread(it, sizeof(Item), 1, fp))) {
+        while((!encontrou) && (fread(it, sizeof(Item), 1, fp3))) {
             if ((strcmp(it->codigoBarras, procura) == 0) && (it->status == '1')) {
                 encontrou = 1;
             }
@@ -620,7 +621,7 @@ int telaAtualizarItem(void)
             printf("Dados editados com sucesso");
             gravaItem(it);
             free(it);
-            fclose(fp);     
+            fclose(fp3);     
         }else {
             
             printf("O item de código de barras %s não foi encontrado\n", procurado);
@@ -633,7 +634,7 @@ int telaAtualizarItem(void)
     }
 
     free(cliente); 
-    fclose(fp2);    
+    fclose(fp);    
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();       
     return 0; 
@@ -671,15 +672,15 @@ char escAtualizarItem(void)
 //função para exclusão lógica
 int excluirItem(void)
 {
-    FILE* fp;
+    FILE* fp3;
     Item* it;
     int achou;
     char resp;
     char procurado[20];
     
-    fp = fopen("itens.dat", "r+b");
+    fp3 = fopen("itens.dat", "r+b");
 
-    if (fp == NULL){
+    if (fp3 == NULL){
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
@@ -695,7 +696,7 @@ int excluirItem(void)
     achou = 0;
 
 
-    while ((!achou) && (fread(it, sizeof(Item), 1, fp))){
+    while ((!achou) && (fread(it, sizeof(Item), 1, fp3))){
         if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')){
             achou = 1;
         }
@@ -708,8 +709,8 @@ int excluirItem(void)
         if (resp == 's' || resp == 'S'){
             
             it->status = '0';
-            fseek(fp, (-1)*sizeof(Item), SEEK_CUR);
-            fwrite(it, sizeof(Item), 1, fp);
+            fseek(fp3, (-1)*sizeof(Item), SEEK_CUR);
+            fwrite(it, sizeof(Item), 1, fp3);
             printf("\nDados do item excluídos com sucesso!");
             gravaItem(it);
             
@@ -723,7 +724,7 @@ int excluirItem(void)
         printf("O item não foi encontrado!");  
     }
     free(it);
-    fclose(fp);  
+    fclose(fp3);  
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
     return 0;
@@ -734,26 +735,27 @@ int excluirItem(void)
 //listar itens - relatório sem filtro
 int listarItens(void) 
 {
-    FILE* fp;
+    FILE* fp3;
     Item* it;
     
-    fp = fopen("itens.dat", "rb");
+    fp3 = fopen("itens.dat", "rb");
     
-    if (fp == NULL) {
+    if (fp3 == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
 
     it = (Item*)malloc(sizeof(Item)); 
 
-    while(fread(it, sizeof(Item), 1, fp)) {
+    while(fread(it, sizeof(Item), 1, fp3)) {
         system(" cls || clear");
         printf(" | ===================== Lista itens ======================= | \n");
         printf(" |                                                           | \n");
         exibeInfoItem(it);
     } 
-    fclose(fp);
     free(it);
+    fclose(fp3);
+   
     
     return 0;
 
@@ -764,6 +766,7 @@ void exibeInfoItem(Item* it)
 {
     char aux[20];
     char aux2[20];
+
     if (it->categoria == '1'){
         strcpy(aux, "Higiene pessoal");
     
@@ -817,6 +820,7 @@ int entradaItem(void)
     Mov* mv;
     Usuario* cliente;
     int achou;
+    int encontra;
     char resp;
     char procurado[20];
     int estoque;
@@ -842,25 +846,24 @@ int entradaItem(void)
     getchar();     
     achou = 0;  
 
-
     while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))){
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')){
             achou = 1;
         }
     }if (achou){
         
-        FILE* fp1;
-        FILE* fp2;
+        FILE* fp3;
+        FILE* fp4;
         char procura[20];
-        fp1 = fopen("itens.dat", "ab");
-        if (fp1 == NULL) {
+        fp3 = fopen("itens.dat", "rb");
+        if (fp3 == NULL) {
             printf("Ops! Erro na abertura do arquivo!\n");
             getchar();
             return 0;
         }
-        fp2 = fopen("movimento.dat", "ab");
+        fp4 = fopen("movimento.dat", "rb");
 
-        if (fp2 == NULL) {
+        if (fp4 == NULL) {
             printf("Ops! Erro na abertura do arquivo!\n");
             getchar();
             return 0;
@@ -868,69 +871,72 @@ int entradaItem(void)
         printf("Informe o código de barras do produto que deseja adicionar: ");
         scanf(" %30[^\n]", procura);
         getchar();      
-        achou = 0;
+        encontra = 0;
     
-        while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
-            if ((strcmp(it->codigoBarras, procura) == 0) && (it->status == '1')) {
-            achou = 1;
-            }  
-
-        }if (achou){
-            do
-            {
-                printf(" | Informe a quantidade de produto: ");
-                scanf("%s", quantidade);             
-                getchar();
-                
-            } while(!lerQuantidade(quantidade));
-            estoque = charParaInt(quantidade);
-            it->quantProduto =+ estoque;
-            mv->quantMovimento = estoque;
-            strcpy(mv->codigoBarras, it->codigoBarras);      
-            do 
-            {        
-                printf(" | Informe o dia de vencimento do produto: ");
-                scanf("%d", &it->dia);
-                getchar();
-                printf(" | Informe o mês: ");
-                scanf("%d", &it->mes);
-                getchar();
-                printf(" | Informe o ano: ");
-                scanf("%d", &it->ano);
-                getchar();
+        while(((!encontra) && (fread(it, sizeof(Item), 1, fp3)))){
+            if ((strcmp(it->codigoBarras,  procura) == 0) && (it->status == '1')) {
+                encontra = 1;
+            }
+            
+            }if (encontra){
+                do
+                {
+                    printf(" | Informe a quantidade de produto: ");
+                    scanf("%s", quantidade);             
+                    getchar();
                     
-            } while(!valida_data(it->dia, it->mes, it->ano)); 
+                } while(!lerQuantidade(quantidade));
+                estoque = charParaInt(quantidade);
+                it->quantProduto += estoque;
+                mv->quantMovimento += estoque;
+                strcpy(mv->codigoBarras, it->codigoBarras);      
+                do 
+                {        
+                    printf(" | Informe o dia de vencimento do produto: ");
+                    scanf("%d", &it->dia);
+                    getchar();
+                    printf(" | Informe o mês: ");
+                    scanf("%d", &it->mes);
+                    getchar();
+                    printf(" | Informe o ano: ");
+                    scanf("%d", &it->ano);
+                    getchar();
+                        
+                } while(!valida_data(it->dia, it->mes, it->ano)); 
 
-            printf("Tem certeza que deseja adicionar este produto à despensa? s/n");
-            scanf("%c", &resp); 
+                printf("Tem certeza que deseja adicionar este produto à despensa? s/n ");
+                scanf("%c", &resp); 
 
-                if (resp == 's' || resp == 'S') {
-                    
-                    printf("Produto adicionado com sucesso!");
-                    gravaItem(it);
-                    gravaMov(mv);
-                    free(it);
-                    free(mv);
-                    fclose(fp1);
-                    fclose(fp2);
+                    if (resp == 's' || resp == 'S') {
+                        
+                        printf("Produto adicionado com sucesso!");
+                        getchar();
+                        gravaItem(it);
+                        gravaMov(mv);
+                        free(it);
+                        free(mv);
+                        fclose(fp3);
+                        fclose(fp4);
 
-                }      
-                else {
-                    
-                    printf("Operação cancelada!");         
-                }
-              }
-
+                    }      
+                    else {
+                        
+                        printf("Operação cancelada!");
+                        getchar();         
+                    }
         }else{
             
             printf("Produto não encontrado!");
-        
+            getchar();
+
         }  
     free(cliente);
     fclose(fp); 
-    return 0;
-
-}    
+   
+    
+  }  
+   return 0;
+}  
 
 
 //função para retirada de produto da despensa
@@ -974,18 +980,18 @@ int saidaItem(void)
         }
     }if (achou){
 
-        FILE* fp1;
-        FILE* fp2;
-        fp1 = fopen("itens.dat", "ab");
+        FILE* fp3;
+        FILE* fp4;
+        fp3 = fopen("itens.dat", "rb");
 
-        if (fp1 == NULL) {
+        if (fp3 == NULL) {
             printf("Ops! Erro na abertura do arquivo!\n");
             getchar();
             return 0;
         }
-        fp2 = fopen("movimento.dat", "ab");
+        fp4 = fopen("movimento.dat", "rb");
 
-        if (fp2 == NULL) {
+        if (fp4 == NULL) {
             printf("Ops! Erro na abertura do arquivo!\n");
             getchar();
             return 0;
@@ -996,7 +1002,7 @@ int saidaItem(void)
         getchar();     
         encontrou = 0;
     
-        while((!encontrou) && (fread(it, sizeof(Item), 1, fp))) {
+        while((!encontrou) && (fread(it, sizeof(Item), 1, fp3))) {
             if ((strcmp(it->codigoBarras, procura) == 0) && (it->status == '1')) {
             encontrou = 1;
             }  
@@ -1012,8 +1018,8 @@ int saidaItem(void)
             } while(!lerQuantidade(quantidade));
 
             estoque = charParaInt(quantidade);
-            it->quantProduto =- estoque;
-            mv->quantMovimento = estoque;
+            it->quantProduto -= estoque;
+            mv->quantMovimento -= estoque;
             strcpy(mv->codigoBarras, it->codigoBarras);
 
             do {       
@@ -1036,21 +1042,24 @@ int saidaItem(void)
 
             printf("Tem certeza que deseja remover este produto da despensa? s/n");
             scanf("%c", &resp); 
+            getchar();
 
                 if (resp == 's' || resp == 'S') {
                     
                     printf("Produto removido com sucesso!");
+                    getchar();
                     gravaItem(it);
                     gravaMov(mv);
                     free(it);
                     free(mv);
-                    fclose(fp1);
-                    fclose(fp2);
+                    fclose(fp3);
+                    fclose(fp4);
 
                 }        
                 else {
                     
                     printf("Operação cancelada!");
+                    getchar();
                 
                 }
              }
@@ -1058,6 +1067,7 @@ int saidaItem(void)
         }else{
             
             printf("Produto não encontrado!");
+            getchar();
         
         }  
     free(cliente);
@@ -1071,29 +1081,29 @@ int saidaItem(void)
 //função para não permitir código de barras iguais
 int validaCod(char* item)
 {
-    FILE *fp;
-    Item *usuarioItem;
+    FILE* fp3;
+    Item* usuarioItem;
 
     usuarioItem = (Item*)malloc(sizeof(Item));
     
-    fp = fopen("itens.dat", "rt");
+    fp3 = fopen("itens.dat", "rt");
     
-    if (fp == NULL)
+    if (fp3 == NULL)
     {
         printf("Gerando arquivo...");
-        fclose(fp);
+        fclose(fp3);
         return 1;
     }
-    while (!feof(fp))
+    while (!feof(fp3))
     {
-        fread(usuarioItem, sizeof(Item), 1, fp);
+        fread(usuarioItem, sizeof(Item), 1, fp3);
         if (strcmp(item, usuarioItem->codigoBarras) == 0 && (usuarioItem->status != '0'))
         {
-            fclose(fp);
+            fclose(fp3);
             return 0;
         }
     }
-    fclose(fp);
+    fclose(fp3);
     return 1;
 
 }
