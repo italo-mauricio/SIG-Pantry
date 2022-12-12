@@ -736,6 +736,7 @@ int exibirQuantidadeSaida(void)
     
     }
 
+
     free(it);
     free(mv);
     fclose(fp);

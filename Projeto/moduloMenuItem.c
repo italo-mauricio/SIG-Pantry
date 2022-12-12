@@ -91,7 +91,13 @@ int infoItem(void)
     int estoque;
     int estoqueM;
     int achou;
-    int dataz;
+
+    char *datadia;
+    char *datames;
+    char *dataano;
+    int diadia;
+    int mesmes;
+    int anoano;
     char quantidade[20];
     char estoqueMin[20];
     char procurado[20]; 
@@ -191,23 +197,33 @@ int infoItem(void)
             data = verDiaMesAno();
             strcpy(mv->dataAtual, data);
             strcpy(it->dataAtual, data);
-            dataz = charParaInt(data);
-            printf(" | Cadastro realizado na data: %s\n", data);  
-            
+            printf(" | Cadastro realizado na data: %s\n", data);      
             mv->tipo = 'E';
 
-            if (it->dia > dataz  && it->mes > dataz && it->ano > dataz){
+            datadia = dividPal(data, 0, 1);
+            datames = dividPal(data, 3, 4);
+            dataano = dividPal(data, 6, 7);
+            diadia = charParaInt(datadia);
+            mesmes = charParaInt(datames);
+            anoano = charParaInt(dataano);
+            anoano += 2000;
+         
+            if (it->dia < diadia && it->mes <= mesmes && it->ano == anoano){
                 printf("| O produto está vencido, por favor trocar");
-            }
-            else if (it->dia == dataz && it->mes == dataz && it->ano == dataz){
-                printf(" | O produto vence hoje, cuidado!");
-            }
+            } else if (it->dia == diadia  && it->mes == mesmes && it->ano  == anoano){
+              printf(" | O produto vence hoje, cuidado!");
+           } else if (it->dia > diadia && it->mes >= mesmes && it->ano == anoano){
+                printf(" | O produto está dentro do prazo de validade!");
+           }
         
             it->status = '1'; //o 1 mostra que foi cadastrado              
             gravaItem(it);
             gravaMov(mv);
             free(it);
             free(mv);
+            free(datadia);
+            free(datames);
+            free(dataano);
             fclose(fp1);
                 
    
