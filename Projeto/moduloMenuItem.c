@@ -85,7 +85,7 @@ int infoItem(void)
 {
     FILE* fp;
     Item* it;
-    Mov* mv;
+
     Usuario* cliente;
 
     int estoque;
@@ -111,7 +111,7 @@ int infoItem(void)
     }
 
     it = (Item*)malloc(sizeof(Item));
-    mv = (Mov*)malloc(sizeof(Mov));
+ 
     cliente = (Usuario*)malloc(sizeof(Usuario));
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
@@ -190,15 +190,14 @@ int infoItem(void)
             
             estoque = charParaInt(quantidade);
             it->quantProduto = estoque; 
-            mv->quantMovimento = estoque;
-            strcpy(mv->codigoBarras, it->codigoBarras);              
+                       
             
             char *data;
             data = verDiaMesAno();
-            strcpy(mv->dataAtual, data);
+
             strcpy(it->dataAtual, data);
             printf(" | Cadastro realizado na data: %s\n", data);      
-            mv->tipo = 'E';
+            it->tipo = 'E';
 
             datadia = dividPal(data, 0, 1);
             datames = dividPal(data, 3, 4);
@@ -218,9 +217,9 @@ int infoItem(void)
         
             it->status = '1'; //o 1 mostra que foi cadastrado              
             gravaItem(it);
-            gravaMov(mv);
+    
             free(it);
-            free(mv);
+
             free(datadia);
             free(datames);
             free(dataano);
@@ -302,22 +301,7 @@ int gravaItem(Item* it)
 }
 
 
-// função para gravar no arquivo de movimento
-int gravaMov(Mov* mv) 
-{
-    FILE* fp4;
-    
-    fp4 = fopen("movimento.dat", "ab");
-    
-    if (fp4 == NULL) {
-        printf("Ops! Não é possível continuar o programa...\n");
-        return 0;
-    }   
-    fwrite(mv, sizeof(Mov), 1, fp4);
-    fclose(fp4);
-    return 0;
 
-}
 
 
 //função de pesquisa a partir do código de barras (id do item)
@@ -418,7 +402,7 @@ int buscaInfoItem(void)
 int telaAtualizarItem(void)  
 {
     FILE* fp;
-    Mov* mv;
+
     Usuario* cliente;
     char resp;
     int achou;
@@ -439,7 +423,7 @@ int telaAtualizarItem(void)
     }
     cliente = (Usuario*)malloc(sizeof(Usuario));
 
-    mv = (Mov*)malloc(sizeof(Mov));
+
     
     system(" cls || clear");
     printf(" | ========================================================= | \n");
@@ -530,8 +514,7 @@ int telaAtualizarItem(void)
                 
                 estoque = charParaInt(quantidade);
                 it->quantProduto = estoque;
-                mv->quantMovimento = estoque;
-                strcpy(mv->codigoBarras, it->codigoBarras);
+            
             
             }
             else if (resp == '2') {
@@ -609,8 +592,8 @@ int telaAtualizarItem(void)
         
                 estoque = charParaInt(quantidade);
                 it->quantProduto = estoque;
-                mv->quantMovimento = estoque;
-                strcpy(mv->codigoBarras, it->codigoBarras);
+   
+              
 
             }
             it->status = '1';      
@@ -817,7 +800,7 @@ int entradaItem(void)
 {
     FILE* fp;
     Item* it;
-    Mov* mv;
+
     Usuario* cliente;
     int achou;
     int encontra;
@@ -838,7 +821,7 @@ int entradaItem(void)
         return 0;
     }
     it = (Item*)malloc(sizeof(Item));
-    mv = (Mov*)malloc(sizeof(Mov));    
+
     cliente = (Usuario*)malloc(sizeof(Usuario));
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
@@ -857,7 +840,7 @@ int entradaItem(void)
     }if (achou){
         
         FILE* fp3;
-        FILE* fp4;
+  
         char procura[20];
         fp3 = fopen("itens.dat", "rb");
         if (fp3 == NULL) {
@@ -865,13 +848,9 @@ int entradaItem(void)
             getchar();
             return 0;
         }
-        fp4 = fopen("movimento.dat", "rb");
+     
 
-        if (fp4 == NULL) {
-            printf("Ops! Erro na abertura do arquivo!\n");
-            getchar();
-            return 0;
-        }                 
+          
         printf("Informe o código de barras do produto que deseja adicionar: ");
         scanf(" %30[^\n]", procura);
         getchar();      
@@ -896,9 +875,9 @@ int entradaItem(void)
                 estoque3 = it->quantEntrada = 0;
                 estoque4 = estoque2 + estoque3;
                 it->quantProduto = estoque4;
-           
-                strcpy(mv->codigoBarras, it->codigoBarras);      
-                do 
+          
+         
+               do 
                 {        
                     printf(" | Informe o dia de vencimento do produto: ");
                     scanf("%d", &it->dia);
@@ -911,7 +890,7 @@ int entradaItem(void)
                     getchar();
                         
                 } while(!valida_data(it->dia, it->mes, it->ano)); 
-
+                it->tipo = 'E';
                 printf("Tem certeza que deseja adicionar este produto à despensa? s/n ");
                 scanf("%c", &resp); 
 
@@ -920,11 +899,11 @@ int entradaItem(void)
                         printf("Produto adicionado com sucesso!");
                         getchar();
                         gravaItem(it);
-                        gravaMov(mv);
+    
                         free(it);
-                        free(mv);
+                 
                         fclose(fp3);
-                        fclose(fp4);
+                 
 
                     }      
                     else {
@@ -952,7 +931,6 @@ int saidaItem(void)
 {
     FILE* fp;
     Item* it;
-    Mov* mv;
     Usuario* cliente;
     int achou;
     int encontrou;
@@ -961,6 +939,7 @@ int saidaItem(void)
     int estoque;
     int estoque1;
     int estoque2;
+    int estoque3;
 
    
     char quantidade[20];
@@ -974,7 +953,7 @@ int saidaItem(void)
     }
 
     it = (Item*)malloc(sizeof(Item));
-    mv = (Mov*)malloc(sizeof(Mov));
+
     cliente = (Usuario*)malloc(sizeof(Usuario));
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
@@ -993,7 +972,7 @@ int saidaItem(void)
     }if (achou){
 
         FILE* fp3;
-        FILE* fp4;
+
         fp3 = fopen("itens.dat", "rb");
 
         if (fp3 == NULL) {
@@ -1001,13 +980,7 @@ int saidaItem(void)
             getchar();
             return 0;
         }
-        fp4 = fopen("movimento.dat", "rb");
-
-        if (fp4 == NULL) {
-            printf("Ops! Erro na abertura do arquivo!\n");
-            getchar();
-            return 0;
-        }
+     
             
         printf("Informe o código de barras do produto que deseja retirar: ");
         scanf(" %30[^\n]", procura);
@@ -1032,16 +1005,12 @@ int saidaItem(void)
             estoque = charParaInt(quantidade);
             estoque1 = it->quantProduto - estoque;
             estoque2 = estoque1;
-            it->quantProduto -= estoque2;
-
-        
-        
-
-            
-            strcpy(mv->codigoBarras, it->codigoBarras);
+            estoque3 = it->quantProduto -= estoque2;
+            it->quantEntrada = estoque3;
+  
 
             do {       
-                printf(" | Informe o dia da retira: ");
+                printf(" | Informe o dia da retirada: ");
                 scanf("%d",&it->diaSaida);
                 getchar();
                 printf(" | Informe o mês da retirada: ");
@@ -1053,10 +1022,7 @@ int saidaItem(void)
                     
             } while(!valida_data(it->dia, it->mes, it->ano));  
                 
-                mv->diaSaida = it->diaSaida;
-                mv->mesSaida = it->mesSaida;
-                mv->anoSaida = it->anoSaida;
-                mv->tipo = 'S'; //S indica saída
+            it->tipo = 'S'; //S indica saída
 
             printf("Tem certeza que deseja remover este produto da despensa? s/n");
             scanf("%c", &resp); 
@@ -1067,11 +1033,11 @@ int saidaItem(void)
                     printf("Produto removido com sucesso!");
                     getchar();
                     gravaItem(it);
-                    gravaMov(mv);
+            
                     free(it);
-                    free(mv);
+           
                     fclose(fp3);
-                    fclose(fp4);
+                   
 
                 }        
                 else {

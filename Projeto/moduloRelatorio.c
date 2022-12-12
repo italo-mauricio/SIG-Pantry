@@ -615,6 +615,7 @@ char relatoriopelaQuantidade(void)
     printf(" | ==================================================================== | \n");
     printf(" | Escolha uma opção: ");
     scanf("%c", &esc);
+    getchar();
     return esc;
 
 }
@@ -623,11 +624,9 @@ char relatoriopelaQuantidade(void)
 int exibirQuantidadeEntrada(void)
 {
     FILE* fp3;
-    FILE* fp4;
     Item* it;
-    Mov* mv;
     int achou;
-    
+  
     fp3 = fopen("itens.dat", "rb");
 
     if (fp3 == NULL) 
@@ -635,14 +634,7 @@ int exibirQuantidadeEntrada(void)
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
     }
-    
-    fp4 = fopen("movimento.dat", "rb");
-
-    if (fp4 == NULL) 
-    {
-        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
-        return 0;
-    }
+ 
 
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
@@ -650,11 +642,10 @@ int exibirQuantidadeEntrada(void)
     printf(" | ----| Relatório da quantidade de itens que entraram na despensa |--- | \n");
     printf(" |                                                                      | \n");
     it = (Item*) malloc(sizeof(Item));
-    mv = (Mov*) malloc(sizeof(Mov));
     achou = 0;
 
-    while((fread(it, sizeof(Item), 1, fp3)) && (fread(mv, sizeof(Mov), 1, fp4))){
-        if (((it->quantProduto == '1')) && (it->status == '1') && (mv->tipo == 'E')){
+    while((fread(it, sizeof(Item), 1, fp3))){
+        if (((it->quantProduto == '1')) && (it->status == '1') && (it->tipo == 'E')){
             exibeInfoItem(it);
             achou = 1;
             
@@ -663,7 +654,7 @@ int exibirQuantidadeEntrada(void)
     }
     
     if (achou){
-        
+    
         return 0;
     
     } else {
@@ -673,9 +664,9 @@ int exibirQuantidadeEntrada(void)
     }
 
     free(it);
-    free(mv);
+
     fclose(fp3);
-    fclose(fp4);
+
     getchar();
     
     return 0;
@@ -687,9 +678,9 @@ int exibirQuantidadeEntrada(void)
 int exibirQuantidadeSaida(void)
 {
     FILE* fp3;
-    FILE* fp4;
+
     Item* it;
-    Mov* mv;
+
     int achou;
     
     fp3 = fopen("itens.dat", "rb");
@@ -699,26 +690,18 @@ int exibirQuantidadeSaida(void)
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
     }
-    
-    fp4 = fopen("movimento.dat", "rb");
-
-    if (fp4 == NULL) 
-    {
-        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
-        return 0;
-    }
-
+   
     system ( " clear||cls " );
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | -----------| Relatório dos itens que saíram da despensa |----------- | \n");
     printf(" |                                                                      | \n");
     it = (Item*) malloc(sizeof(Item));
-    mv = (Mov*) malloc(sizeof(Mov));
+
     achou = 0;
 
-    while((fread(it, sizeof(Item), 1, fp3)) && (fread(mv, sizeof(Mov), 1, fp4))){
-        if (((it->quantProduto == '2')) && (it->status == '1') && (mv->tipo == 'S')){
+    while((fread(it, sizeof(Item), 1, fp3))){
+        if (((it->quantProduto == '2')) && (it->status == '1') && (it->tipo == 'S')){
             exibeInfoItem(it);
             achou = 1;
             
@@ -738,9 +721,9 @@ int exibirQuantidadeSaida(void)
 
 
     free(it);
-    free(mv);
+  
     fclose(fp3);
-    fclose(fp4);
+
     getchar();
     
     return 0;

@@ -22,23 +22,9 @@ struct item
     char usernameUsuario[30];  
     char dataAtual[40];
     int quantEntrada;
-    int quantSaida;
-;
-};
-
-typedef struct mov Mov;
-struct mov
-{
-
-    char codigoBarras[20];
-    char dataAtual[40];
-    int quantMovimento;
     char tipo;
-    int diaSaida;
-    int mesSaida;
-    int anoSaida;
-    char usernameUsuario[20];
-    
+
+
 };
 
 
@@ -53,7 +39,6 @@ int telaAtualizarItem(void);
 char escAtualizarItem(void);
 int excluirItem(void);
 int gravaItem(Item* it);
-int gravaMov(Mov* mv);
 int entradaItem(void);
 int saidaItem(void);
 char telaEscCategoria(void);
