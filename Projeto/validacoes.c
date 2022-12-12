@@ -294,3 +294,23 @@ char* verDiaMesAno(void) {
 
 
 
+char* dividPal(char *pal, int del1, int del2) {
+    int tam = del2 - del1;
+    int aux = 0;
+
+    char* palavra = (char*) malloc((tam + 1)* sizeof(char));
+
+    palavra[0] = pal[del1];
+
+    for (int i = del1; i <= del2; i++) {
+        
+        palavra[aux] = pal[i];
+
+        aux = aux + 1;
+
+    }
+
+    palavra[tam + 1] = '\0';
+
+    return palavra;
+}
