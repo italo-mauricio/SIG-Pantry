@@ -349,6 +349,7 @@ int buscaInfoItem(void)
 
     while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
         printf("Código de barras |%s|\n", it->codigoBarras);
+
         
         if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')) {
             achou = 1;
@@ -764,6 +765,7 @@ void exibeInfoItem(Item* it)
 {
     char aux[20];
     char aux2[20];
+
     if (it->categoria == '1'){
         strcpy(aux, "Higiene pessoal");
     
@@ -817,6 +819,7 @@ int entradaItem(void)
     Mov* mv;
     Usuario* cliente;
     int achou;
+    int encontra;
     char resp;
     char procurado[20];
     int estoque;
@@ -842,7 +845,6 @@ int entradaItem(void)
     getchar();     
     achou = 0;  
 
-
     while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))){
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')){
             achou = 1;
@@ -852,13 +854,13 @@ int entradaItem(void)
         FILE* fp1;
         FILE* fp2;
         char procura[20];
-        fp1 = fopen("itens.dat", "ab");
+        fp1 = fopen("itens.dat", "rb");
         if (fp1 == NULL) {
             printf("Ops! Erro na abertura do arquivo!\n");
             getchar();
             return 0;
         }
-        fp2 = fopen("movimento.dat", "ab");
+        fp2 = fopen("movimento.dat", "rb");
 
         if (fp2 == NULL) {
             printf("Ops! Erro na abertura do arquivo!\n");
@@ -868,69 +870,72 @@ int entradaItem(void)
         printf("Informe o código de barras do produto que deseja adicionar: ");
         scanf(" %30[^\n]", procura);
         getchar();      
-        achou = 0;
+        encontra = 0;
     
-        while((!achou) && (fread(it, sizeof(Item), 1, fp))) {
-            if ((strcmp(it->codigoBarras, procura) == 0) && (it->status == '1')) {
-            achou = 1;
-            }  
-
-        }if (achou){
-            do
-            {
-                printf(" | Informe a quantidade de produto: ");
-                scanf("%s", quantidade);             
-                getchar();
-                
-            } while(!lerQuantidade(quantidade));
-            estoque = charParaInt(quantidade);
-            it->quantProduto =+ estoque;
-            mv->quantMovimento = estoque;
-            strcpy(mv->codigoBarras, it->codigoBarras);      
-            do 
-            {        
-                printf(" | Informe o dia de vencimento do produto: ");
-                scanf("%d", &it->dia);
-                getchar();
-                printf(" | Informe o mês: ");
-                scanf("%d", &it->mes);
-                getchar();
-                printf(" | Informe o ano: ");
-                scanf("%d", &it->ano);
-                getchar();
+        while(((!encontra) && (fread(it, sizeof(Item), 1, fp1)))){
+            if ((strcmp(it->codigoBarras,  procura) == 0) && (it->status == '1')) {
+                encontra = 1;
+            }
+            
+            }if (encontra){
+                do
+                {
+                    printf(" | Informe a quantidade de produto: ");
+                    scanf("%s", quantidade);             
+                    getchar();
                     
-            } while(!valida_data(it->dia, it->mes, it->ano)); 
+                } while(!lerQuantidade(quantidade));
+                estoque = charParaInt(quantidade);
+                it->quantProduto += estoque;
+                mv->quantMovimento += estoque;
+                strcpy(mv->codigoBarras, it->codigoBarras);      
+                do 
+                {        
+                    printf(" | Informe o dia de vencimento do produto: ");
+                    scanf("%d", &it->dia);
+                    getchar();
+                    printf(" | Informe o mês: ");
+                    scanf("%d", &it->mes);
+                    getchar();
+                    printf(" | Informe o ano: ");
+                    scanf("%d", &it->ano);
+                    getchar();
+                        
+                } while(!valida_data(it->dia, it->mes, it->ano)); 
 
-            printf("Tem certeza que deseja adicionar este produto à despensa? s/n");
-            scanf("%c", &resp); 
+                printf("Tem certeza que deseja adicionar este produto à despensa? s/n ");
+                scanf("%c", &resp); 
 
-                if (resp == 's' || resp == 'S') {
-                    
-                    printf("Produto adicionado com sucesso!");
-                    gravaItem(it);
-                    gravaMov(mv);
-                    free(it);
-                    free(mv);
-                    fclose(fp1);
-                    fclose(fp2);
+                    if (resp == 's' || resp == 'S') {
+                        
+                        printf("Produto adicionado com sucesso!");
+                        getchar();
+                        gravaItem(it);
+                        gravaMov(mv);
+                        free(it);
+                        free(mv);
+                        fclose(fp1);
+                        fclose(fp2);
 
-                }      
-                else {
-                    
-                    printf("Operação cancelada!");         
-                }
-              }
-
+                    }      
+                    else {
+                        
+                        printf("Operação cancelada!");
+                        getchar();         
+                    }
         }else{
             
             printf("Produto não encontrado!");
-        
+            getchar();
+
         }  
     free(cliente);
     fclose(fp); 
-    return 0;
-
-}    
+   
+    
+  }  
+   return 0;
+}  
 
 
 //função para retirada de produto da despensa
@@ -976,14 +981,14 @@ int saidaItem(void)
 
         FILE* fp1;
         FILE* fp2;
-        fp1 = fopen("itens.dat", "ab");
+        fp1 = fopen("itens.dat", "rb");
 
         if (fp1 == NULL) {
             printf("Ops! Erro na abertura do arquivo!\n");
             getchar();
             return 0;
         }
-        fp2 = fopen("movimento.dat", "ab");
+        fp2 = fopen("movimento.dat", "rb");
 
         if (fp2 == NULL) {
             printf("Ops! Erro na abertura do arquivo!\n");
@@ -996,7 +1001,7 @@ int saidaItem(void)
         getchar();     
         encontrou = 0;
     
-        while((!encontrou) && (fread(it, sizeof(Item), 1, fp))) {
+        while((!encontrou) && (fread(it, sizeof(Item), 1, fp1))) {
             if ((strcmp(it->codigoBarras, procura) == 0) && (it->status == '1')) {
             encontrou = 1;
             }  
@@ -1012,8 +1017,8 @@ int saidaItem(void)
             } while(!lerQuantidade(quantidade));
 
             estoque = charParaInt(quantidade);
-            it->quantProduto =- estoque;
-            mv->quantMovimento = estoque;
+            it->quantProduto -= estoque;
+            mv->quantMovimento -= estoque;
             strcpy(mv->codigoBarras, it->codigoBarras);
 
             do {       
@@ -1036,10 +1041,12 @@ int saidaItem(void)
 
             printf("Tem certeza que deseja remover este produto da despensa? s/n");
             scanf("%c", &resp); 
+            getchar();
 
                 if (resp == 's' || resp == 'S') {
                     
                     printf("Produto removido com sucesso!");
+                    getchar();
                     gravaItem(it);
                     gravaMov(mv);
                     free(it);
@@ -1051,6 +1058,7 @@ int saidaItem(void)
                 else {
                     
                     printf("Operação cancelada!");
+                    getchar();
                 
                 }
              }
@@ -1058,6 +1066,7 @@ int saidaItem(void)
         }else{
             
             printf("Produto não encontrado!");
+            getchar();
         
         }  
     free(cliente);
