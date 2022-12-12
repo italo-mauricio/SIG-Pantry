@@ -32,9 +32,6 @@ char moduloRelatorio(void)
                 escRelatoriosLocal(); //com base no local selecionado para armazenar
                 break; 
             case '3':
-                escRelatoriosQuantidade(); //com base na quant que entrou e que saiu
-                break;
-            case '4':
                 lista = listaOrdenadaItens(); //itens em ordem alfabética
                 exibeOrdemItem(lista);
                 break; 
@@ -61,15 +58,16 @@ char telaRelatorio(void)
     printf(" |                                                                      | \n");
     printf(" |                 1- Estoque com base na categoria                     | \n");
     printf(" |                 2- Estoque com base no local de armazenamento        | \n");
-    printf(" |                 3- Estoque com base na quantidade                    | \n");
-    printf(" |                 4- Itens em ordem alfabética                         | \n");
+    printf(" |                 3- Itens em ordem alfabética                         | \n");
     printf(" |                 0- Voltar à tela principal                           | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
     printf(" | Escolha uma opção: ");
     scanf("%c", &esc);
     getchar();
+    
     return esc;
+
 }
 
 
@@ -116,7 +114,9 @@ char relatorioCategoria(void)
     printf(" | Escolha uma opção: ");
     scanf("%c", &esc);
     getchar();
+    
     return esc;
+
 }
 
 
@@ -571,161 +571,6 @@ int exibirBanheiro(void)
     free(it);
     fclose(fp3);
     getchar();
-    return 0;
-    
-}
-
-
-//navegação da escolha da quantidade
-void escRelatoriosQuantidade(void)
-{
-    char opcao;
-    do
-    {
-        opcao = relatoriopelaQuantidade();
-        switch (opcao)
-        {
-            case '1':
-                exibirQuantidadeEntrada();
-                break; 
-            case '2':
-                exibirQuantidadeSaida();
-                break;    
-        }
-
-    } while (opcao != '0');
-
-} 
-
-
-
-//função para exibir a quantidade de itens que entraram/saíram
-char relatoriopelaQuantidade(void)
-{
-    char esc;
-    system (" Clear||cls ");
-    printf(" | ==================================================================== | \n");
-    printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | --------- | Relatório do estoque com base na quantidade | ---------- | \n");
-    printf(" |                                                                      | \n");
-    printf(" |                    1- Quantidade que entrou                          | \n");
-    printf(" |                    2- Quantidade que saiu                            | \n");
-    printf(" |                    0- Voltar à tela principal                        | \n");
-    printf(" |                                                                      | \n");
-    printf(" | ==================================================================== | \n");
-    printf(" | Escolha uma opção: ");
-    scanf("%c", &esc);
-    getchar();
-    return esc;
-
-}
-
-//função para retornar o relatório da quantidade de itens que entraram
-int exibirQuantidadeEntrada(void)
-{
-    FILE* fp3;
-    Item* it;
-    int achou;
-  
-    fp3 = fopen("itens.dat", "rb");
-
-    if (fp3 == NULL) 
-    {
-        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
-        return 0;
-    }
- 
-
-    system ( " clear||cls " );
-    printf(" | ==================================================================== | \n");
-    printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | ----| Relatório da quantidade de itens que entraram na despensa |--- | \n");
-    printf(" |                                                                      | \n");
-    it = (Item*) malloc(sizeof(Item));
-    achou = 0;
-
-    while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->quantProduto == '1')) && (it->status == '1') && (it->tipo == 'E')){
-            exibeInfoItem(it);
-            achou = 1;
-            
-        }
-
-    }
-    
-    if (achou){
-    
-        return 0;
-    
-    } else {
-        
-        printf("ERRO");
-    
-    }
-
-    free(it);
-
-    fclose(fp3);
-
-    getchar();
-    
-    return 0;
-    
-}
-
-
-//função para retornar o relatório a quantidade de itens que saíram
-int exibirQuantidadeSaida(void)
-{
-    FILE* fp3;
-
-    Item* it;
-
-    int achou;
-    
-    fp3 = fopen("itens.dat", "rb");
-
-    if (fp3 == NULL) 
-    {
-        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
-        return 0;
-    }
-   
-    system ( " clear||cls " );
-    printf(" | ==================================================================== | \n");
-    printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | -----------| Relatório dos itens que saíram da despensa |----------- | \n");
-    printf(" |                                                                      | \n");
-    it = (Item*) malloc(sizeof(Item));
-
-    achou = 0;
-
-    while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->quantProduto == '2')) && (it->status == '1') && (it->tipo == 'S')){
-            exibeInfoItem(it);
-            achou = 1;
-            
-        }
-
-    }
-    
-    if (achou){
-        
-        return 0;
-    
-    } else {
-        
-        printf("ERRO");
-    
-    }
-
-
-    free(it);
-  
-    fclose(fp3);
-
-    getchar();
-    
     return 0;
     
 }
