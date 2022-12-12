@@ -824,6 +824,10 @@ int entradaItem(void)
     char resp;
     char procurado[20];
     int estoque;
+    int estoque1;
+    int estoque2;
+    int estoque3;
+    int estoque4;
     char quantidade[20];
     
     fp = fopen("usuario.dat", "rb");
@@ -887,8 +891,12 @@ int entradaItem(void)
                     
                 } while(!lerQuantidade(quantidade));
                 estoque = charParaInt(quantidade);
-                it->quantProduto += estoque;
-                mv->quantMovimento += estoque;
+                estoque1 = it->quantProduto + estoque;
+                estoque2 = estoque1;
+                estoque3 = it->quantEntrada = 0;
+                estoque4 = estoque2 + estoque3;
+                it->quantProduto = estoque4;
+           
                 strcpy(mv->codigoBarras, it->codigoBarras);      
                 do 
                 {        
@@ -951,6 +959,10 @@ int saidaItem(void)
     char resp;
     char procurado[20];
     int estoque;
+    int estoque1;
+    int estoque2;
+
+   
     char quantidade[20];
     char procura[20];  
     fp = fopen("usuario.dat", "rb");
@@ -1018,8 +1030,14 @@ int saidaItem(void)
             } while(!lerQuantidade(quantidade));
 
             estoque = charParaInt(quantidade);
-            it->quantProduto -= estoque;
-            mv->quantMovimento -= estoque;
+            estoque1 = it->quantProduto - estoque;
+            estoque2 = estoque1;
+            it->quantProduto -= estoque2;
+
+        
+        
+
+            
             strcpy(mv->codigoBarras, it->codigoBarras);
 
             do {       

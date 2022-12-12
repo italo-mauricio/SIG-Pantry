@@ -21,6 +21,8 @@ struct item
     int quantProduto;
     char usernameUsuario[30];  
     char dataAtual[40];
+    int quantEntrada;
+    int quantSaida;
 ;
 };
 
