@@ -27,21 +27,16 @@ struct noItem
 };
 
 
-
 //cabeçalho da função usada no arquivo.c
 char telaRelatorio(void);
 char moduloRelatorio (void);
 char relatorioLocalArmaz(void);
-char relatoriopelaQuantidade(void);
 char relatorioCategoria(void);
 void escRelatoriosCategoria(void);
 void escRelatoriosLocal(void);
-void escRelatoriosQuantidade(void);
 int exibirItensHigiene(void);
 int exibirItensLimpeza(void);
 int exibirItensAlimento(void);
-int exibirQuantidadeEntrada(void);
-int exibirQuantidadeSaida(void);
 int exibirGeladeira(void);
 int exibirArmarioCozinha(void);
 int exibirAreaServ(void);

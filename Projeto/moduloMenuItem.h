@@ -21,12 +21,11 @@ struct item
     int quantProduto;
     char usernameUsuario[30];  
     char dataAtual[40];
-    int quantEntrada;
     char tipo;
-
+    int quantEntrada;
+    int quantSaida;
 
 };
-
 
 
 //assinatura das funções do arquivo .c
