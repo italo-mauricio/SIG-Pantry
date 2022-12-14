@@ -52,7 +52,7 @@ void menulistadeCompras(void)
 
     } while(escolha != '0');
         
-        printf("Obrigado! Volte sempre!");
+        printf("Obrigado, Volte sempre!");
 
 } 
 
@@ -91,8 +91,7 @@ char telaListadeCompras(void)
 int itensQuantMinima(void)     
 {
     FILE* fp3;
-    Item* it;
-    
+    Item* it;  
     fp3 = fopen("itens.dat", "rt"); //só precisa abrir o de itens, pois irá resgatar informações desse arq
     
     if (fp3 == NULL)
@@ -100,7 +99,6 @@ int itensQuantMinima(void)
         printf("Ocorreu um erro na abertura do arquivo");
         return 0;
     }
-
     it = (Item*)malloc(sizeof(Item));
     
     while(fread(it, sizeof(Item), 1, fp3)) {
@@ -176,8 +174,6 @@ int infoMontarLista(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
-
-
     
     cliente = (Usuario*) malloc(sizeof(Usuario));
     mtlista = (MontarLista*)malloc(sizeof(MontarLista)); 
@@ -187,7 +183,7 @@ int infoMontarLista(void)
     printf("| ------------------------------------------------------------- | \n");
     printf("| ------------- | Montar a sua lista de compras | ------------- | \n");
     printf("|                                                               | \n");  
-    printf("Informe o seu username: ");
+    printf("| Informe o seu username: ");
     scanf(" %30[^\n]", procurado);
     getchar();
     achou = 0;
@@ -199,7 +195,7 @@ int infoMontarLista(void)
     }
     if (achou){
 
-        printf("Informe quantos itens vão ser adicionados à lista: ");
+        printf("| Informe quantos itens vão ser adicionados à lista: ");
         scanf("%d", &resp);
 
         for (i = 1; i <= resp; i++) {
@@ -512,7 +508,7 @@ int excluirLista(void)
         
         exibeListaCompras(mtlista);
         getchar();
-        printf("Deseja realmente excluir os dados desta lista? (s/n)");
+        printf(" | Deseja realmente excluir os dados desta lista? (s/n) ");
         scanf("%c", &resp);
         
         if (resp == 's' || resp == 'S'){

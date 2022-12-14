@@ -74,8 +74,7 @@ char telaMenuUsuario(void)
 //função para cadastro do usuário no programa 
 void InfoUsuario(void) 
 {
-    Usuario* cliente;
-    
+    Usuario* cliente;  
     system(" cls || clear");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -207,7 +206,7 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ------------------- Atualizar usuário ------------------- | \n");
-    printf("Informe o seu username: ");
+    printf(" | Informe o seu username: ");
     scanf(" %s", procurado);
     getchar(); 
     achou = 0;
@@ -225,13 +224,13 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
 
         if (resp == '1'){
             
-            printf("Informe o novo nome: ");
+            printf(" | Informe o novo nome: ");
             scanf("%30[^\n]", cliente->nomeUsuario);
             getchar();
 
             do
             {
-                printf("Informe o novo e-mail: ");
+                printf(" | Informe o novo e-mail: ");
                 scanf(" %49[^\n]", cliente->emailUsuario);
                 getchar();
 
@@ -254,7 +253,7 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
         }
         else if (resp == '2'){
            
-            printf("Informe o novo nome: ");
+            printf(" | Informe o novo nome: ");
             scanf("%30[^\n]", cliente->nomeUsuario);
             getchar();
 
@@ -262,7 +261,7 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
         else if (resp == '3'){
             do
             {
-                printf("Informe o novo e-mail: ");
+                printf(" | Informe o novo e-mail: ");
                 scanf(" %49[^\n]", cliente->emailUsuario);
                 getchar();
 
@@ -288,7 +287,7 @@ int atualizarUsuario(void) //adaptada by @IsaKaillany
         fwrite(cliente, sizeof(Usuario), 1, fp);        
         printf(" |                                                           | \n");
         printf(" | --------------------------------------------------------- | \n");
-        printf("Dados editados com sucesso");
+        printf("Dados editados com sucesso!");
     }   
     else 
     {   
@@ -311,7 +310,7 @@ char escAtualizarUsuario(void)
     system(" cls || clear");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ------------------- Atualizar usuário ------------------- | \n");
+    printf(" | ------------------- Atualizar Usuário ------------------- | \n");
     printf(" |                                                           | \n");
     printf(" |                 1- Editar tudo                            | \n");
     printf(" |                 2- Editar nome                            | \n");
@@ -365,7 +364,7 @@ int infoExcluirUs(void)
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
-    printf(" | ---------------------- Excluir usuário ----------------------- | \n");
+    printf(" | ---------------------- Excluir Usuário ----------------------- | \n");
     printf(" |                                                                | \n");
     printf(" | Informe o username do usuário que você quer excluir: ");
     scanf(" %30[^\n]", procurado);
@@ -379,7 +378,7 @@ int infoExcluirUs(void)
     }
    if (achou){
         exibeInfoUsuario(cliente);
-        printf("Deseja realmente excluir os dados deste usuário? (s/n)");
+        printf("Deseja realmente excluir os dados deste usuário? (s/n) ");
         scanf("%c", &resp);
         
         if (resp == 's' || resp == 'S'){
@@ -423,7 +422,7 @@ int listaInfoUsuario(void)
     cliente = (Usuario*)malloc(sizeof(Usuario)); 
     while(fread(cliente, sizeof(Usuario), 1, fp)) {
         system(" cls || clear");
-        printf(" | ==================== Lista usuário ====================== | \n");
+        printf(" | ==================== Lista Usuário ====================== | \n");
         printf(" |                                                           | \n");
         exibeInfoUsuario(cliente);
     } 
@@ -437,7 +436,7 @@ int listaInfoUsuario(void)
 // função para exibir as informações do usuário
 void exibeInfoUsuario(Usuario* cliente) {
     system(" cls || clear");
-    printf(" | =================== Usuário cadastrado ================== |\n");
+    printf(" | =================== Usuário Cadastrado ================== |\n");
     printf(" |                                                           |\n");
     printf(" | Nome: %s\n", cliente->nomeUsuario); 
     printf(" | Username: %s\n", cliente->usernameUsuario);   
@@ -470,8 +469,7 @@ int validaUser(char* user)
         printf("Gerando arquivo...");
         fclose(fp);
         return 1;
-    }
-    
+    } 
 
     while (!feof(fp))
     {
