@@ -380,7 +380,7 @@ int buscaInfoItem(void)
         printf(" | Quantidade do produto: %d\n", it->quantProduto);
         printf(" | Status: %c\n", it->status);
         printf(" |                                                           | \n");
-        printf(" | ========================================================= | \n");´
+        printf(" | ========================================================= | \n");
         printf(" | Pressione qualquer tecla para sair... ");
         getchar();
         
