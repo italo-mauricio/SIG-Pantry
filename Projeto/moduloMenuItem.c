@@ -91,7 +91,6 @@ int infoItem(void)
     int estoque;
     int estoqueM;
     int achou;
-
     char *datadia;
     char *datames;
     char *dataano;
@@ -123,7 +122,6 @@ int infoItem(void)
     getchar();     
     achou = 0;  
     
-
     while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))){
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')){
             achou = 1;
@@ -382,7 +380,8 @@ int buscaInfoItem(void)
         printf(" | Quantidade do produto: %d\n", it->quantProduto);
         printf(" | Status: %c\n", it->status);
         printf(" |                                                           | \n");
-        printf(" | ========================================================= | \n");
+        printf(" | ========================================================= | \n");´
+        printf(" | Pressione qualquer tecla para sair... ");
         getchar();
         
     } else {
@@ -428,7 +427,7 @@ int telaAtualizarItem(void)
     system(" cls || clear");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | -------------------- Atualizar item --------------------- | \n");
+    printf(" | -------------------- Atualizar Item --------------------- | \n");
     printf(" |                                                           | \n");
     printf(" | Informe o seu username: ");
     scanf(" %30[^\n]", procurado);
@@ -452,7 +451,7 @@ int telaAtualizarItem(void)
             return 0;
         }
     
-        printf("Informe o código de barras do item que deseja alterar: ");
+        printf(" | Informe o código de barras do item que deseja alterar: ");
         scanf(" %[0-9]", procura);
         getchar();    
         encontrou = 0;
@@ -470,11 +469,11 @@ int telaAtualizarItem(void)
 
             if (resp == '1'){
                 
-                printf("Informe o novo nome do produto (sem acentuação): ");
+                printf(" | Informe o novo nome do produto: ");
                 scanf("%30[^\n]", it->nomeProduto);
                 getchar();
 
-                printf(" | Informe o novo nome da marca (sem acentuação): ");
+                printf(" | Informe o novo nome da marca: ");
                 scanf("%30[^\n]", it->nomeMarca);
                 getchar();
                     
@@ -519,7 +518,7 @@ int telaAtualizarItem(void)
             else if (resp == '2') {
                 do
                 {
-                    printf("Informe o novo nome do produto: ");
+                    printf(" | Informe o novo nome do produto: ");
                     scanf("%30[^\n]", it->nomeProduto);
                     getchar();
 
@@ -681,7 +680,7 @@ int excluirItem(void)
         }
     }if (achou){
         listarItens();
-        printf("Deseja realmente excluir os dados deste item? (s/n)");
+        printf(" | Deseja realmente excluir os dados deste item? (s/n) ");
         scanf("%c", &resp);
 
         if (resp == 's' || resp == 'S'){
@@ -844,7 +843,7 @@ int entradaItem(void)
             return 0;
         }
                
-        printf("Informe o código de barras do produto que deseja adicionar: ");
+        printf(" | Informe o código de barras do produto que deseja adicionar: ");
         scanf(" %30[^\n]", procura);
         getchar();      
         encontra = 0;
@@ -882,7 +881,7 @@ int entradaItem(void)
             } while(!valida_data(it->dia, it->mes, it->ano)); 
             
             it->tipo = 'E';
-            printf("Tem certeza que deseja adicionar este produto à despensa (s/n? ");
+            printf(" | Tem certeza que deseja adicionar este produto à despensa (s/n? ");
             scanf("%c", &resp); 
 
                 if (resp == 's' || resp == 'S') {
@@ -971,7 +970,7 @@ int saidaItem(void)
         }
      
             
-        printf("Informe o código de barras do produto que deseja retirar: ");
+        printf(" | Informe o código de barras do produto que deseja retirar: ");
         scanf(" %30[^\n]", procura);
         getchar();     
         encontrou = 0;
@@ -997,7 +996,7 @@ int saidaItem(void)
 
             it->tipo = 'S'; //S indica saída
 
-            printf("Tem certeza que deseja remover este produto da despensa (s/n)? ");
+            printf(" | Tem certeza que deseja remover este produto da despensa (s/n)?  ");
             scanf("%c", &resp); 
             getchar();
 
