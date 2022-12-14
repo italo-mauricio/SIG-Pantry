@@ -229,6 +229,8 @@ void deixarTelaLimpa(void) //adaptada by @flgorgonio
 }
 
 
+// Validação inspirada no código de Dayane
+
  int charParaInt(char *num) {
     int soma = 0;
     int tam = strlen(num);
@@ -250,6 +252,9 @@ void deixarTelaLimpa(void) //adaptada by @flgorgonio
     return soma;
 
 }
+
+
+// Validação inspirada no código de Dayane
 
 int poten(int num, int pot) {
     int soma = num;
@@ -293,6 +298,7 @@ char* verDiaMesAno(void) {
 }
 
 
+// Validação inspirada no código de Dayane
 
 char* dividPal(char *pal, int del1, int del2) {
     int tam = del2 - del1;

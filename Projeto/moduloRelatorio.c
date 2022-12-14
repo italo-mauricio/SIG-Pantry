@@ -150,14 +150,13 @@ int exibirItensHigiene(void)
         }
 
     }
-
     if (achou){
         
         return 0;
     
     } else {
         
-        printf("ERRO");
+        printf(" | Nenhum relatório para ser exibido");
     
     }
     free(it);
@@ -206,7 +205,7 @@ int exibirItensLimpeza(void)
     
     } else {
         
-        printf("ERRO");
+        printf(" | Nenhum relatório para ser exibido");
     
     }
     free(it);
@@ -257,7 +256,7 @@ int exibirItensAlimento(void)
     
     } else {
         
-        printf("ERRO");
+        printf(" | Nenhum relatório para ser exibido");
     
     }
     free(it);
@@ -362,7 +361,7 @@ int exibirGeladeira(void)
     
     } else {
         
-        printf("ERRO");
+        printf(" | Nenhum relatório para ser exibido");
   
     
     }
@@ -412,7 +411,7 @@ int exibirArmarioCozinha(void)
     
     } else {
         
-        printf("ERRO");
+        printf(" | Nenhum relatório para ser exibido");
 
     
     }
@@ -463,7 +462,7 @@ int exibirAreaServ(void)
     
     } else {
         
-        printf("ERRO");
+        printf(" | Nenhum relatório para ser exibido");
     
     }
     free(it);
@@ -515,7 +514,7 @@ int exibirGuardaRoupa(void)
     
     } else {
         
-        printf("ERRO");
+        printf(" | Nenhum relatório para ser exibido");
 
     
     }
@@ -565,7 +564,7 @@ int exibirBanheiro(void)
     
     } else {
         
-        printf("ERRO");
+        printf(" | Nenhum relatório para ser exibido");
     
     }
     free(it);
