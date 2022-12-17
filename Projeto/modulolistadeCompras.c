@@ -28,26 +28,24 @@ void menulistadeCompras(void)
             itensQuantMinima(); //lista itens que estão acabando no estoque 
             break; 
         case '2':
-            itensProxVencimento(); //lista itens próximos ao vencimento
-            break; 
-        case '3':
             infoMontarLista(); //preenche lista
             break;
-        case '4':
+        case '3':
             buscarLista(); //pesquisa
             break; 
-        case '5':
+        case '4':
             atualizarLista(); //edição
             break;  
-        case '6':
+        case '5':
             excluirLista(); //exclusão
             break;
-        case '7':
+        case '6':
             listaComprasPronta(); //exibição da lista pronta (relatório)
             break;
         default:
             printf("Opção inválida\n");
             break;
+
         }
 
     } while(escolha != '0');
@@ -55,7 +53,6 @@ void menulistadeCompras(void)
         printf("Obrigado, Volte sempre!");
 
 } 
-
 
 
 //tela principal de escolha
@@ -68,12 +65,11 @@ char telaListadeCompras(void)
     printf(" | -------------------| SIG-Pantry - LISTA DE COMPRAS |---------------- | \n");
     printf(" |                                                                      | \n");
     printf(" |             1- Visualizar itens no estoque com quantidade mínima     | \n");
-    printf(" |             2- Visualizar itens próximos ao vencimento               | \n");
-    printf(" |             3- Montar sua lista de compras                           | \n");
-    printf(" |             4- Pesquisar lista de compras                            | \n");      
-    printf(" |             5- Editar lista de compras                               | \n");      
-    printf(" |             6- Excluir lista de compras                              | \n");      
-    printf(" |             7- Visualizar itens cadastrados na lista                 | \n");       
+    printf(" |             2- Montar sua lista de compras                           | \n");
+    printf(" |             3- Pesquisar lista de compras                            | \n");      
+    printf(" |             4- Editar lista de compras                               | \n");      
+    printf(" |             5- Excluir lista de compras                              | \n");      
+    printf(" |             6- Visualizar itens cadastrados na lista                 | \n");       
     printf(" |             0- Voltar à tela principal                               | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
@@ -84,7 +80,6 @@ char telaListadeCompras(void)
     return opcao;
 
 } 
-
 
 
 //função que lista os itens que estão acabando no estoque
@@ -115,44 +110,9 @@ int itensQuantMinima(void)
     free(it);
     fclose(fp3);
     
-    
     return 0;
 
 }
-
-
-//função para exibição de itens próx ao vencimento
-int itensProxVencimento(void)
-{
-    FILE* fp3;
-    Item* it;
-    
-    fp3 = fopen("itens.dat", "rt"); 
-    
-    if (fp3 == NULL)
-    {
-        printf("Ocorreu um erro na abertura do arquivo");
-        return 0;
-    }
-
-    it = (Item*)malloc(sizeof(Item));
-    
-    while(fread(it, sizeof(Item), 1, fp3)) {
-        if (it->diaEnt >= it->dia && it->mesEnt >= it->mes && it->anoEnt >= it->ano) {
-            system( " clear || cls ");
-            printf(" | ============================================================== | \n");
-            printf(" | -------------------------------------------------------------- | \n");
-            printf(" | ---------------- Itens próximos ao vencimento ---------------- | \n");
-            printf(" |                                                                | \n");
-            exibeInfoItem(it);
-
-        }
-    }
-    fclose(fp3);
-    free(it);
-    return 0;
-
-} 
 
 
 //função para a montagem da lista vinculada ao id do usuário
@@ -342,14 +302,12 @@ int atualizarLista(void)
 {
 
     FILE* fp2;
-
     MontarLista* mtlista;
     char resp;
     int achou;
     char procurado[15];
     char produto[20];
     int list;
-
   
     fp2 = fopen("lista.dat", "r+b");
     
@@ -427,12 +385,15 @@ int atualizarLista(void)
         printf("A lista do usuário de username %s não foi encontrada\n", procurado);
     
     }   
+    
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();       
+    
     }   
     gravaLista(mtlista);   
     free(mtlista);
     fclose(fp2); 
+
     return 0;
 
 }
@@ -486,8 +447,10 @@ int excluirLista(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }  
+    
     mtlista = (MontarLista*) malloc(sizeof(MontarLista));
     cliente = (Usuario*) malloc(sizeof(Usuario)); 
+    
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
@@ -498,13 +461,13 @@ int excluirLista(void)
     getchar();    
     achou = 0;
     
-
     while ((!achou) && (fread(mtlista, sizeof(MontarLista), 1, fp2))){
         if ((strcmp(cliente->usernameUsuario, procura) == 0) && (cliente->status == '1')){
             achou = 1;
         }
     }
-   if (achou){
+    
+    if (achou){
         
         exibeListaCompras(mtlista);
         getchar();
@@ -539,6 +502,7 @@ int excluirLista(void)
     fclose(fp2);  
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
+    
     return 0;
     
 }
@@ -569,6 +533,7 @@ int listaComprasPronta(void)
     } 
     fclose(fp2);
     free(mtlista);
+    
     return 0;
 
 }

@@ -13,7 +13,6 @@ struct montarLista
 void menulistadeCompras(void);
 char telaListadeCompras(void);
 int itensQuantMinima(void);
-int itensProxVencimento(void);
 int infoMontarLista(void);
 void exibeListaCompras(MontarLista* mtlista);
 int listaComprasPronta(void); 

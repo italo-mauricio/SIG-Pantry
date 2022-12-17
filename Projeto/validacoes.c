@@ -90,9 +90,9 @@ int lerUsername(char username[])
 } 
 
 
-// --------------------------------------- |
-//        Validação de Letras              |
-// --------------------------------------  |
+// --------------------------------------- //
+//        Validação de Letras              //
+// --------------------------------------  //
 
 
 int validarLetras(char letra[], int tamanho){
@@ -164,13 +164,13 @@ char decimais[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
 int valida_data(int dia, int mes, int ano) 
     {
-    if ((dia >= 1 && dia <= 31) && (mes >= 1 && mes <= 12) && (ano >= 1900 && ano <= 2100)) //verifica se os numeros sao validos
+    if ((dia >= 1 && dia <= 31) && (mes >= 1 && mes <= 12) && (ano >= 1900 && ano <= 2100)) //verifica se os números são válidos
         {
-            if ((dia == 29 && mes == 2) && ((ano % 4) == 0)) //verifica se o ano e bissexto
+            if ((dia == 29 && mes == 2) && ((ano % 4) == 0)) //verifica se o ano é bissexto
             {
                 return 1;
             }
-            if (dia <= 28 && mes == 2) //verifica o mes de feveireiro
+            if (dia <= 28 && mes == 2) //verifica o mês de fevereiro
             {
                 return 1;
             }
@@ -194,9 +194,9 @@ int valida_data(int dia, int mes, int ano)
 }
 
 
-// ---------------------------------------- |
-//        Validação de números              |
-// ---------------------------------------  |
+// ---------------------------------------- //
+//        Validação de números              //
+// ---------------------------------------  //
 
   
 int lerQuantidade(char numero[])
@@ -229,8 +229,7 @@ void deixarTelaLimpa(void) //adaptada by @flgorgonio
 }
 
 
-// Validação inspirada no código de Dayane
-
+// Validação inspirada no código de @DayXL
  int charParaInt(char *num) {
     int soma = 0;
     int tam = strlen(num);
@@ -254,8 +253,7 @@ void deixarTelaLimpa(void) //adaptada by @flgorgonio
 }
 
 
-// Validação inspirada no código de Dayane
-
+// Validação inspirada no código de @DayXL
 int poten(int num, int pot) {
     int soma = num;
 
@@ -277,9 +275,7 @@ int poten(int num, int pot) {
 }
 
 
-// Função inspirado no de Dayane
-
-
+// Função inspirada no código de @DayXL
 char* verDiaMesAno(void) {
 
  
@@ -298,8 +294,7 @@ char* verDiaMesAno(void) {
 }
 
 
-// Validação inspirada no código de Dayane
-
+// Função inspirada no código de @DayXL
 char* dividPal(char *pal, int del1, int del2) {
     int tam = del2 - del1;
     int aux = 0;
