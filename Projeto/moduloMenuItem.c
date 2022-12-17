@@ -75,6 +75,7 @@ char telaRegistrarItem(void)
     printf(" | Escolha uma opção: ");
     scanf("%c", &esc);
     getchar();
+    
     return esc;    
 
 }
@@ -85,18 +86,12 @@ int infoItem(void)
 {
     FILE* fp;
     Item* it;
-
     Usuario* cliente;
-
-    int estoque;
-    int estoqueM;
-    int achou;
+    int estoque, estoqueM, achou;
     char *datadia;
     char *datames;
     char *dataano;
-    int diadia;
-    int mesmes;
-    int anoano;
+    int diadia, mesmes, anoano;
     char quantidade[20];
     char estoqueMin[20];
     char procurado[20]; 
@@ -110,8 +105,8 @@ int infoItem(void)
     }
 
     it = (Item*)malloc(sizeof(Item));
- 
     cliente = (Usuario*)malloc(sizeof(Usuario));
+    
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -127,9 +122,12 @@ int infoItem(void)
             achou = 1;
         }
     }
+    
     if (achou){
         FILE* fp3;
+        
         fp3 = fopen("itens.dat", "ab");
+        
         if (fp3 == NULL) {
             printf("Ops! Erro na abertura do arquivo!\n");
             getchar();
@@ -241,7 +239,6 @@ int infoItem(void)
 }
 
 
-
 //função para escolha da categoria
 char telaEscCategoria(void)
 {
@@ -257,6 +254,7 @@ char telaEscCategoria(void)
     printf(" | Digite uma opção: ");
     scanf("%c", &esc);
     getchar();
+
     return esc;
 
 }
@@ -279,6 +277,7 @@ char telaEscLocalArmaz(void)
     printf(" | Digite a sua opção: ");
     scanf("%c", &esc);
     getchar();
+
     return esc;
 
 }
@@ -312,11 +311,13 @@ int buscaInfoItem(void)
     char procurado[15];
     char aux[20];
     char aux2[20]; 
+    
     fp3 = fopen("itens.dat", "rb");
     if (fp3 == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
+    
     printf("\n\n");
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
@@ -329,16 +330,15 @@ int buscaInfoItem(void)
     it = (Item*) malloc(sizeof(Item));
     achou = 0;
 
-
     while((!achou) && (fread(it, sizeof(Item), 1, fp3))) {
         printf("Código de barras |%s|\n", it->codigoBarras);
-
         
         if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')) {
             achou = 1;
         }
     
     } 
+
     if (achou) {
 
         if (it->categoria == '1'){
@@ -381,7 +381,6 @@ int buscaInfoItem(void)
         printf(" | Status: %c\n", it->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
-        printf(" | Pressione qualquer tecla para sair... ");
         getchar();
         
     } else {
@@ -405,10 +404,7 @@ int telaAtualizarItem(void)
     FILE* fp;
     Usuario* cliente;
     char resp;
-    int achou;
-    int encontrou;
-    int estoque;
-    int estoqueM;
+    int achou, encontrou, estoque, estoqueM;
     char quantidade[20];
     char procurado[20];
     char estoqueMin[20];
@@ -427,7 +423,7 @@ int telaAtualizarItem(void)
     system(" cls || clear");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | -------------------- Atualizar Item --------------------- | \n");
+    printf(" | -------------------- Atualizar item --------------------- | \n");
     printf(" |                                                           | \n");
     printf(" | Informe o seu username: ");
     scanf(" %30[^\n]", procurado);
@@ -438,6 +434,7 @@ int telaAtualizarItem(void)
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')){
             achou = 1;
         }
+    
     }if (achou){
 
         FILE* fp3;
@@ -451,7 +448,7 @@ int telaAtualizarItem(void)
             return 0;
         }
     
-        printf(" | Informe o código de barras do item que deseja alterar: ");
+        printf("Informe o código de barras do item que deseja alterar: ");
         scanf(" %[0-9]", procura);
         getchar();    
         encontrou = 0;
@@ -462,6 +459,7 @@ int telaAtualizarItem(void)
                 encontrou = 1;
             }
         }
+        
         if (encontrou){
             buscaInfoItem();
             resp = escAtualizarItem();
@@ -469,11 +467,11 @@ int telaAtualizarItem(void)
 
             if (resp == '1'){
                 
-                printf(" | Informe o novo nome do produto: ");
+                printf("Informe o novo nome do produto (sem acentuação): ");
                 scanf("%30[^\n]", it->nomeProduto);
                 getchar();
 
-                printf(" | Informe o novo nome da marca: ");
+                printf(" | Informe o novo nome da marca (sem acentuação): ");
                 scanf("%30[^\n]", it->nomeMarca);
                 getchar();
                     
@@ -518,7 +516,7 @@ int telaAtualizarItem(void)
             else if (resp == '2') {
                 do
                 {
-                    printf(" | Informe o novo nome do produto: ");
+                    printf("Informe o novo nome do produto: ");
                     scanf("%30[^\n]", it->nomeProduto);
                     getchar();
 
@@ -606,7 +604,6 @@ int telaAtualizarItem(void)
     
         printf("O usuário não foi encontrado");
     }
-
     free(cliente); 
     fclose(fp);    
     printf(" | Pressione qualquer tecla para sair.... ");
@@ -678,9 +675,10 @@ int excluirItem(void)
         if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')){
             achou = 1;
         }
+    
     }if (achou){
         listarItens();
-        printf(" | Deseja realmente excluir os dados deste item? (s/n) ");
+        printf("Deseja realmente excluir os dados deste item? (s/n)");
         scanf("%c", &resp);
 
         if (resp == 's' || resp == 'S'){
@@ -797,12 +795,10 @@ int entradaItem(void)
     FILE* fp;
     Item* it;
     Usuario* cliente;
-    int achou;
-    int encontra;
+    int achou, encontra;
     char resp;
     char procurado[20];
-    int estoque;
-    int estoque1;
+    int estoque, estoque1;
     char quantidade[20];
     
     fp = fopen("usuario.dat", "rb");
@@ -843,7 +839,7 @@ int entradaItem(void)
             return 0;
         }
                
-        printf(" | Informe o código de barras do produto que deseja adicionar: ");
+        printf("Informe o código de barras do produto que deseja adicionar: ");
         scanf(" %30[^\n]", procura);
         getchar();      
         encontra = 0;
@@ -881,7 +877,7 @@ int entradaItem(void)
             } while(!valida_data(it->dia, it->mes, it->ano)); 
             
             it->tipo = 'E';
-            printf(" | Tem certeza que deseja adicionar este produto à despensa (s/n? ");
+            printf("Tem certeza que deseja adicionar este produto à despensa (s/n? ");
             scanf("%c", &resp); 
 
                 if (resp == 's' || resp == 'S') {
@@ -923,12 +919,10 @@ int saidaItem(void)
     FILE* fp;
     Item* it;
     Usuario* cliente;
-    int achou;
-    int encontrou;
+    int achou, encontrou;
     char resp;
     char procurado[20];
-    int estoque;
-    int estoque1;  
+    int estoque, estoque1;  
     char quantidade[20];
     char procura[20];  
 
@@ -941,8 +935,8 @@ int saidaItem(void)
     }
 
     it = (Item*)malloc(sizeof(Item));
-
     cliente = (Usuario*)malloc(sizeof(Usuario));
+    
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
@@ -957,8 +951,8 @@ int saidaItem(void)
         if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')){
             achou = 1;
         }
+    
     }if (achou){
-
         FILE* fp3;
 
         fp3 = fopen("itens.dat", "r+b");
@@ -970,7 +964,7 @@ int saidaItem(void)
         }
      
             
-        printf(" | Informe o código de barras do produto que deseja retirar: ");
+        printf("Informe o código de barras do produto que deseja retirar: ");
         scanf(" %30[^\n]", procura);
         getchar();     
         encontrou = 0;
@@ -996,7 +990,7 @@ int saidaItem(void)
 
             it->tipo = 'S'; //S indica saída
 
-            printf(" | Tem certeza que deseja remover este produto da despensa (s/n)?  ");
+            printf("Tem certeza que deseja remover este produto da despensa (s/n)? ");
             scanf("%c", &resp); 
             getchar();
 
@@ -1014,7 +1008,6 @@ int saidaItem(void)
                     getchar();
 
                 }
-
                 free(it);
                 fclose(fp3);
              }
@@ -1027,10 +1020,10 @@ int saidaItem(void)
         }  
     free(cliente);
     fclose(fp);   
+    
     return 0;
     
 }
-
 
 
 //função para não permitir código de barras iguais
@@ -1059,6 +1052,7 @@ int validaCod(char* item)
         }
     }
     fclose(fp3);
+ 
     return 1;
 
 }
