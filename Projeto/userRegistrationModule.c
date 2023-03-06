@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "userRegistrationModule.h"
 #include "validacoes.h"
@@ -106,7 +106,7 @@ void userInfo(void)
         scanf("%d",&client->year);
         getchar();
         
-    } while(!validateDate(client->day, client->month, client->year));  
+    } while(!valida_data(client->day, client->month, client->year));  
 
     do {
 
@@ -114,9 +114,9 @@ void userInfo(void)
         scanf("%s",client->usernameUser);
         getchar();
 
-    } while(!((readUsername(client->usernameUser)) && (validateUsername(client->usernameUser))));
+    } while(!((readUsername(client->usernameUser)) && (validateUser(client->usernameUser))));
         char *date;
-        date = getDate();
+        date = verDiaMesAno();
         strcpy(client->userDate, date);
     
         printf(" | User registered on: %s", date);
@@ -228,8 +228,8 @@ int updateUser(void) //adapted by @IsaKaillany
 
     if (found)
     {
-        showUserInfo(client);
-        response = chooseUpdateOption();
+        displayUserInfo(client);
+        response = updateMenu();
         printf("\n");
 
         if (response == '1')
@@ -258,7 +258,7 @@ int updateUser(void) //adapted by @IsaKaillany
                 scanf("%d",&client->year);
                 getchar();
 
-            } while(!validate_date(client->day, client->month, client->year));  
+            } while(!valida_data(client->day, client->month, client->year));  
         }
         else if (response == '2')
         {
@@ -290,7 +290,7 @@ int updateUser(void) //adapted by @IsaKaillany
                 scanf("%d",&client->year);
                 getchar();
 
-            } while(!validate_date(client->day, client->month, client->year)); 
+            } while(!valida_data(client->day, client->month, client->year)); 
         }
         client->status = '1';      
         fseek(fp, (-1)*sizeof(User), SEEK_CUR);

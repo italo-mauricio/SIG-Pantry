@@ -739,7 +739,7 @@ int listarItens(void)
         system(" cls || clear");
         printf(" | ===================== Lista itens ======================= | \n");
         printf(" |                                                           | \n");
-        exibeInfoItem(it);
+        displayInfoItem(it);
     } 
     free(it);
     fclose(fp3);
@@ -750,7 +750,7 @@ int listarItens(void)
 
 
 //função para a exibição das informações dos itens
-void exibeInfoItem(Item* it) 
+void displayItemInfo(Item* it) 
 {
     char aux[20];
     char aux2[20];

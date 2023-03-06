@@ -43,5 +43,5 @@ int saidaItem(void);
 char categoryScreen(void);
 char scrennStorageLocation(void);
 int validaCod(char* item);
-void exibeInfoItem(Item* it);
+void displayItemInfo(Item* it);
 char* verDiaMesAno(void);

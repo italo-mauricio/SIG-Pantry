@@ -14,7 +14,7 @@
 
 // retorna 0 se for false e 1 se for true
 
-int lerEmail(char email[])
+int readEmail(char email[])
 {
   int tam=strlen(email);
   int arroba = 0, ponto = 0, antesPonto = 0, depoisPonto = 0, i;
@@ -57,7 +57,7 @@ int lerEmail(char email[])
 // --------------------------------------  |
 
 
-int lerUsername(char username[]) 
+int readUsername(char username[]) 
 {
   int tamanho = strlen(username);   
   if (tamanho < 4) { //para não ter usuários com só: @ ou a@ ou 12... 
@@ -95,7 +95,7 @@ int lerUsername(char username[])
 // --------------------------------------  //
 
 
-int validarLetras(char letra[], int tamanho){
+int validateLetters(char letra[], int tamanho){
 
     char alfabeto[54]={'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','V','W','X','Y','Z',' ','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 
@@ -115,7 +115,7 @@ int validarLetras(char letra[], int tamanho){
     }
 }
 
-int tamanhoString(char a[]){
+int stringLength(char a[]){
     int cont;
 
     for(int i=0; a[i] != '\0'; i++){
@@ -197,7 +197,7 @@ int valida_data(int dia, int mes, int ano)
 // ---------------------------------------  //
 
   
-int lerQuantidade(char numero[])
+int readQuantity(char numero[])
 {
   int tamanho = strlen(numero);
 
@@ -219,16 +219,11 @@ int lerQuantidade(char numero[])
 }
 
 
-void deixarTelaLimpa(void) //adaptada by @flgorgonio
-{
-  if(system("clear") || system("cls")) {
-  }
-  
-}
+
 
 
 // Validação inspirada no código de @DayXL
- int charParaInt(char *num) {
+ int charToInt(char *num) {
     int soma = 0;
     int tam = strlen(num);
     int aux = tam - 1; 

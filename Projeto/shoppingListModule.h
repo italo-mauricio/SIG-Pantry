@@ -12,7 +12,7 @@ struct createList
 //cabeçalho das funções usadas no arquivo.c
 void menulistadeCompras(void);
 char shoppingListScreen(void);
-int itensQuantMinima(void);
+int itemsMinimumQuant(void);
 int infoBuildList(void);
 void displayShoppingList(CreateList *list);
 int readyShoppingList(void);
