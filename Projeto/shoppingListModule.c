@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "modulolistadeCompras.h"
+#include "shoppingListModule.h"
 #include "validacoes.h"
 #include "userRegistrationModule.h"
 #include "moduloMenuItem.h"
@@ -18,39 +18,39 @@
 typedef struct item Item;
 
 //função de navegação principal do módulo
-void menulistadeCompras(void)
+void shoppingListMenu(void)
 {
-    char escolha;
+    char choice;
     do {
-        escolha = telaListadeCompras();
-        switch (escolha) {
+        choice = shoppingListScreen();
+        switch (choice) {
         case '1':
-            itensQuantMinima(); //lista itens que estão acabando no estoque 
+            itemsMinimumQuant(); //lista itens que estão acabando no estoque 
             break; 
         case '2':
-            infoMontarLista(); //preenche lista
+            infoBuildList(); //preenche lista
             break;
         case '3':
-            buscarLista(); //pesquisa
+            searchListByProduct(); //pesquisa
             break; 
         case '4':
-            atualizarLista(); //edição
+            updateList(); //edição
             break;  
         case '5':
-            excluirLista(); //exclusão
+            deleteList(); //exclusão
             break;
         case '6':
-            listaComprasPronta(); //exibição da lista pronta (relatório)
+            readyShoppingList(); //exibição da lista pronta (relatório)
             break;
         default:
-            printf("Opção inválida\n");
+            printf("Invalid Option\n");
             break;
 
         }
 
-    } while(escolha != '0');
+    } while(choice != '0');
         
-        printf("Obrigado, Volte sempre!");
+        printf("Thank you!");
 
 } 
 
@@ -203,7 +203,7 @@ int saveList(CreateList* mtlist)
 }
 
 
-int searchListByUsername(char *username) {
+int searchListByProduct(void) {
     
     FILE *filePointer;
     CreateList *list;
@@ -283,7 +283,7 @@ int updateList(void)
     char product[20];
     int quantity;
   
-    fp = fopen("lista.dat", "r+b");
+    fp = fopen("list.dat", "r+b");
     
     if (fp == NULL) 
     {
@@ -395,116 +395,114 @@ char screenUpdateList(void)
 }
 
 //Função para exclusão lógica
-int excluirLista(void)
+int deleteList(void)
 {
     FILE* fp;
     FILE* fp2;
     CreateList* mtlist;
-    User* cliente;
-    int achou;
+    User* client;
+    int found;
     char resp;
-    char procura[20];
+    char search[20];
 
-    fp2 = fopen("lista.dat", "r+b");
+
+    fp2 = fopen("list.dat", "r+b");
 
     if (fp2 == NULL){
-        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Oops! Error opening file!\n");
         return 0;
     }
 
-    fp = fopen("usuario.dat", "r+b");
+    fp = fopen("user.dat", "r+b");
 
     if (fp == NULL){
-        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Oops! Error opening file!\n");
         return 0;
     }  
-    
+
     mtlist = (CreateList*) malloc(sizeof(CreateList));
-    cliente = (User*) malloc(sizeof(User)); 
-    
+    client = (User*) malloc(sizeof(User)); 
+
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
-    printf(" | ------------------------ Excluir lista ----------------------- | \n");
+    printf(" | ------------------------ Delete list ------------------------- | \n");
     printf(" |                                                                | \n");
-    printf(" | Informe o seu username para procurar a lista que você deseja excluir: ");
-    scanf("%s", procura);
+    printf(" | Enter your username to search for the list you want to delete: ");
+    scanf("%s", search);
     getchar();    
-    achou = 0;
-    
-    while ((!achou) && (fread(mtlist, sizeof(CreateList), 1, fp2))){
-        if ((strcmp(cliente->usernameUser, procura) == 0) && (cliente->status == '1')){
-            achou = 1;
+    found = 0;
+
+    while ((!found) && (fread(mtlist, sizeof(CreateList), 1, fp2))){
+        if ((strcmp(client->usernameUser, search) == 0) && (client->status == '1')){
+            found = 1;
         }
     }
-    
-    if (achou){
+
+    if (found){
         
         exibeListaCompras(mtlist);
         getchar();
-        printf(" | Deseja realmente excluir os dados desta lista? (s/n) ");
+        printf(" | Do you really want to delete the data in this list? (y/n) ");
         scanf("%c", &resp);
         
-        if (resp == 's' || resp == 'S'){
+        if (resp == 'y' || resp == 'Y'){
             
             mtlist->status = '0';
             fseek(fp, (-1)*sizeof(CreateList), SEEK_CUR);
             fwrite(mtlist, sizeof(mtlist), 1, fp);
-            printf("\nLista excluída com sucesso!");
+            printf("\nList deleted successfully!");
             gravaLista(mtlist);
-            gravaUsuario(cliente);
-            printf(" Pressione qualquer tecla para sair... ");
+            gravaUsuario(client);
+            printf(" Press any key to exit... ");
             getchar();
         
         }else{
         
-            printf("\nTudo bem, a lista não foi alterada!");
+            printf("\nOkay, the list was not changed!");
         
         }
-    
+
     }else{
-    
-        printf("A lista não foi encontrada!");
-    
+
+        printf("The list was not found!");
+
     }  
     free(mtlist);
-    free(cliente);
+    free(client);
     fclose(fp);
     fclose(fp2);  
-    printf(" | Pressione qualquer tecla para sair.... ");
+    printf(" | Press any key to exit.... ");
     getchar();
-    
+
     return 0;
-    
+
 }
-
-
 //relatório da lista pronta
-int listaComprasPronta(void) 
+int readyShoppingList(void)
 {
     FILE* fp2;
     CreateList* mtlist;
-    
-    fp2 = fopen("lista.dat", "rb");
-    
+
+    fp2 = fopen("list.dat", "rb");
+
     if (fp2 == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Oops! Error opening the file!\n");
         return 0;
     }
-    
+
     printf("\n\n");
-    printf(" | ===================== Exibe lista ======================= | \n");
+    printf(" | ===================== Display List ======================= | \n");
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
 
     mtlist = (CreateList*)malloc(sizeof(CreateList));
-    
+
     while(fread(mtlist, sizeof(CreateList), 1, fp2)) {
-        exibeListaCompras(mtlist);
+        displayShoppingList(mtlist);
     } 
     fclose(fp2);
     free(mtlist);
-    
-    return 0;
 
+    return 0;
 }
