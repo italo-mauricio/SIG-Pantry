@@ -441,7 +441,7 @@ int deleteList(void)
 
     if (found){
         
-        displayItemInfo(mtlist);
+        displayShoppingList(mtlist);
         getchar();
         printf(" | Do you really want to delete the data in this list? (y/n) ");
         scanf("%c", &resp);
@@ -452,8 +452,8 @@ int deleteList(void)
             fseek(fp, (-1)*sizeof(CreateList), SEEK_CUR);
             fwrite(mtlist, sizeof(mtlist), 1, fp);
             printf("\nList deleted successfully!");
-            gravaLista(mtlist);
-            gravaUsuario(client);
+            saveList(mtlist);
+            saveUser(client);
             printf(" Press any key to exit... ");
             getchar();
         
