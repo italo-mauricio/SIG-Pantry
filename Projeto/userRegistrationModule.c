@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include <string.h>
-#include "modulocadastroUsuario.h"
+#include "userRegistrationModule.h"
 #include "validacoes.h"
 
 /*

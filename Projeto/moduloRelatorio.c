@@ -4,8 +4,8 @@
 #include <string.h>
 #include "validacoes.h"
 #include "moduloMenuItem.h"
-#include "modulolistadeCompras.h"
-#include "modulocadastroUsuario.h"
+#include "shoppingListModule.h"
+#include "userRegistrationModule.h"
 
 
 /*
@@ -605,11 +605,11 @@ NoItem* listaOrdenadaItens(void) //adaptada by @flgorgonio
             novoItem->dia = it->dia;
             novoItem->mes = it->mes;
             novoItem->ano = it->ano;
-            novoItem->estoqueMinimo = it->estoqueMinimo;
+            novoItem->estoqueMinimo = it->minimumInventory;
             novoItem->categoria = it->categoria;
             novoItem->localArmazenamento = it->localArmazenamento;
             novoItem->status = it->status;
-            novoItem->quantProduto = it->quantProduto;
+            novoItem->quantProduto = it->quantProduct;
 
             if (lista == NULL){
                 lista = novoItem;

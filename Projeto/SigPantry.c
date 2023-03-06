@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "modulocadastroUsuario.h"
+#include "userRegistrationModule.h"
 #include "moduloMenuItem.h"
-#include "modulolistadeCompras.h"
+#include "shoppingListModule.h"
 #include "moduloRelatorio.h"
 #include "moduloSobre.h"
 
@@ -16,13 +16,13 @@ int main (void)
         escolha = telaPrincipal();
         switch (escolha) {
         case '1':
-            modulocadastroUsuario();
+            userRegistrationModule();
             break;
         case '2':
             moduloMenuItem();
             break; 
         case '3':    
-            menulistadeCompras();
+            shoppingListModule();
             break;
         case '4':
             moduloRelatorio();
