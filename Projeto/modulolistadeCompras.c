@@ -119,7 +119,7 @@ int itensQuantMinima(void)
 int infoMontarLista(void)
 {
     FILE* fp;
-    Usuario* cliente;
+    User* cliente;
     MontarLista* mtlista;
     int achou;
     char procurado[15];
@@ -135,7 +135,7 @@ int infoMontarLista(void)
         return 0;
     }
     
-    cliente = (Usuario*) malloc(sizeof(Usuario));
+    cliente = (User*) malloc(sizeof(User));
     mtlista = (MontarLista*)malloc(sizeof(MontarLista)); 
 
     system ( " cls || clear " );
@@ -148,8 +148,8 @@ int infoMontarLista(void)
     getchar();
     achou = 0;
 
-    while((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))) {
-        if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')) {
+    while((!achou) && (fread(cliente, sizeof(User), 1, fp))) {
+        if ((strcmp(cliente->usernameUser, procurado) == 0) && (cliente->status == '1')) {
             achou = 1;
         }
     }
@@ -429,7 +429,7 @@ int excluirLista(void)
     FILE* fp;
     FILE* fp2;
     MontarLista* mtlista;
-    Usuario* cliente;
+    User* cliente;
     int achou;
     char resp;
     char procura[20];
@@ -449,7 +449,7 @@ int excluirLista(void)
     }  
     
     mtlista = (MontarLista*) malloc(sizeof(MontarLista));
-    cliente = (Usuario*) malloc(sizeof(Usuario)); 
+    cliente = (User*) malloc(sizeof(User)); 
     
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
@@ -462,7 +462,7 @@ int excluirLista(void)
     achou = 0;
     
     while ((!achou) && (fread(mtlista, sizeof(MontarLista), 1, fp2))){
-        if ((strcmp(cliente->usernameUsuario, procura) == 0) && (cliente->status == '1')){
+        if ((strcmp(cliente->usernameUser, procura) == 0) && (cliente->status == '1')){
             achou = 1;
         }
     }
