@@ -2,35 +2,35 @@
 typedef struct item Item;
 struct item
 {
-    char nomeProduto[30];
-    char nomeMarca[30];
-    int dia; //vencimento
-    int mes; //vencimento
-    int ano; //vencimento
-    int diaEnt;
-    int mesEnt;
-    int anoEnt;
-    int diaSaida;
-    int mesSaida;
-    int anoSaida;
-    char codigoBarras[20];
+    char productName[30];
+    char nameBrand[30];
+    int day; //vencimento
+    int month; //vencimento
+    int year; //vencimento
+    int dayEntry;
+    int monthEntry;
+    int yearEntry;
+    int dayExit;
+    int monthExit;
+    int yearExit;
+    char barCode[20];
     char status;
     int minimumInventory; 
-    char categoria;
-    char localArmazenamento;
+    char category;
+    char storageLocation;
     int quantProduct;
-    char usernameUsuario[30];  
-    char dataAtual[40];
-    char tipo;
-    int quantEntrada;
-    int quantSaida;
+    char usernameUser[30];  
+    char dateToday[40];
+    char tipe;
+    int quantEntry;
+    int quantExit;
 
 };
 
 
 //assinatura das funções do arquivo .c
 void moduloMenuItem(void);
-char telaRegistrarItem(void);
+char screenRegisterItem(void);
 int infoItem(void);
 int listarItens(void);
 int buscaInfoItem(void);

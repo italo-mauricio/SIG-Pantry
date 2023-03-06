@@ -3,7 +3,7 @@
 #include <string.h>
 #include "moduloMenuItem.h"
 #include "validacoes.h"
-#include "modulocadastroUsuario.h"
+#include "userRegistrationModule.h"
 
 
 /*
@@ -54,190 +54,198 @@ void moduloMenuItem(void)
 
 
 //função que chama a tela para o menu itens -> a partir da escolha do usuário
-char telaRegistrarItem(void)
+char screenRegisterItem(void)
 {
-    char esc;
-    system ( " cls || clear " );
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" | --------------------- MENU ITENS ------------------------ | \n");
-    printf(" |                                                           | \n");
-    printf(" |                 1- Cadastrar um novo item                 | \n");
-    printf(" |                 2- Pesquisar item                         | \n");                
-    printf(" |                 3- Atualizar item                         | \n");                
-    printf(" |                 4- Excluir item                           | \n");                
-    printf(" |                 5- Adicionar item                         | \n");
-    printf(" |                 6- Retirar item                           | \n"); 
-    printf(" |                 7- Listar itens                           | \n");                                                                   
-    printf(" |                 0- Voltar à tela principal                | \n");
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
-    printf(" | Escolha uma opção: ");
-    scanf("%c", &esc);
+    char choice;
+    system("cls || clear");
+    printf("| ========================================================== | \n");
+    printf("| ---------------------------------------------------------- | \n");
+    printf("| --------------------- ITEMS MENU ------------------------- | \n");
+    printf("|                                                            | \n");
+    printf("|                 1- Register a new item                     | \n");
+    printf("|                 2- Search for an item                      | \n");
+    printf("|                 3- Update an item                          | \n");
+    printf("|                 4- Delete an item                          | \n");
+    printf("|                 5- Add an item                             | \n");
+    printf("|                 6- Remove an item                          | \n");
+    printf("|                 7- List items                              | \n");
+    printf("|                 0- Back to main screen                     | \n");
+    printf("|                                                            | \n");
+    printf("| ========================================================== | \n");
+    printf("| Choose an option: ");
+    scanf("%c", &choice);
     getchar();
-    
-    return esc;    
 
+    return choice;
 }
 
 
 //função para cadastrar um novo item ao estoque
 int infoItem(void)
 {
-    FILE* fp;
-    Item* it;
-    Usuario* cliente;
-    int estoque, estoqueM, achou;
-    char *datadia;
-    char *datames;
-    char *dataano;
-    int diadia, mesmes, anoano;
-    char quantidade[20];
-    char estoqueMin[20];
-    char procurado[20]; 
+    FILE *fp;
+    Item *it;
+    User *client;
+    int inventory, inventoryMax, found;
+    char *dateDay;
+    char *dateMonth;
+    char *dateYear;
+    int dayControl, monthControl, yearControl;
+    char quantity[20];
+    char inventoryMin[20];
+    char search[20];
 
-    fp = fopen("usuario.dat", "rb");
-    
-    if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
+    fp = fopen("user.dat", "rb");
+
+    if (fp == NULL)
+    {
+        printf("Oops! Error opening file!\n");
         getchar();
         return 0;
     }
 
-    it = (Item*)malloc(sizeof(Item));
-    cliente = (Usuario*)malloc(sizeof(Usuario));
-    
-    system ( " cls || clear " );
+    it = (Item *)malloc(sizeof(Item));
+    client = (User *)malloc(sizeof(User));
+
+    system(" cls || clear ");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" |                    Cadastrar Item                         | \n");
+    printf(" |                    Register Item                          | \n");
     printf(" |                                                           | \n");
-    printf(" | Por favor, digite o seu username: ");    
-    scanf(" %30[^\n]", procurado);
-    getchar();     
-    achou = 0;  
-    
-    while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))){
-        if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')){
-            achou = 1;
+    printf(" | Please enter your username: ");
+    scanf(" %30[^\n]", search);
+    getchar();
+    found = 0;
+
+    while ((!found) && (fread(client, sizeof(User), 1, fp)))
+    {
+        if ((strcmp(client->usernameUser, search) == 0) && (client->status == '1'))
+        {
+                found = 1;
         }
     }
-    
-    if (achou){
-        FILE* fp3;
-        
+
+    if (found)
+    {
+
+        FILE *fp3;
+
         fp3 = fopen("itens.dat", "ab");
-        
-        if (fp3 == NULL) {
-            printf("Ops! Erro na abertura do arquivo!\n");
-            getchar();
-            return 0;
+
+        if (fp3 == NULL)
+        {
+                printf("Oops! Error opening file!\n");
+                getchar();
+                return 0;
         }
-           printf(" | Informe o nome do produto: ");
-           scanf("%30[^\n]", it->nomeProduto);
-           getchar();      
-    
-           printf(" | Informe o nome da marca: ");
-           scanf("%30[^\n]", it->nomeMarca);
-           getchar();
-       
-            do
-            {
-                printf(" | Informe o código de barras do produto: ");
-                scanf("%s", it->codigoBarras);
+        printf(" | Enter product name: ");
+        scanf("%30[^\n]", it->productName);
+        getchar();
+
+        printf(" | Enter brand name: ");
+        scanf("%30[^\n]", it->nameBrand);
+        getchar();
+
+        do
+        {
+                printf(" | Enter product barcode: ");
+                scanf("%s", it->barCode);
                 getchar();
-                
-            }while(!((lerQuantidade(it->codigoBarras)) && (validaCod(it->codigoBarras))));
-            do
-            {
-                printf(" | Informe o estoque mínimo desse produto: ");
-                scanf("%s", estoqueMin);
+
+        } while (!((lerQuantidade(it->barCode)) && (validaCod(it->barCode))));
+        do
+        {
+                printf(" | Enter the minimum inventory of this product: ");
+                scanf("%s", inventoryMin);
                 getchar();
-                
-            } while(!lerQuantidade(estoqueMin));
-            
-            estoqueM = charParaInt(estoqueMin);
-            it->estoqueMinimo = estoqueM;    
 
-            do 
-            {        
-                printf(" | Informe o dia de vencimento: ");
-                scanf("%d", &it->dia);
+        } while (!lerQuantidade(inventoryMin));
+
+        inventoryMax = charParaInt(inventoryMin);
+        it->minimumInventory = inventoryMin;
+
+        do
+        {
+                printf(" | Enter expiration date - day: ");
+                scanf("%d", &it->day);
                 getchar();
-                printf(" | Informe o mês: ");
-                scanf("%d", &it->mes);
+                printf(" | Enter expiration date - month: ");
+                scanf("%d", &it->month);
                 getchar();
-                printf(" | Informe o ano: ");
-                scanf("%d", &it->ano);
-                getchar();              
-            } while(!valida_data(it->dia, it->mes, it->ano)); 
-            
-            it->categoria = telaEscCategoria();
-            it->localArmazenamento = telaEscLocalArmaz();
-
-            do
-            {
-                
-                printf(" | Informe a quantidade de produtos: ");
-                scanf("%s", quantidade);            
+                printf(" | Enter expiration date - year: ");
+                scanf("%d", &it->year);
                 getchar();
-            
-            } while(!lerQuantidade(quantidade));    
-            
-            estoque = charParaInt(quantidade);
-            it->quantProduto = estoque; 
-                                
-            char *data;
-            data = verDiaMesAno();
+        } while (!valida_data(it->day, it->month, it->year));
 
-            strcpy(it->dataAtual, data);
-            printf(" | Cadastro realizado na data: %s\n", data);      
-            it->tipo = 'E';
+        it->category = telaEscCategoria();
+        it->storageLocation = telaEscLocalArmaz();
 
-            datadia = dividPal(data, 0, 1);
-            datames = dividPal(data, 3, 4);
-            dataano = dividPal(data, 6, 7);
-            diadia = charParaInt(datadia);
-            mesmes = charParaInt(datames);
-            anoano = charParaInt(dataano);
-            anoano += 2000;
-         
-            if (it->dia < diadia && it->mes <= mesmes && it->ano == anoano){
-                
-                printf("| O produto está vencido, por favor, trocar");
+        do
+        {
 
-            } else if (it->dia == diadia  && it->mes == mesmes && it->ano  == anoano){
-              
-              printf(" | O produto vence hoje, cuidado!");
-           
-            } else if (it->dia > diadia && it->mes >= mesmes && it->ano == anoano){
-           
-                printf(" | O produto está dentro do prazo de validade!");
-            }
-        
-            it->status = '1'; //o 1 mostra que foi cadastrado              
-            gravaItem(it);    
-            free(it);
-            free(datadia);
-            free(datames);
-            free(dataano);
-            fclose(fp3);
+                printf(" | Enter the quantity of products: ");
+                scanf("%s", quantity);
+                getchar();
 
-    } else {
-        printf("Usuário não encontrado");
+        } while (!lerQuantidade(quantity));
+
+        inventory = charParaInt(quantity);
+        it->quantProduct = inventory;
+
+        char *data;
+        data = verDiaMesAno();
+        // ... more code
+
+        strcpy(it->dateToday, data);
+        printf(" | Registration done on: %s\n", data);
+        it->type = 'E';
+
+        dateDay = dividPal(data, 0, 1);
+        dateMonth = dividPal(data, 3, 4);
+        dateYear = dividPal(data, 6, 7);
+        dayControl = charParaInt(dateDay);
+        monthControl = charParaInt(dateMonth);
+        yearControl = charParaInt(dateYear);
+        yearControl += 2000;
+
+        if (it->dia < dayControl && it->mes <= monthControl && it->ano == yearControl)
+        {
+
+                printf("| The product is expired, please exchange it");
+        }
+        else if (it->dia == dayControl && it->mes == monthControl && it->ano == yearControl)
+        {
+
+                printf(" | The product expires today, be careful!");
+        }
+        else if (it->dia > dayControl && it->mes >= monthControl && it->ano == yearControl)
+        {
+
+                printf(" | The product is within its validity period!");
+        }
+
+        it->status = '1'; // 1 shows it was registered
+        gravaItem(it);
+        free(it);
+        free(dateDay);
+        free(dateMonth);
+        free(dateYear);
+        fclose(fp3);
     }
-    
-    printf(" |                                                           | \n");
+    else
+    {
+        printf("User not found");
+    }
+
+    printf(" | | \n");
     printf(" | ========================================================= | \n");
-    free(cliente);
-    fclose(fp);    
-    printf(" | Pressione qualquer tecla para sair.... ");
+    free(client);
+    fclose(fp);
+    printf(" | Press any key to exit.... ");
     getchar();
 
     return 0;
-
 }
-
 
 //função para escolha da categoria
 char telaEscCategoria(void)
@@ -402,7 +410,7 @@ int buscaInfoItem(void)
 int telaAtualizarItem(void)  
 {
     FILE* fp;
-    Usuario* cliente;
+    User* cliente;
     char resp;
     int achou, encontrou, estoque, estoqueM;
     char quantidade[20];
@@ -410,7 +418,7 @@ int telaAtualizarItem(void)
     char estoqueMin[20];
     char procura[20];
     
-    fp = fopen("usuario.dat", "r+b");
+    fp = fopen("user.dat", "r+b");
     
     if (fp == NULL) 
     {
@@ -418,7 +426,7 @@ int telaAtualizarItem(void)
         return 0;
     }
     
-    cliente = (Usuario*)malloc(sizeof(Usuario));
+    cliente = (User*)malloc(sizeof(User));
     
     system(" cls || clear");
     printf(" | ========================================================= | \n");
@@ -430,8 +438,8 @@ int telaAtualizarItem(void)
     getchar();   
     achou = 0;
 
-    while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))){
-        if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')){
+    while ((!achou) && (fread(cliente, sizeof(User), 1, fp))){
+        if ((strcmp(cliente->usernameUser, procurado) == 0) && (cliente->status == '1')){
             achou = 1;
         }
     
@@ -794,14 +802,14 @@ int entradaItem(void)
 {
     FILE* fp;
     Item* it;
-    Usuario* cliente;
+    User* cliente;
     int achou, encontra;
     char resp;
     char procurado[20];
     int estoque, estoque1;
     char quantidade[20];
     
-    fp = fopen("usuario.dat", "rb");
+    fp = fopen("user.dat", "rb");
 
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
@@ -810,7 +818,7 @@ int entradaItem(void)
     }
 
     it = (Item*)malloc(sizeof(Item));
-    cliente = (Usuario*)malloc(sizeof(Usuario));
+    cliente = (User*)malloc(sizeof(User));
 
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
@@ -822,8 +830,8 @@ int entradaItem(void)
     getchar();     
     achou = 0;  
 
-    while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))){
-        if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')){
+    while ((!achou) && (fread(cliente, sizeof(User), 1, fp))){
+        if ((strcmp(cliente->usernameUser, procurado) == 0) && (cliente->status == '1')){
             achou = 1;
         }
 
@@ -918,7 +926,7 @@ int saidaItem(void)
 {
     FILE* fp;
     Item* it;
-    Usuario* cliente;
+    User* cliente;
     int achou, encontrou;
     char resp;
     char procurado[20];
@@ -926,7 +934,7 @@ int saidaItem(void)
     char quantidade[20];
     char procura[20];  
 
-    fp = fopen("usuario.dat", "rb");
+    fp = fopen("user.dat", "rb");
 
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
@@ -935,7 +943,7 @@ int saidaItem(void)
     }
 
     it = (Item*)malloc(sizeof(Item));
-    cliente = (Usuario*)malloc(sizeof(Usuario));
+    cliente = (User*)malloc(sizeof(User));
     
     system ( " cls || clear " );
     printf(" | ========================================================= | \n");
@@ -947,8 +955,8 @@ int saidaItem(void)
     getchar();     
     achou = 0;
 
-    while ((!achou) && (fread(cliente, sizeof(Usuario), 1, fp))){
-        if ((strcmp(cliente->usernameUsuario, procurado) == 0) && (cliente->status == '1')){
+    while ((!achou) && (fread(cliente, sizeof(User), 1, fp))){
+        if ((strcmp(cliente->usernameUser, procurado) == 0) && (cliente->status == '1')){
             achou = 1;
         }
     
