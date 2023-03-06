@@ -13,29 +13,29 @@
 
 
 // Este é o menu principal deste módulo
-void modulocadastroUsuario(void)
+void userRegistrationModule(void)
 {    
     char op;
     do {
-        op = telaMenuUsuario();
+        op = userMenuScreen();
         switch (op) {
         case '1':
-            InfoUsuario(); //cadastro
+            userInfo(); //cadastro
             break;
         case '2':
-            buscaInfoUsuario(); //pesquisa
+            searchUserInfo(); //pesquisa
             break;
         case '3':
-            atualizarUsuario(); //edição
+            updateUser(); //edição
             break;
         case '4':
-            infoExcluirUs(); //exclusão
+            deleteUserInfo(); //exclusão
             break; 
         case '5':
-            listaInfoUsuario(); //relatório
+            listUserInfo(); //relatório
             break;
         default:
-            printf ("Opção inválida! \n");
+            printf ("Invalid Option! \n");
             break;
         }
 
@@ -361,128 +361,126 @@ int deleteUserInfo(void)
 
     fp = fopen("user.dat", "r+b");
 
-    if (fp == NULL){
+    if (fp == NULL) {
         printf("Oops! Error opening file!\n");
         return 0;
     }
 
-    user = (User*) malloc(sizeof(User));
+    user = malloc(sizeof(User));
 
-    system( " clear || cls ");
+    system("clear || cls");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
     printf(" | ---------------------- Delete User ---------------------------- | \n");
     printf(" |                                                                | \n");
     printf(" | Enter the username of the user you want to delete: ");
-    scanf(" %30[^\n]", searched);
-    getchar();  
+    scanf("%30[^\n]", searched);
+    getchar();
     found = 0;
 
-    while ((!found) && (fread(user, sizeof(User), 1, fp))){
-        if ((strcmp(user->usernameUser, searched) == 0) && (user->status == '1')){
+    while ((!found) && (fread(user, sizeof(User), 1, fp))) {
+        if ((strcmp(user->usernameUser, searched) == 0) && (user->status == '1')) {
             found = 1;
         }
     }
 
-    if (found){
+    if (found) {
         displayUserInfo(user);
         printf("Do you really want to delete this user's data? (y/n) ");
-        scanf("%c", &response);
-        
-        if (response == 'y' || response == 'Y'){
+        scanf(" %c", &response);
+
+        if (response == 'y' || response == 'Y') {
             user->status = '0';
-            fseek(fp, (-1)*sizeof(User), SEEK_CUR);
+            fseek(fp, (-1) * sizeof(User), SEEK_CUR);
             fwrite(user, sizeof(User), 1, fp);
             printf("\nUser successfully deleted!");
             saveUser(user);
-            getchar();   
-        }else{
-        
+            getchar();
+        } else {
             printf("\nAlright, data has not been changed!");
-        
         }
-    }else{
+    } else {
         printf("User not found!");
-    }  
-    
+    }
+
     free(user);
-    fclose(fp);   
+    fclose(fp);
     printf(" | Press any key to exit.... ");
-    getchar();  
+    getchar();
 
     return 0;
 }
 
+
+
 //função para listar os dados do usuário 
-int listaInfoUsuario(void) 
+int listUserInfo(void)
 {
     FILE* fp;
-    User* cliente;
-    
-    fp = fopen("usuario.dat", "rb");
-    
+    User* user;
+
+    fp = fopen("user.dat", "rb");
+
     if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Oops! Error opening file!\n");
         return 0;
     }
-    
-    cliente = (User*)malloc(sizeof(User)); 
-    
-    while(fread(cliente, sizeof(User), 1, fp)) {
+
+    user = (User*)malloc(sizeof(User)); 
+
+    while(fread(user, sizeof(User), 1, fp)) {
         system(" cls || clear");
-        printf(" | ==================== Lista Usuário ====================== | \n");
-        printf(" |                                                           | \n");
-        exibeInfoUsuario(cliente);
+        printf(" | ==================== User List ====================== | \n");
+        printf(" |                                                       | \n");
+        displayUserInfo(user);
     } 
     fclose(fp);
-    free(cliente);
-    
-    return 0;
+    free(user);
 
+    return 0;
 }
 
 
 // função para exibir as informações do usuário
-void exibeInfoUsuario(User* cliente) {
-    system(" cls || clear");
-    printf(" | =================== Usuário Cadastrado ================== |\n");
-    printf(" |                                                           |\n");
-    printf(" | Nome: %s\n", cliente->nameUser); 
-    printf(" | Username: %s\n", cliente->usernameUser);   
-    printf(" | E-mail: %s\n", cliente->emailUser);
-    printf(" | Dia do nascimento: %d\n", cliente->day); 
-    printf(" | Mês do nascimento: %d\n", cliente->month); 
-    printf(" | Ano do nascimento: %d\n", cliente->year); 
-    printf(" | Data de registro: %s\n", cliente->userDate);
-    printf(" | Status: %c\n", cliente->status);
-    printf(" |                                                           | \n");
-    printf(" | ========================================================= | \n");
-    printf(" | Pressione qualquer tecla para sair.... ");
-    getchar();   
-
+void displayUserInfo(User* user) {
+    system("cls || clear");
+    printf(" | ================== Registered User ================== |\n");
+    printf(" | |\n");
+    printf(" | Name: %s\n", user->nameUser);
+    printf(" | Username: %s\n", user->usernameUser);
+    printf(" | Email: %s\n", user->emailUser);
+    printf(" | Birth day: %d\n", user->day);
+    printf(" | Birth month: %d\n", user->month);
+    printf(" | Birth year: %d\n", user->year);
+    printf(" | Register date: %s\n", user->userDate);
+    printf(" | Status: %c\n", user->status);
+    printf(" | | \n");
+    printf(" | ===================================================== | \n");
+    printf(" | Press any key to exit.... ");
+    getchar();
 }
 
 
 //função para verificar se já tem um username cadastrado no arquivo
-int validaUser(char* user)
+int validateUser(char* user)
 {
     FILE *fp;
-    User *usuarioArq;
+    User *fileUser;
 
-    usuarioArq = (User*)malloc(sizeof(User));
+    fileUser = (User*)malloc(sizeof(User));
     
-    fp = fopen("usuario.dat", "rt");
+    fp = fopen("user.dat", "rt");
     
     if (fp == NULL){
-        printf("Gerando arquivo...");
+        printf("Generating file...");
         fclose(fp);
         return 1;
     } 
 
     while (!feof(fp))
     {
-        fread(usuarioArq, sizeof(User), 1, fp);
-        if (strcmp(user, usuarioArq->usernameUser) == 0 && (usuarioArq->status != '0')){
+        fread(fileUser, sizeof(User), 1, fp);
+        if (strcmp(user, fileUser->usernameUser) == 0 && (fileUser->status != '0')){
             fclose(fp);
             return 0;
         }

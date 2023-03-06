@@ -9,21 +9,19 @@ struct user {
     char usernameUser[20];
     char senhaUsuario[20];
     char status;
-    char userDate[20];
-
-    
+    char userDate[20]; 
 };
 
 //cabeçalho das funções usadas no arquivo .c
-void modulocadastroUsuario(void);
+void userRegistrationModule(void);
 char userMenuScreen(void);
 int updateUser(void);
 void escolhafuncao(char);
 void userInfo(void);
 int saveUser(User*);
-int listaInfoUsuario(void);
-void exibeInfoUsuario(User* cliente);
+int listUserInfo(void);
+void displayUserInfo(User* user);
 int searchUserInfor(void);
 int deleteUserInfo(void);
-int validaUser(char* user);
+int validateUser(char* user);
 char updateMenu(void);
