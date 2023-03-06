@@ -1,29 +1,27 @@
 //struct para cadastro do usuário
-typedef struct usuario Usuario;
-struct usuario {
-    char nomeUsuario[101];
-    char emailUsuario[40];
-    int dia;
-    int mes;
-    int ano;
-    char usernameUsuario[20];
+typedef struct user User;
+struct user {
+    char nameUser[101];
+    char emailUser[40];
+    int day;
+    int month;
+    int year;
+    char usernameUser[20];
     char senhaUsuario[20];
     char status;
-    char dataUsu[20];
-
-    
+    char userDate[20]; 
 };
 
 //cabeçalho das funções usadas no arquivo .c
-void modulocadastroUsuario(void);
-char telaMenuUsuario(void);
-int atualizarUsuario(void);
+void userRegistrationModule(void);
+char userMenuScreen(void);
+int updateUser(void);
 void escolhafuncao(char);
-void InfoUsuario(void);
-int gravaUsuario(Usuario*);
-int listaInfoUsuario(void);
-void exibeInfoUsuario(Usuario* cliente);
-int buscaInfoUsuario(void);
-int infoExcluirUs(void);
-int validaUser(char* user);
-char escAtualizarUsuario(void);
+void userInfo(void);
+int saveUser(User*);
+int listUserInfo(void);
+void displayUserInfo(User* user);
+int searchUserInfor(void);
+int deleteUserInfo(void);
+int validateUser(char* user);
+char updateMenu(void);

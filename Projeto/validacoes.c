@@ -163,36 +163,34 @@ char decimais[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
 
 int valida_data(int dia, int mes, int ano) 
-    {
-    if ((dia >= 1 && dia <= 31) && (mes >= 1 && mes <= 12) && (ano >= 1900 && ano <= 2100)) //verifica se os números são válidos
-        {
-            if ((dia == 29 && mes == 2) && ((ano % 4) == 0)) //verifica se o ano é bissexto
-            {
-                return 1;
-            }
-            if (dia <= 28 && mes == 2) //verifica o mês de fevereiro
-            {
-                return 1;
-            }
-            if ((dia <= 30) && (mes == 4 || mes == 6 || mes == 9 || mes == 11)) //verifica os meses de 30 dias
-            {
-                return 1;
-            }
-            if ((dia <=31) && (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes ==8 || mes == 10 || mes == 12)) //verifica os meses de 31 dias
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-      }
-       else
-           {
-                return 0;
-           }
-}
+{
+    const int ANO_MINIMO = 1900;
+    const int ANO_MAXIMO = 2100;
 
+    // Verifica se a data está dentro do intervalo válido
+    if (ano < ANO_MINIMO || ano > ANO_MAXIMO || mes < 1 || mes > 12 || dia < 1 || dia > 31)
+    {
+        return 0;
+    }
+
+    // Verifica os meses com 30 dias
+    if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia > 30)
+    {
+        return 0;
+    }
+
+    // Verifica fevereiro
+    if (mes == 2)
+    {
+        if ((ano % 4 == 0 && dia > 29) || (ano % 4 != 0 && dia > 28))
+        {
+            return 0;
+        }
+    }
+
+    // Se chegou aqui, é uma data válida
+    return 1;
+}
 
 // ---------------------------------------- //
 //        Validação de números              //
