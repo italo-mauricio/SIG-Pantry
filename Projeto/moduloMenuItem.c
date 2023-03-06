@@ -627,47 +627,46 @@ int updateItemScreen(void)
 }
 
 //função para selecionar o que quer atualizar
-char escAtualizarItem(void)
+char updateItemMenu(void)
 {    
-    char esc;
+    char option;
     clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | -------------------- Atualizar Item --------------------- | \n");
+    printf(" | -------------------- Update Item ------------------------ | \n");
     printf(" |                                                           | \n");
-    printf(" |                1- Editar tudo                             | \n");
-    printf(" |                2- Editar nome do produto                  | \n");
-    printf(" |                3- Editar nome da marca                    | \n");
-    printf(" |                4- Editar estoque mínimo                   | \n");
-    printf(" |                5- Editar data de vencimento               | \n");                                                                    
-    printf(" |                6- Editar categoria do produto             | \n");                                                                    
-    printf(" |                7- Editar local de armazenamento           | \n");                                                                    
-    printf(" |                8- Editar quantidade do produto            | \n");                                                                    
-    printf(" |                0- Voltar à tela principal                 | \n");    
+    printf(" |                1- Edit everything                         | \n");
+    printf(" |                2- Edit product name                       | \n");
+    printf(" |                3- Edit brand name                         | \n");
+    printf(" |                4- Edit minimum stock quantity             | \n");
+    printf(" |                5- Edit expiration date                    | \n");                                                                    
+    printf(" |                6- Edit product category                   | \n");                                                                    
+    printf(" |                7- Edit storage location                   | \n");                                                                    
+    printf(" |                8- Edit product quantity                   | \n");                                                                    
+    printf(" |                0- Return to main screen                   | \n");    
     printf(" |                                                           | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | Selecione uma opção do que você deseja editar: ");
-    scanf("%c", &esc);
+    printf(" | Select an option of what you wish to edit: ");
+    scanf("%c", &option);
     getchar();
 
-    return esc;
-
+    return option;
 }
 
 
 //função para exclusão lógica
-int excluirItem(void)
+int deleteItem(void)
 {
     FILE* fp3;
     Item* it;
-    int achou;
-    char resp;
-    char procurado[20];
+    int found;
+    char answer;
+    char searched[20];
     
     fp3 = fopen("itens.dat", "r+b");
 
     if (fp3 == NULL){
-        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Oops! Error opening file!\n");
         return 0;
     }
 
@@ -676,49 +675,50 @@ int excluirItem(void)
     clear();
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
-    printf(" | ------------------------ Excluir item ------------------------ | \n");
+    printf(" | ------------------------ Delete Item ------------------------- | \n");
     printf(" |                                                                | \n");
-    printf(" | Informe o código de barras do item que você deseja excluir: ");
-    scanf(" %30[^\n]", procurado);
+    printf(" | Enter the barcode of the item you wish to delete: ");
+    scanf(" %30[^\n]", searched);
     getchar();    
-    achou = 0;
+    found = 0;
 
-    while ((!achou) && (fread(it, sizeof(Item), 1, fp3))){
-        if ((strcmp(it->codigoBarras, procurado) == 0) && (it->status == '1')){
-            achou = 1;
+    while ((!found) && (fread(it, sizeof(Item), 1, fp3))){
+        if ((strcmp(it->codigoBarras, searched) == 0) && (it->status == '1')){
+            found = 1;
         }
+    }
     
-    }if (achou){
-        listarItens();
-        printf("Deseja realmente excluir os dados deste item? (s/n)");
-        scanf("%c", &resp);
+    if (found){
+        listItems();
+        printf("Do you really want to delete this item's data? (y/n)");
+        scanf("%c", &answer);
 
-        if (resp == 's' || resp == 'S'){
+        if (answer == 'y' || answer == 'Y'){
             
             it->status = '0';
             fseek(fp3, (-1)*sizeof(Item), SEEK_CUR);
             fwrite(it, sizeof(Item), 1, fp3);
-            printf("\nDados do item excluídos com sucesso!");
-            gravaItem(it);
+            printf("\nItem data successfully deleted!");
+            saveItem(it);
             
         }else{
             
-            printf("\nTudo bem, os dados não foram alterados!");
+            printf("\nAlright, the data was not changed!");
         
         }
 
     }else{     
-        printf("O item não foi encontrado!");  
+        printf("The item was not found!");  
     }
+    
     free(it);
     fclose(fp3);  
-    printf(" | Pressione qualquer tecla para sair.... ");
+    printf(" | Press any key to exit.... ");
     getchar();
     
     return 0;
     
 }
-
 
 //listar itens - relatório sem filtro
 int listarItens(void) 
