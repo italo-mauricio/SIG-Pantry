@@ -108,7 +108,7 @@ int infoItem(void)
     it = (Item *)malloc(sizeof(Item));
     client = (User *)malloc(sizeof(User));
 
-    system(" cls || clear ");
+    clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                    Register Item                          | \n");
@@ -252,7 +252,7 @@ int infoItem(void)
 char categoryScreen(void)
 {
     char esc;
-    system("cls || clear");
+    clear();
     printf(" | ================== Product Category ================== |\n");
     printf(" |                                                        |\n");
     printf(" |                    1- Personal Hygiene                 |\n");
@@ -269,25 +269,24 @@ char categoryScreen(void)
 
 
 //função para escolha do local de armazenamento
-char telaEscLocalArmaz(void)
+char scrennStorageLocation(void)
 {
     char esc;
-    system("cls || clear");
-    printf(" | ================ Local de Armazenamento ================ |\n");
-    printf(" |                                                          |\n");
-    printf(" |                   1- Geladeira                           |\n");
-    printf(" |                   2- Armário da cozinha                  |\n");
-    printf(" |                   3- Área de serviço                     |\n");
-    printf(" |                   4- Banheiro                            |\n");
-    printf(" |                   5- Guarda-roupa                        |\n");
-    printf(" |                                                          |\n");
-    printf(" | ======================================================== |\n");
-    printf(" | Digite a sua opção: ");
+    clear();
+    printf(" | ================ Storage Location ================ |\n");
+    printf(" |                                                    |\n");
+    printf(" |                 1- Refrigerator                    |\n");
+    printf(" |                 2- Kitchen Cabinet                 |\n");
+    printf(" |                 3- Laundry Area                    |\n");
+    printf(" |                 4- Bathroom                        |\n");
+    printf(" |                 5- Wardrobe                        |\n");
+    printf(" |                                                    |\n");
+    printf(" | ================================================== |\n");
+    printf(" | Enter your option: ");
     scanf("%c", &esc);
     getchar();
 
     return esc;
-
 }
 
 
@@ -327,7 +326,7 @@ int buscaInfoItem(void)
     }
     
     printf("\n\n");
-    system ( " cls || clear " );
+    clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                   Buscar dados de Itens                   | \n");
@@ -374,7 +373,7 @@ int buscaInfoItem(void)
         }else{
             strcpy(aux2, "Guarda-roupa");
         }
-        system(" cls || clear");
+        clear();
         printf(" | ===================== Lista de Itens ==================== |\n");
         printf(" |                                                           |\n");       
         printf(" | Nome do produto: %s\n", it->nomeProduto);    
@@ -428,7 +427,7 @@ int telaAtualizarItem(void)
     
     cliente = (User*)malloc(sizeof(User));
     
-    system(" cls || clear");
+    clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------------------- Atualizar item --------------------- | \n");
@@ -626,7 +625,7 @@ int telaAtualizarItem(void)
 char escAtualizarItem(void)
 {    
     char esc;
-    system(" cls || clear");
+    clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | -------------------- Atualizar Item --------------------- | \n");
@@ -669,7 +668,7 @@ int excluirItem(void)
 
     it = (Item*) malloc(sizeof(Item));  
 
-    system( " clear || cls ");
+    clear();
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
     printf(" | ------------------------ Excluir item ------------------------ | \n");
@@ -777,7 +776,7 @@ void exibeInfoItem(Item* it)
         strcpy(aux2, "Guarda-roupa");
     }
 
-    system(" cls || clear");
+    clear();
     printf(" | ===================== Lista de Itens ==================== |\n");
     printf(" |                                                           |\n");       
     printf(" | Nome do produto: %s\n", it->nomeProduto);    
@@ -820,7 +819,7 @@ int entradaItem(void)
     it = (Item*)malloc(sizeof(Item));
     cliente = (User*)malloc(sizeof(User));
 
-    system ( " cls || clear " );
+    clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                     Entrada Item                          | \n");
@@ -944,8 +943,8 @@ int saidaItem(void)
 
     it = (Item*)malloc(sizeof(Item));
     cliente = (User*)malloc(sizeof(User));
-    
-    system ( " cls || clear " );
+
+    clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                       Saída Item                          | \n");

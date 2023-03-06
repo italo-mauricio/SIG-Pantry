@@ -3,6 +3,7 @@
 #include <string.h>
 #include "userRegistrationModule.h"
 #include "validacoes.h"
+#include "clearScreen.c"
 
 /*
               Bem-vindo(a) ao módulo de cadastro de usuários!
@@ -75,7 +76,7 @@ void userInfo(void)
 {
     User* client;
 
-    system(" cls || clear");
+    clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                   SIG-Pantry registration                 | \n");
@@ -145,7 +146,7 @@ int searchUserInfo(void) {
     }   
     
     printf("\n\n");
-    system(" cls || clear ");
+    clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                     Search user data                      | \n");
@@ -164,7 +165,7 @@ int searchUserInfo(void) {
     }
     
     if (found) {
-        system(" cls || clear" );
+        clear();
         printf(" | ================== User found =================== |\n");
         printf(" |                                                           |\n");
         printf(" | Name: %s\n", client->nameUser);
@@ -208,10 +209,10 @@ int updateUser(void) //adapted by @IsaKaillany
 
     client = (User*) malloc(sizeof(User));  
 
-    system("cls || clear");
+    clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ------------------- Update User --------------------------| \n");
+    printf(" | --------------------- Update User ------------------------| \n");
     printf(" | Enter your username: ");
     scanf(" %s", search);
     getchar();
@@ -314,7 +315,7 @@ int updateUser(void) //adapted by @IsaKaillany
 char updateMenu(void)
 {    
     char choice;
-    system(" cls || clear");
+    clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ------------------- Update User ------------------------- | \n");
@@ -368,7 +369,7 @@ int deleteUserInfo(void)
 
     user = malloc(sizeof(User));
 
-    system("clear || cls");
+    clear();
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
     printf(" | ---------------------- Delete User ---------------------------- | \n");
@@ -443,7 +444,7 @@ int listUserInfo(void)
 
 // função para exibir as informações do usuário
 void displayUserInfo(User* user) {
-    system("cls || clear");
+    clear();
     printf(" | ================== Registered User ================== |\n");
     printf(" | |\n");
     printf(" | Name: %s\n", user->nameUser);

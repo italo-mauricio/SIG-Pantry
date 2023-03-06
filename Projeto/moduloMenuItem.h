@@ -41,7 +41,7 @@ int gravaItem(Item* it);
 int entradaItem(void);
 int saidaItem(void);
 char categoryScreen(void);
-char telaEscLocalArmaz(void);
+char scrennStorageLocation(void);
 int validaCod(char* item);
 void exibeInfoItem(Item* it);
 char* verDiaMesAno(void);
