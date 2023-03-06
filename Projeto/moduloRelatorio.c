@@ -6,6 +6,7 @@
 #include "moduloMenuItem.h"
 #include "shoppingListModule.h"
 #include "userRegistrationModule.h"
+#include "clearScreen.c";
 
 
 /*
@@ -51,7 +52,7 @@ char moduloRelatorio(void)
 char telaRelatorio(void)
 {
     char esc;
-    system ( " clear||cls " );
+    clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | -------------------| SIG-Pantry - RELATÓRIOS |---------------------- | \n");
@@ -100,7 +101,7 @@ void escRelatoriosCategoria(void)
 char relatorioCategoria(void)
 {
     char esc;
-    system ( " clear||cls " );
+    clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | ---------------| Relatórios com base na categoria |----------------- | \n");
@@ -135,7 +136,7 @@ int exibirItensHigiene(void)
         return 0;
     }
     
-    system ( " clear||cls " );
+    clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | ------------| Relatório dos itens de higiene pessoal |-------------- | \n");
@@ -144,7 +145,7 @@ int exibirItensHigiene(void)
     achou = 0;
 
     while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->categoria == '1')) && (it->status == '1')){
+        if (((it->category == '1')) && (it->status == '1')){
             exibeInfoItem(it);
             achou = 1;
         }
@@ -183,7 +184,7 @@ int exibirItensLimpeza(void)
         return 0;
     }
     
-    system ( " clear||cls " );
+    clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | -----------------| Relatório dos itens de limpeza |----------------- | \n");
@@ -193,7 +194,7 @@ int exibirItensLimpeza(void)
 
 
     while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->categoria == '2')) && (it->status == '1')){
+        if (((it->category == '2')) && (it->status == '1')){
             exibeInfoItem(it);
             achou = 1;
         }
@@ -234,7 +235,7 @@ int exibirItensAlimento(void)
         return 0;
     }
     
-    system ( " clear||cls " );
+    clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | ----------------| Relatório dos itens de alimento |----------------- | \n");
@@ -243,7 +244,7 @@ int exibirItensAlimento(void)
     achou = 0;
 
     while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->categoria == '3')) && (it->status == '1')){
+        if (((it->category == '3')) && (it->status == '1')){
             exibeInfoItem(it);
             achou = 1;
         }
@@ -302,7 +303,7 @@ void escRelatoriosLocal(void)
 char relatorioLocalArmaz(void)
 {
     char esc;
-    system (" Clear||cls ");
+    clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | ---------- | Relatórios com base no local de armazenamento | ------- | \n");
@@ -338,7 +339,7 @@ int exibirGeladeira(void)
         return 0;
     }
     
-    system ( " clear||cls " );
+    clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | ----------------| Relatório dos itens da geladeira |---------------- | \n");
@@ -347,7 +348,7 @@ int exibirGeladeira(void)
     achou = 0;
 
     while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->localArmazenamento == '1')) && (it->status == '1')){
+        if (((it->storageLocation == '1')) && (it->status == '1')){
             exibeInfoItem(it);
             achou = 1;
 
@@ -388,7 +389,7 @@ int exibirArmarioCozinha(void)
         return 0;
     }
     
-    system ( " clear||cls " );
+    clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | ----------| Relatório dos itens do armário da cozinha |------------- | \n");
@@ -397,7 +398,7 @@ int exibirArmarioCozinha(void)
     achou = 0;
 
     while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->localArmazenamento == '2')) && (it->status == '1')){
+        if (((it->storageLocation == '2')) && (it->status == '1')){
             exibeInfoItem(it);
             achou = 1;
             
@@ -438,7 +439,7 @@ int exibirAreaServ(void)
         return 0;
     }
     
-    system ( " clear||cls " );
+    clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | ------------| Relatório dos itens do área de serviço |-------------- | \n");
@@ -448,7 +449,7 @@ int exibirAreaServ(void)
 
 
     while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->localArmazenamento == '3')) && (it->status == '1')){
+        if (((it->storageLocation == '3')) && (it->status == '1')){
             exibeInfoItem(it);
             achou = 1;
             
@@ -490,7 +491,7 @@ int exibirGuardaRoupa(void)
         return 0;
     }
     
-    system ( " clear||cls " );
+    clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | --------------| Relatório dos itens do guarda-roupa |--------------- | \n");
@@ -500,7 +501,7 @@ int exibirGuardaRoupa(void)
 
 
     while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->localArmazenamento == '5')) && (it->status == '1')){
+        if (((it->storageLocation == '5')) && (it->status == '1')){
             exibeInfoItem(it);
             achou = 1;
             
@@ -541,7 +542,7 @@ int exibirBanheiro(void)
         return 0;
     }
     
-    system ( " clear||cls " );
+    clear();
     printf(" | ========================================================================= | \n");
     printf(" | ------------------------------------------------------------------------- | \n");
     printf(" | ----------------| Relatório dos itens do banheiro |---------------------- | \n");
@@ -550,7 +551,7 @@ int exibirBanheiro(void)
     achou = 0;
 
     while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->localArmazenamento == '4')) && (it->status == '1')){
+        if (((it->storageLocation == '4')) && (it->status == '1')){
             exibeInfoItem(it);
             achou = 1;
             
@@ -599,15 +600,15 @@ NoItem* listaOrdenadaItens(void) //adaptada by @flgorgonio
     {        
         if (it->status == '1') {
             novoItem = (NoItem*) malloc(sizeof(NoItem));
-            strcpy(novoItem->nomeProduto, it->nomeProduto);
-            strcpy(novoItem->nomeMarca, it->nomeMarca);
-            strcpy(novoItem->codigoBarras, it->codigoBarras);
-            novoItem->dia = it->dia;
-            novoItem->mes = it->mes;
-            novoItem->ano = it->ano;
+            strcpy(novoItem->nomeProduto, it->productName);
+            strcpy(novoItem->nomeMarca, it->nameBrand);
+            strcpy(novoItem->codigoBarras, it->barCode);
+            novoItem->dia = it->day;
+            novoItem->mes = it->month;
+            novoItem->ano = it->year;
             novoItem->estoqueMinimo = it->minimumInventory;
-            novoItem->categoria = it->categoria;
-            novoItem->localArmazenamento = it->localArmazenamento;
+            novoItem->categoria = it->category;
+            novoItem->localArmazenamento = it->storageLocation;
             novoItem->status = it->status;
             novoItem->quantProduto = it->quantProduct;
 
@@ -653,26 +654,26 @@ void exibeOrdemItem(NoItem* lista)
     
         char aux[20];
         char aux2[20];
-        if (it->categoria == '1'){
+        if (it->category == '1'){
             strcpy(aux, "Higiene pessoal");
         
-        }else if(it->categoria == '2'){
+        }else if(it->category == '2'){
             strcpy(aux, "Limpeza");
         
         }else{
             strcpy(aux, "Alimento");
         }
 
-        if (it->localArmazenamento == '1'){
+        if (it->storageLocation == '1'){
             strcpy(aux2, "Geladeira");
         
-        }else if(it->localArmazenamento == '2'){
+        }else if(it->storageLocation == '2'){
             strcpy(aux2, "Armário de cozinha");
         
-        }else if(it->localArmazenamento == '3'){
+        }else if(it->storageLocation == '3'){
             strcpy(aux2, "Área de serviço");        
         
-        }else if(it->localArmazenamento == '4'){
+        }else if(it->storageLocation == '4'){
             strcpy(aux2, "Banheiro");          
         
         }else{

@@ -40,7 +40,7 @@ int excluirItem(void);
 int gravaItem(Item* it);
 int entradaItem(void);
 int saidaItem(void);
-char telaEscCategoria(void);
+char categoryScreen(void);
 char telaEscLocalArmaz(void);
 int validaCod(char* item);
 void exibeInfoItem(Item* it);

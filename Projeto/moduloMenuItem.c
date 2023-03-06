@@ -4,6 +4,7 @@
 #include "moduloMenuItem.h"
 #include "validacoes.h"
 #include "userRegistrationModule.h"
+#include "clearScreen.c"
 
 
 /*
@@ -56,8 +57,8 @@ void moduloMenuItem(void)
 //função que chama a tela para o menu itens -> a partir da escolha do usuário
 char screenRegisterItem(void)
 {
+    clear();
     char choice;
-    system("cls || clear");
     printf("| ========================================================== | \n");
     printf("| ---------------------------------------------------------- | \n");
     printf("| --------------------- ITEMS MENU ------------------------- | \n");
@@ -248,23 +249,22 @@ int infoItem(void)
 }
 
 //função para escolha da categoria
-char telaEscCategoria(void)
+char categoryScreen(void)
 {
     char esc;
     system("cls || clear");
-    printf(" | ================= Categoria do produto ================= |\n");
-    printf(" |                                                          |\n");
-    printf(" |                    1- Higiene pessoal                    |\n");
-    printf(" |                    2- Limpeza                            |\n");
-    printf(" |                    3- Alimento                           |\n");
-    printf(" |                                                          |\n");
-    printf(" | ======================================================== |\n");
-    printf(" | Digite uma opção: ");
+    printf(" | ================== Product Category ================== |\n");
+    printf(" |                                                        |\n");
+    printf(" |                    1- Personal Hygiene                 |\n");
+    printf(" |                    2- Cleaning                         |\n");
+    printf(" |                    3- Food                             |\n");
+    printf(" |                                                        |\n");
+    printf(" | ====================================================== |\n");
+    printf(" | Enter an option: ");
     scanf("%c", &esc);
     getchar();
 
     return esc;
-
 }
 
 
