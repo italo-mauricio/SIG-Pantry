@@ -21,19 +21,19 @@ void moduloMenuItem(void)
 {
     char escolha;
     do {
-        escolha = telaRegistrarItem();
+        escolha = screenRegisterItem();
         switch(escolha) {
             case '1':
                 infoItem(); //informações do cad de um item novo
                 break;
             case '2':
-                buscaInfoItem(); //pesquisa
+                searchItemInfo(); //pesquisa
                 break;
             case '3':
-                telaAtualizarItem(); //edição
+                updateItemScreen(); //edição
                 break;
             case '4':
-                excluirItem(); //exclusão
+                deleteItem(); //exclusão
                 break;
             case '5':
                 entradaItem(); //adição de item
@@ -721,7 +721,7 @@ int deleteItem(void)
 }
 
 //listar itens - relatório sem filtro
-int listarItens(void) 
+int listItems(void) 
 {
     FILE* fp3;
     Item* it;
@@ -729,23 +729,22 @@ int listarItens(void)
     fp3 = fopen("itens.dat", "rb");
     
     if (fp3 == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Oops! Error opening file!\n");
         return 0;
     }
 
     it = (Item*)malloc(sizeof(Item)); 
 
     while(fread(it, sizeof(Item), 1, fp3)) {
-        system(" cls || clear");
-        printf(" | ===================== Lista itens ======================= | \n");
+        clear();
+        printf(" | ===================== Item List ======================= | \n");
         printf(" |                                                           | \n");
-        displayInfoItem(it);
+        displayItemInfo(it);
     } 
     free(it);
     fclose(fp3);
        
     return 0;
-
 }
 
 
@@ -755,148 +754,147 @@ void displayItemInfo(Item* it)
     char aux[20];
     char aux2[20];
 
-    if (it->categoria == '1'){
-        strcpy(aux, "Higiene pessoal");
+    if (it->category == '1'){
+        strcpy(aux, "Personal hygiene");
     
-    }else if(it->categoria == '2'){
-        strcpy(aux, "Limpeza");
+    }else if(it->category == '2'){
+        strcpy(aux, "Cleaning");
     
     }else{
-        strcpy(aux, "Alimento");
+        strcpy(aux, "Food");
     }
 
-    if (it->localArmazenamento == '1'){
-        strcpy(aux2, "Geladeira");
+    if (it->storageLocation == '1'){
+        strcpy(aux2, "Refrigerator");
     
-    }else if(it->localArmazenamento == '2'){
-        strcpy(aux2, "Armário de cozinha");
+    }else if(it->storageLocation == '2'){
+        strcpy(aux2, "Kitchen cabinet");
     
-    }else if(it->localArmazenamento == '3'){
-        strcpy(aux2, "Área de serviço");        
+    }else if(it->storageLocation == '3'){
+        strcpy(aux2, "Laundry room");        
     
-    }else if(it->localArmazenamento == '4'){
-        strcpy(aux2, "Banheiro");          
+    }else if(it->storageLocation == '4'){
+        strcpy(aux2, "Bathroom");          
     
     }else{
-        strcpy(aux2, "Guarda-roupa");
+        strcpy(aux2, "Wardrobe");
     }
 
     clear();
-    printf(" | ===================== Lista de Itens ==================== |\n");
+    printf(" | ===================== Item List ======================== |\n");
     printf(" |                                                           |\n");       
-    printf(" | Nome do produto: %s\n", it->nomeProduto);    
-    printf(" | Nome da marca: %s\n", it->nomeMarca);    
-    printf(" | Código de barras: %s\n", it->codigoBarras);    
-    printf(" | Estoque mínimo do produto: %d\n", it->estoqueMinimo);
-    printf(" | Data de vencimento: %d/%d/%d\n", it->dia, it->mes, it->ano); 
-    printf(" | Categoria do produto: %s\n", aux);
-    printf(" | Local de armazenamento: %s\n", aux2);
-    printf(" | Quantidade do produto: %d\n", it->quantProduto);
+    printf(" | Product name: %s\n", it->productName);    
+    printf(" | Brand name: %s\n", it->brandName);    
+    printf(" | Barcode: %s\n", it->barcode);    
+    printf(" | Minimum stock level: %d\n", it->minStockLevel);
+    printf(" | Expiration date: %d/%d/%d\n", it->day, it->month, it->year); 
+    printf(" | Product category: %s\n", aux);
+    printf(" | Storage location: %s\n", aux2);
+    printf(" | Product quantity: %d\n", it->productQuantity);
     printf(" | Status: %c\n", it->status);
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Pressione qualquer tecla para sair.... ");
+    printf(" | Press any key to exit.... ");
     getchar();
 
 }
 
-
 //função para adição de produtos à despensa
-int entradaItem(void) 
+int entryItem(void) 
 {
     FILE* fp;
     Item* it;
-    User* cliente;
-    int achou, encontra;
+    User* customer;
+    int found, found2;
     char resp;
-    char procurado[20];
-    int estoque, estoque1;
-    char quantidade[20];
+    char searched[20];
+    int stock, stock1;
+    char quantity[20];
     
     fp = fopen("user.dat", "rb");
 
     if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Oops! Error opening file!\n");
         getchar();
         return 0;
     }
 
     it = (Item*)malloc(sizeof(Item));
-    cliente = (User*)malloc(sizeof(User));
+    customer = (User*)malloc(sizeof(User));
 
     clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" |                     Entrada Item                          | \n");
+    printf(" |                     Item Entry                            | \n");
     printf(" |                                                           | \n"); 
-    printf(" | Informe o seu username: ");
-    scanf(" %30[^\n]", procurado);
+    printf(" | Enter your username: ");
+    scanf(" %30[^\n]", searched);
     getchar();     
-    achou = 0;  
+    found = 0;  
 
-    while ((!achou) && (fread(cliente, sizeof(User), 1, fp))){
-        if ((strcmp(cliente->usernameUser, procurado) == 0) && (cliente->status == '1')){
-            achou = 1;
+    while ((!found) && (fread(customer, sizeof(User), 1, fp))){
+        if ((strcmp(customer->usernameUser, searched) == 0) && (customer->status == '1')){
+            found = 1;
         }
 
-    }if (achou){
+    }if (found){
         FILE* fp3;
-        char procura[20];
+        char search[20];
         
-        fp3 = fopen("itens.dat", "r+b");
+        fp3 = fopen("items.dat", "r+b");
         
         if (fp3 == NULL) {
-            printf("Ops! Erro na abertura do arquivo!\n");
+            printf("Oops! Error opening file!\n");
             getchar();
             return 0;
         }
                
-        printf("Informe o código de barras do produto que deseja adicionar: ");
-        scanf(" %30[^\n]", procura);
+        printf("Enter the product barcode you want to add: ");
+        scanf(" %30[^\n]", search);
         getchar();      
-        encontra = 0;
+        found2 = 0;
     
-        while(((!encontra) && (fread(it, sizeof(Item), 1, fp3)))){
-            if ((strcmp(it->codigoBarras,  procura) == 0) && (it->status == '1')) {
-                encontra = 1;
+        while(((!found2) && (fread(it, sizeof(Item), 1, fp3)))){
+            if ((strcmp(it->barcode,  search) == 0) && (it->status == '1')) {
+                found2 = 1;
             }
 
-        } if (encontra){
+        } if (found2){
             do
             {
-                printf(" | Informe a quantidade de produto: ");
-                scanf("%s", quantidade);             
+                printf(" | Enter the product quantity: ");
+                scanf("%s", quantity);             
                 getchar();
                 
-            } while(!lerQuantidade(quantidade));
-            estoque = charParaInt(quantidade);
-            estoque1 = it->quantProduto + estoque;
-            it->quantEntrada = estoque;
-            it->quantProduto = estoque1;
+            } while(!readQuantity(quantity));
+            stock = charToInt(quantity);
+            stock1 = it->quantity + stock;
+            it->entryQuantity = stock;
+            it->quantity = stock1;
 
             do 
             {        
-                printf(" | Informe o dia de vencimento do produto: ");
-                scanf("%d", &it->dia);
+                printf(" | Enter the product expiration day: ");
+                scanf("%d", &it->day);
                 getchar();
-                printf(" | Informe o mês: ");
-                scanf("%d", &it->mes);
+                printf(" | Enter the month: ");
+                scanf("%d", &it->month);
                 getchar();
-                printf(" | Informe o ano: ");
-                scanf("%d", &it->ano);
+                printf(" | Enter the year: ");
+                scanf("%d", &it->year);
                 getchar();
                     
-            } while(!valida_data(it->dia, it->mes, it->ano)); 
+            } while(!validate_date(it->day, it->month, it->year)); 
             
-            it->tipo = 'E';
-            printf("Tem certeza que deseja adicionar este produto à despensa (s/n? ");
+            it->type = 'E';
+            printf("Are you sure you want to add this product to the pantry (y/n)? ");
             scanf("%c", &resp); 
 
-                if (resp == 's' || resp == 'S') {
+                if (resp == 'y' || resp == 'Y') {
                     
                     fseek(fp3, (-1)*sizeof(Item), SEEK_CUR);
                     fwrite(it, sizeof(Item), 1, fp3);                      
-                    printf("Produto adicionado com sucesso!");
+                    printf("Product added successfully!");
                     getchar();
                     free(it);                
                     fclose(fp3);
@@ -904,26 +902,25 @@ int entradaItem(void)
                 }      
                 else {
                     
-                    printf("Operação cancelada!");
+                    printf("Operation canceled!");
                     getchar();         
                 
                 }
     
     }else{
         
-        printf("Produto não encontrado!");
+        printf("Product not found!");
         getchar();
 
     }  
-    free(cliente);
+    free(customer);
     fclose(fp); 
        
     }
 
    return 0;
 
-}  
-
+} 
 
 //função para retirada de produto da despensa
 int saidaItem(void) 
