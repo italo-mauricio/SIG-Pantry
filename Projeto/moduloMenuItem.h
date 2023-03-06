@@ -15,10 +15,10 @@ struct item
     int anoSaida;
     char codigoBarras[20];
     char status;
-    int estoqueMinimo; 
+    int minimumInventory; 
     char categoria;
     char localArmazenamento;
-    int quantProduto;
+    int quantProduct;
     char usernameUsuario[30];  
     char dataAtual[40];
     char tipo;

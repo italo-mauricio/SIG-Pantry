@@ -70,7 +70,7 @@ char shoppingListScreen(void)
     printf("|             4- Edit shopping list                                    | \n");      
     printf("|             5- Delete shopping list                                  | \n");      
     printf("|             6- View items registered in the list                     | \n");       
-    printf("|             0- Back to main screen                                    | \n");
+    printf("|             0- Back to main screen                                   | \n");
     printf("|                                                                      | \n");
     printf("| ==================================================================== | \n");
     printf("| Choose an option: ");
@@ -82,27 +82,27 @@ char shoppingListScreen(void)
 
 
 //função que lista os itens que estão acabando no estoque
-int itensQuantMinima(void)     
+int itemsMinimumQuant(void)     
 {
     FILE* fp3;
     Item* it;  
-    fp3 = fopen("itens.dat", "rt"); //só precisa abrir o de itens, pois irá resgatar informações desse arq
+    fp3 = fopen("items.dat", "rt"); // Only need to open the item file, as it will retrieve information from this file.
     
     if (fp3 == NULL)
     {
-        printf("Ocorreu um erro na abertura do arquivo");
+        printf("An error occurred while opening the file.");
         return 0;
     }
     it = (Item*)malloc(sizeof(Item));
     
     while(fread(it, sizeof(Item), 1, fp3)) {
-        if (it->quantProduto <= it->estoqueMinimo) {
+        if (it->quantProduct <= it->minimumInventory) {
             system( " clear || cls ");
             printf(" | ============================================================== | \n");
             printf(" | -------------------------------------------------------------- | \n");
-            printf(" | --------- Itens com quantidade mínima na despensa ------------ | \n");
+            printf(" | --------- Items with minimum quantity in the pantry ----------- | \n");
             printf(" |                                                                | \n");
-            exibeInfoItem(it);
+            displayItemInfo(it);
 
         }
     }
@@ -113,104 +113,89 @@ int itensQuantMinima(void)
 
 }
 
-
 //função para a montagem da lista vinculada ao id do usuário
-int infoMontarLista(void)
-{
+int infoBuildList(void) {
     FILE* fp;
-    User* cliente;
-    CreateList* mtlist;
-    int achou;
-    char procurado[15];
+    User* client;
+    CreateList* list;
+    int found;
+    char searched[15];
     int resp;
     int i;
-    char produto[20];
-    int list;
+    char product[20];
+    int listQuantity;
 
-    fp = fopen("usuario.dat", "rb");
+    fp = fopen("user.dat", "rb");
 
     if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Oops! Error opening file!\n");
         return 0;
     }
     
-    cliente = (User*) malloc(sizeof(User));
-    mtlist = (CreateList*)malloc(sizeof(CreateList)); 
+    client = (User*) malloc(sizeof(User));
+    list = (CreateList*)malloc(sizeof(CreateList)); 
 
-    system ( " cls || clear " );
+    system("cls || clear");
     printf("| ============================================================= | \n");
     printf("| ------------------------------------------------------------- | \n");
-    printf("| ------------- | Montar a sua lista de compras | ------------- | \n");
+    printf("| ------------- | Build your shopping list | ------------- | \n");
     printf("|                                                               | \n");  
-    printf("| Informe o seu username: ");
-    scanf(" %30[^\n]", procurado);
+    printf("| Enter your username: ");
+    scanf(" %30[^\n]", searched);
     getchar();
-    achou = 0;
+    found = 0;
 
-    while((!achou) && (fread(cliente, sizeof(User), 1, fp))) {
-        if ((strcmp(cliente->usernameUser, procurado) == 0) && (cliente->status == '1')) {
-            achou = 1;
+    while((!found) && (fread(client, sizeof(User), 1, fp))) {
+        if ((strcmp(client->usernameUser, searched) == 0) && (client->status == '1')) {
+            found = 1;
         }
     }
-    if (achou){
-
-        printf("| Informe quantos itens vão ser adicionados à lista: ");
+    if (found){
+        printf("| Enter the number of items to be added to the list: ");
         scanf("%d", &resp);
 
         for (i = 1; i <= resp; i++) {
-            
-            do
-            {
-                printf(" | Informe o nome do produto: "); 
-                scanf("%s", mtlist->nome);
+            do {
+                printf(" | Enter the name of the product: "); 
+                scanf("%s", list->name);
                 getchar();
-                
-            } while (!validarLetras(mtlist->nome, tamanhoString(mtlist->nome)));
+            } while (!validateLetters(list->name, stringLength(list->name)));
 
-            do 
-            {
-                printf(" | Informe a quantidade de produto: ");
-                scanf("%s", produto);
+            do {
+                printf(" | Enter the quantity of product: ");
+                scanf("%s", product);
                 getchar();
-            
-            } while (!lerQuantidade(produto));
-            list = charParaInt(produto);
-            mtlist->quantidadeProduto = list;
-            mtlist->status = '1';
-            gravaLista(mtlist);
-            free(mtlist);
+            } while (!readQuantity(product));
+            listQuantity = charToInt(product);
+            list->quantityProduct = listQuantity;
+            list->status = '1';
+            saveList(list);
+            free(list);
         }  
-       
-      
-    
     } else {
-        
-        printf("Os dados do usuário %s não foram encontrados\n", procurado);
-    
+        printf("User data for %s not found\n", searched);
     }  
     printf("|                                                               | \n");
     printf("| ============================================================= | \n");
-  
-    free(cliente);
+    free(client);
     fclose(fp);
-    printf(" | Pressione qualquer tecla para sair.... ");
+    printf(" | Press any key to exit.... ");
     getchar();   
     return 0;
-
 }
 
 
-
-//função para gravar no arquivo
-int gravaLista(CreateList* mtlist) 
+// function to save to file
+int saveList(CreateList* mtlist)
 {
     FILE* fp2;
-    fp2 = fopen("lista.dat", "ab");
-    
+    fp2 = fopen("list.dat", "ab");
+
+ 
     if (fp2 == NULL) {
-        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Oops! An error occurred while opening the file!\n");
         return 0;
-    
+
     }    
     fwrite(mtlist, sizeof(CreateList), 1, fp2);
     fclose(fp2);
@@ -218,180 +203,169 @@ int gravaLista(CreateList* mtlist)
 }
 
 
-
-//função de pesquisa a partir do username (id do usuário)
-int buscarLista(void)
-{
-    FILE* fp2;
-    CreateList* mtlist;
-    int achou;
-    char procurado[15];
+int searchListByUsername(char *username) {
     
-    fp2 = fopen("lista.dat", "rb");
+    FILE *filePointer;
+    CreateList *list;
+    int found = 0;
+    char searchKey[15];
 
-    if (fp2 == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
+    filePointer = fopen("list.dat", "rb");
+
+    if (filePointer == NULL) {
+        printf("Oops! Error opening file!\n");
         return 0;
-    
     }   
+
     printf("\n\n");
-    system ( " cls  || clear " );
+    system("cls || clear");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" |                   Buscar dados da lista                   | \n");
+    printf(" |                   Search List Data                        | \n");
     printf(" | ========================================================= | \n");
-    printf("Informe o nome do produto: ");
-    scanf(" %30[^\n]", procurado);
+    printf("Enter the product name: ");
+    scanf(" %30[^\n]", searchKey);
     getchar(); 
-    mtlist = (CreateList*) malloc(sizeof(CreateList));
-    achou = 0;
-    
+    list = (CreateList*) malloc(sizeof(CreateList));
+    found = 0;
 
-     while((!achou) && (fread(mtlist, sizeof(CreateList), 1, fp2))) {
-         
-        if ((strcmp(mtlist->nome, procurado) == 0) && (mtlist->status == '1')) {
-            achou = 1;
+    while ((!found) && (fread(list, sizeof(CreateList), 1, filePointer))) {
+        if ((strcmp(list->name, searchKey) == 0) && (list->status == '1')) {
+            found = 1;
         }
-    
     }  
-    if (achou) {
-        system(" cls || clear");
-        printf(" | =================== Lista encontrada ==================== |\n");
-        printf(" |                                                           |\n");
-        printf(" | Nome do produto: %s\n", mtlist->nome);
-        printf(" | Quantidade do produto: %d\n", mtlist->quantidadeProduto);
-        printf(" | Status: %c\n", mtlist->status);
-        printf(" |                                                           | \n");
-        printf(" | ========================================================= | \n");
-        printf(" | Pressione qualquer tecla para sair.... ");
+
+    if (found) {
+        system("cls || clear");
+        printf(" | =================== List Found ==================== |\n");
+        printf(" |                                                     |\n");
+        printf(" | Product Name: %s\n", list->name);
+        printf(" | Product Quantity: %d\n", list->quantityProduct);
+        printf(" | Status: %c\n", list->status);
+        printf(" |                                                     | \n");
+        printf(" | ===================================================== | \n");
+        printf(" | Press any key to exit.... ");
         getchar();
-    
     } else {
-        
-        printf("Os dados da lista %s não foram encontrados\n", procurado);
-    
-    }  
-    free(mtlist);
-    fclose(fp2);  
-    printf(" | Pressione qualquer tecla para sair.... ");
+        printf("List data for %s was not found.\n", searchKey);
+    }
+
+    free(list);
+    fclose(filePointer);  
+    printf(" | Press any key to exit.... ");
     getchar();
     return 0;
-    
 }
 
-
 //função para exibição do que contém na lista
-void exibeListaCompras(CreateList* mtlist) 
-{
-    system(" cls || clear");
-    printf(" | =================== Lista cadastrada ==================== |\n");
+void displayShoppingList(CreateList *list) {
+    system("cls || clear");
+    printf(" | =================== Registered List ==================== |\n");
     printf(" |                                                           | \n");
-    printf(" | Nome do produto: %s\n", mtlist->nome);
-    printf(" | Quantidade do produto: %d\n", mtlist->quantidadeProduto);
-    printf(" | Status: %c\n", mtlist->status);
+    printf(" | Product Name: %s\n", list->name);
+    printf(" | Product Quantity: %d\n", list->quantityProduct);
+    printf(" | Status: %c\n", list->status);
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
-    printf(" | Pressione qualquer tecla para sair.... ");
+    printf(" | Press any key to exit.... ");
     getchar();    
 }
 
 
 //função para edição
-int atualizarLista(void) 
+int updateList(void) 
 {
-
-    FILE* fp2;
+    FILE* fp;
     CreateList* mtlist;
-    char resp;
-    int achou;
-    char procurado[15];
-    char produto[20];
-    int list;
+    char response;
+    int found;
+    char search[15];
+    char product[20];
+    int quantity;
   
-    fp2 = fopen("lista.dat", "r+b");
+    fp = fopen("lista.dat", "r+b");
     
-    if (fp2 == NULL) 
+    if (fp == NULL) 
     {
-        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        printf("Ops! An error occurred while opening the file!\n");
         return 0;
     } 
 
     mtlist = (CreateList*) malloc(sizeof(CreateList));
-    system(" cls || clear ");
+    system("cls || clear");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | -------------------- Atualizar lista -------------------- | \n");
-    printf("Informe o nome do produto: ");
-    scanf("%s", procurado);
+    printf(" | -------------------- Update List ------------------------ | \n");
+    printf("Enter the product name: ");
+    scanf("%s", search);
     getchar(); 
-    achou = 0;
+    found = 0;
 
-    while((!achou) && (fread(mtlist, sizeof(CreateList), 1, fp2))) {
-        if ((strcmp(mtlist->nome, procurado) == 0) && (mtlist->status == '1')) {
-            achou = 1;
+    while((!found) && (fread(mtlist, sizeof(CreateList), 1, fp))) {
+        if ((strcmp(mtlist->name, search) == 0) && (mtlist->status == '1')) {
+            found = 1;
+        }
     }
-    if (achou){
+    if (found){
         exibeListaCompras(mtlist);
-        resp = escAtualizarLista();
+        response = escAtualizarLista();
         printf("\n");
 
-        if (resp == '1'){
-       
-            printf("Informe o novo nome do produto: ");
-            scanf("%49[^\n]", mtlist->nome);
+        if (response == '1'){
+            printf("Enter the new product name: ");
+            scanf("%49[^\n]", mtlist->name);
             getchar();
 
             do
             {
-                printf("Informe a nova quantidade de produto: ");
-                scanf(" %s", produto);
+                printf("Enter the new quantity of product: ");
+                scanf(" %s", product);
                 getchar();
 
-            } while(!lerQuantidade(produto));
-            list = charParaInt(produto);
-            mtlist->quantidadeProduto = list;
+            } while(!lerQuantidade(product));
+            quantity = charParaInt(product);
+            mtlist->quantityProduct = quantity;
 
         }
-        else if (resp == '2'){
+        else if (response == '2'){
             
-            printf("Informe o novo nome do produto (sem acentuação): ");
-            scanf("%49[^\n]", mtlist->nome);
+            printf("Enter the new product name (without accentuation): ");
+            scanf("%49[^\n]", mtlist->name);
             getchar();
 
         }
-        else if (resp == '3'){
+        else if (response == '3'){
             do
             {
-                printf("Informe a nova quantidade de produto: ");
-                scanf("%s", produto);
+                printf("Enter the new quantity of product: ");
+                scanf("%s", product);
                 getchar();
 
-            } while(!lerQuantidade(produto));
-            list = charParaInt(produto);
-            mtlist->quantidadeProduto = list;    
+            } while(!lerQuantidade(product));
+            quantity = charParaInt(product);
+            mtlist->quantityProduct = quantity;    
         }
 
         mtlist->status = '1';      
-        fseek(fp2, (-1)*sizeof(CreateList), SEEK_CUR);
-        fwrite(mtlist, sizeof(CreateList), 1, fp2);        
+        fseek(fp, (-1)*sizeof(CreateList), SEEK_CUR);
+        fwrite(mtlist, sizeof(CreateList), 1, fp);        
         printf(" |                                                           | \n");
         printf(" | --------------------------------------------------------- | \n");
-        printf("Dados editados com sucesso");
+        printf("Data edited successfully");
         
    
     }else {   
         
-        printf("A lista do usuário de username %s não foi encontrada\n", procurado);
+        printf("The list for the username %s was not found\n", search);
     
     }   
     
-    printf(" | Pressione qualquer tecla para sair.... ");
+    printf(" | Press any key to exit.... ");
     getchar();       
-    
-    }   
+      
     gravaLista(mtlist);   
     free(mtlist);
-    fclose(fp2); 
+    fclose(fp); 
 
     return 0;
 
@@ -399,28 +373,26 @@ int atualizarLista(void)
 
 
 //função para escolha do que deseja editar
-char escAtualizarLista(void) 
+char screenUpdateList(void) 
 {
     char esc;
     system(" cls || clear");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | -------------------- Atualizar lista -------------------- | \n");
+    printf(" | -------------------- Update list ------------------------ | \n");
     printf(" |                                                           | \n");
-    printf(" |                 1- Editar tudo                            | \n");
-    printf(" |                 2- Editar nome                            | \n");
-    printf(" |                 3- Editar quantidade de produto           | \n");
-    printf(" |                 0- Voltar à tela principal                | \n");    
+    printf(" |                 1- Edit all                               | \n");
+    printf(" |                 2- Edit name                              | \n");
+    printf(" |                 3- Edit product quantity                  | \n");
+    printf(" |                 0- Return to main screen                   | \n");    
     printf(" |                                                           | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | Selecione uma opção do que você deseja editar: ");
+    printf(" | Select an option of what you want to edit: ");
     scanf("%c", &esc);
     getchar();
 
     return esc;
-
 }
-
 
 //Função para exclusão lógica
 int excluirLista(void)
