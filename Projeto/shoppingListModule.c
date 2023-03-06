@@ -86,7 +86,7 @@ int itemsMinimumQuant(void)
 {
     FILE* fp3;
     Item* it;  
-    fp3 = fopen("items.dat", "rt"); // Only need to open the item file, as it will retrieve information from this file.
+    fp3 = fopen("itens.dat", "rt"); // Only need to open the item file, as it will retrieve information from this file.
     
     if (fp3 == NULL)
     {
@@ -307,8 +307,8 @@ int updateList(void)
         }
     }
     if (found){
-        exibeListaCompras(mtlist);
-        response = escAtualizarLista();
+        displayShoppingList(mtlist);
+        response = screenUpdateList();
         printf("\n");
 
         if (response == '1'){
@@ -322,8 +322,8 @@ int updateList(void)
                 scanf(" %s", product);
                 getchar();
 
-            } while(!lerQuantidade(product));
-            quantity = charParaInt(product);
+            } while(!readQuantity(product));
+            quantity = charToInt(product);
             mtlist->quantityProduct = quantity;
 
         }
@@ -341,8 +341,8 @@ int updateList(void)
                 scanf("%s", product);
                 getchar();
 
-            } while(!lerQuantidade(product));
-            quantity = charParaInt(product);
+            } while(!readQuantity(product));
+            quantity = charToInt(product);
             mtlist->quantityProduct = quantity;    
         }
 
@@ -363,7 +363,7 @@ int updateList(void)
     printf(" | Press any key to exit.... ");
     getchar();       
       
-    gravaLista(mtlist);   
+    saveList(mtlist);   
     free(mtlist);
     fclose(fp); 
 
@@ -441,7 +441,7 @@ int deleteList(void)
 
     if (found){
         
-        exibeListaCompras(mtlist);
+        displayShoppingList(mtlist);
         getchar();
         printf(" | Do you really want to delete the data in this list? (y/n) ");
         scanf("%c", &resp);
@@ -452,8 +452,8 @@ int deleteList(void)
             fseek(fp, (-1)*sizeof(CreateList), SEEK_CUR);
             fwrite(mtlist, sizeof(mtlist), 1, fp);
             printf("\nList deleted successfully!");
-            gravaLista(mtlist);
-            gravaUsuario(client);
+            saveList(mtlist);
+            saveUser(client);
             printf(" Press any key to exit... ");
             getchar();
         

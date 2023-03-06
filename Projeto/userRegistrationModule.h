@@ -21,7 +21,7 @@ void userInfo(void);
 int saveUser(User*);
 int listUserInfo(void);
 void displayUserInfo(User* user);
-int searchUserInfor(void);
+int searchUserInfo(void);
 int deleteUserInfo(void);
 int validateUser(char* user);
 char updateMenu(void);

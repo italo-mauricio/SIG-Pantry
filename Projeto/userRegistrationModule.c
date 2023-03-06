@@ -1,8 +1,9 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "userRegistrationModule.h"
 #include "validacoes.h"
+#include "clearScreen.c"
 
 /*
               Bem-vindo(a) ao módulo de cadastro de usuários!
@@ -75,7 +76,7 @@ void userInfo(void)
 {
     User* client;
 
-    system(" cls || clear");
+    clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                   SIG-Pantry registration                 | \n");
@@ -105,7 +106,7 @@ void userInfo(void)
         scanf("%d",&client->year);
         getchar();
         
-    } while(!validateDate(client->day, client->month, client->year));  
+    } while(!valida_data(client->day, client->month, client->year));  
 
     do {
 
@@ -113,9 +114,9 @@ void userInfo(void)
         scanf("%s",client->usernameUser);
         getchar();
 
-    } while(!((readUsername(client->usernameUser)) && (validateUsername(client->usernameUser))));
+    } while(!((readUsername(client->usernameUser)) && (validateUser(client->usernameUser))));
         char *date;
-        date = getDate();
+        date = verDiaMesAno();
         strcpy(client->userDate, date);
     
         printf(" | User registered on: %s", date);
@@ -145,7 +146,7 @@ int searchUserInfo(void) {
     }   
     
     printf("\n\n");
-    system(" cls || clear ");
+    clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                     Search user data                      | \n");
@@ -164,7 +165,7 @@ int searchUserInfo(void) {
     }
     
     if (found) {
-        system(" cls || clear" );
+        clear();
         printf(" | ================== User found =================== |\n");
         printf(" |                                                           |\n");
         printf(" | Name: %s\n", client->nameUser);
@@ -208,10 +209,10 @@ int updateUser(void) //adapted by @IsaKaillany
 
     client = (User*) malloc(sizeof(User));  
 
-    system("cls || clear");
+    clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ------------------- Update User --------------------------| \n");
+    printf(" | --------------------- Update User ------------------------| \n");
     printf(" | Enter your username: ");
     scanf(" %s", search);
     getchar();
@@ -227,8 +228,8 @@ int updateUser(void) //adapted by @IsaKaillany
 
     if (found)
     {
-        showUserInfo(client);
-        response = chooseUpdateOption();
+        displayUserInfo(client);
+        response = updateMenu();
         printf("\n");
 
         if (response == '1')
@@ -257,7 +258,7 @@ int updateUser(void) //adapted by @IsaKaillany
                 scanf("%d",&client->year);
                 getchar();
 
-            } while(!validate_date(client->day, client->month, client->year));  
+            } while(!valida_data(client->day, client->month, client->year));  
         }
         else if (response == '2')
         {
@@ -289,7 +290,7 @@ int updateUser(void) //adapted by @IsaKaillany
                 scanf("%d",&client->year);
                 getchar();
 
-            } while(!validate_date(client->day, client->month, client->year)); 
+            } while(!valida_data(client->day, client->month, client->year)); 
         }
         client->status = '1';      
         fseek(fp, (-1)*sizeof(User), SEEK_CUR);
@@ -314,7 +315,7 @@ int updateUser(void) //adapted by @IsaKaillany
 char updateMenu(void)
 {    
     char choice;
-    system(" cls || clear");
+    clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ------------------- Update User ------------------------- | \n");
@@ -368,7 +369,7 @@ int deleteUserInfo(void)
 
     user = malloc(sizeof(User));
 
-    system("clear || cls");
+    clear();
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
     printf(" | ---------------------- Delete User ---------------------------- | \n");
@@ -443,7 +444,7 @@ int listUserInfo(void)
 
 // função para exibir as informações do usuário
 void displayUserInfo(User* user) {
-    system("cls || clear");
+    clear();
     printf(" | ================== Registered User ================== |\n");
     printf(" | |\n");
     printf(" | Name: %s\n", user->nameUser);

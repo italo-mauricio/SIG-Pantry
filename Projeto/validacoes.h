@@ -1,12 +1,12 @@
-int validarLetras(char letra[], int tamanho);
+int validateLetters(char letra[], int tamanho);
 int lerLetras(char nome[]);
-int lerQuantidade(char numero[]);
+int readQuantity(char numero[]);
 void deixarTelaLimpa(void);
 int valida_data(int dia, int mes, int ano);
-int lerEmail(char email[]);
-int tamanhoString(char a[]);
-int charParaInt(char *num);
+int readEmail(char email[]);
+int stringLength(char a[]);
+ int charToInt(char *num);
 int poten(int num, int pot);
-int lerUsername(char username[]); 
+int readUsername(char username[]); 
 char* verDiaMesAno(void);
 char* dividPal(char *pal, int del1, int del2);
