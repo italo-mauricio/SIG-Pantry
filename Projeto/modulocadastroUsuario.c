@@ -311,113 +311,107 @@ int updateUser(void) //adapted by @IsaKaillany
 }
 
 //função para selecionar o que quer atualizar
-char escAtualizarUsuario(void)
+char updateMenu(void)
 {    
-    char esc;
+    char choice;
     system(" cls || clear");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ------------------- Atualizar Usuário ------------------- | \n");
+    printf(" | ------------------- Update User ------------------------- | \n");
     printf(" |                                                           | \n");
-    printf(" |                 1- Editar tudo                            | \n");
-    printf(" |                 2- Editar nome                            | \n");
-    printf(" |                 3- Editar e-mail                          | \n");
-    printf(" |                 4- Editar data de nascimento              | \n");                 
-    printf(" |                 0- Voltar à tela principal                | \n");    
+    printf(" |                 1- Edit everything                        | \n");
+    printf(" |                 2- Edit name                              | \n");
+    printf(" |                 3- Edit email                             | \n");
+    printf(" |                 4- Edit date of birth                     | \n");                 
+    printf(" |                 0- Return to main menu                    | \n");    
     printf(" |                                                           | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | Selecione uma opção do que você deseja editar: ");
-    scanf("%c", &esc);
+    printf(" | Select an option of what you want to edit: ");
+    scanf("%c", &choice);
     getchar();
     
-    return esc;
-
+    return choice;
 }
 
 
 //função para gravar no arquivo
-int gravaUsuario(User* cliente) 
+int saveUser(User* client) 
 {
     FILE* fp;
-    fp = fopen("usuario.dat", "ab");
+    fp = fopen("user.dat", "ab");
     if (fp == NULL) {
-        printf("Ops! Não é possível continuar o programa...\n");
+        printf("Oops! Unable to continue the program...\n");
         return 0;
     }
     
-    fwrite(cliente, sizeof(User), 1, fp);
+    fwrite(client, sizeof(User), 1, fp);
     fclose(fp);
     
     return 0;
-
 }
 
-
 //função para remover o cadastro
-int infoExcluirUs(void)
+int deleteUserInfo(void)
 {
     FILE* fp;
-    User* cliente;
-    int achou;
-    char resp;
-    char procurado[20];
-    
-    fp = fopen("usuario.dat", "r+b");
+    User* user;
+    int found;
+    char response;
+    char searched[20];
+
+    fp = fopen("user.dat", "r+b");
 
     if (fp == NULL){
-        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Oops! Error opening file!\n");
         return 0;
     }
-    
-    cliente = (User*) malloc(sizeof(User));
-    
+
+    user = (User*) malloc(sizeof(User));
+
     system( " clear || cls ");
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
-    printf(" | ---------------------- Excluir Usuário ----------------------- | \n");
+    printf(" | ---------------------- Delete User ---------------------------- | \n");
     printf(" |                                                                | \n");
-    printf(" | Informe o username do usuário que você quer excluir: ");
-    scanf(" %30[^\n]", procurado);
+    printf(" | Enter the username of the user you want to delete: ");
+    scanf(" %30[^\n]", searched);
     getchar();  
-    achou = 0;
-    
-    while ((!achou) && (fread(cliente, sizeof(User), 1, fp))){
-        if ((strcmp(cliente->usernameUser, procurado) == 0) && (cliente->status == '1')){
-            achou = 1;
+    found = 0;
+
+    while ((!found) && (fread(user, sizeof(User), 1, fp))){
+        if ((strcmp(user->usernameUser, searched) == 0) && (user->status == '1')){
+            found = 1;
         }
     }
-   
-    if (achou){
-        exibeInfoUsuario(cliente);
-        printf("Deseja realmente excluir os dados deste usuário? (s/n) ");
-        scanf("%c", &resp);
+
+    if (found){
+        displayUserInfo(user);
+        printf("Do you really want to delete this user's data? (y/n) ");
+        scanf("%c", &response);
         
-        if (resp == 's' || resp == 'S'){
-            cliente->status = '0';
+        if (response == 'y' || response == 'Y'){
+            user->status = '0';
             fseek(fp, (-1)*sizeof(User), SEEK_CUR);
-            fwrite(cliente, sizeof(User), 1, fp);
-            printf("\nUsuário excluído com sucesso!");
-            gravaUsuario(cliente);
+            fwrite(user, sizeof(User), 1, fp);
+            printf("\nUser successfully deleted!");
+            saveUser(user);
             getchar();   
         }else{
         
-            printf("\nTudo bem, os dados não foram alterados!");
+            printf("\nAlright, data has not been changed!");
         
         }
     }else{
-    
-        printf("O usuário não foi encontrado!");
-    
+        printf("User not found!");
     }  
-    free(cliente);
+    
+    free(user);
     fclose(fp);   
-    printf(" | Pressione qualquer tecla para sair.... ");
+    printf(" | Press any key to exit.... ");
     getchar();  
-    
-    return 0;
-    
-}
 
+    return 0;
+}
 
 //função para listar os dados do usuário 
 int listaInfoUsuario(void) 
