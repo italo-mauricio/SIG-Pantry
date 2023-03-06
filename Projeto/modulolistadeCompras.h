@@ -1,6 +1,6 @@
 //struct para a montagem da lista
-typedef struct montarLista MontarLista;
-struct montarLista
+typedef struct createList CreateList;
+struct createList
 {
     char nome[20];
     int quantidadeProduto;
@@ -11,12 +11,12 @@ struct montarLista
 
 //cabeçalho das funções usadas no arquivo.c
 void menulistadeCompras(void);
-char telaListadeCompras(void);
+char shoppingListScreen(void);
 int itensQuantMinima(void);
 int infoMontarLista(void);
-void exibeListaCompras(MontarLista* mtlista);
+void exibeListaCompras(CreateList* mtlist);
 int listaComprasPronta(void); 
-int gravaLista(MontarLista*);
+int gravaLista(CreateList*);
 int buscarLista(void);
 void pesquisarLista(void);
 int atualizarLista(void);
