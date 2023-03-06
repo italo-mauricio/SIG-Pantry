@@ -34,7 +34,7 @@ char screenRegisterItem(void);
 int infoItem(void);
 int listarItens(void);
 int searchItemInfo(void);
-int telaAtualizarItem(void);
+int updateItemScreen(void);
 char escAtualizarItem(void);
 int excluirItem(void);
 int saveItem(Item* it); 

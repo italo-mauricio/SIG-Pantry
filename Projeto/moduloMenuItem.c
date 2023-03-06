@@ -428,10 +428,8 @@ int updateItemScreen(void)
     char minStockStr[20];
     char search[20];
 
-    scss
-        Copy code
-            fp = fopen("user.dat", "r+b");
-
+ 
+    fp = fopen("user.dat", "r+b");
     if (fp == NULL)
     {
         printf("Oops! An error occurred while opening the file!\n");
