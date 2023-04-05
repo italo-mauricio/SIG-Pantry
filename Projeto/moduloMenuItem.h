@@ -39,7 +39,7 @@ char updateItemMenu(void);
 int deleteItem(void);
 int saveItem(Item* it); 
 int entryItem(void);
-int saidaItem(void);
+int exitItem(void);
 char categoryScreen(void);
 char scrennStorageLocation(void);
 int validaCod(char* item);
