@@ -751,26 +751,26 @@ void displayItemInfo(Item* it)
     char aux[20];
     char aux2[20];
 
-    if (it->categoria == '1'){
-        strcpy(aux, "Higiene pessoal");
+    if (it->category == '1'){
+        strcpy(aux, "Personal Hygiene");
     
-    }else if(it->categoria == '2'){
-        strcpy(aux, "Limpeza");
+    }else if(it->category == '2'){
+        strcpy(aux, "Cleaning");
     
     }else{
         strcpy(aux, "Food");
     }
 
-    if (it->localArmazenamento == '1'){
-        strcpy(aux2, "Geladeira");
+    if (it->storageLocation == '1'){
+        strcpy(aux2, "Refrigerator");
     
-    }else if(it->localArmazenamento == '2'){
-        strcpy(aux2, "Armário de cozinha");
+    }else if(it->storageLocation == '2'){
+        strcpy(aux2, "Kitchen Cupboard");
     
-    }else if(it->localArmazenamento == '3'){
-        strcpy(aux2, "Área de serviço");        
+    }else if(it->storageLocation == '3'){
+        strcpy(aux2, "Service Area");        
     
-    }else if(it->localArmazenamento == '4'){
+    }else if(it->storageLocation == '4'){
         strcpy(aux2, "Banheiro");          
     
     }else{
@@ -781,13 +781,13 @@ void displayItemInfo(Item* it)
     printf(" | ===================== Item List ======================== |\n");
     printf(" |                                                           |\n");       
     printf(" | Product name: %s\n", it->productName);    
-    printf(" | Brand name: %s\n", it->brandName);    
-    printf(" | Barcode: %s\n", it->barcode);    
-    printf(" | Minimum stock level: %d\n", it->minStockLevel);
+    printf(" | Brand name: %s\n", it->nameBrand);    
+    printf(" | Barcode: %s\n", it->barCode);    
+    printf(" | Minimum stock level: %d\n", it->minimumInventory);
     printf(" | Expiration date: %d/%d/%d\n", it->day, it->month, it->year); 
     printf(" | Product category: %s\n", aux);
     printf(" | Storage location: %s\n", aux2);
-    printf(" | Product quantity: %d\n", it->productQuantity);
+    printf(" | Product quantity: %d\n", it->quantProduct);
     printf(" | Status: %c\n", it->status);
     printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
@@ -852,7 +852,7 @@ int entryItem(void)
         found2 = 0;
     
         while(((!found2) && (fread(it, sizeof(Item), 1, fp3)))){
-            if ((strcmp(it->barcode,  search) == 0) && (it->status == '1')) {
+            if ((strcmp(it->barCode,  search) == 0) && (it->status == '1')) {
                 found2 = 1;
             }
 
@@ -865,9 +865,9 @@ int entryItem(void)
                 
             } while(!readQuantity(quantity));
             stock = charToInt(quantity);
-            stock1 = it->quantity + stock;
-            it->entryQuantity = stock;
-            it->quantity = stock1;
+            stock1 = it->quantProduct + stock;
+            it->quantEntry = stock;
+            it->quantProduct = stock1;
 
             do 
             {        
@@ -883,7 +883,7 @@ int entryItem(void)
                     
             } while(!validate_date(it->day, it->month, it->year)); 
             
-            it->type = 'E';
+            it->tipe = 'E';
             printf("Are you sure you want to add this product to the pantry (y/n)? ");
             scanf("%c", &resp); 
 
@@ -976,7 +976,7 @@ int saidaItem(void)
         encontrou = 0;
     
         while((!encontrou) && (fread(it, sizeof(Item), 1, fp3))) {
-            if ((strcmp(it->codigoBarras, procura) == 0) && (it->status == '1')) {
+            if ((strcmp(it->barCode, procura) == 0) && (it->status == '1')) {
             encontrou = 1;
             }  
 
