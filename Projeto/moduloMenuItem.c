@@ -762,16 +762,16 @@ void displayItemInfo(Item* it)
         strcpy(aux, "Alimento");
     }
 
-    if (it->localArmazenamento == '1'){
+    if (it->storageLocation == '1'){
         strcpy(aux2, "Geladeira");
     
-    }else if(it->localArmazenamento == '2'){
+    }else if(it->storageLocation == '2'){
         strcpy(aux2, "Armário de cozinha");
     
-    }else if(it->localArmazenamento == '3'){
+    }else if(it->storageLocation == '3'){
         strcpy(aux2, "Área de serviço");        
     
-    }else if(it->localArmazenamento == '4'){
+    }else if(it->storageLocation == '4'){
         strcpy(aux2, "Banheiro");          
     
     }else{
