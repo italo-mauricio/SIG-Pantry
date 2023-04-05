@@ -209,19 +209,16 @@ int infoItem(void)
         yearControl = charParaInt(dateYear);
         yearControl += 2000;
 
-        if (it->dia < dayControl && it->mes <= monthControl && it->ano == yearControl)
+        if (it->day < dayControl && it->month <= monthControl && it->year == yearControl)
         {
-
                 printf("| The product is expired, please exchange it");
         }
-        else if (it->dia == dayControl && it->mes == monthControl && it->ano == yearControl)
+        else if (it->day == dayControl && it->month == monthControl && it->year == yearControl)
         {
-
                 printf(" | The product expires today, be careful!");
         }
-        else if (it->dia > dayControl && it->mes >= monthControl && it->ano == yearControl)
+        else if (it->day > dayControl && it->month >= monthControl && it->year == yearControl)
         {
-
                 printf(" | The product is within its validity period!");
         }
 
@@ -341,9 +338,9 @@ int searchItemInfo(void) {
 
     while ((!found) && (fread(it, sizeof(Item), 1, fp3)))
     {
-        printf("Barcode |%s|\n", it->barcode);
+        printf("Barcode |%s|\n", it->barCode);
 
-        if ((strcmp(it->barcode, searched) == 0) && (it->status == '1'))
+        if ((strcmp(it->barCode, searched) == 0) && (it->status == '1'))
         {
                 found = 1;
         }
@@ -389,14 +386,14 @@ int searchItemInfo(void) {
         printf(" | ===================== Item List ==================== |\n");
         printf(" |                                                           |\n");
         printf(" | Product name: %s\n", it->productName);
-        printf(" | Brand name: %s\n", it->brandName);
-        printf(" | Barcode: %s\n", it->barcode);
-        printf(" | Minimum stock of the product: %d\n", it->minStock);
+        printf(" | Brand name: %s\n", it->nameBrand);
+        printf(" | Barcode: %s\n", it->barCode);
+        printf(" | Minimum stock of the product: %d\n", it->minimumInventory);
         printf(" | Expiration date: %d/%d/%d\n", it->day, it->month, it->year);
-        printf(" | Entry day: %s\n", it->currentDate);
+        printf(" | Entry day: %s\n", it->dayEntry);
         printf(" | Product category: %s\n", aux);
         printf(" | Storage location: %s\n", aux2);
-        printf(" | Product quantity: %d\n", it->quantity);
+        printf(" | Product quantity: %d\n", it->quantProduct);
         printf(" | Status: %c\n", it->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
@@ -436,7 +433,7 @@ int updateItemScreen(void)
         return 0;
     }
 
-    customer = (User *)malloc(sizeof(User));
+    customer = (User* )malloc(sizeof(User));
 
     clear();
     printf(" | ========================================================= | \n");
@@ -476,7 +473,7 @@ int updateItemScreen(void)
 
         while ((!match) && (fread(it, sizeof(Item), 1, fp3)))
         {
-                if ((strcmp(it->barcode, search) == 0) && (it->status == '1'))
+                if ((strcmp(it->barCode, search) == 0) && (it->status == '1'))
                 {
                     match = 1;
                 }
@@ -496,7 +493,7 @@ int updateItemScreen(void)
                     getchar();
 
                     printf(" | Enter the new brand name (without accents): ");
-                    scanf("%30[^\n]", it->brandName);
+                    scanf("%30[^\n]", it->nameBrand);
                     getchar();
 
                     do
@@ -507,7 +504,7 @@ int updateItemScreen(void)
 
                     } while (!readQuantity(minStockStr));
                     minStock = charToInt(minStockStr);
-                    it->minStock = minStock;
+                    it->minimumInventory = minStock;
 
                     do
                     {
@@ -533,71 +530,71 @@ int updateItemScreen(void)
 
                     } while (!readQuantity(quantity));
                     stock = charToInt(quantity);
-                    it->quantity = stock;
+                    it->quantEntry = stock;
                 }
                 else if (response == '2')
                 {
                     do
                     {
-                        printf("Enter the new product name: ")
-                            scanf("%30[^\n]", it->nomeProduto);
+                        printf("Enter the new product name: ");
+                        scanf("%30[^\n]", it->productName);
                         getchar();
 
-                    } while (!it->nomeProduto);
+                    } while (!it->productName);
                 }
-                else if (resp == '3')
+                else if (response == '3')
                 {
                     do
                     {
                         printf(" | Enter the new brand name: ");
-                        scanf("%30[^\n]", it->nomeMarca);
+                        scanf("%30[^\n]", it->nameBrand);
                         getchar();
-                    } while (!it->nomeMarca);
+                    } while (!it->nameBrand);
                 }
-                else if (resp == '4')
+                else if (response == '4')
                 {
                     do
                     {
                         printf(" | Enter the minimum stock for this product: ");
-                        scanf("%s", estoqueMin);
+                        scanf("%s", minStock);
                         getchar();
-                    } while (!lerQuantidade(estoqueMin));
-                    estoqueM = charParaInt(estoqueMin);
-                    it->estoqueMinimo = estoqueM;
+                    } while (!lerQuantidade(minStock));
+                    minStock = charParaInt(minStock);
+                    it->minimumInventory = minStock;
                 }
-                else if (resp == '5')
+                else if (response == '5')
                 {
                     do
                     {
                         printf(" | Enter the new expiration date: ");
-                        scanf("%d", &it->dia);
+                        scanf("%d", &it->day);
                         getchar();
                         printf(" | Enter the new expiration month: ");
-                        scanf("%d", &it->mes);
+                        scanf("%d", &it->month);
                         getchar();
                         printf(" | Enter the new expiration year: ");
-                        scanf("%d", &it->ano);
+                        scanf("%d", &it->year);
                         getchar();
-                    } while (!valida_data(it->dia, it->mes, it->ano));
+                    } while (!valida_data(it->day, it->month, it->year));
                 }
-                else if (resp == '6')
+                else if (response == '6')
                 {
-                    it->categoria = telaEscCategoria();
+                    it->category = telaEscCategoria();
                 }
-                else if (resp == '7')
+                else if (response == '7')
                 {
-                    it->localArmazenamento = telaEscLocalArmaz();
+                    it->storageLocation = telaEscLocalArmaz();
                 }
-                else if (resp == '8')
+                else if (response == '8')
                 {
                     do
                     {
                         printf(" | Enter the product quantity: ");
-                        scanf("%s", quantidade);
+                        scanf("%s", quantity);
                         getchar();
-                    } while (!lerQuantidade(quantidade));
-                    estoque = charParaInt(quantidade);
-                    it->quantProduto = estoque;
+                    } while (!lerQuantidade(quantity));
+                    stock = charParaInt(quantity);
+                    it->minimumInventory = stock;
                 }
                 it->status = '1';
                 fseek(fp, (-1) * sizeof(Item), SEEK_CUR);
@@ -611,14 +608,14 @@ int updateItemScreen(void)
         }
         else
         {
-                printf("The barcode item %s was not found\n", procurado);
+                printf("The barcode item %s was not found\n", searched);
         }
     }
     else
     {
         printf("The user was not found");
     }
-    free(cliente);
+    free(customer);
     fclose(fp);
     printf(" | Press any key to exit.... ");
     getchar();
@@ -683,7 +680,7 @@ int deleteItem(void)
     found = 0;
 
     while ((!found) && (fread(it, sizeof(Item), 1, fp3))){
-        if ((strcmp(it->codigoBarras, searched) == 0) && (it->status == '1')){
+        if ((strcmp(it->barCode, searched) == 0) && (it->status == '1')){
             found = 1;
         }
     }
@@ -755,10 +752,10 @@ void displayItemInfo(Item* it)
     char aux[20];
     char aux2[20];
 
-    if (it->categoria == '1'){
+    if (it->category == '1'){
         strcpy(aux, "Higiene pessoal");
     
-    }else if(it->categoria == '2'){
+    }else if(it->category == '2'){
         strcpy(aux, "Limpeza");
     
     }else{
