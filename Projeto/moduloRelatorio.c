@@ -267,23 +267,23 @@ void menuLocalRelatory(void)
     char choice;
     do
     {
-        choice = relatorioLocalArmaz();
+        choice = stockRelatoryLocal();
         switch (choice)
         {
             case '1':
-                exibirGeladeira();
+                displayRefrigerator();
                 break; 
             case '2':
-                exibirArmarioCozinha();
+                displayKitchenCabinet();
                 break;
             case '3':
-                exibirAreaServ();
+                displayServiceArea();
                 break;
             case '4':
-                exibirBanheiro();
+                displayBathroom();
                 break;  
             case '5':
-                exibirGuardaRoupa();
+                displayCloset();
                 break;      
         }
 
@@ -292,7 +292,7 @@ void menuLocalRelatory(void)
 } 
 
 
-char relatorioLocalArmaz(void)
+char stockRelatoryLocal(void)
 {
     char esc;
     clear();
@@ -318,7 +318,7 @@ char relatorioLocalArmaz(void)
 
 
 //função para retornar o relatório dos itens da geladeira
-int exibirGeladeira(void)
+int displayRefrigerator(void)
 {
     FILE* fp3;
     Item* it;
@@ -368,7 +368,7 @@ int exibirGeladeira(void)
 
 
 //função para retornar o relatório dos itens do armário da cozinha
-int exibirArmarioCozinha(void)
+int displayKitchenCabinet(void)
 {
     FILE* fp3;
     Item* it;
@@ -418,7 +418,7 @@ int exibirArmarioCozinha(void)
 
 
 //função para retornar o relatório dos itens da área de serviço
-int exibirAreaServ(void)
+int displayServiceArea(void)
 {
     FILE* fp3;
     Item* it;
@@ -470,7 +470,7 @@ int exibirAreaServ(void)
 
 
 //função para retornar o relatório dos itens do guarda-roupa
-int exibirGuardaRoupa(void)
+int displayCloset(void)
 {
     FILE* fp3;
     Item* it;
@@ -521,7 +521,7 @@ int exibirGuardaRoupa(void)
 
 
 //função para retornar o relatório dos itens do banheiro
-int exibirBanheiro(void)
+int displayBathroom(void)
 {
     FILE* fp3;
     Item* it;
