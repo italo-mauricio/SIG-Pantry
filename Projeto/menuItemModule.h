@@ -32,14 +32,14 @@ struct item
 void moduloMenuItem(void);
 char screenRegisterItem(void);
 int infoItem(void);
-int listarItens(void);
+int listItems(void);
 int searchItemInfo(void);
 int updateItemScreen(void);
 char updateItemMenu(void);
 int deleteItem(void);
 int saveItem(Item* it); 
-int entradaItem(void);
-int saidaItem(void);
+int entryItem(void);
+int exitItem(void);
 char categoryScreen(void);
 char scrennStorageLocation(void);
 int validaCod(char* item);
