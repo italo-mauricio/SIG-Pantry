@@ -390,7 +390,7 @@ int searchItemInfo(void) {
         printf(" | Barcode: %s\n", it->barCode);
         printf(" | Minimum stock of the product: %d\n", it->minimumInventory);
         printf(" | Expiration date: %d/%d/%d\n", it->day, it->month, it->year);
-        printf(" | Entry day: %s\n", it->dayEntry);
+        printf(" | Entry day: %d\n", it->dayEntry);
         printf(" | Product category: %s\n", aux);
         printf(" | Storage location: %s\n", aux2);
         printf(" | Product quantity: %d\n", it->quantProduct);
@@ -482,7 +482,7 @@ int updateItemScreen(void)
         if (match)
         {
                 searchItemInfo();
-                response = chooseUpdateItem();
+                response = updateItemMenu();
                 printf("\n");
 
                 if (response == '1')
@@ -518,9 +518,9 @@ int updateItemScreen(void)
                         scanf("%d", &it->year);
                         getchar();
 
-                    } while (!valid_date(it->day, it->month, it->year));
-                    it->category = chooseCategoryScreen();
-                    it->storageLocation = chooseStorageLocationScreen();
+                    } while (!valida_data(it->day, it->month, it->year));
+                    it->category = categoryScreen();
+                    it->storageLocation = scrennStorageLocation();
 
                     do
                     {
