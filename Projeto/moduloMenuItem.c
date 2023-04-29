@@ -21,7 +21,7 @@ void moduloMenuItem(void)
 {
     char choice;
     do {
-        choice = telaRegistrarItem();
+        choice = screenRegisterItem();
         switch(choice) {
             case '1':
                 infoItem(); //informações do cad de um item novo
