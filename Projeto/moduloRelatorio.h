@@ -28,15 +28,18 @@ struct noItem
 
 
 //cabeçalho da função usada no arquivo.c
-char telaRelatorio(void);
-char moduloRelatorio (void);
+void displayInfoItem(Item* it);
+char relatoryScreen(void);
+char moduloRelatorio(void);
+char relatoryCategory(void);
+void menuCategory(void);
 char relatorioLocalArmaz(void);
 char relatorioCategoria(void);
 void escRelatoriosCategoria(void);
-void escRelatoriosLocal(void);
-int exibirItensHigiene(void);
-int exibirItensLimpeza(void);
-int exibirItensAlimento(void);
+void menuLocalRelatory(void);
+int displayHygieneItens(void);
+int displayCleaningItens(void);
+int displayFoodItens(void);
 int exibirGeladeira(void);
 int exibirArmarioCozinha(void);
 int exibirAreaServ(void);

@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "moduloRelatorio.h"
 #include <string.h>
 #include "validacoes.h"
-#include "moduloMenuItem.h"
+#include "menuItemModule.h"
+#include "moduloRelatorio.h"
 #include "shoppingListModule.h"
 #include "userRegistrationModule.h"
-#include "clearScreen.c";
+#include "clearScreen.c"
 
 
 /*
@@ -21,35 +21,35 @@
 //função principal de navegação
 char moduloRelatorio(void)
 {
-    char escolha;
-    NoItem* lista;
+    char choice;
+    NoItem* list;
     do {
-        escolha = telaRelatorio();
-        switch (escolha) {
+        choice = relatoryScreen();
+        switch (choice) {
             case '1':
-                escRelatoriosCategoria(); //com base na categoria selecionada
+                menuCategory(); //com base na categoria selecionada
                 break;
             case '2':
-                escRelatoriosLocal(); //com base no local selecionado para armazenar
+                menuLocalRelatory(); //com base no local selecionado para armazenar
                 break; 
             case '3':
-                lista = listaOrdenadaItens(); //itens em ordem alfabética
-                exibeOrdemItem(lista);
+                list = listaOrdenadaItens(); //itens em ordem alfabética
+                exibeOrdemItem(list);
                 break; 
             default :
                 printf ("Opção inválida!");
                 break;
         }
 
-    } while(escolha != '0');
+    } while(choice != '0');
     
-    return escolha;
+    return choice;
 
 }
 
 
 // tela principal
-char telaRelatorio(void)
+char relatoryScreen(void)
 {
     char esc;
     clear();
@@ -73,32 +73,32 @@ char telaRelatorio(void)
 
 
 //navegação da escolha da categoria
-void escRelatoriosCategoria(void)
+void menuCategory(void)
 {
-    char opcao;
+    char choice;
     do
     {
-        opcao = relatorioCategoria();
-        switch (opcao)
+        choice = relatoryCategory();
+        switch (choice)
         {
             case '1':
-                exibirItensHigiene();
+                displayHygieneItens();
                 break; 
             case '2':
-                exibirItensLimpeza();
+                displayCleaningItens();
                 break;
             case '3':
-                exibirItensAlimento();
+                displayFoodItens();
                 break;
         }
 
-    } while (opcao != '0');
+    } while (choice != '0');
 
 } 
 
 
 //função para selecionar uma das categorias
-char relatorioCategoria(void)
+char relatoryCategory(void)
 {
     char esc;
     clear();
@@ -122,7 +122,7 @@ char relatorioCategoria(void)
 
 
 //função para retornar o relatório dos itens de higiente
-int exibirItensHigiene(void)
+int displayHygieneItens(void)
 {
     FILE* fp3;
     Item* it;
@@ -146,7 +146,7 @@ int exibirItensHigiene(void)
 
     while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->category == '1')) && (it->status == '1')){
-            exibeInfoItem(it);
+            displayInfoItem(it);
             achou = 1;
         }
 
@@ -156,21 +156,18 @@ int exibirItensHigiene(void)
         return 0;
     
     } else {
-        
         printf(" | Nenhum relatório para ser exibido");
-    
     }
     free(it);
     fclose(fp3);
     getchar();
 
     return 0;
-
 } 
 
 
 //função para retornar o relatório dos itens de limpeza
-int exibirItensLimpeza(void)
+int displayCleaningItens(void)
 {
     FILE* fp3;
     Item* it;
@@ -195,7 +192,7 @@ int exibirItensLimpeza(void)
 
     while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->category == '2')) && (it->status == '1')){
-            exibeInfoItem(it);
+            displayInfoItem(it);
             achou = 1;
         }
 
@@ -220,7 +217,7 @@ int exibirItensLimpeza(void)
 
 
 //função para retornar o relatório dos itens de alimento
-int exibirItensAlimento(void)
+int displayFoodItens(void)
 {
     FILE* fp3;
     Item* it;
@@ -245,7 +242,7 @@ int exibirItensAlimento(void)
 
     while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->category == '3')) && (it->status == '1')){
-            exibeInfoItem(it);
+            displayInfoItem(it);
             achou = 1;
         }
 
@@ -270,13 +267,13 @@ int exibirItensAlimento(void)
 
 
 //navegação da escolha do local
-void escRelatoriosLocal(void)
+void menuLocalRelatory(void)
 {
-    char opcao;
+    char choice;
     do
     {
-        opcao = relatorioLocalArmaz();
-        switch (opcao)
+        choice = relatorioLocalArmaz();
+        switch (choice)
         {
             case '1':
                 exibirGeladeira();
@@ -295,7 +292,7 @@ void escRelatoriosLocal(void)
                 break;      
         }
 
-    } while (opcao != '0');
+    } while (choice != '0');
 
 } 
 
@@ -349,7 +346,7 @@ int exibirGeladeira(void)
 
     while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->storageLocation == '1')) && (it->status == '1')){
-            exibeInfoItem(it);
+            displayInfoItem(it);
             achou = 1;
 
         }
@@ -399,7 +396,7 @@ int exibirArmarioCozinha(void)
 
     while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->storageLocation == '2')) && (it->status == '1')){
-            exibeInfoItem(it);
+            displayInfoItem(it);
             achou = 1;
             
         }
@@ -450,7 +447,7 @@ int exibirAreaServ(void)
 
     while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->storageLocation == '3')) && (it->status == '1')){
-            exibeInfoItem(it);
+            displayInfoItem(it);
             achou = 1;
             
         }
@@ -502,7 +499,7 @@ int exibirGuardaRoupa(void)
 
     while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->storageLocation == '5')) && (it->status == '1')){
-            exibeInfoItem(it);
+            displayInfoItem(it);
             achou = 1;
             
         }
@@ -552,7 +549,7 @@ int exibirBanheiro(void)
 
     while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->storageLocation == '4')) && (it->status == '1')){
-            exibeInfoItem(it);
+            displayInfoItem(it);
             achou = 1;
             
         }
