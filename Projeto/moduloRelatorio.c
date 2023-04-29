@@ -8,45 +8,43 @@
 #include "userRegistrationModule.h"
 #include "clearScreen.c"
 
-
 /*
               Bem-vindo(a) aos relatórios!
-        
+
         Neste módulo serão mostrados os relatórios do projeto!
 
 
 */
 
-
-//função principal de navegação
+// função principal de navegação
 char moduloRelatorio(void)
 {
     char choice;
-    NoItem* list;
-    do {
+    NoItem *list;
+    do
+    {
         choice = relatoryScreen();
-        switch (choice) {
-            case '1':
-                menuCategory(); //com base na categoria selecionada
-                break;
-            case '2':
-                menuLocalRelatory(); //com base no local selecionado para armazenar
-                break; 
-            case '3':
-                list = listaOrdenadaItens(); //itens em ordem alfabética
-                exibeOrdemItem(list);
-                break; 
-            default :
-                printf ("Opção inválida!");
-                break;
+        switch (choice)
+        {
+        case '1':
+            menuCategory(); // com base na categoria selecionada
+            break;
+        case '2':
+            menuLocalRelatory(); // com base no local selecionado para armazenar
+            break;
+        case '3':
+            list = ordenedListItens(); // itens em ordem alfabética
+            displayOrderItem(list);
+            break;
+        default:
+            printf("Opção inválida!");
+            break;
         }
 
-    } while(choice != '0');
-    
+    } while (choice != '0');
+
     return choice;
-
 }
-
 
 // tela principal
 char relatoryScreen(void)
@@ -66,13 +64,11 @@ char relatoryScreen(void)
     printf(" | Chooose an option: ");
     scanf("%c", &esc);
     getchar();
-    
-    return esc;
 
+    return esc;
 }
 
-
-//navegação da escolha da categoria
+// navegação da escolha da categoria
 void menuCategory(void)
 {
     char choice;
@@ -81,23 +77,21 @@ void menuCategory(void)
         choice = relatoryCategory();
         switch (choice)
         {
-            case '1':
-                displayHygieneItens();
-                break; 
-            case '2':
-                displayCleaningItens();
-                break;
-            case '3':
-                displayFoodItens();
-                break;
+        case '1':
+            displayHygieneItens();
+            break;
+        case '2':
+            displayCleaningItens();
+            break;
+        case '3':
+            displayFoodItens();
+            break;
         }
 
     } while (choice != '0');
+}
 
-} 
-
-
-//função para selecionar uma das categorias
+// função para selecionar uma das categorias
 char relatoryCategory(void)
 {
     char esc;
@@ -115,45 +109,48 @@ char relatoryCategory(void)
     printf(" | Choose an option: ");
     scanf("%c", &esc);
     getchar();
-    
-    return esc;
 
+    return esc;
 }
 
-
-//função para retornar o relatório dos itens de higiente
+// função para retornar o relatório dos itens de higiente
 int displayHygieneItens(void)
 {
-    FILE* fp3;
-    Item* it;
+    FILE *fp3;
+    Item *it;
     int found;
-        
+
     fp3 = fopen("itens.dat", "rb");
 
-    if (fp3 == NULL) 
+    if (fp3 == NULL)
     {
         printf("Oops! An error occurred while opening the file!\n");
         return 0;
     }
-        
+
     clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | ------------| Report of personal hygiene items |------------------ | \n");
     printf(" |                                                                      | \n");
-    it = (Item*) malloc(sizeof(Item));
+    it = (Item *)malloc(sizeof(Item));
     found = 0;
 
-    while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->category == '1')) && (it->status == '1')){
+    while ((fread(it, sizeof(Item), 1, fp3)))
+    {
+        if (((it->category == '1')) && (it->status == '1'))
+        {
             displayInfoItem(it);
             found = 1;
         }
     }
 
-    if (found){
+    if (found)
+    {
         return 0;
-    } else {
+    }
+    else
+    {
         printf(" | No report to be displayed");
     }
 
@@ -162,43 +159,45 @@ int displayHygieneItens(void)
     getchar();
 
     return 0;
+}
 
-} 
-
-
-//função para retornar o relatório dos itens de limpeza
+// função para retornar o relatório dos itens de limpeza
 int displayCleaningItens(void)
 {
-    FILE* fp3;
-    Item* it;
+    FILE *fp3;
+    Item *it;
     int found;
-        
+
     fp3 = fopen("itens.dat", "rb");
 
-    if (fp3 == NULL) 
+    if (fp3 == NULL)
     {
         printf("Oops! An error occurred while opening the file!\n");
         return 0;
     }
-        
+
     clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | -----------------| Report of cleaning items |----------------------- | \n");
     printf(" |                                                                      | \n");
-    it = (Item*) malloc(sizeof(Item));
+    it = (Item *)malloc(sizeof(Item));
     found = 0;
 
-
-    while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->category == '2')) && (it->status == '1')){
+    while ((fread(it, sizeof(Item), 1, fp3)))
+    {
+        if (((it->category == '2')) && (it->status == '1'))
+        {
             displayInfoItem(it);
             found = 1;
         }
-    } 
-    if (found){
+    }
+    if (found)
+    {
         return 0;
-    } else {
+    }
+    else
+    {
         printf(" | No report to display");
     }
     free(it);
@@ -206,21 +205,18 @@ int displayCleaningItens(void)
     getchar();
 
     return 0;
-   
-} 
+}
 
-
-
-//função para retornar o relatório dos itens de alimento
+// função para retornar o relatório dos itens de alimento
 int displayFoodItens(void)
 {
-    FILE* fp3;
-    Item* it;
+    FILE *fp3;
+    Item *it;
     int found;
 
     fp3 = fopen("itens.dat", "rb");
 
-    if (fp3 == NULL) 
+    if (fp3 == NULL)
     {
         printf("Oops! An error occurred while opening the file!\n");
         return 0;
@@ -231,68 +227,65 @@ int displayFoodItens(void)
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | ----------------| Report of food items |----------------------------- | \n");
     printf(" |                                                                      | \n");
-    it = (Item*) malloc(sizeof(Item));
+    it = (Item *)malloc(sizeof(Item));
     found = 0;
 
-    while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->category == '3')) && (it->status == '1')){
+    while ((fread(it, sizeof(Item), 1, fp3)))
+    {
+        if (((it->category == '3')) && (it->status == '1'))
+        {
             displayInfoItem(it);
             found = 1;
         }
+    }
 
-    }    
-
-    if (found){
+    if (found)
+    {
 
         return 0;
-
-    } else {
+    }
+    else
+    {
 
         printf(" | No report to be displayed");
-
     }
     free(it);
     fclose(fp3);
     getchar();
 
     return 0;
+}
 
-    
-} 
-
-
-//navegação da escolha do local
+// navegação da escolha do local
 void menuLocalRelatory(void)
 {
     char choice;
     do
     {
-        choice = relatorioLocalArmaz();
+        choice = stockRelatoryLocal();
         switch (choice)
         {
-            case '1':
-                exibirGeladeira();
-                break; 
-            case '2':
-                exibirArmarioCozinha();
-                break;
-            case '3':
-                exibirAreaServ();
-                break;
-            case '4':
-                exibirBanheiro();
-                break;  
-            case '5':
-                exibirGuardaRoupa();
-                break;      
+        case '1':
+            displayRefrigerator();
+            break;
+        case '2':
+            displayKitchenCabinet();
+            break;
+        case '3':
+            displayServiceArea();
+            break;
+        case '4':
+            displayBathroom();
+            break;
+        case '5':
+            displayCloset();
+            break;
         }
 
     } while (choice != '0');
+}
 
-} 
-
-
-char relatorioLocalArmaz(void)
+char stockRelatoryLocal(void)
 {
     char esc;
     clear();
@@ -312,386 +305,374 @@ char relatorioLocalArmaz(void)
     scanf("%c", &esc);
     getchar();
     return esc;
-
-
 }
 
-
-//função para retornar o relatório dos itens da geladeira
-int exibirGeladeira(void)
+// função para retornar o relatório dos itens da geladeira
+int displayRefrigerator(void)
 {
-    FILE* fp3;
-    Item* it;
-    int achou;
+    FILE *fp3;
+    Item *it;
+    int found;
 
-    fp3 = fopen("itens.dat", "rb");
+    fp3 = fopen("items.dat", "rb");
 
-    if (fp3 == NULL) 
+    if (fp3 == NULL)
     {
-        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        printf("Oops! An error occurred while opening the file!\n");
         return 0;
     }
-    
+
     clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | ----------------| Relatório dos itens da geladeira |---------------- | \n");
-    printf(" |                                                                      | \n");
-    it = (Item*) malloc(sizeof(Item));
-    achou = 0;
+    printf(" | ----------------| Refrigerator Items Report |-----------------------| \n");
+    printf(" | | \n");
+    it = (Item *)malloc(sizeof(Item));
+    found = 0;
 
-    while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->storageLocation == '1')) && (it->status == '1')){
+    while ((fread(it, sizeof(Item), 1, fp3)))
+    {
+        if (((it->storageLocation == '1')) && (it->status == '1'))
+        {
             displayInfoItem(it);
-            achou = 1;
-
+            found = 1;
         }
-
-    } 
-    
-    if (achou){
-        
-        return 0;
-    
-    } else {
-        
-        printf(" | Nenhum relatório para ser exibido");
-  
-    
     }
+
+    if (found)
+    {
+        return 0;
+    }
+    else
+    {
+        printf(" | No report to display");
+    }
+
     free(it);
     fclose(fp3);
     getchar();
     return 0;
-    
-} 
+}
 
-
-//função para retornar o relatório dos itens do armário da cozinha
-int exibirArmarioCozinha(void)
+// função para retornar o relatório dos itens do armário da cozinha
+int displayKitchenCabinet(void)
 {
-    FILE* fp3;
-    Item* it;
-    int achou;
-    
+    FILE *fp3;
+    Item *it;
+    int found;
+
     fp3 = fopen("itens.dat", "rb");
 
-    if (fp3 == NULL) 
+    if (fp3 == NULL)
     {
-        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        printf("Oops! An error occurred while opening the file!\n");
         return 0;
     }
-    
+
     clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | ----------| Relatório dos itens do armário da cozinha |------------- | \n");
-    printf(" |                                                                      | \n");
-    it = (Item*) malloc(sizeof(Item));
-    achou = 0;
+    printf(" | -------------| Kitchen cabinet items report |---------------------- | \n");
+    printf(" | | \n");
+    it = (Item *)malloc(sizeof(Item));
+    found = 0;
 
-    while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->storageLocation == '2')) && (it->status == '1')){
+    while ((fread(it, sizeof(Item), 1, fp3)))
+    {
+        if (((it->storageLocation == '2')) && (it->status == '1'))
+        {
             displayInfoItem(it);
-            achou = 1;
-            
+            found = 1;
         }
+    }
 
-    }  
-    
-    if (achou){
-        
+    if (found)
+    {
         return 0;
-    
-    } else {
-        
-        printf(" | Nenhum relatório para ser exibido");
-
-    
+    }
+    else
+    {
+        printf(" | No report to display");
     }
     free(it);
     fclose(fp3);
     getchar();
     return 0;
-    
 }
 
-
-//função para retornar o relatório dos itens da área de serviço
-int exibirAreaServ(void)
+// função para retornar o relatório dos itens da área de serviço
+int displayServiceArea(void)
 {
-    FILE* fp3;
-    Item* it;
-    int achou;
-    
+    FILE *fp3;
+    Item *it;
+    int found;
+
     fp3 = fopen("itens.dat", "rb");
 
-    if (fp3 == NULL) 
+    if (fp3 == NULL)
     {
-        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        printf("Oops! An error occurred while opening the file!\n");
         return 0;
     }
-    
+
     clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | ------------| Relatório dos itens do área de serviço |-------------- | \n");
+    printf(" | --------------| Report of items in the laundry room |--------------- | \n");
     printf(" |                                                                      | \n");
-    it = (Item*) malloc(sizeof(Item));
-    achou = 0;
+    it = (Item *)malloc(sizeof(Item));
+    found = 0;
 
-
-    while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->storageLocation == '3')) && (it->status == '1')){
+    while ((fread(it, sizeof(Item), 1, fp3)))
+    {
+        if (((it->storageLocation == '3')) && (it->status == '1'))
+        {
             displayInfoItem(it);
-            achou = 1;
-            
+            found = 1;
         }
+    }
 
-    }   
-    
-    if (achou){
-        
+    if (found)
+    {
+
         return 0;
-    
-    } else {
-        
-        printf(" | Nenhum relatório para ser exibido");
-    
+    }
+    else
+    {
+        printf(" | No report to display");
     }
     free(it);
     fclose(fp3);
     getchar();
 
     return 0;
-    
 }
 
-
-
-//função para retornar o relatório dos itens do guarda-roupa
-int exibirGuardaRoupa(void)
+// função para retornar o relatório dos itens do guarda-roupa
+int displayCloset(void)
 {
-    FILE* fp3;
-    Item* it;
-    int achou;
-    
+    FILE *fp3;
+    Item *it;
+    int found;
+
     fp3 = fopen("itens.dat", "rb");
 
-    if (fp3 == NULL) 
+    if (fp3 == NULL)
     {
-        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        printf("Oops! An error occurred while opening the file!\n");
         return 0;
     }
-    
+
     clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | --------------| Relatório dos itens do guarda-roupa |--------------- | \n");
-    printf(" |                                                                      | \n");
-    it = (Item*) malloc(sizeof(Item));
-    achou = 0;
+    printf(" | -----------------| Wardrobe Item Report |------------------ | \n");
+    printf(" | | \n");
+    it = (Item *)malloc(sizeof(Item));
+    found = 0;
 
-
-    while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->storageLocation == '5')) && (it->status == '1')){
+    while ((fread(it, sizeof(Item), 1, fp3)))
+    {
+        if (((it->storageLocation == '5')) && (it->status == '1'))
+        {
             displayInfoItem(it);
-            achou = 1;
-            
+            found = 1;
         }
+    }
 
-    }  
-    
-    if (achou){
-        
+    if (found)
+    {
         return 0;
-    
-    } else {
-        
-        printf(" | Nenhum relatório para ser exibido");
-
-    
+    }
+    else
+    {
+        printf(" | No report to display");
     }
     free(it);
     fclose(fp3);
     getchar();
     return 0;
-    
 }
 
-
-//função para retornar o relatório dos itens do banheiro
-int exibirBanheiro(void)
+// função para retornar o relatório dos itens do banheiro
+int displayBathroom(void)
 {
-    FILE* fp3;
-    Item* it;
-    int achou;
-    
+    FILE *fp3;
+    Item *it;
+    int found;
+
     fp3 = fopen("itens.dat", "rb");
 
-    if (fp3 == NULL) 
+    if (fp3 == NULL)
     {
-        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        printf("Oops! An error occurred while opening the file!\n");
         return 0;
     }
-    
+
     clear();
-    printf(" | ========================================================================= | \n");
-    printf(" | ------------------------------------------------------------------------- | \n");
-    printf(" | ----------------| Relatório dos itens do banheiro |---------------------- | \n");
-    printf(" |                                                                           | \n");
-    it = (Item*) malloc(sizeof(Item));
-    achou = 0;
+    printf(" | =============================================================== | \n");
+    printf(" | --------------------------------------------------------------- | \n");
+    printf(" | ----------------| Bathroom items report |---------------------- | \n");
+    printf(" |                                                                 | \n");
+    it = (Item *)malloc(sizeof(Item));
+    found = 0;
 
-    while((fread(it, sizeof(Item), 1, fp3))){
-        if (((it->storageLocation == '4')) && (it->status == '1')){
+    while ((fread(it, sizeof(Item), 1, fp3)))
+    {
+        if (((it->storageLocation == '4')) && (it->status == '1'))
+        {
             displayInfoItem(it);
-            achou = 1;
-            
+            found = 1;
         }
-
-    }    
-    
-    if (achou){
-        
-        return 0;
-    
-    } else {
-        
-        printf(" | Nenhum relatório para ser exibido");
-    
     }
+
+    if (found)
+    {
+        return 0;
+    }
+    else
+    {
+        printf(" | No report to display");
+    }
+
     free(it);
     fclose(fp3);
     getchar();
     return 0;
-    
 }
 
-
-//função para ordenar os itens em ordem alfabética
-NoItem* listaOrdenadaItens(void) //adaptada by @flgorgonio
+// função para ordenar os itens em ordem alfabética
+NoItem *ordenedListItens(void) // adaptada by @flgorgonio
 {
-    FILE* fp3;
-    Item* it;
-    NoItem* novoItem;
-    NoItem* lista;
+    FILE *fp3;
+    Item *it;
+    NoItem *newItem;
+    NoItem *list;
 
-    lista = NULL;
-    
+    list = NULL;
+
     fp3 = fopen("itens.dat", "rb");
-    
-    if (fp3 == NULL) 
+
+    if (fp3 == NULL)
     {
         printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
         return 0;
     }
 
-    it = (Item*) malloc(sizeof(Item));
-    
-    while(fread(it, sizeof(Item), 1, fp3)) 
-    {        
-        if (it->status == '1') {
-            novoItem = (NoItem*) malloc(sizeof(NoItem));
-            strcpy(novoItem->nomeProduto, it->productName);
-            strcpy(novoItem->nomeMarca, it->nameBrand);
-            strcpy(novoItem->codigoBarras, it->barCode);
-            novoItem->dia = it->day;
-            novoItem->mes = it->month;
-            novoItem->ano = it->year;
-            novoItem->estoqueMinimo = it->minimumInventory;
-            novoItem->categoria = it->category;
-            novoItem->localArmazenamento = it->storageLocation;
-            novoItem->status = it->status;
-            novoItem->quantProduto = it->quantProduct;
+    it = (Item *)malloc(sizeof(Item));
 
-            if (lista == NULL){
-                lista = novoItem;
-                novoItem->prox = NULL;
+    while (fread(it, sizeof(Item), 1, fp3))
+    {
+        if (it->status == '1')
+        {
+            newItem = (NoItem *)malloc(sizeof(NoItem));
+            strcpy(newItem->relatoryProductName, it->productName);
+            strcpy(newItem-> relatoryBrandName, it->nameBrand);
+            strcpy(newItem->relatoryBarCode, it->barCode);
+            newItem->relatoryDay = it->day;
+            newItem->relatoryMonth = it->month;
+            newItem->relatoryYear = it->year;
+            newItem->estoqueMinimo = it->minimumInventory;
+            newItem->categoria = it->category;
+            newItem->localArmazenamento = it->storageLocation;
+            newItem->status = it->status;
+            newItem->quantProduto = it->quantProduct;
+
+            if (list == NULL)
+            {
+                list = newItem;
+                newItem->prox = NULL;
             }
-            
-            else if (strcmp(novoItem->nomeProduto, lista->nomeProduto) < 0){
-                novoItem->prox = lista;
-                lista = novoItem;
+
+            else if (strcmp(newItem->relatoryProductName, list->relatoryBrandName) < 0)
+            {
+                newItem->prox = list;
+                list = newItem;
             }
-            
+
             else
             {
-                NoItem* anter = lista;
-                NoItem* atual = lista->prox;
-                
-                while ((atual != NULL) && strcmp(atual->nomeProduto, novoItem->nomeProduto) < 0 ){
+                NoItem *anter = list;
+                NoItem *atual = list->prox;
+
+                while ((atual != NULL) && strcmp(atual->relatoryProductName, newItem->relatoryProductName) < 0)
+                {
                     anter = atual;
                     atual = atual->prox;
                 }
 
-                anter->prox = novoItem;
-                novoItem->prox = atual;
-            }           
+                anter->prox = newItem;
+                newItem->prox = atual;
+            }
         }
     }
-    
+
     fclose(fp3);
     free(it);
-    
-    return lista;
 
+    return list;
 }
 
-void exibeOrdemItem(NoItem* lista)
+void displayOrderItem(NoItem *list)
 {
-    while (lista != NULL){    
-        
-        Item* it;
-        it = (Item*) malloc(sizeof(Item));
-    
+    while (list != NULL)
+    {
+
+        Item *it;
+        it = (Item *)malloc(sizeof(Item));
+
         char aux[20];
         char aux2[20];
-        if (it->category == '1'){
+        if (it->category == '1')
+        {
             strcpy(aux, "Higiene pessoal");
-        
-        }else if(it->category == '2'){
+        }
+        else if (it->category == '2')
+        {
             strcpy(aux, "Limpeza");
-        
-        }else{
+        }
+        else
+        {
             strcpy(aux, "Alimento");
         }
 
-        if (it->storageLocation == '1'){
+        if (it->storageLocation == '1')
+        {
             strcpy(aux2, "Geladeira");
-        
-        }else if(it->storageLocation == '2'){
+        }
+        else if (it->storageLocation == '2')
+        {
             strcpy(aux2, "Armário de cozinha");
-        
-        }else if(it->storageLocation == '3'){
-            strcpy(aux2, "Área de serviço");        
-        
-        }else if(it->storageLocation == '4'){
-            strcpy(aux2, "Banheiro");          
-        
-        }else{
+        }
+        else if (it->storageLocation == '3')
+        {
+            strcpy(aux2, "Área de serviço");
+        }
+        else if (it->storageLocation == '4')
+        {
+            strcpy(aux2, "Banheiro");
+        }
+        else
+        {
             strcpy(aux2, "Guarda-roupa");
         }
 
         printf(" | ========================================================= | \n");
         printf(" |                                                           | \n");
-        printf(" | Nome do produto: %s\n", lista->nomeProduto);    
-        printf(" | Nome da marca: %s\n", lista->nomeMarca);    
-        printf(" | Código de barras: %s\n", lista->codigoBarras);    
-        printf(" | Estoque mínimo do produto: %d\n", lista->estoqueMinimo);
-        printf(" | Data de vencimento: %d/%d/%d\n", lista->dia, lista->mes, lista->ano); 
+        printf(" | Nome do produto: %s\n", list->relatoryProductName);
+        printf(" | Nome da marca: %s\n", list->relatoryBrandName);
+        printf(" | Código de barras: %s\n", list->relatoryBarCode);
+        printf(" | Estoque mínimo do produto: %d\n", list->estoqueMinimo);
+        printf(" | Data de vencimento: %d/%d/%d\n", list->relatoryDay, list->relatoryMonth, list->relatoryYear);
         printf(" | Categoria do produto: %s\n", aux);
         printf(" | Local de armazenamento: %s\n", aux2);
-        printf(" | Quantidade do produto: %d\n", lista->quantProduto);
-        printf(" | Status: %c\n", lista->status);
+        printf(" | Quantidade do produto: %d\n", list->quantProduto);
+        printf(" | Status: %c\n", list->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
         printf(" | Pressione qualquer tecla para sair.... ");
         getchar();
 
-            
-        lista = lista->prox;
-        
+        list = list->prox;
     }
-
 }

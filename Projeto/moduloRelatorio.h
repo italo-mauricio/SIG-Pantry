@@ -3,18 +3,18 @@ typedef struct noItem NoItem;
 
 struct noItem 
 {
-    char nomeProduto[20];
-    char nomeMarca[20];
-    int dia; //vencimento
-    int mes; //vencimento
-    int ano; //vencimento
+    char relatoryProductName[20];
+    char relatoryBrandName[20];
+    int relatoryDay; //vencimento
+    int relatoryMonth; //vencimento
+    int relatoryYear; //vencimento
     int diaEnt;
     int mesEnt;
     int anoEnt;
     int diaSaida;
     int mesSaida;
     int anoSaida;
-    char codigoBarras[20];
+    char relatoryBarCode[20];
     char status;
     int estoqueMinimo; 
     char categoria;
@@ -33,17 +33,17 @@ char relatoryScreen(void);
 char moduloRelatorio(void);
 char relatoryCategory(void);
 void menuCategory(void);
-char relatorioLocalArmaz(void);
+char stockRelatoryLocal(void);
 char relatorioCategoria(void);
 void escRelatoriosCategoria(void);
 void menuLocalRelatory(void);
 int displayHygieneItens(void);
 int displayCleaningItens(void);
 int displayFoodItens(void);
-int exibirGeladeira(void);
-int exibirArmarioCozinha(void);
-int exibirAreaServ(void);
-int exibirGuardaRoupa(void);
-int exibirBanheiro(void);
-NoItem* listaOrdenadaItens(void);
-void exibeOrdemItem(NoItem* lista);
+int displayRefrigerator(void);
+int displayKitchenCabinet(void);
+int displayServiceArea(void);
+int displayCloset(void);
+int displayBathroom(void);
+NoItem* ordenedListItens(void);
+void displayOrderItem(NoItem *lista);
