@@ -45,5 +45,5 @@ int displayKitchenCabinet(void);
 int displayServiceArea(void);
 int displayCloset(void);
 int displayBathroom(void);
-NoItem* listaOrdenadaItens(void);
-void exibeOrdemItem(NoItem* lista);
+NoItem* ordenedListItens(void);
+void displayOrderItem(NoItem *lista);

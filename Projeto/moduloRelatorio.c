@@ -33,8 +33,8 @@ char moduloRelatorio(void)
             menuLocalRelatory(); // com base no local selecionado para armazenar
             break;
         case '3':
-            list = listaOrdenadaItens(); // itens em ordem alfabética
-            exibeOrdemItem(list);
+            list = ordenedListItens(); // itens em ordem alfabética
+            displayOrderItem(list);
             break;
         default:
             printf("Opção inválida!");
@@ -542,14 +542,14 @@ int displayBathroom(void)
 }
 
 // função para ordenar os itens em ordem alfabética
-NoItem *listaOrdenadaItens(void) // adaptada by @flgorgonio
+NoItem *ordenedListItens(void) // adaptada by @flgorgonio
 {
     FILE *fp3;
     Item *it;
-    NoItem *novoItem;
-    NoItem *lista;
+    NoItem *newItem;
+    NoItem *list;
 
-    lista = NULL;
+    list = NULL;
 
     fp3 = fopen("itens.dat", "rb");
 
@@ -565,44 +565,44 @@ NoItem *listaOrdenadaItens(void) // adaptada by @flgorgonio
     {
         if (it->status == '1')
         {
-            novoItem = (NoItem *)malloc(sizeof(NoItem));
-            strcpy(novoItem->nomeProduto, it->productName);
-            strcpy(novoItem->nomeMarca, it->nameBrand);
-            strcpy(novoItem->codigoBarras, it->barCode);
-            novoItem->dia = it->day;
-            novoItem->mes = it->month;
-            novoItem->ano = it->year;
-            novoItem->estoqueMinimo = it->minimumInventory;
-            novoItem->categoria = it->category;
-            novoItem->localArmazenamento = it->storageLocation;
-            novoItem->status = it->status;
-            novoItem->quantProduto = it->quantProduct;
+            newItem = (NoItem *)malloc(sizeof(NoItem));
+            strcpy(newItem->nomeProduto, it->productName);
+            strcpy(newItem->nomeMarca, it->nameBrand);
+            strcpy(newItem->codigoBarras, it->barCode);
+            newItem->dia = it->day;
+            newItem->mes = it->month;
+            newItem->ano = it->year;
+            newItem->estoqueMinimo = it->minimumInventory;
+            newItem->categoria = it->category;
+            newItem->localArmazenamento = it->storageLocation;
+            newItem->status = it->status;
+            newItem->quantProduto = it->quantProduct;
 
-            if (lista == NULL)
+            if (list == NULL)
             {
-                lista = novoItem;
-                novoItem->prox = NULL;
+                list = newItem;
+                newItem->prox = NULL;
             }
 
-            else if (strcmp(novoItem->nomeProduto, lista->nomeProduto) < 0)
+            else if (strcmp(newItem->nomeProduto, list->nomeProduto) < 0)
             {
-                novoItem->prox = lista;
-                lista = novoItem;
+                newItem->prox = list;
+                list = newItem;
             }
 
             else
             {
-                NoItem *anter = lista;
-                NoItem *atual = lista->prox;
+                NoItem *anter = list;
+                NoItem *atual = list->prox;
 
-                while ((atual != NULL) && strcmp(atual->nomeProduto, novoItem->nomeProduto) < 0)
+                while ((atual != NULL) && strcmp(atual->nomeProduto, newItem->nomeProduto) < 0)
                 {
                     anter = atual;
                     atual = atual->prox;
                 }
 
-                anter->prox = novoItem;
-                novoItem->prox = atual;
+                anter->prox = newItem;
+                newItem->prox = atual;
             }
         }
     }
@@ -610,12 +610,12 @@ NoItem *listaOrdenadaItens(void) // adaptada by @flgorgonio
     fclose(fp3);
     free(it);
 
-    return lista;
+    return list;
 }
 
-void exibeOrdemItem(NoItem *lista)
+void displayOrderItem(NoItem *list)
 {
-    while (lista != NULL)
+    while (list != NULL)
     {
 
         Item *it;
@@ -659,20 +659,20 @@ void exibeOrdemItem(NoItem *lista)
 
         printf(" | ========================================================= | \n");
         printf(" |                                                           | \n");
-        printf(" | Nome do produto: %s\n", lista->nomeProduto);
-        printf(" | Nome da marca: %s\n", lista->nomeMarca);
-        printf(" | Código de barras: %s\n", lista->codigoBarras);
-        printf(" | Estoque mínimo do produto: %d\n", lista->estoqueMinimo);
-        printf(" | Data de vencimento: %d/%d/%d\n", lista->dia, lista->mes, lista->ano);
+        printf(" | Nome do produto: %s\n", list->nomeProduto);
+        printf(" | Nome da marca: %s\n", list->nomeMarca);
+        printf(" | Código de barras: %s\n", list->codigoBarras);
+        printf(" | Estoque mínimo do produto: %d\n", list->estoqueMinimo);
+        printf(" | Data de vencimento: %d/%d/%d\n", list->dia, list->mes, list->ano);
         printf(" | Categoria do produto: %s\n", aux);
         printf(" | Local de armazenamento: %s\n", aux2);
-        printf(" | Quantidade do produto: %d\n", lista->quantProduto);
-        printf(" | Status: %c\n", lista->status);
+        printf(" | Quantidade do produto: %d\n", list->quantProduto);
+        printf(" | Status: %c\n", list->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
         printf(" | Pressione qualquer tecla para sair.... ");
         getchar();
 
-        lista = lista->prox;
+        list = list->prox;
     }
 }
