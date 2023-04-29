@@ -3,18 +3,18 @@ typedef struct noItem NoItem;
 
 struct noItem 
 {
-    char nomeProduto[20];
-    char nomeMarca[20];
-    int dia; //vencimento
-    int mes; //vencimento
-    int ano; //vencimento
+    char relatoryProductName[20];
+    char relatoryBrandName[20];
+    int relatoryDay; //vencimento
+    int relatoryMonth; //vencimento
+    int relatoryYear; //vencimento
     int diaEnt;
     int mesEnt;
     int anoEnt;
     int diaSaida;
     int mesSaida;
     int anoSaida;
-    char codigoBarras[20];
+    char relatoryBarCode[20];
     char status;
     int estoqueMinimo; 
     char categoria;

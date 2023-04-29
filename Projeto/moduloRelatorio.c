@@ -566,12 +566,12 @@ NoItem *ordenedListItens(void) // adaptada by @flgorgonio
         if (it->status == '1')
         {
             newItem = (NoItem *)malloc(sizeof(NoItem));
-            strcpy(newItem->nomeProduto, it->productName);
-            strcpy(newItem->nomeMarca, it->nameBrand);
-            strcpy(newItem->codigoBarras, it->barCode);
-            newItem->dia = it->day;
-            newItem->mes = it->month;
-            newItem->ano = it->year;
+            strcpy(newItem->relatoryProductName, it->productName);
+            strcpy(newItem-> relatoryBrandName, it->nameBrand);
+            strcpy(newItem->relatoryBarCode, it->barCode);
+            newItem->relatoryDay = it->day;
+            newItem->relatoryMonth = it->month;
+            newItem->relatoryYear = it->year;
             newItem->estoqueMinimo = it->minimumInventory;
             newItem->categoria = it->category;
             newItem->localArmazenamento = it->storageLocation;
@@ -584,7 +584,7 @@ NoItem *ordenedListItens(void) // adaptada by @flgorgonio
                 newItem->prox = NULL;
             }
 
-            else if (strcmp(newItem->nomeProduto, list->nomeProduto) < 0)
+            else if (strcmp(newItem->relatoryProductName, list->relatoryBrandName) < 0)
             {
                 newItem->prox = list;
                 list = newItem;
@@ -595,7 +595,7 @@ NoItem *ordenedListItens(void) // adaptada by @flgorgonio
                 NoItem *anter = list;
                 NoItem *atual = list->prox;
 
-                while ((atual != NULL) && strcmp(atual->nomeProduto, newItem->nomeProduto) < 0)
+                while ((atual != NULL) && strcmp(atual->relatoryProductName, newItem->relatoryProductName) < 0)
                 {
                     anter = atual;
                     atual = atual->prox;
@@ -659,11 +659,11 @@ void displayOrderItem(NoItem *list)
 
         printf(" | ========================================================= | \n");
         printf(" |                                                           | \n");
-        printf(" | Nome do produto: %s\n", list->nomeProduto);
-        printf(" | Nome da marca: %s\n", list->nomeMarca);
-        printf(" | Código de barras: %s\n", list->codigoBarras);
+        printf(" | Nome do produto: %s\n", list->relatoryProductName);
+        printf(" | Nome da marca: %s\n", list->relatoryBrandName);
+        printf(" | Código de barras: %s\n", list->relatoryBarCode);
         printf(" | Estoque mínimo do produto: %d\n", list->estoqueMinimo);
-        printf(" | Data de vencimento: %d/%d/%d\n", list->dia, list->mes, list->ano);
+        printf(" | Data de vencimento: %d/%d/%d\n", list->relatoryDay, list->relatoryMonth, list->relatoryYear);
         printf(" | Categoria do produto: %s\n", aux);
         printf(" | Local de armazenamento: %s\n", aux2);
         printf(" | Quantidade do produto: %d\n", list->quantProduto);
