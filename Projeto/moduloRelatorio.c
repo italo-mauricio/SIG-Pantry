@@ -298,20 +298,21 @@ char relatorioLocalArmaz(void)
     clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | ---------- | Relatórios com base no local de armazenamento | ------- | \n");
+    printf(" | ---------------| Reports based on storage location |---------------- | \n");
     printf(" |                                                                      | \n");
-    printf(" |                 1- Geladeira                                         | \n");
-    printf(" |                 2- Armário da cozinha                                | \n");
-    printf(" |                 3- Área de serviço                                   | \n");
-    printf(" |                 4- Banheiro                                          | \n");
-    printf(" |                 5- Guarda-roupa                                      | \n");
-    printf(" |                 0- Voltar à tela principal                           | \n");
+    printf(" |                 1- Refrigerator                                       | \n");
+    printf(" |                 2- Kitchen cabinet                                    | \n");
+    printf(" |                 3- Laundry room                                       | \n");
+    printf(" |                 4- Bathroom                                           | \n");
+    printf(" |                 5- Wardrobe                                           | \n");
+    printf(" |                 0- Back to main menu                                  | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
-    printf(" | Escolha uma opção: ");
+    printf(" | Choose an option: ");
     scanf("%c", &esc);
     getchar();
     return esc;
+
 
 }
 
