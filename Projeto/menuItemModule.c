@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "moduloMenuItem.h"
+#include "menuItemModule.h"
 #include "validacoes.h"
 #include "userRegistrationModule.h"
 #include "clearScreen.c"
