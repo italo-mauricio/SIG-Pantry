@@ -19,10 +19,10 @@
 //menu de navegação principal do módulo
 void moduloMenuItem(void)
 {
-    char escolha;
+    char choice;
     do {
-        escolha = screenRegisterItem();
-        switch(escolha) {
+        choice = telaRegistrarItem();
+        switch(choice) {
             case '1':
                 infoItem(); //informações do cad de um item novo
                 break;
@@ -49,7 +49,7 @@ void moduloMenuItem(void)
                 break;
         }
      
-    } while (escolha != '0');
+    } while (choice != '0');
 
 }
 
