@@ -556,10 +556,10 @@ int updateItemScreen(void)
                     do
                     {
                         printf(" | Enter the minimum stock for this product: ");
-                        scanf("%s", minStock);
+                        scanf("%s", quantity);
                         getchar();
-                    } while (!readQuantity(minStock));
-                    minStock = charToInt(minStock);
+                    } while (!readQuantity(quantity));
+                    minStock = charToInt(quantity);
                     it->minimumInventory = minStock;
                 }
                 else if (response == '5')
@@ -579,11 +579,11 @@ int updateItemScreen(void)
                 }
                 else if (response == '6')
                 {
-                    it->category = telaEscCategoria();
+                    it->category = categoryScreen();
                 }
                 else if (response == '7')
                 {
-                    it->storageLocation = telaEscLocalArmaz();
+                    it->storageLocation = scrennStorageLocation();
                 }
                 else if (response == '8')
                 {
@@ -602,7 +602,7 @@ int updateItemScreen(void)
                 printf(" | | \n");
                 printf(" | --------------------------------------------------------- | \n");
                 printf("Data edited successfully");
-                gravaItem(it);
+                saveItem(it);
                 free(it);
                 fclose(fp3);
         }
@@ -881,7 +881,7 @@ int entryItem(void)
                 scanf("%d", &it->year);
                 getchar();
                     
-            } while(!validate_date(it->day, it->month, it->year)); 
+            } while(!valida_data(it->day, it->month, it->year)); 
             
             it->tipe = 'E';
             printf("Are you sure you want to add this product to the pantry (y/n)? ");
