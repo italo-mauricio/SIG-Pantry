@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "moduloRelatorio.h"
 #include <string.h>
 #include "validacoes.h"
-#include "moduloMenuItem.h"
+#include "menuItemModule.h"
+#include "moduloRelatorio.h"
 #include "shoppingListModule.h"
 #include "userRegistrationModule.h"
-#include "clearScreen.c";
+#include "clearScreen.c"
 
 
 /*
@@ -21,49 +21,49 @@
 //função principal de navegação
 char moduloRelatorio(void)
 {
-    char escolha;
-    NoItem* lista;
+    char choice;
+    NoItem* list;
     do {
-        escolha = telaRelatorio();
-        switch (escolha) {
+        choice = relatoryScreen();
+        switch (choice) {
             case '1':
-                escRelatoriosCategoria(); //com base na categoria selecionada
+                menuCategory(); //com base na categoria selecionada
                 break;
             case '2':
-                escRelatoriosLocal(); //com base no local selecionado para armazenar
+                menuLocalRelatory(); //com base no local selecionado para armazenar
                 break; 
             case '3':
-                lista = listaOrdenadaItens(); //itens em ordem alfabética
-                exibeOrdemItem(lista);
+                list = listaOrdenadaItens(); //itens em ordem alfabética
+                exibeOrdemItem(list);
                 break; 
             default :
                 printf ("Opção inválida!");
                 break;
         }
 
-    } while(escolha != '0');
+    } while(choice != '0');
     
-    return escolha;
+    return choice;
 
 }
 
 
 // tela principal
-char telaRelatorio(void)
+char relatoryScreen(void)
 {
     char esc;
     clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | -------------------| SIG-Pantry - RELATÓRIOS |---------------------- | \n");
+    printf(" | --------------------| SIG-Pantry - REPORTS |------------------------ | \n");
     printf(" |                                                                      | \n");
-    printf(" |                 1- Estoque com base na categoria                     | \n");
-    printf(" |                 2- Estoque com base no local de armazenamento        | \n");
-    printf(" |                 3- Itens em ordem alfabética                         | \n");
-    printf(" |                 0- Voltar à tela principal                           | \n");
+    printf(" |                 1- Stock based on category                           | \n");
+    printf(" |                 2- Stock based on storage location                   | \n");
+    printf(" |                 3- Items in alphabetical order                       | \n");
+    printf(" |                 0- Return to main menu                               | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
-    printf(" | Escolha uma opção: ");
+    printf(" | Chooose an option: ");
     scanf("%c", &esc);
     getchar();
     
@@ -73,46 +73,46 @@ char telaRelatorio(void)
 
 
 //navegação da escolha da categoria
-void escRelatoriosCategoria(void)
+void menuCategory(void)
 {
-    char opcao;
+    char choice;
     do
     {
-        opcao = relatorioCategoria();
-        switch (opcao)
+        choice = relatoryCategory();
+        switch (choice)
         {
             case '1':
-                exibirItensHigiene();
+                displayHygieneItens();
                 break; 
             case '2':
-                exibirItensLimpeza();
+                displayCleaningItens();
                 break;
             case '3':
-                exibirItensAlimento();
+                displayFoodItens();
                 break;
         }
 
-    } while (opcao != '0');
+    } while (choice != '0');
 
 } 
 
 
 //função para selecionar uma das categorias
-char relatorioCategoria(void)
+char relatoryCategory(void)
 {
     char esc;
     clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | ---------------| Relatórios com base na categoria |----------------- | \n");
+    printf(" | ------------------|  Reports based on category |-------------------- | \n");
     printf(" |                                                                      | \n");
-    printf(" |               1- Relatório dos itens de higiene pessoal              | \n");
-    printf(" |               2- Relatório dos itens de limpeza                      | \n");
-    printf(" |               3- Relatório dos itens de alimento                     | \n");
-    printf(" |               0- Voltar à tela principal                             | \n");
+    printf(" |               1- Report of personal hygiene items                    | \n");
+    printf(" |               2- Report of cleaning items                            | \n");
+    printf(" |               3- Report of food items                                | \n");
+    printf(" |               0- Return to main screen                               | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
-    printf(" | Escolha uma opção: ");
+    printf(" | Choose an option: ");
     scanf("%c", &esc);
     getchar();
     
@@ -122,44 +122,41 @@ char relatorioCategoria(void)
 
 
 //função para retornar o relatório dos itens de higiente
-int exibirItensHigiene(void)
+int displayHygieneItens(void)
 {
     FILE* fp3;
     Item* it;
-    int achou;
-    
+    int found;
+        
     fp3 = fopen("itens.dat", "rb");
 
     if (fp3 == NULL) 
     {
-        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        printf("Oops! An error occurred while opening the file!\n");
         return 0;
     }
-    
+        
     clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | ------------| Relatório dos itens de higiene pessoal |-------------- | \n");
+    printf(" | ------------| Report of personal hygiene items |------------------ | \n");
     printf(" |                                                                      | \n");
     it = (Item*) malloc(sizeof(Item));
-    achou = 0;
+    found = 0;
 
     while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->category == '1')) && (it->status == '1')){
-            exibeInfoItem(it);
-            achou = 1;
+            displayInfoItem(it);
+            found = 1;
         }
+    }
 
-    }
-    if (achou){
-        
+    if (found){
         return 0;
-    
     } else {
-        
-        printf(" | Nenhum relatório para ser exibido");
-    
+        printf(" | No report to be displayed");
     }
+
     free(it);
     fclose(fp3);
     getchar();
@@ -170,113 +167,108 @@ int exibirItensHigiene(void)
 
 
 //função para retornar o relatório dos itens de limpeza
-int exibirItensLimpeza(void)
+int displayCleaningItens(void)
 {
     FILE* fp3;
     Item* it;
-    int achou;
-    
+    int found;
+        
     fp3 = fopen("itens.dat", "rb");
 
     if (fp3 == NULL) 
     {
-        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        printf("Oops! An error occurred while opening the file!\n");
         return 0;
     }
-    
+        
     clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | -----------------| Relatório dos itens de limpeza |----------------- | \n");
+    printf(" | -----------------| Report of cleaning items |----------------------- | \n");
     printf(" |                                                                      | \n");
     it = (Item*) malloc(sizeof(Item));
-    achou = 0;
+    found = 0;
 
 
     while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->category == '2')) && (it->status == '1')){
-            exibeInfoItem(it);
-            achou = 1;
+            displayInfoItem(it);
+            found = 1;
         }
-
     } 
-    if (achou){
-        
+    if (found){
         return 0;
-    
     } else {
-        
-        printf(" | Nenhum relatório para ser exibido");
-    
+        printf(" | No report to display");
     }
     free(it);
     fclose(fp3);
     getchar();
 
     return 0;
-    
+   
 } 
 
 
 
 //função para retornar o relatório dos itens de alimento
-int exibirItensAlimento(void)
+int displayFoodItens(void)
 {
     FILE* fp3;
     Item* it;
-
-    int achou;
+    int found;
 
     fp3 = fopen("itens.dat", "rb");
 
     if (fp3 == NULL) 
     {
-        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        printf("Oops! An error occurred while opening the file!\n");
         return 0;
     }
-    
+
     clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | ----------------| Relatório dos itens de alimento |----------------- | \n");
+    printf(" | ----------------| Report of food items |----------------------------- | \n");
     printf(" |                                                                      | \n");
     it = (Item*) malloc(sizeof(Item));
-    achou = 0;
+    found = 0;
 
     while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->category == '3')) && (it->status == '1')){
-            exibeInfoItem(it);
-            achou = 1;
+            displayInfoItem(it);
+            found = 1;
         }
 
     }    
-    
-    if (achou){
-        
+
+    if (found){
+
         return 0;
-    
+
     } else {
-        
-        printf(" | Nenhum relatório para ser exibido");
-    
+
+        printf(" | No report to be displayed");
+
     }
     free(it);
     fclose(fp3);
     getchar();
 
     return 0;
+
     
 } 
 
 
 //navegação da escolha do local
-void escRelatoriosLocal(void)
+void menuLocalRelatory(void)
 {
-    char opcao;
+    char choice;
     do
     {
-        opcao = relatorioLocalArmaz();
-        switch (opcao)
+        choice = relatorioLocalArmaz();
+        switch (choice)
         {
             case '1':
                 exibirGeladeira();
@@ -295,7 +287,7 @@ void escRelatoriosLocal(void)
                 break;      
         }
 
-    } while (opcao != '0');
+    } while (choice != '0');
 
 } 
 
@@ -306,20 +298,21 @@ char relatorioLocalArmaz(void)
     clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | ---------- | Relatórios com base no local de armazenamento | ------- | \n");
+    printf(" | ---------------| Reports based on storage location |---------------- | \n");
     printf(" |                                                                      | \n");
-    printf(" |                 1- Geladeira                                         | \n");
-    printf(" |                 2- Armário da cozinha                                | \n");
-    printf(" |                 3- Área de serviço                                   | \n");
-    printf(" |                 4- Banheiro                                          | \n");
-    printf(" |                 5- Guarda-roupa                                      | \n");
-    printf(" |                 0- Voltar à tela principal                           | \n");
+    printf(" |                 1- Refrigerator                                       | \n");
+    printf(" |                 2- Kitchen cabinet                                    | \n");
+    printf(" |                 3- Laundry room                                       | \n");
+    printf(" |                 4- Bathroom                                           | \n");
+    printf(" |                 5- Wardrobe                                           | \n");
+    printf(" |                 0- Back to main menu                                  | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
-    printf(" | Escolha uma opção: ");
+    printf(" | Choose an option: ");
     scanf("%c", &esc);
     getchar();
     return esc;
+
 
 }
 
@@ -349,7 +342,7 @@ int exibirGeladeira(void)
 
     while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->storageLocation == '1')) && (it->status == '1')){
-            exibeInfoItem(it);
+            displayInfoItem(it);
             achou = 1;
 
         }
@@ -399,7 +392,7 @@ int exibirArmarioCozinha(void)
 
     while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->storageLocation == '2')) && (it->status == '1')){
-            exibeInfoItem(it);
+            displayInfoItem(it);
             achou = 1;
             
         }
@@ -450,7 +443,7 @@ int exibirAreaServ(void)
 
     while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->storageLocation == '3')) && (it->status == '1')){
-            exibeInfoItem(it);
+            displayInfoItem(it);
             achou = 1;
             
         }
@@ -502,7 +495,7 @@ int exibirGuardaRoupa(void)
 
     while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->storageLocation == '5')) && (it->status == '1')){
-            exibeInfoItem(it);
+            displayInfoItem(it);
             achou = 1;
             
         }
@@ -552,7 +545,7 @@ int exibirBanheiro(void)
 
     while((fread(it, sizeof(Item), 1, fp3))){
         if (((it->storageLocation == '4')) && (it->status == '1')){
-            exibeInfoItem(it);
+            displayInfoItem(it);
             achou = 1;
             
         }
