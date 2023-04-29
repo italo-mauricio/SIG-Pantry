@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "userRegistrationModule.h"
-#include "moduloMenuItem.h"
+#include "menuItemModule.h"
 #include "shoppingListModule.h"
 #include "moduloRelatorio.h"
 #include "moduloSobre.h"
@@ -22,7 +22,7 @@ int main (void)
             moduloMenuItem();
             break; 
         case '3':    
-            shoppingListModule();
+            shoppingListScreen();
             break;
         case '4':
             moduloRelatorio();
