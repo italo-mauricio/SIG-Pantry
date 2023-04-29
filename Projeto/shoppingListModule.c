@@ -4,7 +4,7 @@
 #include "shoppingListModule.h"
 #include "validacoes.h"
 #include "userRegistrationModule.h"
-#include "moduloMenuItem.h"
+#include "menuItemModule.h"
 
 
 /*
