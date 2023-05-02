@@ -2,7 +2,7 @@
 <h1 align="center"> SIG-Pantry </h1>
 
 
-## Dados Gerais do Projeto:
+## General Project Data:
 
 * Federal University of Rio Grande do Norte - CERES
 * Department of Computing and Technology
