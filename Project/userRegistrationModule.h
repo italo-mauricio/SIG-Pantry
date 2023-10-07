@@ -1,4 +1,3 @@
-//struct para cadastro do usuário
 typedef struct user User;
 struct user {
     char nameUser[101];
@@ -12,7 +11,6 @@ struct user {
     char userDate[20]; 
 };
 
-//cabeçalho das funções usadas no arquivo .c
 void userRegistrationModule(void);
 char userMenuScreen(void);
 int updateUser(void);

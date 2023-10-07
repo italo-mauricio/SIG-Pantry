@@ -1,18 +1,18 @@
-## Roteiro do nosso projeto
+## Our Project Outline
 
-### Pedimos para carinhosamente quem for ler este texto siga o passo a passo para o entendimento do projeto.
+### We kindly request that anyone reading this text follows the step-by-step guide to understand the project.
 
-### Passo 1:
+### Step 1:
 
-* O nosso programa é um sistema de controle de despensa doméstica, o qual é indicado que o cadastro seja feito apenas de uma pessoa da casa, daquela que realmente se responsabiliza pela organização e controle da despensa.
-Inicialmente, ela faz o seu cadastro no sistema e o seu ID é o username que ela irá escolher (elaboramos uma função que não poderá ser cadastrado usernames iguais). 
-### Passo 2:
+* Our program is a domestic pantry management system, and it is recommended that only one person from the household registers for it, specifically the one responsible for organizing and managing the pantry. Initially, this person creates their profile in the system, and their ID is the username they choose (we have implemented a function to prevent the registration of duplicate usernames).
 
-* Após fazer o cadastro de usuários, ela cadastra os itens em "Menu itens", em que o ID deste módulo é o próprio código de barras. 
+### Step 2:
 
-### Passo 3:
+* After registering users, they can add items in the "Menu Items" section, where the ID of each item is the corresponding barcode. 
 
-* O último módulo, que possui arquivo próprio, mas que está vinculado ao ID do usuário, é o “lista de compras”. Local onde o usuário irá consultar itens que estão com quantidade mínima no estoque e os itens próximos ao vencimento. Posteriormente, ele pode montar a sua lista com a quantidade de itens que optar.
+### Step 3:
+
+* The final module, which has its own separate file but is linked to the user's ID, is the "Shopping List." This is where the user can check items with a low stock quantity and items close to their expiration date. Subsequently, they can create their shopping list with the desired quantity of items.
 
 ## By
       
