@@ -17,7 +17,7 @@
 */
 
 // função principal de navegação
-char moduloRelatorio(void)
+char moduleRelatory(void)
 {
     char choice;
     NoItem *list;
@@ -27,17 +27,17 @@ char moduloRelatorio(void)
         switch (choice)
         {
         case '1':
-            menuCategory(); // com base na categoria selecionada
+            menuCategory();
             break;
         case '2':
-            menuLocalRelatory(); // com base no local selecionado para armazenar
+            menuLocalRelatory();
             break;
         case '3':
-            list = ordenedListItens(); // itens em ordem alfabética
+            list = ordenedListItens();
             displayOrderItem(list);
             break;
         default:
-            printf("Opção inválida!");
+            printf("Invalid Option!");
             break;
         }
 
@@ -161,7 +161,6 @@ int displayHygieneItens(void)
     return 0;
 }
 
-// função para retornar o relatório dos itens de limpeza
 int displayCleaningItens(void)
 {
     FILE *fp3;
@@ -207,7 +206,6 @@ int displayCleaningItens(void)
     return 0;
 }
 
-// função para retornar o relatório dos itens de alimento
 int displayFoodItens(void)
 {
     FILE *fp3;
@@ -256,7 +254,6 @@ int displayFoodItens(void)
     return 0;
 }
 
-// navegação da escolha do local
 void menuLocalRelatory(void)
 {
     char choice;
@@ -293,12 +290,12 @@ char stockRelatoryLocal(void)
     printf(" | -------------------------------------------------------------------- | \n");
     printf(" | ---------------| Reports based on storage location |---------------- | \n");
     printf(" |                                                                      | \n");
-    printf(" |                 1- Refrigerator                                       | \n");
-    printf(" |                 2- Kitchen cabinet                                    | \n");
-    printf(" |                 3- Laundry room                                       | \n");
-    printf(" |                 4- Bathroom                                           | \n");
-    printf(" |                 5- Wardrobe                                           | \n");
-    printf(" |                 0- Back to main menu                                  | \n");
+    printf(" |                 1- Refrigerator                                      | \n");
+    printf(" |                 2- Kitchen cabinet                                   | \n");
+    printf(" |                 3- Laundry room                                      | \n");
+    printf(" |                 4- Bathroom                                          | \n");
+    printf(" |                 5- Wardrobe                                          | \n");
+    printf(" |                 0- Back to main menu                                 | \n");
     printf(" |                                                                      | \n");
     printf(" | ==================================================================== | \n");
     printf(" | Choose an option: ");
@@ -307,7 +304,6 @@ char stockRelatoryLocal(void)
     return esc;
 }
 
-// função para retornar o relatório dos itens da geladeira
 int displayRefrigerator(void)
 {
     FILE *fp3;
@@ -325,7 +321,7 @@ int displayRefrigerator(void)
     clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | ----------------| Refrigerator Items Report |-----------------------| \n");
+    printf(" | ----------------| Refrigerator Items Report |----------------------- | \n");
     printf(" | | \n");
     it = (Item *)malloc(sizeof(Item));
     found = 0;
@@ -354,7 +350,6 @@ int displayRefrigerator(void)
     return 0;
 }
 
-// função para retornar o relatório dos itens do armário da cozinha
 int displayKitchenCabinet(void)
 {
     FILE *fp3;
@@ -372,7 +367,7 @@ int displayKitchenCabinet(void)
     clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | -------------| Kitchen cabinet items report |---------------------- | \n");
+    printf(" | -------------| Kitchen cabinet items report |----------------------- | \n");
     printf(" | | \n");
     it = (Item *)malloc(sizeof(Item));
     found = 0;
@@ -400,7 +395,6 @@ int displayKitchenCabinet(void)
     return 0;
 }
 
-// função para retornar o relatório dos itens da área de serviço
 int displayServiceArea(void)
 {
     FILE *fp3;
@@ -448,7 +442,6 @@ int displayServiceArea(void)
     return 0;
 }
 
-// função para retornar o relatório dos itens do guarda-roupa
 int displayCloset(void)
 {
     FILE *fp3;
@@ -466,7 +459,7 @@ int displayCloset(void)
     clear();
     printf(" | ==================================================================== | \n");
     printf(" | -------------------------------------------------------------------- | \n");
-    printf(" | -----------------| Wardrobe Item Report |------------------ | \n");
+    printf(" | -----------------------| Wardrobe Item Report |--------------------- | \n");
     printf(" | | \n");
     it = (Item *)malloc(sizeof(Item));
     found = 0;
@@ -494,7 +487,6 @@ int displayCloset(void)
     return 0;
 }
 
-// função para retornar o relatório dos itens do banheiro
 int displayBathroom(void)
 {
     FILE *fp3;
@@ -541,8 +533,7 @@ int displayBathroom(void)
     return 0;
 }
 
-// função para ordenar os itens em ordem alfabética
-NoItem *ordenedListItens(void) // adaptada by @flgorgonio
+NoItem *ordenedListItens(void) // adapted by @flgorgonio
 {
     FILE *fp3;
     Item *it;
@@ -555,7 +546,7 @@ NoItem *ordenedListItens(void) // adaptada by @flgorgonio
 
     if (fp3 == NULL)
     {
-        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        printf("Ops! An error occurred while opening the file!\n");
         return 0;
     }
 
@@ -567,16 +558,16 @@ NoItem *ordenedListItens(void) // adaptada by @flgorgonio
         {
             newItem = (NoItem *)malloc(sizeof(NoItem));
             strcpy(newItem->relatoryProductName, it->productName);
-            strcpy(newItem-> relatoryBrandName, it->nameBrand);
+            strcpy(newItem->relatoryBrandName, it->nameBrand);
             strcpy(newItem->relatoryBarCode, it->barCode);
             newItem->relatoryDay = it->day;
             newItem->relatoryMonth = it->month;
             newItem->relatoryYear = it->year;
-            newItem->estoqueMinimo = it->minimumInventory;
-            newItem->categoria = it->category;
-            newItem->localArmazenamento = it->storageLocation;
+            newItem->minimumStock = it->minimumInventory;
+            newItem->categoryAux = it->category;
+            newItem->localStorage = it->storageLocation;
             newItem->status = it->status;
-            newItem->quantProduto = it->quantProduct;
+            newItem->quantProductAux = it->quantProduct;
 
             if (list == NULL)
             {
@@ -625,20 +616,20 @@ void displayOrderItem(NoItem *list)
         char aux2[20];
         if (it->category == '1')
         {
-            strcpy(aux, "Higiene pessoal");
+            strcpy(aux, "Personal Hygiene");
         }
         else if (it->category == '2')
         {
-            strcpy(aux, "Limpeza");
+            strcpy(aux, "Cleaning");
         }
         else
         {
-            strcpy(aux, "Alimento");
+            strcpy(aux, "Food");
         }
 
         if (it->storageLocation == '1')
         {
-            strcpy(aux2, "Geladeira");
+            strcpy(aux2, "Refrigerator");
         }
         else if (it->storageLocation == '2')
         {
@@ -646,31 +637,31 @@ void displayOrderItem(NoItem *list)
         }
         else if (it->storageLocation == '3')
         {
-            strcpy(aux2, "Área de serviço");
+            strcpy(aux2, "Kitchen Cabinet");
         }
         else if (it->storageLocation == '4')
         {
-            strcpy(aux2, "Banheiro");
+            strcpy(aux2, "Bathroom");
         }
         else
         {
-            strcpy(aux2, "Guarda-roupa");
+            strcpy(aux2, "Closet");
         }
 
         printf(" | ========================================================= | \n");
         printf(" |                                                           | \n");
-        printf(" | Nome do produto: %s\n", list->relatoryProductName);
-        printf(" | Nome da marca: %s\n", list->relatoryBrandName);
-        printf(" | Código de barras: %s\n", list->relatoryBarCode);
-        printf(" | Estoque mínimo do produto: %d\n", list->estoqueMinimo);
-        printf(" | Data de vencimento: %d/%d/%d\n", list->relatoryDay, list->relatoryMonth, list->relatoryYear);
-        printf(" | Categoria do produto: %s\n", aux);
-        printf(" | Local de armazenamento: %s\n", aux2);
-        printf(" | Quantidade do produto: %d\n", list->quantProduto);
+        printf(" | Product Name: %s\n", list->relatoryProductName);
+        printf(" | Brand Name: %s\n", list->relatoryBrandName);
+        printf(" | Bar Code: %s\n", list->relatoryBarCode);
+        printf(" | Minimum product stock: %d\n", list->minimumStock);
+        printf(" | Due Date: %d/%d/%d\n", list->relatoryDay, list->relatoryMonth, list->relatoryYear);
+        printf(" | Product Category: %s\n", aux);
+        printf(" | Local Storage: %s\n", aux2);
+        printf(" | Product Quantity: %d\n", list->quantProductAux);
         printf(" | Status: %c\n", list->status);
         printf(" |                                                           | \n");
         printf(" | ========================================================= | \n");
-        printf(" | Pressione qualquer tecla para sair.... ");
+        printf(" | Press any key to exit.... ");
         getchar();
 
         list = list->prox;

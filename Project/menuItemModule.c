@@ -6,55 +6,43 @@
 #include "userRegistrationModule.h"
 #include "clearScreen.c"
 
-
-/*
-                Bem-vindo(a) ao módulo de cadastro de Itens
-
-            Neste módulo será realizado o cadastro de itens no sistema
-
-
-*/
-
-
-//menu de navegação principal do módulo
 void moduloMenuItem(void)
 {
     char choice;
-    do {
+    do
+    {
         choice = screenRegisterItem();
-        switch(choice) {
-            case '1':
-                infoItem(); //informações do cad de um item novo
-                break;
-            case '2':
-                searchItemInfo(); //pesquisa
-                break;
-            case '3':
-                updateItemScreen(); //edição
-                break;
-            case '4':
-                deleteItem(); //exclusão
-                break;
-            case '5':
-                entryItem(); //adição de item
-                break;
-            case '6':
-                exitItem(); //retirada de item
-                break;
-            case '7':
-                searchItemInfo(); //relatório sem filtro
-                break;     
-            default:
-                printf("Opção inválida\n");
-                break;
+        switch (choice)
+        {
+        case '1':
+            infoItem();
+            break;
+        case '2':
+            searchItemInfo();
+            break;
+        case '3':
+            updateItemScreen();
+            break;
+        case '4':
+            deleteItem();
+            break;
+        case '5':
+            entryItem();
+            break;
+        case '6':
+            exitItem();
+            break;
+        case '7':
+            searchItemInfo();
+            break;
+        default:
+            printf("Opção inválida\n");
+            break;
         }
-     
-    } while (choice != '0');
 
+    } while (choice != '0');
 }
 
-
-//função que chama a tela para o menu itens -> a partir da escolha do usuário
 char screenRegisterItem(void)
 {
     clear();
@@ -80,8 +68,6 @@ char screenRegisterItem(void)
     return choice;
 }
 
-
-//função para cadastrar um novo item ao estoque
 int infoItem(void)
 {
     FILE *fp;
@@ -122,7 +108,7 @@ int infoItem(void)
     {
         if ((strcmp(client->usernameUser, search) == 0) && (client->status == '1'))
         {
-                found = 1;
+            found = 1;
         }
     }
 
@@ -135,9 +121,9 @@ int infoItem(void)
 
         if (fp3 == NULL)
         {
-                printf("Oops! Error opening file!\n");
-                getchar();
-                return 0;
+            printf("Oops! Error opening file!\n");
+            getchar();
+            return 0;
         }
         printf(" | Enter product name: ");
         scanf("%30[^\n]", it->productName);
@@ -149,16 +135,16 @@ int infoItem(void)
 
         do
         {
-                printf(" | Enter product barcode: ");
-                scanf("%s", it->barCode);
-                getchar();
+            printf(" | Enter product barcode: ");
+            scanf("%s", it->barCode);
+            getchar();
 
         } while (!((readQuantity(it->barCode)) && (validaCod(it->barCode))));
         do
         {
-                printf(" | Enter the minimum inventory of this product: ");
-                scanf("%s", inventoryMin);
-                getchar();
+            printf(" | Enter the minimum inventory of this product: ");
+            scanf("%s", inventoryMin);
+            getchar();
 
         } while (!readQuantity(inventoryMin));
 
@@ -167,15 +153,15 @@ int infoItem(void)
 
         do
         {
-                printf(" | Enter expiration date - day: ");
-                scanf("%d", &it->day);
-                getchar();
-                printf(" | Enter expiration date - month: ");
-                scanf("%d", &it->month);
-                getchar();
-                printf(" | Enter expiration date - year: ");
-                scanf("%d", &it->year);
-                getchar();
+            printf(" | Enter expiration date - day: ");
+            scanf("%d", &it->day);
+            getchar();
+            printf(" | Enter expiration date - month: ");
+            scanf("%d", &it->month);
+            getchar();
+            printf(" | Enter expiration date - year: ");
+            scanf("%d", &it->year);
+            getchar();
         } while (!valida_data(it->day, it->month, it->year));
 
         it->category = categoryScreen();
@@ -184,9 +170,9 @@ int infoItem(void)
         do
         {
 
-                printf(" | Enter the quantity of products: ");
-                scanf("%s", quantity);
-                getchar();
+            printf(" | Enter the quantity of products: ");
+            scanf("%s", quantity);
+            getchar();
 
         } while (!readQuantity(quantity));
 
@@ -211,15 +197,15 @@ int infoItem(void)
 
         if (it->day < dayControl && it->month <= monthControl && it->year == yearControl)
         {
-                printf("| The product is expired, please exchange it");
+            printf("| The product is expired, please exchange it");
         }
         else if (it->day == dayControl && it->month == monthControl && it->year == yearControl)
         {
-                printf(" | The product expires today, be careful!");
+            printf(" | The product expires today, be careful!");
         }
         else if (it->day > dayControl && it->month >= monthControl && it->year == yearControl)
         {
-                printf(" | The product is within its validity period!");
+            printf(" | The product is within its validity period!");
         }
 
         it->status = '1'; // 1 shows it was registered
@@ -245,7 +231,6 @@ int infoItem(void)
     return 0;
 }
 
-//função para escolha da categoria
 char categoryScreen(void)
 {
     char esc;
@@ -264,8 +249,6 @@ char categoryScreen(void)
     return esc;
 }
 
-
-//função para escolha do local de armazenamento
 char scrennStorageLocation(void)
 {
     char esc;
@@ -286,30 +269,26 @@ char scrennStorageLocation(void)
     return esc;
 }
 
-
-//função para gravar no arquivo de item
-int saveItem(Item* it) 
+int saveItem(Item *it)
 {
-    FILE* fp3;
-    
-    fp3 = fopen("itens.dat", "ab");
-    
-    if (fp3 == NULL) {
-        printf("Ops! An error occurred while opening the file!\n");
-        
-        return 0;
+    FILE *fp3;
 
-    }  
+    fp3 = fopen("itens.dat", "ab");
+
+    if (fp3 == NULL)
+    {
+        printf("Ops! An error occurred while opening the file!\n");
+
+        return 0;
+    }
     fwrite(it, sizeof(Item), 1, fp3);
     fclose(fp3);
-    
-    return 0;
 
+    return 0;
 }
 
-
-//função de pesquisa a partir do código de barras (id do item)
-int searchItemInfo(void) {
+int searchItemInfo(void)
+{
     FILE *fp3;
     Item *it;
     int found;
@@ -342,7 +321,7 @@ int searchItemInfo(void) {
 
         if ((strcmp(it->barCode, searched) == 0) && (it->status == '1'))
         {
-                found = 1;
+            found = 1;
         }
     }
 
@@ -351,36 +330,36 @@ int searchItemInfo(void) {
 
         if (it->category == '1')
         {
-                strcpy(aux, "Personal hygiene");
+            strcpy(aux, "Personal hygiene");
         }
         else if (it->category == '2')
         {
-                strcpy(aux, "Cleaning");
+            strcpy(aux, "Cleaning");
         }
         else
         {
-                strcpy(aux, "Food");
+            strcpy(aux, "Food");
         }
 
         if (it->storageLocation == '1')
         {
-                strcpy(aux2, "Refrigerator");
+            strcpy(aux2, "Refrigerator");
         }
         else if (it->storageLocation == '2')
         {
-                strcpy(aux2, "Kitchen cabinet");
+            strcpy(aux2, "Kitchen cabinet");
         }
         else if (it->storageLocation == '3')
         {
-                strcpy(aux2, "Laundry area");
+            strcpy(aux2, "Laundry area");
         }
         else if (it->storageLocation == '4')
         {
-                strcpy(aux2, "Bathroom");
+            strcpy(aux2, "Bathroom");
         }
         else
         {
-                strcpy(aux2, "Wardrobe");
+            strcpy(aux2, "Wardrobe");
         }
         clear();
         printf(" | ===================== Item List ==================== |\n");
@@ -412,7 +391,6 @@ int searchItemInfo(void) {
     return 0;
 }
 
-//função para editar algum item
 int updateItemScreen(void)
 {
 
@@ -425,7 +403,6 @@ int updateItemScreen(void)
     char minStockStr[20];
     char search[20];
 
- 
     fp = fopen("user.dat", "r+b");
     if (fp == NULL)
     {
@@ -433,7 +410,7 @@ int updateItemScreen(void)
         return 0;
     }
 
-    customer = (User* )malloc(sizeof(User));
+    customer = (User *)malloc(sizeof(User));
 
     clear();
     printf(" | ========================================================= | \n");
@@ -449,7 +426,7 @@ int updateItemScreen(void)
     {
         if ((strcmp(customer->usernameUser, searched) == 0) && (customer->status == '1'))
         {
-                found = 1;
+            found = 1;
         }
     }
     if (found)
@@ -462,8 +439,8 @@ int updateItemScreen(void)
 
         if (fp3 == NULL)
         {
-                printf("Oops! An error occurred while opening the file!\n");
-                return 0;
+            printf("Oops! An error occurred while opening the file!\n");
+            return 0;
         }
 
         printf("Enter the barcode of the item you want to change: ");
@@ -473,142 +450,142 @@ int updateItemScreen(void)
 
         while ((!match) && (fread(it, sizeof(Item), 1, fp3)))
         {
-                if ((strcmp(it->barCode, search) == 0) && (it->status == '1'))
-                {
-                    match = 1;
-                }
+            if ((strcmp(it->barCode, search) == 0) && (it->status == '1'))
+            {
+                match = 1;
+            }
         }
 
         if (match)
         {
-                searchItemInfo();
-                response = updateItemMenu();
-                printf("\n");
+            searchItemInfo();
+            response = updateItemMenu();
+            printf("\n");
 
-                if (response == '1')
+            if (response == '1')
+            {
+
+                printf("Enter the new product name (without accents): ");
+                scanf("%30[^\n]", it->productName);
+                getchar();
+
+                printf(" | Enter the new brand name (without accents): ");
+                scanf("%30[^\n]", it->nameBrand);
+                getchar();
+
+                do
                 {
+                    printf(" | Enter the minimum stock of this product: ");
+                    scanf("%s", minStockStr);
+                    getchar();
 
-                    printf("Enter the new product name (without accents): ");
+                } while (!readQuantity(minStockStr));
+                minStock = charToInt(minStockStr);
+                it->minimumInventory = minStock;
+
+                do
+                {
+                    printf(" | Enter the new expiration date (dd/mm/yyyy): ");
+                    scanf("%d", &it->day);
+                    getchar();
+                    printf(" | Enter the new month: ");
+                    scanf("%d", &it->month);
+                    getchar();
+                    printf(" | Enter the new year: ");
+                    scanf("%d", &it->year);
+                    getchar();
+
+                } while (!valida_data(it->day, it->month, it->year));
+                it->category = categoryScreen();
+                it->storageLocation = scrennStorageLocation();
+
+                do
+                {
+                    printf(" | Enter the quantity of products: ");
+                    scanf("%s", quantity);
+                    getchar();
+
+                } while (!readQuantity(quantity));
+                stock = charToInt(quantity);
+                it->quantEntry = stock;
+            }
+            else if (response == '2')
+            {
+                do
+                {
+                    printf("Enter the new product name: ");
                     scanf("%30[^\n]", it->productName);
                     getchar();
 
-                    printf(" | Enter the new brand name (without accents): ");
+                } while (!it->productName);
+            }
+            else if (response == '3')
+            {
+                do
+                {
+                    printf(" | Enter the new brand name: ");
                     scanf("%30[^\n]", it->nameBrand);
                     getchar();
-
-                    do
-                    {
-                        printf(" | Enter the minimum stock of this product: ");
-                        scanf("%s", minStockStr);
-                        getchar();
-
-                    } while (!readQuantity(minStockStr));
-                    minStock = charToInt(minStockStr);
-                    it->minimumInventory = minStock;
-
-                    do
-                    {
-                        printf(" | Enter the new expiration date (dd/mm/yyyy): ");
-                        scanf("%d", &it->day);
-                        getchar();
-                        printf(" | Enter the new month: ");
-                        scanf("%d", &it->month);
-                        getchar();
-                        printf(" | Enter the new year: ");
-                        scanf("%d", &it->year);
-                        getchar();
-
-                    } while (!valida_data(it->day, it->month, it->year));
-                    it->category = categoryScreen();
-                    it->storageLocation = scrennStorageLocation();
-
-                    do
-                    {
-                        printf(" | Enter the quantity of products: ");
-                        scanf("%s", quantity);
-                        getchar();
-
-                    } while (!readQuantity(quantity));
-                    stock = charToInt(quantity);
-                    it->quantEntry = stock;
-                }
-                else if (response == '2')
+                } while (!it->nameBrand);
+            }
+            else if (response == '4')
+            {
+                do
                 {
-                    do
-                    {
-                        printf("Enter the new product name: ");
-                        scanf("%30[^\n]", it->productName);
-                        getchar();
-
-                    } while (!it->productName);
-                }
-                else if (response == '3')
+                    printf(" | Enter the minimum stock for this product: ");
+                    scanf("%s", quantity);
+                    getchar();
+                } while (!readQuantity(quantity));
+                minStock = charToInt(quantity);
+                it->minimumInventory = minStock;
+            }
+            else if (response == '5')
+            {
+                do
                 {
-                    do
-                    {
-                        printf(" | Enter the new brand name: ");
-                        scanf("%30[^\n]", it->nameBrand);
-                        getchar();
-                    } while (!it->nameBrand);
-                }
-                else if (response == '4')
+                    printf(" | Enter the new expiration date: ");
+                    scanf("%d", &it->day);
+                    getchar();
+                    printf(" | Enter the new expiration month: ");
+                    scanf("%d", &it->month);
+                    getchar();
+                    printf(" | Enter the new expiration year: ");
+                    scanf("%d", &it->year);
+                    getchar();
+                } while (!valida_data(it->day, it->month, it->year));
+            }
+            else if (response == '6')
+            {
+                it->category = categoryScreen();
+            }
+            else if (response == '7')
+            {
+                it->storageLocation = scrennStorageLocation();
+            }
+            else if (response == '8')
+            {
+                do
                 {
-                    do
-                    {
-                        printf(" | Enter the minimum stock for this product: ");
-                        scanf("%s", quantity);
-                        getchar();
-                    } while (!readQuantity(quantity));
-                    minStock = charToInt(quantity);
-                    it->minimumInventory = minStock;
-                }
-                else if (response == '5')
-                {
-                    do
-                    {
-                        printf(" | Enter the new expiration date: ");
-                        scanf("%d", &it->day);
-                        getchar();
-                        printf(" | Enter the new expiration month: ");
-                        scanf("%d", &it->month);
-                        getchar();
-                        printf(" | Enter the new expiration year: ");
-                        scanf("%d", &it->year);
-                        getchar();
-                    } while (!valida_data(it->day, it->month, it->year));
-                }
-                else if (response == '6')
-                {
-                    it->category = categoryScreen();
-                }
-                else if (response == '7')
-                {
-                    it->storageLocation = scrennStorageLocation();
-                }
-                else if (response == '8')
-                {
-                    do
-                    {
-                        printf(" | Enter the product quantity: ");
-                        scanf("%s", quantity);
-                        getchar();
-                    } while (!readQuantity(quantity));
-                    stock = charToInt(quantity);
-                    it->minimumInventory = stock;
-                }
-                it->status = '1';
-                fseek(fp, (-1) * sizeof(Item), SEEK_CUR);
-                fwrite(it, sizeof(Item), 1, fp);
-                printf(" | | \n");
-                printf(" | --------------------------------------------------------- | \n");
-                printf("Data edited successfully");
-                saveItem(it);
-                free(it);
-                fclose(fp3);
+                    printf(" | Enter the product quantity: ");
+                    scanf("%s", quantity);
+                    getchar();
+                } while (!readQuantity(quantity));
+                stock = charToInt(quantity);
+                it->minimumInventory = stock;
+            }
+            it->status = '1';
+            fseek(fp, (-1) * sizeof(Item), SEEK_CUR);
+            fwrite(it, sizeof(Item), 1, fp);
+            printf(" | | \n");
+            printf(" | --------------------------------------------------------- | \n");
+            printf("Data edited successfully");
+            saveItem(it);
+            free(it);
+            fclose(fp3);
         }
         else
         {
-                printf("The barcode item %s was not found\n", searched);
+            printf("The barcode item %s was not found\n", searched);
         }
     }
     else
@@ -623,9 +600,8 @@ int updateItemScreen(void)
     return 0;
 }
 
-//função para selecionar o que quer atualizar
 char updateItemMenu(void)
-{    
+{
     char option;
     clear();
     printf(" | ========================================================= | \n");
@@ -636,11 +612,11 @@ char updateItemMenu(void)
     printf(" |                2- Edit product name                       | \n");
     printf(" |                3- Edit brand name                         | \n");
     printf(" |                4- Edit minimum stock quantity             | \n");
-    printf(" |                5- Edit expiration date                    | \n");                                                                    
-    printf(" |                6- Edit product category                   | \n");                                                                    
-    printf(" |                7- Edit storage location                   | \n");                                                                    
-    printf(" |                8- Edit product quantity                   | \n");                                                                    
-    printf(" |                0- Return to main screen                   | \n");    
+    printf(" |                5- Edit expiration date                    | \n");
+    printf(" |                6- Edit product category                   | \n");
+    printf(" |                7- Edit storage location                   | \n");
+    printf(" |                8- Edit product quantity                   | \n");
+    printf(" |                0- Return to main screen                   | \n");
     printf(" |                                                           | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | Select an option of what you wish to edit: ");
@@ -650,24 +626,23 @@ char updateItemMenu(void)
     return option;
 }
 
-
-//função para exclusão lógica
 int deleteItem(void)
 {
-    FILE* fp3;
-    Item* it;
+    FILE *fp3;
+    Item *it;
     int found;
     char answer;
     char searched[20];
-    
+
     fp3 = fopen("itens.dat", "r+b");
 
-    if (fp3 == NULL){
+    if (fp3 == NULL)
+    {
         printf("Oops! Error opening file!\n");
         return 0;
     }
 
-    it = (Item*) malloc(sizeof(Item));  
+    it = (Item *)malloc(sizeof(Item));
 
     clear();
     printf(" | ============================================================== | \n");
@@ -676,115 +651,126 @@ int deleteItem(void)
     printf(" |                                                                | \n");
     printf(" | Enter the barcode of the item you wish to delete: ");
     scanf(" %30[^\n]", searched);
-    getchar();    
+    getchar();
     found = 0;
 
-    while ((!found) && (fread(it, sizeof(Item), 1, fp3))){
-        if ((strcmp(it->barCode, searched) == 0) && (it->status == '1')){
+    while ((!found) && (fread(it, sizeof(Item), 1, fp3)))
+    {
+        if ((strcmp(it->barCode, searched) == 0) && (it->status == '1'))
+        {
             found = 1;
         }
     }
-    
-    if (found){
+
+    if (found)
+    {
         listItems();
         printf("Do you really want to delete this item's data? (y/n)");
         scanf("%c", &answer);
 
-        if (answer == 'y' || answer == 'Y'){
-            
+        if (answer == 'y' || answer == 'Y')
+        {
+
             it->status = '0';
-            fseek(fp3, (-1)*sizeof(Item), SEEK_CUR);
+            fseek(fp3, (-1) * sizeof(Item), SEEK_CUR);
             fwrite(it, sizeof(Item), 1, fp3);
             printf("\nItem data successfully deleted!");
             saveItem(it);
-            
-        }else{
-            
-            printf("\nAlright, the data was not changed!");
-        
         }
+        else
+        {
 
-    }else{     
-        printf("The item was not found!");  
+            printf("\nAlright, the data was not changed!");
+        }
     }
-    
+    else
+    {
+        printf("The item was not found!");
+    }
+
     free(it);
-    fclose(fp3);  
+    fclose(fp3);
     printf(" | Press any key to exit.... ");
     getchar();
-    
+
     return 0;
-    
 }
 
-//listar itens - relatório sem filtro
-int listItems(void) 
+int listItems(void)
 {
-    FILE* fp3;
-    Item* it;
-    
+    FILE *fp3;
+    Item *it;
+
     fp3 = fopen("itens.dat", "rb");
-    
-    if (fp3 == NULL) {
+
+    if (fp3 == NULL)
+    {
         printf("Oops! Error opening file!\n");
         return 0;
     }
 
-    it = (Item*)malloc(sizeof(Item)); 
+    it = (Item *)malloc(sizeof(Item));
 
-    while(fread(it, sizeof(Item), 1, fp3)) {
+    while (fread(it, sizeof(Item), 1, fp3))
+    {
         clear();
         printf(" | ===================== Item List ======================= | \n");
         printf(" |                                                           | \n");
         displayItemInfo(it);
-    } 
+    }
     free(it);
     fclose(fp3);
-       
+
     return 0;
 }
 
-
-//função para a exibição das informações dos itens
-void displayItemInfo(Item* it) 
+void displayItemInfo(Item *it)
 {
     char aux[20];
     char aux2[20];
 
-    if (it->category == '1'){
+    if (it->category == '1')
+    {
         strcpy(aux, "Personal Hygiene");
-    
-    }else if(it->category == '2'){
+    }
+    else if (it->category == '2')
+    {
         strcpy(aux, "Cleaning");
-    
-    }else{
+    }
+    else
+    {
         strcpy(aux, "Food");
     }
 
-    if (it->storageLocation == '1'){
+    if (it->storageLocation == '1')
+    {
         strcpy(aux2, "Refrigerator");
-    
-    }else if(it->storageLocation == '2'){
+    }
+    else if (it->storageLocation == '2')
+    {
         strcpy(aux2, "Kitchen Cupboard");
-    
-    }else if(it->storageLocation == '3'){
-        strcpy(aux2, "Service Area");        
-    
-    }else if(it->storageLocation == '4'){
-        strcpy(aux2, "Banheiro");          
-    
-    }else{
+    }
+    else if (it->storageLocation == '3')
+    {
+        strcpy(aux2, "Service Area");
+    }
+    else if (it->storageLocation == '4')
+    {
+        strcpy(aux2, "Banheiro");
+    }
+    else
+    {
         strcpy(aux2, "Wardrobe");
     }
 
     clear();
     printf(" | ===================== Item List ======================== |\n");
-    printf(" |                                                           |\n");       
-    printf(" | Product name: %s\n", it->productName);    
-    printf(" | Brand name: %s\n", it->nameBrand);    
-    printf(" | Barcode: %s\n", it->barCode);    
+    printf(" |                                                           |\n");
+    printf(" | Product name: %s\n", it->productName);
+    printf(" | Brand name: %s\n", it->nameBrand);
+    printf(" | Barcode: %s\n", it->barCode);
     printf(" | Minimum stock level: %d\n", it->minimumInventory);
-    printf(" | Expiration date: %d/%d/%d\n", it->day, it->month, it->year); 
+    printf(" | Expiration date: %d/%d/%d\n", it->day, it->month, it->year);
     printf(" | Product category: %s\n", aux);
     printf(" | Storage location: %s\n", aux2);
     printf(" | Product quantity: %d\n", it->quantProduct);
@@ -793,84 +779,90 @@ void displayItemInfo(Item* it)
     printf(" | ========================================================= | \n");
     printf(" | Press any key to exit.... ");
     getchar();
-
 }
 
-//função para adição de produtos à despensa
-int entryItem(void) 
+int entryItem(void)
 {
-    FILE* fp;
-    Item* it;
-    User* customer;
+    FILE *fp;
+    Item *it;
+    User *customer;
     int found, found2;
     char resp;
     char searched[20];
     int stock, stock1;
     char quantity[20];
-    
+
     fp = fopen("user.dat", "rb");
 
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Oops! Error opening file!\n");
         getchar();
         return 0;
     }
 
-    it = (Item*)malloc(sizeof(Item));
-    customer = (User*)malloc(sizeof(User));
+    it = (Item *)malloc(sizeof(Item));
+    customer = (User *)malloc(sizeof(User));
 
     clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                     Item Entry                            | \n");
-    printf(" |                                                           | \n"); 
+    printf(" |                                                           | \n");
     printf(" | Enter your username: ");
     scanf(" %30[^\n]", searched);
-    getchar();     
-    found = 0;  
+    getchar();
+    found = 0;
 
-    while ((!found) && (fread(customer, sizeof(User), 1, fp))){
-        if ((strcmp(customer->usernameUser, searched) == 0) && (customer->status == '1')){
+    while ((!found) && (fread(customer, sizeof(User), 1, fp)))
+    {
+        if ((strcmp(customer->usernameUser, searched) == 0) && (customer->status == '1'))
+        {
             found = 1;
         }
-
-    }if (found){
-        FILE* fp3;
+    }
+    if (found)
+    {
+        FILE *fp3;
         char search[20];
-        
+
         fp3 = fopen("items.dat", "r+b");
-        
-        if (fp3 == NULL) {
+
+        if (fp3 == NULL)
+        {
             printf("Oops! Error opening file!\n");
             getchar();
             return 0;
         }
-               
+
         printf("Enter the product barcode you want to add: ");
         scanf(" %30[^\n]", search);
-        getchar();      
+        getchar();
         found2 = 0;
-    
-        while(((!found2) && (fread(it, sizeof(Item), 1, fp3)))){
-            if ((strcmp(it->barCode,  search) == 0) && (it->status == '1')) {
+
+        while (((!found2) && (fread(it, sizeof(Item), 1, fp3))))
+        {
+            if ((strcmp(it->barCode, search) == 0) && (it->status == '1'))
+            {
                 found2 = 1;
             }
-
-        } if (found2){
+        }
+        if (found2)
+        {
             do
             {
                 printf(" | Enter the product quantity: ");
-                scanf("%s", quantity);             
+                scanf("%s", quantity);
                 getchar();
-                
-            } while(!readQuantity(quantity));
+
+            } while (!readQuantity(quantity));
             stock = charToInt(quantity);
             stock1 = it->quantProduct + stock;
             it->quantEntry = stock;
             it->quantProduct = stock1;
 
-            do 
-            {        
+            do
+            {
                 printf(" | Enter the product expiration day: ");
                 scanf("%d", &it->day);
                 getchar();
@@ -880,51 +872,49 @@ int entryItem(void)
                 printf(" | Enter the year: ");
                 scanf("%d", &it->year);
                 getchar();
-                    
-            } while(!valida_data(it->day, it->month, it->year)); 
-            
+
+            } while (!valida_data(it->day, it->month, it->year));
+
             it->tipe = 'E';
             printf("Are you sure you want to add this product to the pantry (y/n)? ");
-            scanf("%c", &resp); 
+            scanf("%c", &resp);
 
-                if (resp == 'y' || resp == 'Y') {
-                    
-                    fseek(fp3, (-1)*sizeof(Item), SEEK_CUR);
-                    fwrite(it, sizeof(Item), 1, fp3);                      
-                    printf("Product added successfully!");
-                    getchar();
-                    free(it);                
-                    fclose(fp3);
-                
-                }      
-                else {
-                    
-                    printf("Operation canceled!");
-                    getchar();         
-                
-                }
-    
-    }else{
-        
-        printf("Product not found!");
-        getchar();
+            if (resp == 'y' || resp == 'Y')
+            {
 
-    }  
-    free(customer);
-    fclose(fp); 
-       
+                fseek(fp3, (-1) * sizeof(Item), SEEK_CUR);
+                fwrite(it, sizeof(Item), 1, fp3);
+                printf("Product added successfully!");
+                getchar();
+                free(it);
+                fclose(fp3);
+            }
+            else
+            {
+
+                printf("Operation canceled!");
+                getchar();
+            }
+        }
+        else
+        {
+
+            printf("Product not found!");
+            getchar();
+        }
+        free(customer);
+        fclose(fp);
     }
 
-   return 0;
+    return 0;
+}
 
-} 
 
-//função para retirada de produto da despensa
-int exitItem(void) 
+int exitItem(void)
 {
-    FILE* fp;
-    Item* it;
-    User* customer;
+    FILE *fp;
+    Item *it;
+    User *customer;
     int found, found_item;
     char resp;
     char searched[20];
@@ -934,112 +924,119 @@ int exitItem(void)
 
     fp = fopen("user.dat", "rb");
 
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Oops! Error opening file!\n");
         getchar();
         return 0;
     }
 
-    it = (Item*)malloc(sizeof(Item));
-    customer = (User*)malloc(sizeof(User));
+    it = (Item *)malloc(sizeof(Item));
+    customer = (User *)malloc(sizeof(User));
 
     clear();
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                       Item Output                         | \n");
-    printf(" |                                                           | \n"); 
+    printf(" |                                                           | \n");
     printf(" | Enter your username: ");
     scanf(" %30[^\n]", searched);
-    getchar();     
+    getchar();
     found = 0;
 
-    while ((!found) && (fread(customer, sizeof(User), 1, fp))){
-        if ((strcmp(customer->usernameUser, searched) == 0) && (customer->status == '1')){
+    while ((!found) && (fread(customer, sizeof(User), 1, fp)))
+    {
+        if ((strcmp(customer->usernameUser, searched) == 0) && (customer->status == '1'))
+        {
             found = 1;
         }
-
-    }if (found){
-        FILE* fp3;
+    }
+    if (found)
+    {
+        FILE *fp3;
 
         fp3 = fopen("items.dat", "r+b");
 
-        if (fp3 == NULL) {
+        if (fp3 == NULL)
+        {
             printf("Oops! Error opening file!\n");
             getchar();
             return 0;
         }
-    
-            
+
         printf("Enter the bar code of the item you want to remove: ");
         scanf(" %30[^\n]", search);
-        getchar();     
+        getchar();
         found_item = 0;
 
-        while((!found_item) && (fread(it, sizeof(Item), 1, fp3))) {
-            if ((strcmp(it->barCode, search) == 0) && (it->status == '1')) {
-            found_item = 1;
-            }  
-
-        }if (found_item){
+        while ((!found_item) && (fread(it, sizeof(Item), 1, fp3)))
+        {
+            if ((strcmp(it->barCode, search) == 0) && (it->status == '1'))
+            {
+                found_item = 1;
+            }
+        }
+        if (found_item)
+        {
 
             do
             {
                 printf(" | Enter the quantity of the item: ");
-                scanf("%s", quantity);             
+                scanf("%s", quantity);
                 getchar();
-                
-            } while(!readQuantity(quantity));
+
+            } while (!readQuantity(quantity));
             stock = charToInt(quantity);
             new_stock = it->quantProduct - stock;
             it->quantExit = stock;
             it->quantProduct = new_stock;
 
-            it->tipe = 'S'; //S indicates output
+            it->tipe = 'S'; // S indicates output
 
             printf("Are you sure you want to remove this item from the pantry (y/n)? ");
-            scanf("%c", &resp); 
+            scanf("%c", &resp);
             getchar();
 
-                if (resp == 'y' || resp == 'Y') {
-                    
-                    fseek(fp3, (-1)*sizeof(Item), SEEK_CUR);
-                    fwrite(it, sizeof(Item), 1, fp3);                      
-                    printf("Item removed successfully!");
-                    getchar();
-                
-                }        
-                else {
-                    
-                    printf("Operation canceled!");
-                    getchar();
+            if (resp == 'y' || resp == 'Y')
+            {
 
-                }
-                free(it);
-                fclose(fp3);
+                fseek(fp3, (-1) * sizeof(Item), SEEK_CUR);
+                fwrite(it, sizeof(Item), 1, fp3);
+                printf("Item removed successfully!");
+                getchar();
             }
+            else
+            {
 
-        }else{
-            
-            printf("Item not found!");
-            getchar();
-        
-        }  
+                printf("Operation canceled!");
+                getchar();
+            }
+            free(it);
+            fclose(fp3);
+        }
+    }
+    else
+    {
+
+        printf("Item not found!");
+        getchar();
+    }
     free(customer);
-    fclose(fp);   
+    fclose(fp);
 
     return 0;
 }
 
-//função para não permitir código de barras iguais
-int validaCod(char* item)
-{
-    FILE* fp3;
-    Item* usuarioItem;
 
-    usuarioItem = (Item*)malloc(sizeof(Item));
-    
+int validaCod(char *item)
+{
+    FILE *fp3;
+    Item *usuarioItem;
+
+    usuarioItem = (Item *)malloc(sizeof(Item));
+
     fp3 = fopen("itens.dat", "rt");
-    
+
     if (fp3 == NULL)
     {
         printf("Gerando arquivo...");
@@ -1056,7 +1053,6 @@ int validaCod(char* item)
         }
     }
     fclose(fp3);
- 
-    return 1;
 
+    return 1;
 }

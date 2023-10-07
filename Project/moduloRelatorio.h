@@ -16,10 +16,10 @@ struct noItem
     int anoSaida;
     char relatoryBarCode[20];
     char status;
-    int estoqueMinimo; 
-    char categoria;
-    char localArmazenamento;
-    int quantProduto;
+    int minimumStock; 
+    char categoryAux;
+    char localStorage;
+    int quantProductAux;
     char usernameUsuario[20];  
     char dataAtual[40]; 
     NoItem* prox;
@@ -30,7 +30,7 @@ struct noItem
 //cabeçalho da função usada no arquivo.c
 void displayInfoItem(Item* it);
 char relatoryScreen(void);
-char moduloRelatorio(void);
+char moduleRelatory(void);
 char relatoryCategory(void);
 void menuCategory(void);
 char stockRelatoryLocal(void);
