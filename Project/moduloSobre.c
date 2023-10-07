@@ -3,27 +3,25 @@
 #include "moduloSobre.h"
 #include <string.h>
 
-void telaSobre(void)
+void displayAboutScreen(void)
 {
-    system ( " clear||cls " );
-    printf ( " | ------------------------------------------------------------------ | \n " );
-    printf ( " | ---- // UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - CERES // --- | \n " );
-    printf ( " | -------- // Departamento de Computação e Informática // ---------- | \n " );
-    printf ( " | ------------------------------------------------------------------ | \n " );
-    printf ( " |                                                                    | \n " );                                       
-    printf ( " |            Disciplina: DCT1106 - PROGRAMAÇÃO - 2022.2              | \n " );
-    printf ( " |         Projeto: Sistema de Controle de Despensa Doméstica         | \n " );
-    printf ( " |                    Docente: Dr Flavius Gorgônio                    | \n " );
-    printf ( " |                                                                    | \n " );
-    printf ( " |  Este programa consiste no controle das atividades de uma despensa | \n " );
-    printf ( " |   doméstica, sendo dividida em categorias no intuito de ajudar na  | \n " );
-    printf ( " |               organização das atividades cotidianas.               | \n " );
-    printf ( " |                                                                    | \n " );
-    printf ( " |          Developers: Manuelly Rodrigues e Italo Maurício           | \n " );
-    printf ( " |                                                                    | \n " );
-    printf ( " | ------------------------------------------------------------------ | \n " );
-    printf ( " | ---------------------- SIG - Pantry - 2022.2 --------------------- | \n " );
-    printf ( " | Pressione qualquer tecla para sair...\n");
-    getchar();  
-
+    system("clear||cls");
+    printf("| ------------------------------------------------------------------ |\n");
+    printf("| ---- // FEDERAL UNIVERSITY OF RIO GRANDE DO NORTE - CERES // ----- |\n");
+    printf("| -------- // Department of Computer Science and Informatics // ---- |\n");
+    printf("| ------------------------------------------------------------------ |\n");
+    printf("|                                                                    |\n");
+    printf("|            Course: DCT1106 - PROGRAMMING - 2022.2                  |\n");
+    printf("|         Project: Home Pantry Control System                        |\n");
+    printf("|                Instructor: Dr. Flavius Gorgônio                    |\n");
+    printf("|                                                                    |\n");
+    printf("|  This program is about controlling home pantry activities, divided |\n");
+    printf("|  into categories to help with daily organization.                  |\n");
+    printf("|                                                                    |\n");
+    printf("|          Developers: Manuelly Rodrigues and Italo Maurício         |\n");
+    printf("|                                                                    |\n");
+    printf("| ------------------------------------------------------------------ |\n");
+    printf("| ---------------------- SIG - Pantry - 2022.2 --------------------- |\n");
+    printf("| Press any key to exit...\n");
+    getchar();
 }

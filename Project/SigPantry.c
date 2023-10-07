@@ -28,7 +28,7 @@ int main (void)
             moduloRelatorio();
             break; 
         case '5':
-            telaSobre();
+            displayAboutScreen();
             break;
         case '0':
             printf("Fim do programa!");
